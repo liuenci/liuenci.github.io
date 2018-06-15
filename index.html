@@ -147,6 +147,222 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-git使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h4><p>参考文章：<a href="http://www.xgllseo.com/?p=5428" target="_blank" rel="noopener">http://www.xgllseo.com/?p=5428</a><br>感谢大神。</p>
+<p>下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。</p>
+<ol>
+<li>测试git是否安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>记住一定是–,不是一个-。</p>
+<ol start="2">
+<li>获取ssh密钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;你的github邮箱&quot; -f ~/.ssh/github</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行的过程中会提示你需要设置密码，不要管它，一路回车。<br>这时候会在你的～/目录下面生成一个.ssh/目录，但是Ubuntu默认是不显示这个目录的。查看.ssh目录下的github.pub获取公钥认证，就是一串乱码。<br>接下来获取这串乱码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">sudo gedit github.pub</span><br></pre></td></tr></table></figure></p>
+<p>这个时候会打开这个文件，只需要复制里面的代码到github里面的SSH and GPG keys 里面填写一下就好了。</p>
+<ol start="3">
+<li><p>创建本地项目文件<br>这个文件就是专门负责项目的上传和更新，进入这个文件夹，然后在终端输入以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &quot;你的github仓库地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交文件夹到github上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add . // 更新整个目录</span><br><span class="line">git config user.name &quot;liuenci&quot; //第一次需要配置</span><br><span class="line">git config user.email &quot;154910381@qq.com&quot; //第一次需要配置</span><br><span class="line">git commit -m &quot;更新版本简要说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样子就能够上传我们的项目了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/git使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ubuntu基础命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Ubuntu基础命令"><a href="#Ubuntu基础命令" class="headerlink" title="Ubuntu基础命令"></a>Ubuntu基础命令</h4><h6 id="cd-切换位置"><a href="#cd-切换位置" class="headerlink" title="cd 切换位置"></a>cd 切换位置</h6><p>移动到 Document<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Documents</span><br></pre></td></tr></table></figure></p>
+<p>移动到上一级目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br></pre></td></tr></table></figure></p>
+<p>返回到 Home 目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure></p>
+<p>返回到你刚刚所在的目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd -</span><br></pre></td></tr></table></figure></p>
+<p>去往电脑的任何一个位置,使用的是绝对位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/cier</span><br></pre></td></tr></table></figure></p>
+<h5 id="ls-浏览文件"><a href="#ls-浏览文件" class="headerlink" title="ls 浏览文件"></a>ls 浏览文件</h5><p>显示当前目录下所有文件（不包括隐藏文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure></p>
+<p>显示当前目录下文件的详细信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p>显示所有文件，包括隐藏文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure></p>
+<p>更人性化的显示文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lh</span><br></pre></td></tr></table></figure></p>
+<p>显示 ls 所有的功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls --help</span><br></pre></td></tr></table></figure></p>
+<h5 id="touch-创建文件"><a href="#touch-创建文件" class="headerlink" title="touch 创建文件"></a>touch 创建文件</h5><p>创建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1</span><br></pre></td></tr></table></figure></p>
+<p>创建多个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1 file2 file3 file4 file5</span><br></pre></td></tr></table></figure></p>
+<h5 id="cp-复制文件或者文件夹"><a href="#cp-复制文件或者文件夹" class="headerlink" title="cp 复制文件或者文件夹"></a>cp 复制文件或者文件夹</h5><p>将老文件复制到新文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy</span><br></pre></td></tr></table></figure></p>
+<p>如果file1copy已经存在，上面的语句会直接覆盖原来的file1copy,为了避免覆盖，需要在cp后面加一个选项。回复任意大小写的’y’或者’yes’就确认复制，直接回车或者输入其他字母会取消复制，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -i file1 file1copy</span><br></pre></td></tr></table></figure></p>
+<p>复制进文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>复制文件夹，需要加上 -R (recursive)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -R folder1/ folder2/</span><br></pre></td></tr></table></figure></p>
+<p>复制文件名称部分相同的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file* folder2/</span><br></pre></td></tr></table></figure></p>
+<p>复制单独的几个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy file2 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>#####　mv 移动文件<br>移动一个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file6 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>移动文件到原来的地点，但是以不同的名字，就是重命名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file1 file1rename</span><br></pre></td></tr></table></figure></p>
+<p>找到更多的 mv 的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv --help</span><br></pre></td></tr></table></figure></p>
+<h5 id="mkdir-创建文件夹"><a href="#mkdir-创建文件夹" class="headerlink" title="mkdir 创建文件夹"></a>mkdir 创建文件夹</h5><p>在当前目录添加一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3</span><br></pre></td></tr></table></figure></p>
+<p>在文件夹中建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3/file1</span><br></pre></td></tr></table></figure></p>
+<h5 id="rmdir-移除文件夹"><a href="#rmdir-移除文件夹" class="headerlink" title="rmdir 移除文件夹"></a>rmdir 移除文件夹</h5><p>rmdir 就是 remove directory 的意思，但是这个命令只能删除文件夹内没有文件的文件夹。也就是说只能移除空文件夹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir folder3</span><br></pre></td></tr></table></figure></p>
+<h5 id="rm-移除文件"><a href="#rm-移除文件" class="headerlink" title="rm 移除文件"></a>rm 移除文件</h5><p>移除单个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm file1</span><br></pre></td></tr></table></figure></p>
+<p>有提示的移除文件<br>-i 每个要移除的文件都进行提示<br>-I 超过三个要移除的文件才进行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -i file1 file2 file3</span><br><span class="line">rm -I file*</span><br></pre></td></tr></table></figure></p>
+<p>删除非空文件夹,加上 -r 或者 -R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -r folder1</span><br></pre></td></tr></table></figure></p>
+<h5 id="nano-编辑脚本"><a href="#nano-编辑脚本" class="headerlink" title="nano 编辑脚本"></a>nano 编辑脚本</h5><p>打开一个python脚本进行编辑,编辑完之后 ctrl+x 保存，再通过 python 指令运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano file.py</span><br><span class="line">python file.py</span><br></pre></td></tr></table></figure></p>
+<h5 id="cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中"><a href="#cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中" class="headerlink" title="cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中"></a>cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中</h5><p>查看 python 脚本内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py</span><br></pre></td></tr></table></figure></p>
+<p>将文件的内容写进另外一个文件，另外一个文件不存在时会自动创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py &gt; file2.py</span><br></pre></td></tr></table></figure></p>
+<p>将多个文件写进另外一个文件，另外一个文件不存在时会自动创建,内容顺序为 file1 file2 file3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py file2.py &gt; file3.py</span><br></pre></td></tr></table></figure></p>
+<p>将一个文件写入到另外一个文件的末尾<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py &gt;&gt; file2.py</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/Ubuntu基础命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux文件权限" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="为什么有权限"><a href="#为什么有权限" class="headerlink" title="为什么有权限"></a>为什么有权限</h4><p>在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。</p>
+<h4 id="如何查看权限"><a href="#如何查看权限" class="headerlink" title="如何查看权限"></a>如何查看权限</h4><p>查看文件的权限只需要输入以下命令即可查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/03-01-02.png" alt="Linux文件权限"><br>图片来源:<a href="https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/" target="_blank" rel="noopener">https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/</a> 侵删。</p>
+<p>类似于 drwxrwxr-x 这种格式的就是文件的权限。细节展示在上面的图中，下面解释一下这个字符串的四个部分。</p>
+<ul>
+<li>Type:文件的类型，(- 为文件，d 为文件夹，其他的还有 l,n,有需求再搜)</li>
+<li>User:在 Type 后面紧跟着的三个空就是说是用 User 的身份能对这个做什么处理(r 能读；w 能写；x 能执行；- 不能完成某个操作)，User 一般指的是当前使用电脑的人。</li>
+<li>Group:一个 Group 里面可能有一个或者多个 User,这些权限的样式和 User 一样。</li>
+<li>Others:除了 User 和 Group 以外人的权限。<h4 id="如何修改权限"><a href="#如何修改权限" class="headerlink" title="如何修改权限"></a>如何修改权限</h4>先看一个例子，如何给 User 添加执行权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+r file.py</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>归纳一下得到以下公式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [谁][怎么修改][修改哪个文件]</span><br></pre></td></tr></table></figure></p>
+<p>u+r 就是说给 User 加上 read 权限，给 file.py 这个文件进行修改。<br>[谁]</p>
+<ul>
+<li>u:修改 User</li>
+<li>g:修改 Group</li>
+<li>o:修改 Others</li>
+<li>a:修改 all<br>[怎么修改]</li>
+<li>+,-,= : 加上，剪掉，等于某些权限</li>
+<li>r,w,x : 或者多个权限一起，比如 rw.</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/Linux文件权限/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-写在开始之前" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

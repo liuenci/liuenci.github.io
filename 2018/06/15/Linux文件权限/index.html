@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | cier</title>
+  <title>cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello world">
-<meta property="og:type" content="website">
+  <meta name="description" content="为什么有权限在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。 如何查看权限查看文件的权限只需要输入以下命令即可查看。1ls -l 图片来源:https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permis">
+<meta property="og:type" content="article">
 <meta property="og:title" content="cier">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/Linux文件权限/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="为什么有权限在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。 如何查看权限查看文件的权限只需要输入以下命令即可查看。1ls -l 图片来源:https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permis">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/03-01-02.png">
+<meta property="og:updated_time" content="2018-03-31T11:17:36.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cier">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:description" content="为什么有权限在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。 如何查看权限查看文件的权限只需要输入以下命令即可查看。1ls -l 图片来源:https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permis">
+<meta name="twitter:image" content="http://ove4nglsb.bkt.clouddn.com/03-01-02.png">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -145,112 +148,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Linux文件权限" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="为什么有权限"><a href="#为什么有权限" class="headerlink" title="为什么有权限"></a>为什么有权限</h4><p>在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。</p>
+<h4 id="如何查看权限"><a href="#如何查看权限" class="headerlink" title="如何查看权限"></a>如何查看权限</h4><p>查看文件的权限只需要输入以下命令即可查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/03-01-02.png" alt="Linux文件权限"><br>图片来源:<a href="https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/" target="_blank" rel="noopener">https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/</a> 侵删。</p>
+<p>类似于 drwxrwxr-x 这种格式的就是文件的权限。细节展示在上面的图中，下面解释一下这个字符串的四个部分。</p>
+<ul>
+<li>Type:文件的类型，(- 为文件，d 为文件夹，其他的还有 l,n,有需求再搜)</li>
+<li>User:在 Type 后面紧跟着的三个空就是说是用 User 的身份能对这个做什么处理(r 能读；w 能写；x 能执行；- 不能完成某个操作)，User 一般指的是当前使用电脑的人。</li>
+<li>Group:一个 Group 里面可能有一个或者多个 User,这些权限的样式和 User 一样。</li>
+<li>Others:除了 User 和 Group 以外人的权限。<h4 id="如何修改权限"><a href="#如何修改权限" class="headerlink" title="如何修改权限"></a>如何修改权限</h4>先看一个例子，如何给 User 添加执行权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+r file.py</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>归纳一下得到以下公式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [谁][怎么修改][修改哪个文件]</span><br></pre></td></tr></table></figure></p>
+<p>u+r 就是说给 User 加上 read 权限，给 file.py 这个文件进行修改。<br>[谁]</p>
+<ul>
+<li>u:修改 User</li>
+<li>g:修改 Group</li>
+<li>o:修改 Others</li>
+<li>a:修改 all<br>[怎么修改]</li>
+<li>+,-,= : 加上，剪掉，等于某些权限</li>
+<li>r,w,x : 或者多个权限一起，比如 rw.</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/git使用/" class="archive-article-date">
-  	<time datetime="2018-06-15T11:43:45.811Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/15/Linux文件权限/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/Ubuntu基础命令/" class="archive-article-date">
-  	<time datetime="2018-06-15T11:43:45.808Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/Linux文件权限/" class="archive-article-date">
-  	<time datetime="2018-06-15T11:43:45.771Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2018/06/15/Ubuntu基础命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/15/写在开始之前/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">写在开始之前</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/写在开始之前/" class="archive-article-date">
-  	<time datetime="2018-06-15T04:13:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/15/写在开始之前/">写在开始之前</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -273,8 +344,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

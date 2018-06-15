@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | cier</title>
+  <title>cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello world">
-<meta property="og:type" content="website">
+  <meta name="description" content="git使用参考文章：http://www.xgllseo.com/?p=5428感谢大神。 下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。  测试git是否安装1git --version   记住一定是–,不是一个-。  获取ssh密钥1ssh-keygen -C &amp;quot;你的github邮箱&amp;quot; -f ~/.ssh/github   执行的过程中会提示你">
+<meta property="og:type" content="article">
 <meta property="og:title" content="cier">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/git使用/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="git使用参考文章：http://www.xgllseo.com/?p=5428感谢大神。 下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。  测试git是否安装1git --version   记住一定是–,不是一个-。  获取ssh密钥1ssh-keygen -C &amp;quot;你的github邮箱&amp;quot; -f ~/.ssh/github   执行的过程中会提示你">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-31T11:17:36.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cier">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:description" content="git使用参考文章：http://www.xgllseo.com/?p=5428感谢大神。 下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。  测试git是否安装1git --version   记住一定是–,不是一个-。  获取ssh密钥1ssh-keygen -C &amp;quot;你的github邮箱&amp;quot; -f ~/.ssh/github   执行的过程中会提示你">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -145,112 +146,172 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h4><p>参考文章：<a href="http://www.xgllseo.com/?p=5428" target="_blank" rel="noopener">http://www.xgllseo.com/?p=5428</a><br>感谢大神。</p>
+<p>下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。</p>
+<ol>
+<li>测试git是否安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>记住一定是–,不是一个-。</p>
+<ol start="2">
+<li>获取ssh密钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;你的github邮箱&quot; -f ~/.ssh/github</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行的过程中会提示你需要设置密码，不要管它，一路回车。<br>这时候会在你的～/目录下面生成一个.ssh/目录，但是Ubuntu默认是不显示这个目录的。查看.ssh目录下的github.pub获取公钥认证，就是一串乱码。<br>接下来获取这串乱码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">sudo gedit github.pub</span><br></pre></td></tr></table></figure></p>
+<p>这个时候会打开这个文件，只需要复制里面的代码到github里面的SSH and GPG keys 里面填写一下就好了。</p>
+<ol start="3">
+<li><p>创建本地项目文件<br>这个文件就是专门负责项目的上传和更新，进入这个文件夹，然后在终端输入以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &quot;你的github仓库地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交文件夹到github上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add . // 更新整个目录</span><br><span class="line">git config user.name &quot;liuenci&quot; //第一次需要配置</span><br><span class="line">git config user.email &quot;154910381@qq.com&quot; //第一次需要配置</span><br><span class="line">git commit -m &quot;更新版本简要说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样子就能够上传我们的项目了。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/git使用/" class="archive-article-date">
-  	<time datetime="2018-06-15T11:43:45.811Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/15/git使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/Ubuntu基础命令/" class="archive-article-date">
-  	<time datetime="2018-06-15T11:43:45.808Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/Linux文件权限/" class="archive-article-date">
-  	<time datetime="2018-06-15T11:43:45.771Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/15/Ubuntu基础命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/15/写在开始之前/" class="archive-article-date">
-  	<time datetime="2018-06-15T04:13:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/15/写在开始之前/">写在开始之前</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -273,8 +334,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
