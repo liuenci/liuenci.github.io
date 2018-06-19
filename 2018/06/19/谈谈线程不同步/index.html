@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2028 | cier</title>
+  <title>谈谈线程不同步 | cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello world">
-<meta property="og:type" content="website">
-<meta property="og:title" content="cier">
-<meta property="og:url" content="http://yoursite.com/archives/2028/index.html">
+  <meta name="description" content="模拟银行转账代码  以下的代码模拟一个有若干账户的银行，然后随机生成在这些账户之间转移钱款的交易。每一个账户都有一个线程。每一笔交易，都会从一个账户中随机转移一定的钱款到另外一个账户。  银行类   有多少账户 每个账户有多少余额 一个转账方法，一个获取银行总金额方法和一个获取银行的账户数目方法123456789101112131415161718192021222324252627282930">
+<meta name="keywords" content="Java,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈线程不同步">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/谈谈线程不同步/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="模拟银行转账代码  以下的代码模拟一个有若干账户的银行，然后随机生成在这些账户之间转移钱款的交易。每一个账户都有一个线程。每一笔交易，都会从一个账户中随机转移一定的钱款到另外一个账户。  银行类   有多少账户 每个账户有多少余额 一个转账方法，一个获取银行总金额方法和一个获取银行的账户数目方法123456789101112131415161718192021222324252627282930">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%90%8C%E6%AD%A5.png">
+<meta property="og:updated_time" content="2018-06-19T06:14:47.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cier">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:title" content="谈谈线程不同步">
+<meta name="twitter:description" content="模拟银行转账代码  以下的代码模拟一个有若干账户的银行，然后随机生成在这些账户之间转移钱款的交易。每一个账户都有一个线程。每一笔交易，都会从一个账户中随机转移一定的钱款到另外一个账户。  银行类   有多少账户 每个账户有多少余额 一个转账方法，一个获取银行总金额方法和一个获取银行的账户数目方法123456789101112131415161718192021222324252627282930">
+<meta name="twitter:image" content="http://ove4nglsb.bkt.clouddn.com/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%90%8C%E6%AD%A5.png">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -145,60 +149,213 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-谈谈线程不同步" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2028" class="archive-year">2028</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2028/06/15/写在开始之前/" class="archive-article-date">
-  	<time datetime="2028-06-15T04:13:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2028-06-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2028/06/15/写在开始之前/">写在开始之前</a>
+    <h1 class="article-title" itemprop="name">
+      谈谈线程不同步
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/19/谈谈线程不同步/" class="archive-article-date">
+  	<time datetime="2018-06-19T06:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>模拟银行转账代码</p>
+</blockquote>
+<p>以下的代码模拟一个有若干账户的银行，然后随机生成在这些账户之间转移钱款的交易。每一个账户都有一个线程。每一笔交易，都会从一个账户中随机转移一定的钱款到另外一个账户。</p>
+<blockquote>
+<p>银行类</p>
+</blockquote>
+<ol>
+<li>有多少账户</li>
+<li>每个账户有多少余额</li>
+<li>一个转账方法，一个获取银行总金额方法和一个获取银行的账户数目方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.multithreading1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bank</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">double</span>[] accounts;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bank</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">double</span> initialBalance)</span> </span>&#123;</span><br><span class="line">		accounts = <span class="keyword">new</span> <span class="keyword">double</span>[n];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; accounts.length; i++) &#123;</span><br><span class="line">			<span class="comment">//给每个账户一个初始余额</span></span><br><span class="line">			accounts[i] = initialBalance;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 从一个账户转账到另外一个账号上</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> from</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> to</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> amount 转账的金额</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to, <span class="keyword">double</span> amount)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (accounts[from] &lt; amount) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(Thread.currentThread());</span><br><span class="line">		accounts[from] -= amount;</span><br><span class="line">		System.out.printf(<span class="string">" %10.2f from %d to %d"</span>, amount, from, to);</span><br><span class="line">		accounts[to] += amount;</span><br><span class="line">		<span class="comment">//这里为什么不是输出accounts[to],因为账户之间的转账不会导致银行的总存款减少或增多,但是这段代码实际上会出现这种情况,所以容易辨识</span></span><br><span class="line">		System.out.printf(<span class="string">" total balance:%10.2f%n"</span>, getTotalBalance());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getTotalBalance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">double</span> a : accounts) &#123;</span><br><span class="line">			sum += a;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> accounts.length;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>线程类</p>
+</blockquote>
+<p>注解:主要实现通过线程去实现转账。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.multithreading1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransferRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Bank bank;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> fromAccount;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> maxAmount;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> DELAY = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TransferRunnable</span><span class="params">(Bank b, <span class="keyword">int</span> from, <span class="keyword">double</span> max)</span> </span>&#123;</span><br><span class="line">		bank = b;</span><br><span class="line">		fromAccount = from;</span><br><span class="line">		maxAmount = max;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">				<span class="comment">//随机生成收到转账的账户</span></span><br><span class="line">				<span class="keyword">int</span> toAccount = (<span class="keyword">int</span>) (bank.size() * Math.random());</span><br><span class="line">				<span class="comment">//随机生成转账金额</span></span><br><span class="line">				<span class="keyword">double</span> amount = maxAmount * Math.random();</span><br><span class="line">				bank.transfer(fromAccount, toAccount, amount);</span><br><span class="line">				Thread.sleep(DELAY);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>不同步线程的测试类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.multithreading1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnsynchBankTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NACCOUNTS = <span class="number">10</span>;<span class="comment">//若干账户</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> INITIAL_BALANCE = <span class="number">1000</span>;<span class="comment">//账户初始余额</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Bank b = <span class="keyword">new</span> Bank(NACCOUNTS,INITIAL_BALANCE);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;NACCOUNTS;i++) &#123;</span><br><span class="line">			TransferRunnable r = <span class="keyword">new</span> TransferRunnable(b,i,INITIAL_BALANCE);</span><br><span class="line">			Thread t = <span class="keyword">new</span> Thread(r);</span><br><span class="line">			t.start();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>运行结果</p>
+</blockquote>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%90%8C%E6%AD%A5.png" alt=""><br>我们从代码中可以知道银行的总余额是10000,正常情况下银行的总余额是不会变的，但是从运行结果可以看到，银行的总余额发生了改变，这就是线程不同步造成的隐患，当很多线程同时访问账户余额这个临界变量的时候会出现共享数据的讹误现象。所以我们对临界变量要设置对象锁，保证在某一个时刻，只允许一个线程访问该临界变量。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/谈谈线程不同步/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2028/06/15/写在开始之前/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          写在开始之前
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/06/18/多线程的一点理解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多线程的一点理解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -221,8 +378,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
