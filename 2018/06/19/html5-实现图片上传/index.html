@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>cier</title>
+  <title>html5 实现图片上传 | cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hello world">
-<meta property="og:type" content="website">
-<meta property="og:title" content="cier">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="前言话说现在成熟的框架写一个文件上传挺简单的，但是因为直接学习框架中的文件上传会造成一种只会调用别人写好的代码来实现功能，但是自己并不会其中的原理的一种尴尬的情况，所以还是自己把图片上传用原生的js+servlet实现一下。">
+<meta name="keywords" content="html5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html5 实现图片上传">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/html5-实现图片上传/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="前言话说现在成熟的框架写一个文件上传挺简单的，但是因为直接学习框架中的文件上传会造成一种只会调用别人写好的代码来实现功能，但是自己并不会其中的原理的一种尴尬的情况，所以还是自己把图片上传用原生的js+servlet实现一下。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-19T06:22:09.188Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cier">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:title" content="html5 实现图片上传">
+<meta name="twitter:description" content="前言话说现在成熟的框架写一个文件上传挺简单的，但是因为直接学习框架中的文件上传会造成一种只会调用别人写好的代码来实现功能，但是自己并不会其中的原理的一种尴尬的情况，所以还是自己把图片上传用原生的js+servlet实现一下。">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -145,97 +147,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-写在开始之前" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-html5-实现图片上传" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2028/06/15/写在开始之前/">写在开始之前</a>
-    </h1>
-  
-
-        
-        <a href="/2028/06/15/写在开始之前/" class="archive-article-date">
-  	<time datetime="2028-06-15T04:13:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2028-06-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先算下我写博客以来迭代了几次版本。记得最开始的时候是在博客园上注册的博客账号，和面发现博客园的 seo 做的挺差的，在百度上进行搜索的时候，同样的文章基本上都搜索不到博客园上这个平台的文章。
-        
-          <a class="article-more-a" href="/2028/06/15/写在开始之前/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2028/06/15/写在开始之前/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-html5-实现图片上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/html5-实现图片上传/">html5 实现图片上传</a>
+    <h1 class="article-title" itemprop="name">
+      html5 实现图片上传
     </h1>
   
 
@@ -248,12 +167,48 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>话说现在成熟的框架写一个文件上传挺简单的，但是因为直接学习框架中的文件上传会造成一种只会调用别人写好的代码来实现功能，但是自己并不会其中的原理的一种尴尬的情况，所以还是自己把图片上传用原生的js+servlet实现一下。
-        
-          <a class="article-more-a" href="/2018/06/19/html5-实现图片上传/#more">more >></a>
-        
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>话说现在成熟的框架写一个文件上传挺简单的，但是因为直接学习框架中的文件上传会造成一种只会调用别人写好的代码来实现功能，但是自己并不会其中的原理的一种尴尬的情况，所以还是自己把图片上传用原生的js+servlet实现一下。<a id="more"></a></p>
+<h3 id="首先是前端页面"><a href="#首先是前端页面" class="headerlink" title="首先是前端页面"></a>首先是前端页面</h3><p>前端页面因为是只需要实现一个功能，就只写一个form表单即可。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"form"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file_upload"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"upload()"</span>&gt;</span>上传<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="然后写一个js"><a href="#然后写一个js" class="headerlink" title="然后写一个js"></a>然后写一个js</h3><p>js中的每一步的原理都已经注释在代码中了，这里就不再赘述了。其中要注意的是需要使用FormData包装数据。使用FormData可以使发送表单数据更方便，因为FormData对象是可以使用一系列的键值对来模拟一个完整的表单，然后使用XMLHttpRequest发送这个”表单”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">// 获取表单对象</span></span><br><span class="line">	<span class="keyword">var</span> form = <span class="built_in">document</span>.querySelector(<span class="string">"#form"</span>);</span><br><span class="line">	<span class="comment">// 创建请求对象</span></span><br><span class="line">	<span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">	<span class="comment">// 设置请求方式和路径</span></span><br><span class="line">	ajax.open(<span class="string">"post"</span>, <span class="string">"upload"</span>);</span><br><span class="line">	<span class="comment">// 使用FormData包装数据</span></span><br><span class="line">	<span class="keyword">var</span> fd = <span class="keyword">new</span> FormData(form);</span><br><span class="line">	<span class="comment">// 发送请求</span></span><br><span class="line">	ajax.send(fd);</span><br><span class="line">	<span class="comment">// 处理请求</span></span><br><span class="line">	ajax.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (ajax.readyState == <span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>) &#123;</span><br><span class="line">			<span class="comment">// 接受返回的数据</span></span><br><span class="line">			<span class="keyword">var</span> data = ajax.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="最后写后端的Servlet文件（因为我是Java开发）"><a href="#最后写后端的Servlet文件（因为我是Java开发）" class="headerlink" title="最后写后端的Servlet文件（因为我是Java开发）"></a>最后写后端的Servlet文件（因为我是Java开发）</h3><p>因为get方式提交的文件的大小有限，加上安全性不好所以使用post提交方式，所以我们只需要重写doPost方法即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.liuenci.ajax;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.UUID;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.MultipartConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.Part;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/upload"</span>)</span><br><span class="line"><span class="meta">@MultipartConfig</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Upload</span> <span class="keyword">extends</span> <span class="title">ServletImpl</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		forward(<span class="string">"upload"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		<span class="comment">// 接收文件</span></span><br><span class="line">		Part p = req.getPart(<span class="string">"file_upload"</span>);</span><br><span class="line">		<span class="comment">// 获取提交的文件名</span></span><br><span class="line">		String submitName = p.getSubmittedFileName();</span><br><span class="line">		<span class="comment">// 重新生成文件名</span></span><br><span class="line">		String newName = UUID.randomUUID().toString();</span><br><span class="line">		String kzm = submitName.substring(submitName.lastIndexOf(<span class="string">"."</span>));</span><br><span class="line">		<span class="comment">// 组合名字</span></span><br><span class="line">		String newFile = newName+kzm;</span><br><span class="line">		<span class="comment">// 组合保存路径</span></span><br><span class="line">		String pt = req.getServletContext().getRealPath(<span class="string">"/upload"</span>);</span><br><span class="line">		String path = pt+<span class="string">"\\"</span>+newFile;</span><br><span class="line">		<span class="comment">// 保存</span></span><br><span class="line">		p.write(path);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="特别提醒"><a href="#特别提醒" class="headerlink" title="特别提醒"></a>特别提醒</h3><ol>
+<li>WebContent文件夹下面需要建一个upload文件夹，并且需要放置一张图片，因为不放图片空文件夹不会上传到tomcat中。</li>
+<li>Tomcat的server Location需要设置server path成tomcat的安装目录，Deploy path设置成Tomcat中的webapps文件夹。</li>
+</ol>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -273,16 +228,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/html5-实现图片上传/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/html5-实现图片上传/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2028/06/15/写在开始之前/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          写在开始之前
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/19/谈谈-Java-中的-clone-方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">谈谈 Java 中的 clone 方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -302,336 +325,14 @@
 
 
 
-
   
-    <article id="post-谈谈-Java-中的-clone-方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/谈谈-Java-中的-clone-方法/">谈谈 Java 中的 clone 方法</a>
-    </h1>
   
 
-        
-        <a href="/2018/06/19/谈谈-Java-中的-clone-方法/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:19:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java 中的对象创建有很多种，比如我所知道的以下几种：</p>
-<ol>
-<li>通过 new 关键字分配内存去创建对象</li>
-<li>通过反射机制创建对象</li>
-<li>通过 clone() 方法复制对象</li>
-<li>通过 Spring 中 @Autowired 注解自动装配</li>
-<li>通过 xml 对 bean 的配置，再在 Java 类中通过创建应用上下文，以及 getBean(Class class) 方法创建对象。
-        
-          <a class="article-more-a" href="/2018/06/19/谈谈-Java-中的-clone-方法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/谈谈-Java-中的-clone-方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-解析-Java-中的堆栈基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/解析-Java-中的堆栈基础/">解析 Java 中的堆栈基础</a>
-    </h1>
   
 
-        
-        <a href="/2018/06/19/解析-Java-中的堆栈基础/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:17:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。
-        
-          <a class="article-more-a" href="/2018/06/19/解析-Java-中的堆栈基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/解析-Java-中的堆栈基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-谈谈线程不同步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/谈谈线程不同步/">谈谈线程不同步</a>
-    </h1>
   
 
-        
-        <a href="/2018/06/19/谈谈线程不同步/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>模拟银行转账代码</p>
-</blockquote>
-<p>以下的代码模拟一个有若干账户的银行，然后随机生成在这些账户之间转移钱款的交易。每一个账户都有一个线程。每一笔交易，都会从一个账户中随机转移一定的钱款到另外一个账户。
-        
-          <a class="article-more-a" href="/2018/06/19/谈谈线程不同步/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/谈谈线程不同步/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多线程的一点理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/18/多线程的一点理解/">多线程的一点理解</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/18/多线程的一点理解/" class="archive-article-date">
-  	<time datetime="2018-06-17T23:36:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>什么是多线程</p>
-</blockquote>
-<p>一个程序同时运行多个任务叫做多线程，一个任务就是一个线程。</p>
-<blockquote>
-<p>多线程和多进程的区别</p>
-</blockquote>
-<p>进程是计算机上的一次执行活动，所以进程是活的，进程是操作系统进行资源分配的单位。在windows下，进程被细分为线程，就是说一个线程下有多个能独立运行的更小的单位。
-        
-          <a class="article-more-a" href="/2018/06/18/多线程的一点理解/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/18/多线程的一点理解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -654,8 +355,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
