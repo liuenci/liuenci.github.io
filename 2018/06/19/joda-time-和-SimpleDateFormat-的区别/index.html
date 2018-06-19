@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>解析 Java 中的堆栈基础 | cier</title>
+  <title>joda-time 和 SimpleDateFormat 的区别 | cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
-<meta name="keywords" content="Java">
+  <meta name="description" content="参考链接：http://jjhpeopl.iteye.com/blog/2321528  joda-date和SimpleDateFormat的相同点两者都是对日期的格式化操作。 joda-date和SimpleDateFormat的不同点joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 C">
+<meta name="keywords" content="并发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解析 Java 中的堆栈基础">
-<meta property="og:url" content="http://yoursite.com/2018/06/19/解析-Java-中的堆栈基础/index.html">
+<meta property="og:title" content="joda-time 和 SimpleDateFormat 的区别">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/joda-time-和-SimpleDateFormat-的区别/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
+<meta property="og:description" content="参考链接：http://jjhpeopl.iteye.com/blog/2321528  joda-date和SimpleDateFormat的相同点两者都是对日期的格式化操作。 joda-date和SimpleDateFormat的不同点joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 C">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-19T06:18:23.019Z">
+<meta property="og:updated_time" content="2018-06-19T06:28:42.300Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解析 Java 中的堆栈基础">
-<meta name="twitter:description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
+<meta name="twitter:title" content="joda-time 和 SimpleDateFormat 的区别">
+<meta name="twitter:description" content="参考链接：http://jjhpeopl.iteye.com/blog/2321528  joda-date和SimpleDateFormat的相同点两者都是对日期的格式化操作。 joda-date和SimpleDateFormat的不同点joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 C">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -147,33 +147,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-解析-Java-中的堆栈基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-joda-time-和-SimpleDateFormat-的区别" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      解析 Java 中的堆栈基础
+      joda-time 和 SimpleDateFormat 的区别
     </h1>
   
 
         
-        <a href="/2018/06/19/解析-Java-中的堆栈基础/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:17:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/" class="archive-article-date">
+  	<time datetime="2018-06-19T06:28:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。<a id="more"></a></p>
-<p>堆的特点是可以动态地分配内存大小，比较灵活，在他的生存期间也不需要事先告诉编译器，Java 的垃圾回收器会自动收走那些不再使用的数据。</p>
-<p>缺点就是因为回收时间不确定，所以 Java 比较占内存。而且是动态地分配内存，所以存取的速度比较慢。</p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈空间中主要存放的是一些基本类型的变量和对象的引用。当一段代码中定义了一个变量时，Java 就为这个变量分配内存空间，当超过变量的作用域时，Java 就会自动释放为该变量分配的内存空间。</p>
-<p>栈的特点是存取速度比堆要快，仅次于直接位于 CPU 中的寄存器。</p>
-<p>缺点是在栈区的数据大小和生存期必须是确定的，缺乏灵活性。</p>
-<p>注意：在局部变量中 new 出来的对象，在栈空间和堆空间都分配了内存，当方法执行完成之后，栈空间会立即回收，堆空间会等待 GC 回收。</p>
+        <blockquote>
+<p>参考链接：<a href="http://jjhpeopl.iteye.com/blog/2321528" target="_blank" rel="noopener">http://jjhpeopl.iteye.com/blog/2321528</a></p>
+</blockquote>
+<h4 id="joda-date和SimpleDateFormat的相同点"><a href="#joda-date和SimpleDateFormat的相同点" class="headerlink" title="joda-date和SimpleDateFormat的相同点"></a>joda-date和SimpleDateFormat的相同点</h4><p>两者都是对日期的格式化操作。</p>
+<h4 id="joda-date和SimpleDateFormat的不同点"><a href="#joda-date和SimpleDateFormat的不同点" class="headerlink" title="joda-date和SimpleDateFormat的不同点"></a>joda-date和SimpleDateFormat的不同点</h4><p>joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 Calendar 的赋值进行覆盖，进而产生问题。</p>
+<p>joda-date 依赖于第三方的 maven 配置，具体配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?--&gt; &lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.9.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>SimpleDateFormat不依赖于第三方包，直接 jdk 支持。</p>
+<h5 id="如何解决-SimpleDateFormat-在高并发情况下的时间处理问题"><a href="#如何解决-SimpleDateFormat-在高并发情况下的时间处理问题" class="headerlink" title="如何解决 SimpleDateFormat 在高并发情况下的时间处理问题"></a>如何解决 SimpleDateFormat 在高并发情况下的时间处理问题</h5><ol>
+<li><p>在每次需要使用的时候，进行SimpleDateFormat实例的创建，这种方式会导致创建一些对象实例，占用一些内存，不建议这样使用。</p>
+</li>
+<li><p>使用同步的方式，在调用方法的时候加上synchronized，这样可以让线程调用方法时，进行加锁，也就是会造成线程间的互斥，对性能影响比较大。</p>
+</li>
+<li><p>使用ThreadLocal进行保存，相当于一个线程只会有一个实例，进而减少了实例数量，也防止了线程间的互斥，推荐使用这种方式。</p>
+</li>
+</ol>
 
       
 
@@ -218,7 +226,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
         		</li>
       		
 		</ul>
@@ -274,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/解析-Java-中的堆栈基础/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/joda-time-和-SimpleDateFormat-的区别/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +296,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/06/19/谈谈-Java-中的-clone-方法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/06/19/Spring-Bean-的三种实例化方式/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          谈谈 Java 中的 clone 方法
+          Spring Bean 的三种实例化方式
         
       </div>
     </a>
   
   
-    <a href="/2018/06/19/谈谈线程不同步/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">谈谈线程不同步</div>
+    <a href="/2018/06/19/博客项目总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">博客项目总结</div>
       <i class="icon-circle-right"></i>
     </a>
   

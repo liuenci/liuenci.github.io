@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>解析 Java 中的堆栈基础 | cier</title>
+  <title>Jsp 入门 | cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
-<meta name="keywords" content="Java">
+  <meta name="description" content="什么叫JSP:  全称：java server pages JSP是一种动态网页编程语言，将java作为脚本，为网页提供服务器数据。">
+<meta name="keywords" content="JavaWeb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解析 Java 中的堆栈基础">
-<meta property="og:url" content="http://yoursite.com/2018/06/19/解析-Java-中的堆栈基础/index.html">
+<meta property="og:title" content="Jsp 入门">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/Jsp-入门/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
+<meta property="og:description" content="什么叫JSP:  全称：java server pages JSP是一种动态网页编程语言，将java作为脚本，为网页提供服务器数据。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-19T06:18:23.019Z">
+<meta property="og:updated_time" content="2018-06-19T06:26:01.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解析 Java 中的堆栈基础">
-<meta name="twitter:description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
+<meta name="twitter:title" content="Jsp 入门">
+<meta name="twitter:description" content="什么叫JSP:  全称：java server pages JSP是一种动态网页编程语言，将java作为脚本，为网页提供服务器数据。">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -147,33 +147,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-解析-Java-中的堆栈基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Jsp-入门" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      解析 Java 中的堆栈基础
+      Jsp 入门
     </h1>
   
 
         
-        <a href="/2018/06/19/解析-Java-中的堆栈基础/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:17:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/19/Jsp-入门/" class="archive-article-date">
+  	<time datetime="2018-06-19T06:25:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。<a id="more"></a></p>
-<p>堆的特点是可以动态地分配内存大小，比较灵活，在他的生存期间也不需要事先告诉编译器，Java 的垃圾回收器会自动收走那些不再使用的数据。</p>
-<p>缺点就是因为回收时间不确定，所以 Java 比较占内存。而且是动态地分配内存，所以存取的速度比较慢。</p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈空间中主要存放的是一些基本类型的变量和对象的引用。当一段代码中定义了一个变量时，Java 就为这个变量分配内存空间，当超过变量的作用域时，Java 就会自动释放为该变量分配的内存空间。</p>
-<p>栈的特点是存取速度比堆要快，仅次于直接位于 CPU 中的寄存器。</p>
-<p>缺点是在栈区的数据大小和生存期必须是确定的，缺乏灵活性。</p>
-<p>注意：在局部变量中 new 出来的对象，在栈空间和堆空间都分配了内存，当方法执行完成之后，栈空间会立即回收，堆空间会等待 GC 回收。</p>
+        <ol>
+<li><p>什么叫JSP:</p>
+<ol>
+<li>全称：java server pages</li>
+<li>JSP是一种动态网页编程语言，将java作为脚本，为网页提供服务器数据。<a id="more"></a></li>
+<li>在传统的HTML代码中加入java程序片段和jsp标记。所以jsp也可以理解为HTML+Java。</li>
+</ol>
+</li>
+<li><p>JSP优点：</p>
+<ol>
+<li>write once,run anywhere.一次编写，到处运行。</li>
+<li>跨平台：JSP是基于java开发的，所以具有跨平台特性，可以在windows，linux等系统上运行。</li>
+<li>组件重用：使用javaBean编写业务组件，在jsp页面，或者整个项目中可以进行重复使用。</li>
+<li>多样化和功能强大的开发工具支持。记事本，eclipse，editplus.</li>
+<li>服务器：Tomcat,JBoss,WebLogic等。</li>
+<li>asp.net:简单易学，但是安全性和跨平台性差。</li>
+<li>php:简单，高效，成本低开发周期短，特别适合中小型企业。常用的开发环境：LAMP:linux+Apache+mysql+PHP。</li>
+</ol>
+</li>
+<li>JSP劣势：<ol>
+<li>增加产品的复杂性(部署难度)：使用JSP为了获得它的跨平台和扩展性。就必须要将Java的各种产品的组件有效的组合起来，才能发挥它的优势(jar,jdk,ejb,javabean…)。</li>
+<li>对硬件的要求高(性价比低)：java高速运行时将.class常驻在内存中来实现，另外还需要空间保存java和.class文件，所以系统需要的内存和用户数就比较低。</li>
+<li>调试难度大：JSP页面被访问的时候，是将JSP转换为java文件，再编译为.class文件。先转换，在编译，再解释运行。所以如果程序出错，错误信息实际上指向的是java文件，而不是jsp页面。</li>
+</ol>
+</li>
+</ol>
+<ol start="4">
+<li>Tomcat的目录结构<ol>
+<li>bin:存放执行命令和执行文件。tomcat的启动(startup.bat),关闭文件(shutdown.bat)。如果启动失败，有可能是JDK配错了。</li>
+<li>lib：存放Tomcat运行时需要的jar库和公共的jar库文件。</li>
+<li>conf：存放tomcat配置文件</li>
+<li>temp:存放临时文件</li>
+<li>logs:存放服务器日志文件</li>
+<li>webapps:web项目默认的部署目录，所有的项目都存放在这里。</li>
+<li>work:存放JSP页面转换的java文件</li>
+</ol>
+</li>
+</ol>
 
       
 
@@ -218,7 +249,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
         		</li>
       		
 		</ul>
@@ -274,7 +305,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/解析-Java-中的堆栈基础/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/Jsp-入门/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +319,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/06/19/谈谈-Java-中的-clone-方法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/06/19/博客项目总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          谈谈 Java 中的 clone 方法
+          博客项目总结
         
       </div>
     </a>
   
   
-    <a href="/2018/06/19/谈谈线程不同步/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">谈谈线程不同步</div>
+    <a href="/2018/06/19/JavaWeb-路径问题总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaWeb 路径问题总结</div>
       <i class="icon-circle-right"></i>
     </a>
   

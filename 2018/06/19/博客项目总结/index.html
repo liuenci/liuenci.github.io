@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>解析 Java 中的堆栈基础 | cier</title>
+  <title>博客项目总结 | cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
-<meta name="keywords" content="Java">
+  <meta name="description" content="总结一下这次为期21天的两人团队博客项目。 个人 数据库设计不当。  什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。 数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。 数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处">
+<meta name="keywords" content="日志,项目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解析 Java 中的堆栈基础">
-<meta property="og:url" content="http://yoursite.com/2018/06/19/解析-Java-中的堆栈基础/index.html">
+<meta property="og:title" content="博客项目总结">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/博客项目总结/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
+<meta property="og:description" content="总结一下这次为期21天的两人团队博客项目。 个人 数据库设计不当。  什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。 数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。 数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-19T06:18:23.019Z">
+<meta property="og:updated_time" content="2018-06-19T06:27:21.729Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解析 Java 中的堆栈基础">
-<meta name="twitter:description" content="堆堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。">
+<meta name="twitter:title" content="博客项目总结">
+<meta name="twitter:description" content="总结一下这次为期21天的两人团队博客项目。 个人 数据库设计不当。  什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。 数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。 数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -147,33 +147,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-解析-Java-中的堆栈基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-博客项目总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      解析 Java 中的堆栈基础
+      博客项目总结
     </h1>
   
 
         
-        <a href="/2018/06/19/解析-Java-中的堆栈基础/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:17:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/19/博客项目总结/" class="archive-article-date">
+  	<time datetime="2018-06-19T06:26:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。<a id="more"></a></p>
-<p>堆的特点是可以动态地分配内存大小，比较灵活，在他的生存期间也不需要事先告诉编译器，Java 的垃圾回收器会自动收走那些不再使用的数据。</p>
-<p>缺点就是因为回收时间不确定，所以 Java 比较占内存。而且是动态地分配内存，所以存取的速度比较慢。</p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈空间中主要存放的是一些基本类型的变量和对象的引用。当一段代码中定义了一个变量时，Java 就为这个变量分配内存空间，当超过变量的作用域时，Java 就会自动释放为该变量分配的内存空间。</p>
-<p>栈的特点是存取速度比堆要快，仅次于直接位于 CPU 中的寄存器。</p>
-<p>缺点是在栈区的数据大小和生存期必须是确定的，缺乏灵活性。</p>
-<p>注意：在局部变量中 new 出来的对象，在栈空间和堆空间都分配了内存，当方法执行完成之后，栈空间会立即回收，堆空间会等待 GC 回收。</p>
+        <p>总结一下这次为期21天的两人团队博客项目。</p>
+<h4 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h4><blockquote>
+<p>数据库设计不当。</p>
+</blockquote>
+<p>什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。</p>
+<p>数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。</p>
+<p>数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处理，尽量少联结表，多联结一张表性能会下降不少。</p>
+<blockquote>
+<p>需求分析设计不当</p>
+</blockquote>
+<p>找参考的对象尽量找成熟的平台做需求分析，我最开始用的是自己用阿里云搭建的博客，需求设计的时候随便设计了一下，导致后期只有简单的增删改查功能。</p>
+<blockquote>
+<p>技术上还有很大的改进</p>
+</blockquote>
+<p>页面的风格不统一，融合了CSDN和wordpress以及自己搭建的后台框架，配上登录注册完全不同的三种风格，形成了我这个四不像的博客。</p>
+<p>没写分页，没写图片上传，还有华哥指出的横向越权和纵向越权的自己没有考虑的问题，没写Nginx反向代理，没写FTP上传图片服务器…寒假学的一些骚操作基本上都没用上。</p>
+<h4 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h4><blockquote>
+<p>　任务分配不当</p>
+</blockquote>
+<p>团队项目就应该团队一起做。虽然搞技术我一向的想法是不做伸手党，遇到问题第一时间应该寻找搜索引擎，因为我们现在遇到的问题基本上全世界上的其他人都已经遇到过了，但是下次组员技术不是很强的时候我还是要换个方法，先教会他一个功能，然后再让他做同类型的功能，然后我再教一个新功能，如此循环，这样避免组员划水，我也会轻松不少。</p>
 
       
 
@@ -218,7 +231,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">项目</a>
         		</li>
       		
 		</ul>
@@ -274,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/解析-Java-中的堆栈基础/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/博客项目总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +305,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/06/19/谈谈-Java-中的-clone-方法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          谈谈 Java 中的 clone 方法
+          joda-time 和 SimpleDateFormat 的区别
         
       </div>
     </a>
   
   
-    <a href="/2018/06/19/谈谈线程不同步/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">谈谈线程不同步</div>
+    <a href="/2018/06/19/Jsp-入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Jsp 入门</div>
       <i class="icon-circle-right"></i>
     </a>
   
