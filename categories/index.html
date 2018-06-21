@@ -6,23 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JavaWeb 路径问题总结 | cier</title>
+  <title>categories | cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这一次咱们谈谈JavaWeb中涉及到的路径问题。   路径分为两种：  绝对路径 相对路径  绝对路径是指具体到某个项目工程下面具体的某个文件夹下的某个文件，好像有点绕，后续详细展开。 相对路径则比较难懂，因为经常弄混，所以我打算用具体的实例来谈谈jsp中关于相对路径的问题。  第一种：jsp页面在WEB-INF下面的某个具体的文件夹下面。跳转方向：从servlet跳转到jsp页面。  首先假设">
-<meta name="keywords" content="JavaWeb,Java">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb 路径问题总结">
-<meta property="og:url" content="http://yoursite.com/2018/06/19/JavaWeb-路径问题总结/index.html">
+  <meta name="description" content="hello world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="这一次咱们谈谈JavaWeb中涉及到的路径问题。   路径分为两种：  绝对路径 相对路径  绝对路径是指具体到某个项目工程下面具体的某个文件夹下的某个文件，好像有点绕，后续详细展开。 相对路径则比较难懂，因为经常弄混，所以我打算用具体的实例来谈谈jsp中关于相对路径的问题。  第一种：jsp页面在WEB-INF下面的某个具体的文件夹下面。跳转方向：从servlet跳转到jsp页面。  首先假设">
+<meta property="og:description" content="hello world">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%842.png">
-<meta property="og:updated_time" content="2018-06-19T06:24:49.183Z">
+<meta property="og:updated_time" content="2018-06-21T10:51:32.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaWeb 路径问题总结">
-<meta name="twitter:description" content="这一次咱们谈谈JavaWeb中涉及到的路径问题。   路径分为两种：  绝对路径 相对路径  绝对路径是指具体到某个项目工程下面具体的某个文件夹下的某个文件，好像有点绕，后续详细展开。 相对路径则比较难懂，因为经常弄混，所以我打算用具体的实例来谈谈jsp中关于相对路径的问题。  第一种：jsp页面在WEB-INF下面的某个具体的文件夹下面。跳转方向：从servlet跳转到jsp页面。  首先假设">
-<meta name="twitter:image" content="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:title" content="categories">
+<meta name="twitter:description" content="hello world">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -150,57 +146,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JavaWeb-路径问题总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaWeb 路径问题总结
+      categories
     </h1>
   
 
         
-        <a href="/2018/06/19/JavaWeb-路径问题总结/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/categories/index.html" class="archive-article-date">
+  	<time datetime="2018-06-21T10:51:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>这一次咱们谈谈JavaWeb中涉及到的路径问题。</p>
-</blockquote>
-<hr>
-<p>路径分为两种：</p>
-<ul>
-<li>绝对路径</li>
-<li>相对路径</li>
-</ul>
-<p>绝对路径是指具体到某个项目工程下面具体的某个文件夹下的某个文件，好像有点绕，后续详细展开。</p>
-<p>相对路径则比较难懂，因为经常弄混，所以我打算用具体的实例来谈谈jsp中关于相对路径的问题。</p>
-<blockquote>
-<p>第一种：jsp页面在WEB-INF下面的某个具体的文件夹下面。跳转方向：从servlet跳转到jsp页面。</p>
-</blockquote>
-<p>首先假设我们的目录结构是这样的。</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt=""></p>
-<p>如果你想要访问的jstlTest.jsp页面在WEB-INF下面的jstl下面，那么你是无法直接通过<a href="http://localhost:8080/elandjstl/WEB-INF/jstl/jstlTest.jsp这个链接访问到的。它会报404错误，也就是找不到这个页面。" target="_blank" rel="noopener">http://localhost:8080/elandjstl/WEB-INF/jstl/jstlTest.jsp这个链接访问到的。它会报404错误，也就是找不到这个页面。</a></p>
-<p>解决方法：通过转发或者重定向访问这个页面。我们可以看到我在cn.liuenci这个包下面有个EL.java文件，这个文件具体是一个servlet文件，我们通过doGet(request,response)或者doPost(request,response)两个方法中使用重定向或者转发可以访问到这个页面。具体代码如下，两句代码择一即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">"WEB-INF/jstl/jstlTest.jsp?num=9"</span>).forward(request, response);</span><br><span class="line"><span class="comment">//重定向</span></span><br><span class="line">response.sendRedirect(<span class="string">"WEB-INF/jstl/jstlTest.jsp?num=9"</span>);</span><br></pre></td></tr></table></figure></p>
-<p>跳转的路径需要加上WEB-INF/文件夹1/文件夹2/…/文件夹n/文件.jsp</p>
-<blockquote>
-<p>第二种：jsp页面就在WebContent根目录下面。跳转方向：从servlet跳转到jsp页面。</p>
-</blockquote>
-<p>我在WebContent的根目录下面新建了一个test.jsp文件。项目结构是这样的:</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%842.png" alt=""></p>
-<p>这个文件是可以直接通过地址访问到的。地址：<a href="http://localhost:8080/elandjstl/test.jsp" target="_blank" rel="noopener">http://localhost:8080/elandjstl/test.jsp</a><br>如果我们要从servlet跳转到这个jsp页面，也可以使用重定向或者转发。具体代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">"test.jsp"</span>).forward(request, response);</span><br><span class="line"><span class="comment">//重定向</span></span><br><span class="line">response.sendRedirect(<span class="string">"test.jsp"</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第三种：在WEB-INF文件夹下面的jsp页面要访问src里面的servlet文件做doGet或者doPost处理。跳转方向：jsp跳转到servlet</p>
-</blockquote>
-<p>这里我们不能直接在WEB-INF文件夹下面那个jsp页面使用重定向或者转发，因为直接运行该jsp页面会报404错误，我们先要在WebContent文件夹根目录下面创建一个jsp页面，在该页面中使用转发或者重定向跳转到WEB-INF下面那个jsp页面，然后在该jsp页面使用表单提交到servlet里面进行处理。</p>
-
+        
       
 
       
@@ -239,21 +205,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -304,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/19/JavaWeb-路径问题总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/categories/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -316,25 +267,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2018/06/19/Jsp-入门/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Jsp 入门
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/06/19/html5-实现图片上传/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">html5 实现图片上传</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -385,7 +317,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
