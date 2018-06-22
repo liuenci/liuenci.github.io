@@ -228,33 +228,48 @@
 
 
   
-    <article id="post-Spring-IOC-底层原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux-文件权限" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/Spring-IOC-底层原理/">Spring IOC 底层原理</a>
+      <a class="article-title" href="/2018/06/22/Linux-文件权限/">Linux 文件权限</a>
     </h1>
   
 
         
-        <a href="/2018/06/19/Spring-IOC-底层原理/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:31:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/22/Linux-文件权限/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:20:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>什么是IOC控制反转</p>
-</blockquote>
-<p>专业术语就是将创建对象的权力交给第三方框架去处理。
-        
-          <a class="article-more-a" href="/2018/06/19/Spring-IOC-底层原理/#more">more >></a>
-        
+        <h4 id="为什么有权限"><a href="#为什么有权限" class="headerlink" title="为什么有权限"></a>为什么有权限</h4><p>在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。</p>
+<h4 id="如何查看权限"><a href="#如何查看权限" class="headerlink" title="如何查看权限"></a>如何查看权限</h4><p>查看文件的权限只需要输入以下命令即可查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/03-01-02.png" alt="Linux文件权限"><br>图片来源:<a href="https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/" target="_blank" rel="noopener">https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/</a> 侵删。</p>
+<p>类似于 drwxrwxr-x 这种格式的就是文件的权限。细节展示在上面的图中，下面解释一下这个字符串的四个部分。</p>
+<ul>
+<li>Type:文件的类型，(- 为文件，d 为文件夹，其他的还有 l,n,有需求再搜)</li>
+<li>User:在 Type 后面紧跟着的三个空就是说是用 User 的身份能对这个做什么处理(r 能读；w 能写；x 能执行；- 不能完成某个操作)，User 一般指的是当前使用电脑的人。</li>
+<li>Group:一个 Group 里面可能有一个或者多个 User,这些权限的样式和 User 一样。</li>
+<li>Others:除了 User 和 Group 以外人的权限。<h4 id="如何修改权限"><a href="#如何修改权限" class="headerlink" title="如何修改权限"></a>如何修改权限</h4>先看一个例子，如何给 User 添加执行权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+r file.py</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>归纳一下得到以下公式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [谁][怎么修改][修改哪个文件]</span><br></pre></td></tr></table></figure></p>
+<p>u+r 就是说给 User 加上 read 权限，给 file.py 这个文件进行修改。<br>[谁]</p>
+<ul>
+<li>u:修改 User</li>
+<li>g:修改 Group</li>
+<li>o:修改 Others</li>
+<li>a:修改 all<br>[怎么修改]</li>
+<li>+,-,= : 加上，剪掉，等于某些权限</li>
+<li>r,w,x : 或者多个权限一起，比如 rw.</li>
+</ul>
+
       
 
       
@@ -267,90 +282,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/Spring-IOC-底层原理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-Bean-的三种实例化方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/Spring-Bean-的三种实例化方式/">Spring Bean 的三种实例化方式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/Spring-Bean-的三种实例化方式/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>第一种：使用无参构造方法进行实例化</p>
-<blockquote>
-<p>创建User类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.ioc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"add"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/06/19/Spring-Bean-的三种实例化方式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">权限</a>
         		</li>
       		
 		</ul>
@@ -360,7 +300,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/Spring-Bean-的三种实例化方式/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/22/Linux-文件权限/">展开全文 >></a>
         </p>
       
 
@@ -390,39 +330,237 @@
 
 
   
-    <article id="post-joda-time-和-SimpleDateFormat-的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ubuntu-中利用-git-上传项目到-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/">joda-time 和 SimpleDateFormat 的区别</a>
+      <a class="article-title" href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/">ubuntu 中利用 git 上传项目到 github</a>
     </h1>
   
 
         
-        <a href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:28:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:19:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>参考链接：<a href="http://jjhpeopl.iteye.com/blog/2321528" target="_blank" rel="noopener">http://jjhpeopl.iteye.com/blog/2321528</a></p>
-</blockquote>
-<h4 id="joda-date和SimpleDateFormat的相同点"><a href="#joda-date和SimpleDateFormat的相同点" class="headerlink" title="joda-date和SimpleDateFormat的相同点"></a>joda-date和SimpleDateFormat的相同点</h4><p>两者都是对日期的格式化操作。</p>
-<h4 id="joda-date和SimpleDateFormat的不同点"><a href="#joda-date和SimpleDateFormat的不同点" class="headerlink" title="joda-date和SimpleDateFormat的不同点"></a>joda-date和SimpleDateFormat的不同点</h4><p>joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 Calendar 的赋值进行覆盖，进而产生问题。</p>
-<p>joda-date 依赖于第三方的 maven 配置，具体配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?--&gt; &lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.9.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>SimpleDateFormat不依赖于第三方包，直接 jdk 支持。</p>
-<h5 id="如何解决-SimpleDateFormat-在高并发情况下的时间处理问题"><a href="#如何解决-SimpleDateFormat-在高并发情况下的时间处理问题" class="headerlink" title="如何解决 SimpleDateFormat 在高并发情况下的时间处理问题"></a>如何解决 SimpleDateFormat 在高并发情况下的时间处理问题</h5><ol>
-<li><p>在每次需要使用的时候，进行SimpleDateFormat实例的创建，这种方式会导致创建一些对象实例，占用一些内存，不建议这样使用。</p>
+        <h4 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h4><p>参考文章：<a href="http://www.xgllseo.com/?p=5428" target="_blank" rel="noopener">http://www.xgllseo.com/?p=5428</a><br>感谢大神。</p>
+<p>下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。</p>
+<ol>
+<li>测试git是否安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用同步的方式，在调用方法的时候加上synchronized，这样可以让线程调用方法时，进行加锁，也就是会造成线程间的互斥，对性能影响比较大。</p>
+</ol>
+<p>记住一定是–,不是一个-。</p>
+<ol start="2">
+<li>获取ssh密钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;你的github邮箱&quot; -f ~/.ssh/github</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用ThreadLocal进行保存，相当于一个线程只会有一个实例，进而减少了实例数量，也防止了线程间的互斥，推荐使用这种方式。</p>
+</ol>
+<p>执行的过程中会提示你需要设置密码，不要管它，一路回车。<br>这时候会在你的～/目录下面生成一个.ssh/目录，但是Ubuntu默认是不显示这个目录的。查看.ssh目录下的github.pub获取公钥认证，就是一串乱码。<br>接下来获取这串乱码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">sudo gedit github.pub</span><br></pre></td></tr></table></figure></p>
+<p>这个时候会打开这个文件，只需要复制里面的代码到github里面的SSH and GPG keys 里面填写一下就好了。</p>
+<ol start="3">
+<li><p>创建本地项目文件<br>这个文件就是专门负责项目的上传和更新，进入这个文件夹，然后在终端输入以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &quot;你的github仓库地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交文件夹到github上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add . // 更新整个目录</span><br><span class="line">git config user.name &quot;liuenci&quot; //第一次需要配置</span><br><span class="line">git config user.email &quot;154910381@qq.com&quot; //第一次需要配置</span><br><span class="line">git commit -m &quot;更新版本简要说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样子就能够上传我们的项目了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git-常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/git-常用命令/">git 常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/git-常用命令/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:17:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章用来记录自己学习git时所遇到的一些命令。</p>
+<ol>
+<li><p>设置全局的用户名和邮箱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;cier&quot;</span><br><span class="line">git config --global user.email &quot;154910381@qq.com&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看设置的用户名和邮箱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清屏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示隐藏文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 1.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看文件状态，看是否有文件没有添加到我们的git版本库中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单的拉取代码操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &quot;https://github.com/liuenci/Git-Test.git&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这个可以在新建一个仓库并且初始化有readme.md的文件时使用</p>
+<ol start="9">
+<li><p>查看日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看此次add和上次commit的两个版本之间的不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>还有一种查看方式是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br></pre></td></tr></table></figure></p>
+<p>具体是啥我也没弄懂，以后要是找到答案再补上</p>
+<ol start="11">
+<li><p>add所有的改变的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将日志一行一行打印</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>补充上一次提交的内容，并且不改变commit的message,但是commit ID改变了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend --no-edit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>add 之后想要继续更改其中的内容，可以选择回退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset 1.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reset回到HEAD指针所在的版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回退到当前版本的第 n 个版本,把 n 替换成你想要回退的版本即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~n</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回到指定的commit ID 的版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 7757af1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看所有的日志，包括未来的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单个文件的版本回退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br><span class="line">git checkout 7757af1 -- 1.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用图形的方式打印日志，一般用于多分支的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --graph</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看所有的分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切换分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 没有合并的分支</span><br><span class="line">git branch -D dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立分支的同时将head指针移动到新创建的分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在add的同时commit，这种方式只适合于当前版本库中已经有的文件，新创建的文件无法被是被</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -am &quot;新创建的文件无法识别&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在当前分支上合并其它分支的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff &quot;合并的message&quot; dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单的合并分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外一种合并分支的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将未完成的工作暂存在缓存区。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将暂存区中的内容拿出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>忽略windows和unix换行符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -438,104 +576,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-博客项目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/博客项目总结/">博客项目总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/博客项目总结/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:26:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>总结一下这次为期21天的两人团队博客项目。</p>
-<h4 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h4><blockquote>
-<p>数据库设计不当。</p>
-</blockquote>
-<p>什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。</p>
-<p>数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。</p>
-<p>数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处理，尽量少联结表，多联结一张表性能会下降不少。</p>
-<blockquote>
-<p>需求分析设计不当</p>
-</blockquote>
-<p>找参考的对象尽量找成熟的平台做需求分析，我最开始用的是自己用阿里云搭建的博客，需求设计的时候随便设计了一下，导致后期只有简单的增删改查功能。</p>
-<blockquote>
-<p>技术上还有很大的改进</p>
-</blockquote>
-<p>页面的风格不统一，融合了CSDN和wordpress以及自己搭建的后台框架，配上登录注册完全不同的三种风格，形成了我这个四不像的博客。</p>
-<p>没写分页，没写图片上传，还有华哥指出的横向越权和纵向越权的自己没有考虑的问题，没写Nginx反向代理，没写FTP上传图片服务器…寒假学的一些骚操作基本上都没用上。</p>
-<h4 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h4><blockquote>
-<p>　任务分配不当</p>
-</blockquote>
-<p>团队项目就应该团队一起做。虽然搞技术我一向的想法是不做伸手党，遇到问题第一时间应该寻找搜索引擎，因为我们现在遇到的问题基本上全世界上的其他人都已经遇到过了，但是下次组员技术不是很强的时候我还是要换个方法，先教会他一个功能，然后再让他做同类型的功能，然后我再教一个新功能，如此循环，这样避免组员划水，我也会轻松不少。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">项目</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
@@ -545,7 +590,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/博客项目总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/22/git-常用命令/">展开全文 >></a>
         </p>
       
 
@@ -575,34 +620,53 @@
 
 
   
-    <article id="post-Jsp-入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-git-上传文件到-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/Jsp-入门/">Jsp 入门</a>
+      <a class="article-title" href="/2018/06/22/git-上传文件到-github/">git 上传文件到 github</a>
     </h1>
   
 
         
-        <a href="/2018/06/19/Jsp-入门/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:25:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/22/git-上传文件到-github/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:16:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>什么叫JSP:</p>
+        <p>因为自己老是忘记 git 上传的步骤，每次上传文件都要重新谷歌找答案，所以<br>干脆写下来记录一下。</p>
 <ol>
-<li>全称：java server pages</li>
-<li>JSP是一种动态网页编程语言，将java作为脚本，为网页提供服务器数据。
-        
-          <a class="article-more-a" href="/2018/06/19/Jsp-入门/#more">more >></a>
-        
+<li><p>在github上创建仓库，创建仓库的时候勾选初始化readme文件</p>
+</li>
+<li><p>如果是从来没有上传过github的代码，则执行以下代码。</p>
+</li>
+<li><p>先初始化git的本地仓库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再将readme文件从云端拉下来，这样云端仓库中的readme文件就到自己本地来了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &quot;github仓库地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将文件提交到缓存区,2.x版本的git两个命令都是一样都能将被删除的文件提交到缓存区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">// 或者 git add -A</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交一个版本到本地仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;message&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加远程仓库分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &quot;github地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将本地master分支的代码推送到远程仓库origin的master分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master.</span><br><span class="line">// 我试了下下面这个命令也是正确的可以上传的</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h6 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h6><p>git 的学习是一门大学问，技术是永远学不完的，只能一点一点慢慢学，遇到问题解决完再进行总结才能得到最大的收益，这样才能避免下次再出这样的错误。</p>
+
       
 
       
@@ -615,7 +679,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
         		</li>
       		
 		</ul>
@@ -625,7 +693,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/Jsp-入门/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/22/git-上传文件到-github/">展开全文 >></a>
         </p>
       
 
@@ -655,20 +723,137 @@
 
 
   
-    <article id="post-JavaWeb-路径问题总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-原生-Js-实现的-Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/JavaWeb-路径问题总结/">JavaWeb 路径问题总结</a>
+      <a class="article-title" href="/2018/06/22/原生-Js-实现的-Ajax/">原生 Js 实现的 Ajax</a>
     </h1>
   
 
         
-        <a href="/2018/06/19/JavaWeb-路径问题总结/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/22/原生-Js-实现的-Ajax/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面写过一个用原生的js写的文件上传，今天就把原生的ajax也写一下吧，毕竟这个东西还是很常用的。<br>我先把代码贴上来。</p>
+<h3 id="html代码"><a href="#html代码" class="headerlink" title="html代码"></a>html代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"get()"</span>&gt;</span>get请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"post()"</span>&gt;</span>post请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="js代码"><a href="#js代码" class="headerlink" title="js代码"></a>js代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">// 创建请求对象</span></span><br><span class="line">	<span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">	<span class="comment">// 设置请求方式和路径</span></span><br><span class="line">	ajax.open(<span class="string">"get"</span>,<span class="string">"ajax?name=zhangsan"</span>);</span><br><span class="line">	<span class="comment">// 发送请求</span></span><br><span class="line">	ajax.send();</span><br><span class="line">	<span class="comment">// 处理请求</span></span><br><span class="line">	ajax.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(ajax.readyState ==<span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>)&#123;</span><br><span class="line">			<span class="comment">// 更新数据</span></span><br><span class="line">			<span class="keyword">var</span> data = ajax.responseText;</span><br><span class="line">			alert(data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">// 创建请求对象</span></span><br><span class="line">	<span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">	<span class="comment">// 设置请求方式和路径</span></span><br><span class="line">	ajax.open(<span class="string">"post"</span>,<span class="string">"ajax"</span>);</span><br><span class="line">	<span class="comment">// post请求提交参数，必须要设置头部类型</span></span><br><span class="line">	ajax.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">	<span class="comment">// 发送请求</span></span><br><span class="line">	ajax.send(<span class="string">"name=zhangsan"</span>);</span><br><span class="line">	<span class="comment">// 处理请求</span></span><br><span class="line">	ajax.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(ajax.readyState == <span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>)&#123;</span><br><span class="line">			<span class="comment">// 更新数据</span></span><br><span class="line">			<span class="keyword">var</span> data = ajax.responseText;</span><br><span class="line">			alert(data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后端servlet代码"><a href="#后端servlet代码" class="headerlink" title="后端servlet代码"></a>后端servlet代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.liuenci.ajax;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/ajax"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAjax</span> <span class="keyword">extends</span> <span class="title">ServletImpl</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		String name = req.getParameter(<span class="string">"name"</span>);</span><br><span class="line">		System.out.println(name);</span><br><span class="line">		resp.getWriter().print(name);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		String name = req.getParameter(<span class="string">"name"</span>);</span><br><span class="line">		System.out.println(name);</span><br><span class="line">		resp.getWriter().print(name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>ajax:一种请求数据的方式，不需要刷新整个页面。</p>
+<p>ajax的核心技术是 XMLHttpRequest 对象。</p>
+<p>ajax请求过程：创建XMLHttpRequest对象、连接服务器、发送请求、接收响应数据。</p>
+<ol>
+<li>创建对象</li>
+</ol>
+<p>IE7以上版本直接用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure></p>
+<p>创建即可</p>
+<ol start="2">
+<li>连接和发送</li>
+</ol>
+<p>open()函数有三个参数：请求方式、请求地址、是否异步请求（同步比较少，我就只写两个参数了）。</p>
+<p>get请求方式是通过url链接后面带参数提交到服务器的，post是将数据作为send()的参数提交到服务器的。</p>
+<p>post请求中，在发送数据之前，必须设置表单提交的内容类型。</p>
+<ol start="3">
+<li>接收<br>接收到响应后，响应的数据会自动填充XHR对象，相关属性如下：</li>
+</ol>
+<p>responseText:返回字符串类型，现在开发基本上是返回一个json数据。</p>
+<p>responseXML：如果响应的内容类型是”text/xml”或者”application/xml”,这个属性中将保存着相应的xml数据，是xml的document类型。</p>
+<p>status:响应的HTTP状态码。</p>
+<p>statusText:HTTP状态的说明。</p>
+<ol start="4">
+<li>ajax对象的readyState属性表示请求/响应过程的当前活动阶段，这个属性的值如下</li>
+</ol>
+<p>0-未初始化，尚未调用open()方法</p>
+<p>1-启动，调用了open()方法，没有调用send()方法</p>
+<p>2-发送，已经调用send()方法，未接收到响应。</p>
+<p>3-接收，已经接收到部分响应数据。</p>
+<p>4-完成，已经接收到全部响应数据。</p>
+<ol start="5">
+<li><p>ajax.status是状态码，状态码以2开头的都是成功，304表示从缓存中获取。</p>
+</li>
+<li><p>ajax请求是不能跨域的。</p>
+</li>
+</ol>
+<p>参考链接：<a href="http://caibaojian.com/ajax-jsonp.html，侵删。" target="_blank" rel="noopener">http://caibaojian.com/ajax-jsonp.html，侵删。</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ajax</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/原生-Js-实现的-Ajax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-走的更快-走的更远" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/走的更快-走的更远/">走的更快&amp;走的更远</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/走的更快-走的更远/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:14:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
 </a>
         
       </header>
@@ -676,35 +861,322 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>这一次咱们谈谈JavaWeb中涉及到的路径问题。</p>
+<p>没啥，我就瞎逼逼几句</p>
 </blockquote>
-<hr>
-<p>路径分为两种：</p>
+<p>最近一个月在做jsp项目，我个人觉得学习jsp这个阶段自己学的不是很好，但是却发现自己已经沉浸在一个技术的怪圈中。明明自己的技术基础不是很好，但是却很执着于研究很奇妙的技术，花了两天时间研究了一下高德地图的API,终于能使用高德地图的接口，还让我高兴了好一阵。我不把编程当成一种生活的工具，所以我不觉得编程是一件很苦的事情。相反，我觉得编程是一件很好玩的事情，特别是当你修复了一个自己想了好久没改出来的bug,或者是做出一件令自己满意的作品。我不喜欢把我写出来的源码集合叫做产品，那是一件很无聊的事情，产品就是意味着这个东西投入进社会，并且给我创造了效益，而且为他人提供了方便或者满足。我把写代码看成一种艺术，有人说我装逼，是不是有一句话说的是”世人笑我太疯癫，我笑别人看不穿”。其实我也不是大牛，也不是别人真像别人叫我大神那样有很高深的技术。但是我很看重我自己的成长，我觉得自己的学习能力还算可以，你只要给我时间，简单的东西我自己就能搞懂，要是难的东西，给我一点引导我觉得我也能弄出来，除非一些真的超出我的能力范围，毕竟这个世界上还是有智力差异的，不然岂不是每个人都能成为爱因斯坦。我现在很多思想可能和我从小接受的教育有关，好好读书，好好学技术，然后赚钱，养家等等。读书这东西吧，你觉得它没用，它就真的没用，但是你觉得它有用，那它就真的有用。就像别人看待学英语的作用一样，有的人觉得学英语没用，然后学习其它感兴趣的东西照样走上人生巅峰，但是有的人觉得有用，然后通过英语的深入学习也实现了自己的人生成长。成功的方式不同，结果往往大同小异。<br>哎，小学，初中，高中好几年的时间还是没有把我这个说话不着主题的毛病给改掉，自己说着说着就不知道要说啥了，我可能是个假人了吧。还是和这个标题一样，是时候调用自己脑子里的分支语句来处理这个问题了。</p>
+<blockquote>
+<p>走的更快 &amp; 走的更远</p>
+</blockquote>
+<ol>
+<li><p>我个人认为，你走的很快，那你十之八九走不远，因为你根基不稳，很多你以为自己懂的东西，其实你是不懂的，就像我自己编程一样。看着很简单的东西，你看一遍，你以为自己懂了，但是让你自己写出来，你会吗？其实我应该是很久就发现自己这个问题了，我现在的速度很快了，真的很快了，代码看一遍，思路过一遍，自己再敲一遍。好了这个问题就过了，然后过段时间往前看这个问题，”excuse me，这是啥？”，上次写jdbc的basedao发现自己这个问题就应该及时止损了，但是习惯这个东西真的很难改的，越是让我去写简单的东西我真的觉得写的没意思，这就成为了现在的我，挺浮躁的，脚下生风，哈哈，应该稍不注意就会跳坑里了吧。</p>
+</li>
+<li><p>走的很稳应该就不会出现这个问题，我不记得谁说过一句话来着：我走的很慢，但是我从来不会后退。码农才粘贴复制，高手从来都是自己造轮子给别人用的呢。我感觉我自己很需要沉淀下来一段时间，把别人的轮子也拿过来写写了，也许自己能造一个新的轮子呢？我记得我收藏过一段话来着。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">纽约时间比加州时间早三个小时，</span><br><span class="line">New York is 3 hours ahead of California,</span><br><span class="line">但加州时间并没有变慢。</span><br><span class="line">but it does not make California slow.</span><br><span class="line">有人22岁就毕业了，</span><br><span class="line">Someone graduated at the age of 22,</span><br><span class="line">但等了五年才找到好的工作！</span><br><span class="line">but waited 5 years before securing a good job!</span><br><span class="line">有人25岁就当上CEO，</span><br><span class="line">Someone became a CEO at 25,</span><br><span class="line">却在50岁撒手人寰。</span><br><span class="line">and died at 50.</span><br><span class="line">也有人迟到50岁才当上CEO，</span><br><span class="line">While another became a CEO at 50,</span><br><span class="line">然后活到90岁。</span><br><span class="line">and lived to 90 years.</span><br><span class="line">有人依然单身，</span><br><span class="line">Someone is still single,</span><br><span class="line">同时也有人已婚。</span><br><span class="line">while someone else got married.</span><br><span class="line">奥巴马55岁就退休，</span><br><span class="line">Obama retires at 55,</span><br><span class="line">川普70岁才开始当总统。</span><br><span class="line">but Trump starts at 70.</span><br><span class="line">世上每个人本来就有自己的发展时区。</span><br><span class="line">Absolutely everyone in this world works based on their Time Zone.</span><br><span class="line">身边有些人看似走在你前面，</span><br><span class="line">People around you might seem to go ahead of you,</span><br><span class="line">也有人看似走在你后面。</span><br><span class="line">some might seem to be behind you </span><br><span class="line">但其实每个人在自己的时区有自己的步程。</span><br><span class="line">But everyone is running their own RACE, in their own TIME.</span><br><span class="line">不用嫉妒或嘲笑他们。</span><br><span class="line">Don’t envy them or mock them.</span><br><span class="line">他们都在自己的时区里，你也是！</span><br><span class="line">They are in their TIME ZONE,and you are in yours!</span><br><span class="line">生命就是等待正确的行动时机。</span><br><span class="line">Life is about waiting for the right moment to act.</span><br><span class="line">所以，放轻松。</span><br><span class="line">So, RELAX.</span><br><span class="line">你没有落后。</span><br><span class="line">You’re not LATE.</span><br><span class="line">你没有领先。</span><br><span class="line">You’re not EARLY.</span><br><span class="line">在命运为你安排的属于自己的时区里，</span><br><span class="line">一切都准时。</span><br><span class="line">You are very much ON TIME, </span><br><span class="line">and in your TIME ZONE Destiny set up for you</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>将来还有这么久，谁会成为你，你又成为了谁。谁又说的定呢，我们慢慢来就好了，走的太快了，路上的风景你就看不到了，以后慢一点，走的稳一点，将来还有几十年，谁说你走不远呢。<br>一想这些东西自己就能扯好多没营养的东西，好了，夜深了，猿还是去睡觉了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/走的更快-走的更远/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-阿里云利用-wordpress-搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">阿里云利用 wordpress 搭建个人博客</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:13:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>如何搭建自己的博客</p>
+</blockquote>
+<p>第一步:购买域名和服务器。服务器镜像选择(LAMP环境(Ubuntu16.04 Apache PHP7.1)),该环境是主流的linux建站环境。设置自己的密码，账号是root，无法更改。</p>
+<p>第二步:设置安全组。进入ecs服务器，找到本实例安全组—-&gt;点击配置规则—&gt;点击添加安全组规则。设置协议类型为全部，在授权对象内填入0.0.0.0/0。在地址栏输入你的服务器IP地址，如果显示”恭喜您，OneinStack 安装成功！”,表示配置成功。</p>
+<p>第三步:安装wordpress博客程序。</p>
 <ul>
-<li>绝对路径</li>
-<li>相对路径</li>
+<li>这里我们需要使用PuTTY和FileZiila来实现对ECS的远程终端控制和文件传输。putty下载地址：<a href="https://github.com/larryli/PuTTY/releases" target="_blank" rel="noopener">https://github.com/larryli/PuTTY/releases</a>。下载下来之后解压，打开其中的putty.exe，主机地址填你的IP地址，端口填22，连接类型SSH,保存的会话填个test即可。然后保存。点击打开会出现一个黑窗口，输入账号root，和你自己购买服务器的密码，输入的时候不会显示，输入完成回车即可。如果显示(Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-85-generic x86_64)),说明linux登录成功。</li>
+<li>FileZiila下载地址：<a href="https://filezilla-project.org/download.php?type=client" target="_blank" rel="noopener">https://filezilla-project.org/download.php?type=client</a>,下载安装之后打开。在主机那里输入s<a href="ftp://IP地址。然后输入用户名和密码，端口默认是22" target="_blank" rel="noopener">ftp://IP地址。然后输入用户名和密码，端口默认是22</a>.</li>
+<li>在远程站点处输入/data/wwwroot/default，回车之后在default目录下面创建一个old目录，然后把除old以外的文件都拖到old目录下面，这个时候我们就可以上传wordpress文件了，wordpress下载地址：<a href="https://cn.wordpress.org/wordpress-4.8-zh_CN.zip" target="_blank" rel="noopener">https://cn.wordpress.org/wordpress-4.8-zh_CN.zip</a> ,在左侧找到我们的wordpress文件上传到和old同级的目录下。</li>
+<li>获取mysql的root密码。在我们的putty终端中登陆到服务器，复制grep dbrootpwd /root/oneinstack/options.conf，右键点击即可粘贴到终端中。默认密码是 KeYpZrZx 。</li>
+<li>打开浏览器，输入<a href="http://IP地址/old/phpMyAdmin/" target="_blank" rel="noopener">http://IP地址/old/phpMyAdmin/</a> ，用户名是：root,密码是：KeYpZrZx，点击New,输入数据库名wp即可完成创建数据库。然后在地址栏输入<a href="http://IP地址/wp-admin/setup-config.php" target="_blank" rel="noopener">http://IP地址/wp-admin/setup-config.php</a> ，点击现在就开始，新的页面数据库名：wp,用户名：root,密码：KeYpZrZx，其他保持不变，点击提交，再点击安装。填写站点标题：随意，用户名：随意，密码：随意，电子邮件：随意然后点击安装，然后点击登陆。博客就搭好了。</li>
 </ul>
-<p>绝对路径是指具体到某个项目工程下面具体的某个文件夹下的某个文件，好像有点绕，后续详细展开。</p>
-<p>相对路径则比较难懂，因为经常弄混，所以我打算用具体的实例来谈谈jsp中关于相对路径的问题。</p>
-<blockquote>
-<p>第一种：jsp页面在WEB-INF下面的某个具体的文件夹下面。跳转方向：从servlet跳转到jsp页面。</p>
-</blockquote>
-<p>首先假设我们的目录结构是这样的。</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt=""></p>
-<p>如果你想要访问的jstlTest.jsp页面在WEB-INF下面的jstl下面，那么你是无法直接通过<a href="http://localhost:8080/elandjstl/WEB-INF/jstl/jstlTest.jsp这个链接访问到的。它会报404错误，也就是找不到这个页面。" target="_blank" rel="noopener">http://localhost:8080/elandjstl/WEB-INF/jstl/jstlTest.jsp这个链接访问到的。它会报404错误，也就是找不到这个页面。</a></p>
-<p>解决方法：通过转发或者重定向访问这个页面。我们可以看到我在cn.liuenci这个包下面有个EL.java文件，这个文件具体是一个servlet文件，我们通过doGet(request,response)或者doPost(request,response)两个方法中使用重定向或者转发可以访问到这个页面。具体代码如下，两句代码择一即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">"WEB-INF/jstl/jstlTest.jsp?num=9"</span>).forward(request, response);</span><br><span class="line"><span class="comment">//重定向</span></span><br><span class="line">response.sendRedirect(<span class="string">"WEB-INF/jstl/jstlTest.jsp?num=9"</span>);</span><br></pre></td></tr></table></figure></p>
-<p>跳转的路径需要加上WEB-INF/文件夹1/文件夹2/…/文件夹n/文件.jsp</p>
-<blockquote>
-<p>第二种：jsp页面就在WebContent根目录下面。跳转方向：从servlet跳转到jsp页面。</p>
-</blockquote>
-<p>我在WebContent的根目录下面新建了一个test.jsp文件。项目结构是这样的:</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%842.png" alt=""></p>
-<p>这个文件是可以直接通过地址访问到的。地址：<a href="http://localhost:8080/elandjstl/test.jsp" target="_blank" rel="noopener">http://localhost:8080/elandjstl/test.jsp</a><br>如果我们要从servlet跳转到这个jsp页面，也可以使用重定向或者转发。具体代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">"test.jsp"</span>).forward(request, response);</span><br><span class="line"><span class="comment">//重定向</span></span><br><span class="line">response.sendRedirect(<span class="string">"test.jsp"</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第三种：在WEB-INF文件夹下面的jsp页面要访问src里面的servlet文件做doGet或者doPost处理。跳转方向：jsp跳转到servlet</p>
-</blockquote>
-<p>这里我们不能直接在WEB-INF文件夹下面那个jsp页面使用重定向或者转发，因为直接运行该jsp页面会报404错误，我们先要在WebContent文件夹根目录下面创建一个jsp页面，在该页面中使用转发或者重定向跳转到WEB-INF下面那个jsp页面，然后在该jsp页面使用表单提交到servlet里面进行处理。</p>
+<p>第四步：解析域名。</p>
+<ul>
+<li>进入阿里的管理控制台，进入域名及网站。</li>
+<li>找到你要解析的域名，点击右边的解析。</li>
+<li>点击新手引导设置</li>
+<li>设置网站解析，输入你的服务器IP地址。</li>
+<li>过个十几分钟，打开浏览器，输入你的域名，即可访问你的博客。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">wordpress</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-「跳一跳」辅助高分攻略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/「跳一跳」辅助高分攻略/">「跳一跳」辅助高分攻略</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/「跳一跳」辅助高分攻略/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:12:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前段时间微信更新了最新版本 (6.6.1版本)，沉寂了一年的微信小程序开始迎接了它的春天，其中微信官方开发的「跳一跳」就开始肆虐了我的微信社交平台。<br><img src="http://ove4nglsb.bkt.clouddn.com/%E8%B7%B3%E4%B8%80%E8%B7%B3.png" alt=""><br>「跳一跳」是一款长按蓄力，松开按键就起跳的小游戏，根据不同的距离需不同时间的力。正常的高分攻略有以下几种:</p>
+<p>1、连续跳中心点，可以+2、+4、+6……<br>2、跳到音乐盒，停留，播放音乐并且+30分<br>3、跳到便利店，停留，便利店会开门+15分<br>4、跳到魔方，停留，魔方会旋转修正，+10分<br>5、跳到井盖，停留，会有冲水的声音+5分</p>
+<p>但是<br>我们是谁<br>我们是程序员啊<br>旨在用技术拯救手残党<br>所以<br>下面教大家使用python脚本配合adb实现自动跳一跳。</p>
+<ol>
+<li>安装adb。</li>
+</ol>
+<p>adb安装包可以通过关注我，后台回复「跳一跳」三个字即可获得。</p>
+<p>安装adb的步骤非常简单，一直点下一步就好了。<br>但是特别要记住一点的是要记住安装路径，因为下一步需要配置环境。</p>
+<ol start="2">
+<li>配置adb的环境。</li>
+</ol>
+<p>此电脑 &gt; 右键属性 &gt; 高级系统设置 &gt; 环境变量 &gt; 新建系统变量<br><img src="http://ove4nglsb.bkt.clouddn.com/adb.png" alt=""><br>变量名可以随便填，变量值就是adb的安装路径，因为我安装在D盘，所以我的变量值是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Program Files (x86)\ClockworkMod\Universal Adb Driver</span><br></pre></td></tr></table></figure></p>
+<p>看公众号的同学填自己的安装路径也是OK的。</p>
+<ol start="3">
+<li>配置path的环境</li>
+</ol>
+<p>在系统变量中找到Path这个系统变量，点击编辑 &gt; 新建<br>输入%第二步中adb自己输入的变量名%，格式如下:</p>
+<p>%变量名%</p>
+<p>因为我第二步中填的是android，所以我输入的是</p>
+<p>%android%。</p>
+<ol start="4">
+<li>拷贝python脚本到电脑中任意位置即可</li>
+</ol>
+<p>python项目在公众号后台回复「跳一跳」即可得到网盘的下载链接。</p>
+<ol start="5">
+<li>准备工作</li>
+</ol>
+<p>手机使用usb数据线连接电脑，打开开发者模式中的USB调试，然后打开微信的跳一跳，点击开始游戏。</p>
+<ol start="6">
+<li>测试是否可用</li>
+</ol>
+<p>打开下载的STOP_jump_win中的one_step_auto_beta1.exe，输入y即可开始你的刷分之旅。</p>
+<p>正常的刷分界面如下:<br><img src="http://ove4nglsb.bkt.clouddn.com/%E8%BF%90%E8%A1%8C.png" alt=""></p>
+<p>好啦，尽情享受吧。</p>
+<p>对了，既然看到最后，确定不关注一下我的公众号再走?</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/qrcode_for_gh_8d1d4568814d_258.jpg" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">游戏辅助</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">跳一跳</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/「跳一跳」辅助高分攻略/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-谈谈反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/谈谈反射/">谈谈反射</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/谈谈反射/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:11:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h4><p>反射是 Java 语言中的一种特征，他允许程序在运行的时候获取自身的信息，并且操纵类或者对象中的内部属性和方法。</p>
+<p>程序中的对象的类型一般在编译期就确定下来了，而 Java 的反射机制可以动态地创建对象并且调用其属性，这样的对象的类型在编译期都是未知的，所以我们可以通过反射机制直接创建对象，即使这个对象的类型在编译期是未知的。</p>
+<h4 id="反射的核心"><a href="#反射的核心" class="headerlink" title="反射的核心"></a>反射的核心</h4><p>反射的核心是 JVM 在运行时才动态加载类或者调用方法/访问属性，它不需要事先(写代码的时候或者编译期)知道运行对象是谁。</p>
+<h4 id="反射提供的功能"><a href="#反射提供的功能" class="headerlink" title="反射提供的功能"></a>反射提供的功能</h4><ol>
+<li>在运行时判断任意一个对象所属的类</li>
+<li>在运行时构造一个类的对象</li>
+<li>在运行时判断任意一个类所具有的的成员变量和方法（通过反射甚至可以调用 private 方法，只需要打开权限即可）</li>
+<li>在运行时调用任意一个对象的方法。</li>
+</ol>
+<h4 id="反射在框架中的用途"><a href="#反射在框架中的用途" class="headerlink" title="反射在框架中的用途"></a>反射在框架中的用途</h4><p>反射最重要的用途就是开发各种通用框架。<br>比方说我们在 Struts 框架中需要去 Struts.xml 中配置 Action,<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"login"</span> <span class="attr">class</span>=<span class="string">"org.ScZyhSoft.test.action.SimpleLoginAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span>&gt;</span>/shop/shop-index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"error"</span>&gt;</span>login.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>配置文件与 Action 之间建立一种映射关系，当 View 层发出请求时，请求会被 StrustsPrepareAndExecuteFilter 拦截，然后动态地创建 Action 实例。</p>
+<p>比如我们请求 name = “login” 这个控制器，StrustsPrepareAndExecuteFilter 先会去解析 Struts.xml 文件，检索 action 中 name = “login” 的 Action,并且根据 class 属性创建 SimpleLoginAction 实例，并用 invoke 方法来调用 execute 方法，这个地方就用到了反射。</p>
+<h4 id="反射的基本运用"><a href="#反射的基本运用" class="headerlink" title="反射的基本运用"></a>反射的基本运用</h4><p>代码注释中有详细的解释，就不另外做解释了。</p>
+<p>创建一个学生类。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer userId;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userId;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.userId = userId;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String userName, Integer age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">		System.out.println(userName);</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"setAge:"</span> + age);</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Student [userId="</span> + userId + <span class="string">", userName="</span> + userName + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后就是测试学生类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestStudent</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">// 常规方法构建对象</span></span><br><span class="line">		Student stu = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 三种获取 Class 对象的方法</span></span><br><span class="line">		Class&lt;?&gt; clazz1 = Class.forName(<span class="string">"cn.liuenci.study.Student"</span>);</span><br><span class="line">		Class&lt;?&gt; clazz2 = Student.class;</span><br><span class="line">		Class&lt;?&gt; clazz3 = stu.getClass();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获得类的名称</span></span><br><span class="line">		<span class="comment">// cn.liuenci.Student 全限定名</span></span><br><span class="line">		System.out.println(clazz1.getName());</span><br><span class="line">		System.out.println(clazz2.getName());</span><br><span class="line">		System.out.println(clazz3.getName());</span><br><span class="line">		<span class="comment">// 简单类名 Student</span></span><br><span class="line">		System.out.println(clazz1.getSimpleName());</span><br><span class="line">		System.out.println(clazz2.getSimpleName());</span><br><span class="line">		System.out.println(clazz3.getSimpleName());</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获取类中已定义的属性</span></span><br><span class="line">		Field[] fields = clazz1.getDeclaredFields();</span><br><span class="line">		<span class="keyword">for</span>(Field field : fields) &#123;</span><br><span class="line">			System.out.println(field.getName());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获取类中已定义的方法</span></span><br><span class="line">		Method[] methods = clazz1.getDeclaredMethods();</span><br><span class="line">		<span class="keyword">for</span>(Method method : methods) &#123;</span><br><span class="line">			System.out.println(method.getName());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获取某一个方法</span></span><br><span class="line">		Field userNameField = clazz1.getDeclaredField(<span class="string">"userName"</span>);</span><br><span class="line">		System.out.println(stu);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 操作属性</span></span><br><span class="line">		userNameField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		userNameField.set(stu, <span class="string">"张三"</span>);</span><br><span class="line">		System.out.println(stu);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 操作对象的方法</span></span><br><span class="line">		Method ageMethod = clazz1.getDeclaredMethod(<span class="string">"setAge"</span>, Integer.class);</span><br><span class="line">		ageMethod.invoke(stu, <span class="number">18</span>);</span><br><span class="line">		System.out.println(stu);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 通过类构建具体的对象</span></span><br><span class="line">		Student stu2 = (Student)clazz1.newInstance();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="反射的优缺点"><a href="#反射的优缺点" class="headerlink" title="反射的优缺点"></a>反射的优缺点</h4><p>优点：</p>
+<ol>
+<li>能够动态地获取类的实例，提高系统的灵活性和扩展性。</li>
+<li>与 Java 动态编译相结合，可以实现无比强大的功能。<br>缺点：</li>
+<li>消耗一定的系统资源，而且反射的性能低。</li>
+<li>因为调用方法或者属性可以忽略权限检查，所以可能会破坏封装性而导致安全问题。</li>
+</ol>
 
       
 
@@ -722,7 +1194,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
         		</li>
       		
 		</ul>
@@ -732,241 +1204,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/JavaWeb-路径问题总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-html5-实现图片上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/html5-实现图片上传/">html5 实现图片上传</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/html5-实现图片上传/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:21:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>话说现在成熟的框架写一个文件上传挺简单的，但是因为直接学习框架中的文件上传会造成一种只会调用别人写好的代码来实现功能，但是自己并不会其中的原理的一种尴尬的情况，所以还是自己把图片上传用原生的js+servlet实现一下。
-        
-          <a class="article-more-a" href="/2018/06/19/html5-实现图片上传/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">html5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/html5-实现图片上传/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-谈谈-Java-中的-clone-方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/谈谈-Java-中的-clone-方法/">谈谈 Java 中的 clone 方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/谈谈-Java-中的-clone-方法/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:19:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java 中的对象创建有很多种，比如我所知道的以下几种：</p>
-<ol>
-<li>通过 new 关键字分配内存去创建对象</li>
-<li>通过反射机制创建对象</li>
-<li>通过 clone() 方法复制对象</li>
-<li>通过 Spring 中 @Autowired 注解自动装配</li>
-<li>通过 xml 对 bean 的配置，再在 Java 类中通过创建应用上下文，以及 getBean(Class class) 方法创建对象。
-        
-          <a class="article-more-a" href="/2018/06/19/谈谈-Java-中的-clone-方法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/谈谈-Java-中的-clone-方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-解析-Java-中的堆栈基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/解析-Java-中的堆栈基础/">解析 Java 中的堆栈基础</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/解析-Java-中的堆栈基础/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:17:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。
-        
-          <a class="article-more-a" href="/2018/06/19/解析-Java-中的堆栈基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/解析-Java-中的堆栈基础/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/22/谈谈反射/">展开全文 >></a>
         </p>
       
 
@@ -998,7 +1236,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1104,11 +1342,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+                <a href="javascript:void(0)" class="js-tag color3">命令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">权限</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,11 +1362,47 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">html5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">游戏辅助</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">跳一跳</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1137,6 +1415,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
               </li>
             
             <div class="clearfix"></div>
