@@ -1,198 +1,98 @@
-	<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>oracle 登录账户的几种方法 | cier</title>
-  <meta name="author" content="cier">
-  
-  <meta name="description" content="hello world">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+{% extends "_layout.njk" %}
 
-  <meta property="og:title" content="oracle 登录账户的几种方法"/>
-  <meta property="og:site_name" content="cier"/>
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
+{% endblock %}
 
-  
-  
-		<!-- favicon -->
-		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#009688">
-		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-		<meta name="theme-color" content="#009688">
-		<!-- favicon end -->
-    <!-- <link href="/favicon.ico" rel="icon"> -->
-  
+{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-  <!-- toc -->
-  <link rel="stylesheet" href="/libs/tocify/jquery.tocify.css" media="screen" type="text/css">
-
-  <!-- <link rel="stylesheet" href="/libs/bs/css/bootstrap.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" media="screen" type="text/css">
-
-  <!-- material design -->
-	<!-- <link rel="stylesheet" href="/libs/bs-material/css/ripples.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/ripples.min.css" media="screen" type="text/css">
-  <!-- <link rel="stylesheet" href="/libs/bs-material/css/material.min.css" media="screen" type="text/css"> -->
-	<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/material.min.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/highlight.light.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
-  
-
-  
-
-  <script src="//apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="/libs/jquery-2.0.3.min.js" type="text/javascript"><\/script>')</script>
-
-</head>
-
- 	<body>
-	  <nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">菜单</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">cier</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                
-                <li>
-                    <a href="/" title="">
-                    <i class="fa fa-home"></i>首页
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/archives" title="">
-                    <i class="fa fa-list"></i>存档
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/about" title="">
-                    <i class="fa fa-info-circle"></i>关于
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/atom.xml" title="这是一个订阅源">
-                    <i class="fa fa-rss"></i>RSS
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
+{% block content %}
+<div id="post" class="post">
+  {% set post = page %}
+  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="{{ config.author }}">
+       <meta itemprop="description" content="{{ config.description }}">
+       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="{{ config.title }}">
+      </span>
     </div>
-</nav>
-
-	  <div class="container" >
-	    <div class="row">
-	
-	<div class="col-md-9 center-content">
-	
-
-		<div class="content">
-			<!-- index -->
-		   
-
-			  		<h2>oracle 登录账户的几种方法</h2>
-					
-					<div>
-						<span class="post-time">2018-06-24 15:42:58</span>
-					</div>	
-					
-
-					<div class="article-content">
-						<blockquote>
-<p>登录scott账户分开输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conn scott/tiger</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show user</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>登录sysdba账户输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys as sysdba;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>不用口令直接回车</p>
-<blockquote>
-<p>在网页中登录企业管理器</p>
-</blockquote>
-<p>在网页中输入<a href="https://localhost:5500/em" target="_blank" rel="noopener">https://localhost:5500/em</a> 进入企业管理器<br>用户名输入 ：sys<br>新装的oracle如果没有改过sys的密码需要先登录sys，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user sys identified by tiger;</span><br></pre></td></tr></table></figure></p>
-<p>tiger可以换成你想要的密码<br>最后在企业管理器登录界面输入你改过的密码。</p>
-<blockquote>
-<p>使用system账户登录oracle</p>
-</blockquote>
-<p>用户名是:system<br>密码是scott账户设置的密码，如果你的密码不是的话，可以用sys登录oracle再输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user system identified by tiger;</span><br></pre></td></tr></table></figure></p>
-<p>tiger可以换成你想要的密码。<br>最后登录.</p>
-
-					</div>
-
-			  <!-- about -->
-			  
-		</div>
-
-		<!-- pagination -->
-	  
-
-		<div class="comment-section">
-  
-  
-
-
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+      <div class="post-meta">
+        {% if page.date %}
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
+        </span>
+        {% endif %}
+        {% if page.categories and page.categories.toArray().length %}
+        {% if page.date %}
+        <span class="post-meta-divider divider">|</span>
+        {% endif %}
+        <span class="post-categories">
+          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
+          {% for cat in page.categories.toArray() -%}
+          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
+          {%- endfor %}
+        </span>
+        {% endif %}
+        {% if page.comment !== false and theme.comment.enable %}
+        {% if theme.comment.disqus_shortname %}
+        {% if page.categories or page.date %}
+        <span class="post-meta-divider divider">|</span>
+        {% endif %}
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
+        </span>
+        {% endif %}
+        {% endif %}
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      {{ page.content }}
+    </main>
+    <footer class="post-footer">
+      {% if theme.alipay or theme.wechatpay %}
+      {% include "reward.njk" %}
+      {% endif %}
+      {% if page.tags and page.tags.toArray().length %}
+      <div class="post-tags">
+        {% if theme.tags_color %}
+        {% set colors = theme.tags_color %}
+        {% else %}
+        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
+        {% endif %}
+        {% for tag in page.tags.toArray() %}
+        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </footer>
+  </article>
+  {% if theme.reward %}
+  {% include "reward.njk" %}
+  {% endif %}
+  {% if page.prev or page.next %}
+  <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+      {% if page.next %}
+      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
+      {% endif %}
+    </div>
+    <div class="post-nav-prev post-nav-item">
+      {% if page.prev %}
+      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {% if theme.comment.enable %}
+  {% include "comment.njk" %}
+  {% endif %}
 </div>
-	</div>
-
-	
-
-</div>
-
-
-		<footer>
-			
-
-<p>
-  由 <a href="https://hexo.io">hexo</a> 强力驱动 | 搭载 <a href="https://github.com/wayou/hexo-theme-material">material</a> 主题
-</p>
-<p>
-  &copy; 2018 <a href="http://yoursite.com"> cier </a>
-</p>
-<a id="gotop" href="#" title="back to top"><i class="mdi-hardware-keyboard-arrow-up"></i></a>
-
-		</footer>
-	  </div>
-
-		<!-- <script src="/libs/bs/js/bootstrap.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script>(typeof $().modal == 'function')|| document.write('<script src="/libs/bs/js/bootstrap.min.js" type="text/javascript"><\/script>')</script>
-
-		<!-- material design -->
-		<!-- <script src="/libs/bs-material/js/ripples.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/ripples.min.js"></script>
-		<!-- <script src="/libs/bs-material/js/material.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/material.min.js"></script>
-		<!-- toc -->
-		<!-- <script src="/libs/tocify/jquery-ui.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-		<script src="/libs/tocify/jquery.tocify.custom.js"></script>
-
-		<script src="/js/main.js"></script>
-
-	</body>
-</html>
+{% endblock %}

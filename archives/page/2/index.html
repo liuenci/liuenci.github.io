@@ -1,221 +1,52 @@
-	<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>第 2 页 | Archives | cier</title>
-  <meta name="author" content="cier">
-  
-  <meta name="description" content="hello world">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+{% extends "_layout.njk" %}
 
-  
-  <meta property="og:site_name" content="cier"/>
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for("css/archive.css") }}">
+{% endblock %}
 
-  
-  
-		<!-- favicon -->
-		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#009688">
-		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-		<meta name="theme-color" content="#009688">
-		<!-- favicon end -->
-    <!-- <link href="/favicon.ico" rel="icon"> -->
-  
+{% block title %}{{ __("archive") }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-  <!-- toc -->
-  <link rel="stylesheet" href="/libs/tocify/jquery.tocify.css" media="screen" type="text/css">
-
-  <!-- <link rel="stylesheet" href="/libs/bs/css/bootstrap.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" media="screen" type="text/css">
-
-  <!-- material design -->
-	<!-- <link rel="stylesheet" href="/libs/bs-material/css/ripples.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/ripples.min.css" media="screen" type="text/css">
-  <!-- <link rel="stylesheet" href="/libs/bs-material/css/material.min.css" media="screen" type="text/css"> -->
-	<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/material.min.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/highlight.light.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
-  
-
-  
-
-  <script src="//apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="/libs/jquery-2.0.3.min.js" type="text/javascript"><\/script>')</script>
-
-</head>
-
- 	<body>
-	  <nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">菜单</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">cier</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                
-                <li>
-                    <a href="/" title="">
-                    <i class="fa fa-home"></i>首页
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/archives" title="">
-                    <i class="fa fa-list"></i>存档
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/about" title="">
-                    <i class="fa fa-info-circle"></i>关于
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/atom.xml" title="这是一个订阅源">
-                    <i class="fa fa-rss"></i>RSS
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
-</nav>
-
-	  <div class="container" >
-	    <div class="row">
-	
-	<div class="col-md-9 center-content">
-	
-
-		<div class="content">
-			<!-- index -->
-		   
-			  	<h2>归档</h2>
-		  		
-	              <p class="archive-item">
-						<a href="/2018/06/24/https-的工作原理/" class="archive-title">https 的工作原理</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/http-返回码/" class="archive-title">http 返回码</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/数据结构-队列-顺序结构和循环队列/" class="archive-title">数据结构-队列-顺序结构和循环队列</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/数据结构-队列-链式结构/" class="archive-title">数据结构-队列-链式结构</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/数据结构-线性表-顺序结构/" class="archive-title">数据结构-线性表-顺序结构</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/数据结构-线性表-静态链表/" class="archive-title">数据结构-线性表-静态链表</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/数据结构-线性表-链式结构/" class="archive-title">数据结构-线性表-链式结构</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/数据结构-线性表-循环链表/" class="archive-title">数据结构-线性表-循环链表</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/数据结构-线性表-双向链表/" class="archive-title">数据结构-线性表-双向链表</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-	              <p class="archive-item">
-						<a href="/2018/06/24/树/" class="archive-title">树</a><span class="archive post-time">2018-06-24</span>
-					</p>
-			  	
-			  <!-- post -->
-			  
-		</div>
-
-		<!-- pagination -->
-	  
-
-			<div class="btn-group btn-group-justified">
-				
-
-					<a class="btn btn-default " href="/archives/" >上一页</a>
-
-					<a class="btn btn-default" href="/">首页</a>
-
-					<a class="btn btn-default " href="/archives/page/3/" >下一页</a>
-
-	    	
-			</div>
-	  
-
-		<div class="comment-section">
-  
-
+{% block content %}
+<div id="archive" class="archive">
+  <div class="archive-container">
+    <h1 class="archive-counter">
+      {% if site.posts.length > 1 %}
+      {{ _p("postcount.more", site.posts.length) }}
+      {% elif site.posts.length === 1 %}
+      {{ _p("postcount.one", site.posts.length) }}
+      {% else %}
+      {{ __("postcount.none") }}
+      {% endif %}
+    </h1>
+    {% set year = "1970" %}
+    {% for post in page.posts.toArray() %}
+    {% if date(post.date, "YYYY") !== year %}
+    {% set year = date(post.date, "YYYY") %}
+    <h1 class="archive-title">{{ year }}</h1>
+    {% endif %}
+    <article class="archive-post card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="{{ url_for(post.path) }}" itemprop="url">{{ post.title }}</a>
+      </h1>
+      {% if post.date %}
+      <span class="post-date">
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, "MM-DD") }}</time>
+      </span>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% if page.prev or page.next %}
+  <nav class="pagination">
+    {{
+      paginator({
+        prev_text: "<i class=\"fas fa-angle-left\"></i>",
+        next_text: "<i class=\"fas fa-angle-right\"></i>",
+        mid_size: 1
+      })
+    }}
+  </nav>
+  {% endif %}
 </div>
-	</div>
-
-	
-
-</div>
-
-
-		<footer>
-			
-
-<p>
-  由 <a href="https://hexo.io">hexo</a> 强力驱动 | 搭载 <a href="https://github.com/wayou/hexo-theme-material">material</a> 主题
-</p>
-<p>
-  &copy; 2018 <a href="http://yoursite.com"> cier </a>
-</p>
-<a id="gotop" href="#" title="back to top"><i class="mdi-hardware-keyboard-arrow-up"></i></a>
-
-		</footer>
-	  </div>
-
-		<!-- <script src="/libs/bs/js/bootstrap.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script>(typeof $().modal == 'function')|| document.write('<script src="/libs/bs/js/bootstrap.min.js" type="text/javascript"><\/script>')</script>
-
-		<!-- material design -->
-		<!-- <script src="/libs/bs-material/js/ripples.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/ripples.min.js"></script>
-		<!-- <script src="/libs/bs-material/js/material.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/material.min.js"></script>
-		<!-- toc -->
-		<!-- <script src="/libs/tocify/jquery-ui.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-		<script src="/libs/tocify/jquery.tocify.custom.js"></script>
-
-		<script src="/js/main.js"></script>
-
-	</body>
-</html>
+{% endblock %}

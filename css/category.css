@@ -1,0 +1,10 @@
+.category-container .category-title {
+  text-align: center;
+}
+.category-container .category-post {
+  text-align: center;
+}
+.category-container .category-post .post-title {
+  padding: 0;
+  margin: 0;
+}

@@ -1,190 +1,98 @@
-	<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>数据结构-栈-顺序结构 | cier</title>
-  <meta name="author" content="cier">
-  
-  <meta name="description" content="hello world">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+{% extends "_layout.njk" %}
 
-  <meta property="og:title" content="数据结构-栈-顺序结构"/>
-  <meta property="og:site_name" content="cier"/>
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
+{% endblock %}
 
-  
-  
-		<!-- favicon -->
-		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="msapplication-TileColor" content="#009688">
-		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
-		<meta name="theme-color" content="#009688">
-		<!-- favicon end -->
-    <!-- <link href="/favicon.ico" rel="icon"> -->
-  
+{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-  <!-- toc -->
-  <link rel="stylesheet" href="/libs/tocify/jquery.tocify.css" media="screen" type="text/css">
-
-  <!-- <link rel="stylesheet" href="/libs/bs/css/bootstrap.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" media="screen" type="text/css">
-
-  <!-- material design -->
-	<!-- <link rel="stylesheet" href="/libs/bs-material/css/ripples.min.css" media="screen" type="text/css"> -->
-  <link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/ripples.min.css" media="screen" type="text/css">
-  <!-- <link rel="stylesheet" href="/libs/bs-material/css/material.min.css" media="screen" type="text/css"> -->
-	<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap-material/0.3.0/css/material.min.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/highlight.light.css" media="screen" type="text/css">
-
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-
-  
-
-  
-
-  <script src="//apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="/libs/jquery-2.0.3.min.js" type="text/javascript"><\/script>')</script>
-
-</head>
-
- 	<body>
-	  <nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">菜单</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">cier</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                
-                <li>
-                    <a href="/" title="">
-                    <i class="fa fa-home"></i>首页
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/archives" title="">
-                    <i class="fa fa-list"></i>存档
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/about" title="">
-                    <i class="fa fa-info-circle"></i>关于
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="/atom.xml" title="这是一个订阅源">
-                    <i class="fa fa-rss"></i>RSS
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
+{% block content %}
+<div id="post" class="post">
+  {% set post = page %}
+  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="{{ config.author }}">
+       <meta itemprop="description" content="{{ config.description }}">
+       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="{{ config.title }}">
+      </span>
     </div>
-</nav>
-
-	  <div class="container" >
-	    <div class="row">
-	
-	<div class="col-md-9 center-content">
-	
-
-		<div class="content">
-			<!-- index -->
-		   
-
-			  		<h2>数据结构-栈-顺序结构</h2>
-					
-					<div>
-						<span class="post-time">2018-06-24 15:50:28</span>
-					</div>	
-					
-
-					<div class="article-content">
-						<h4 id="什么是栈"><a href="#什么是栈" class="headerlink" title="什么是栈"></a>什么是栈</h4><p>栈是一种特殊的线性表，但是只允许在表尾进行插入和删除。相对于普遍意义上的线性表来说，实现要简单不少，不过这里我们还要知道栈的几个关键的概念。</p>
-<h4 id="栈的关键点"><a href="#栈的关键点" class="headerlink" title="栈的关键点"></a>栈的关键点</h4><p>我们把允许插入和删除的一端称为栈顶(top),另一端称为栈底(bottom);不含任何数据元素的栈称为空栈。<br>栈又称为后进先出(Last In First Out)的线性表，简称为LIFO结构。</p>
-<h4 id="关于栈的插入和删除"><a href="#关于栈的插入和删除" class="headerlink" title="关于栈的插入和删除"></a>关于栈的插入和删除</h4><p>栈的插入操作，叫做进栈，也称压栈、入栈。<br>栈的删除操作，叫做出栈，也称弹栈。</p>
-<h4 id="栈的顺序结构实现"><a href="#栈的顺序结构实现" class="headerlink" title="栈的顺序结构实现"></a>栈的顺序结构实现</h4><p>在我的前几篇文章中，说到线性表有两种实现方式，一种是顺序结构，一种是链式结构。而我们的栈作为一种特殊的线性表，因而也具有这两种实现方式，这里我们详细讲述栈的顺序结构的实现。</p>
-<h5 id="先来一个接口-ISequenceStack"><a href="#先来一个接口-ISequenceStack" class="headerlink" title="先来一个接口 ISequenceStack"></a>先来一个接口 ISequenceStack</h5><p>这段时间自己写数据结构的代码，特别中意接口，以前一直不怎么写接口的，现在发现写接口特别有利于自己的代码规范，写接口就像自己高中写作文列提纲一样，你知道自己该写哪些内容，所以我建议大家都好好学习写接口。<br>这里的接口主要为了规范 push(压栈) 和 pop(出栈)操作，辅助操作有 getTop()(得到栈顶元素) 和 isEmpty()(栈的判空操作)。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISequenceStack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">getTop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="接口实现类-SequenceStackImpl"><a href="#接口实现类-SequenceStackImpl" class="headerlink" title="接口实现类 SequenceStackImpl"></a>接口实现类 SequenceStackImpl</h5><p>接口实现类主要包括一个栈的初始化(init()),压栈(push())，以及出栈(pop())。<br>栈的初始化：<br>栈的实现需要一个数组作为依托，所以需要将数组实例化。此外，我们需要一个栈顶指针，表明栈顶所在的位置。<br>核心代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.maxSize = size;</span><br><span class="line">        top = -<span class="number">1</span>;</span><br><span class="line">        stack = <span class="keyword">new</span> Object[size];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>压栈：<br>压栈就是在这个栈中插入数据的过程，所以先要判断栈是否已经满了，如果满了则返回并且输出错误警告信息。<br>如果栈不满，将 top 指针后移，再将数据插入。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( top == maxSize) &#123;</span><br><span class="line">            System.out.println(<span class="string">"栈已满"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        top++;</span><br><span class="line">        stack[top] = obj;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>出栈：<br>出栈就是在这个栈中删除数据的过程，所以先要判断该栈是否为空，如果为空则返回 null，并且输出错误警告信息。<br>如果不为空，则将该结点设置为 null，然后 top 指针前移。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Object obj = stack[top];</span><br><span class="line">        stack[top] = <span class="keyword">null</span>;</span><br><span class="line">        top--;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="栈的测试类"><a href="#栈的测试类" class="headerlink" title="栈的测试类"></a>栈的测试类</h5><p>栈的测试类比较简单，主要是测试栈的实现类中每一个方法是否可用，以及边界条件下测试栈会不会报异常。这里就不贴源代码占篇幅了，想要了解详情的可以去我的 github 上面查看数据结构全部的源代码。</p>
-<h4 id="项目源码获取地址"><a href="#项目源码获取地址" class="headerlink" title="项目源码获取地址"></a>项目源码获取地址</h4><p>github:<a href="https://github.com/liuenci/Data-Structure" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure</a>.<br>觉得可以的同学可以点一波 Star 再走啊。</p>
-
-					</div>
-
-			  <!-- about -->
-			  
-		</div>
-
-		<!-- pagination -->
-	  
-
-		<div class="comment-section">
-  
-  
-
-
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+      <div class="post-meta">
+        {% if page.date %}
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
+        </span>
+        {% endif %}
+        {% if page.categories and page.categories.toArray().length %}
+        {% if page.date %}
+        <span class="post-meta-divider divider">|</span>
+        {% endif %}
+        <span class="post-categories">
+          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
+          {% for cat in page.categories.toArray() -%}
+          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
+          {%- endfor %}
+        </span>
+        {% endif %}
+        {% if page.comment !== false and theme.comment.enable %}
+        {% if theme.comment.disqus_shortname %}
+        {% if page.categories or page.date %}
+        <span class="post-meta-divider divider">|</span>
+        {% endif %}
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
+        </span>
+        {% endif %}
+        {% endif %}
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      {{ page.content }}
+    </main>
+    <footer class="post-footer">
+      {% if theme.alipay or theme.wechatpay %}
+      {% include "reward.njk" %}
+      {% endif %}
+      {% if page.tags and page.tags.toArray().length %}
+      <div class="post-tags">
+        {% if theme.tags_color %}
+        {% set colors = theme.tags_color %}
+        {% else %}
+        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
+        {% endif %}
+        {% for tag in page.tags.toArray() %}
+        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </footer>
+  </article>
+  {% if theme.reward %}
+  {% include "reward.njk" %}
+  {% endif %}
+  {% if page.prev or page.next %}
+  <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+      {% if page.next %}
+      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
+      {% endif %}
+    </div>
+    <div class="post-nav-prev post-nav-item">
+      {% if page.prev %}
+      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  {% if theme.comment.enable %}
+  {% include "comment.njk" %}
+  {% endif %}
 </div>
-	</div>
-
-	
-
-</div>
-
-
-		<footer>
-			
-
-<p>
-  由 <a href="https://hexo.io">hexo</a> 强力驱动 | 搭载 <a href="https://github.com/wayou/hexo-theme-material">material</a> 主题
-</p>
-<p>
-  &copy; 2018 <a href="http://yoursite.com"> cier </a>
-</p>
-<a id="gotop" href="#" title="back to top"><i class="mdi-hardware-keyboard-arrow-up"></i></a>
-
-		</footer>
-	  </div>
-
-		<!-- <script src="/libs/bs/js/bootstrap.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-		<script>(typeof $().modal == 'function')|| document.write('<script src="/libs/bs/js/bootstrap.min.js" type="text/javascript"><\/script>')</script>
-
-		<!-- material design -->
-		<!-- <script src="/libs/bs-material/js/ripples.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/ripples.min.js"></script>
-		<!-- <script src="/libs/bs-material/js/material.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/bootstrap-material/0.3.0/js/material.min.js"></script>
-		<!-- toc -->
-		<!-- <script src="/libs/tocify/jquery-ui.min.js"></script> -->
-		<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-		<script src="/libs/tocify/jquery.tocify.custom.js"></script>
-
-		<script src="/js/main.js"></script>
-
-	</body>
-</html>
+{% endblock %}
