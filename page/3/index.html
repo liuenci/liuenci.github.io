@@ -147,56 +147,33 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JavaWeb-路径问题总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-解析-Oracle-流程控制基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/JavaWeb-路径问题总结/">JavaWeb 路径问题总结</a>
+      <a class="article-title" href="/2018/06/24/解析-Oracle-流程控制基础/">解析 Oracle 流程控制基础</a>
     </h1>
   
 
         
-        <a href="/2018/06/19/JavaWeb-路径问题总结/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/24/解析-Oracle-流程控制基础/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:45:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>这一次咱们谈谈JavaWeb中涉及到的路径问题。</p>
-</blockquote>
-<hr>
-<p>路径分为两种：</p>
-<ul>
-<li>绝对路径</li>
-<li>相对路径</li>
-</ul>
-<p>绝对路径是指具体到某个项目工程下面具体的某个文件夹下的某个文件，好像有点绕，后续详细展开。</p>
-<p>相对路径则比较难懂，因为经常弄混，所以我打算用具体的实例来谈谈jsp中关于相对路径的问题。</p>
-<blockquote>
-<p>第一种：jsp页面在WEB-INF下面的某个具体的文件夹下面。跳转方向：从servlet跳转到jsp页面。</p>
-</blockquote>
-<p>首先假设我们的目录结构是这样的。</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt=""></p>
-<p>如果你想要访问的jstlTest.jsp页面在WEB-INF下面的jstl下面，那么你是无法直接通过<a href="http://localhost:8080/elandjstl/WEB-INF/jstl/jstlTest.jsp这个链接访问到的。它会报404错误，也就是找不到这个页面。" target="_blank" rel="noopener">http://localhost:8080/elandjstl/WEB-INF/jstl/jstlTest.jsp这个链接访问到的。它会报404错误，也就是找不到这个页面。</a></p>
-<p>解决方法：通过转发或者重定向访问这个页面。我们可以看到我在cn.liuenci这个包下面有个EL.java文件，这个文件具体是一个servlet文件，我们通过doGet(request,response)或者doPost(request,response)两个方法中使用重定向或者转发可以访问到这个页面。具体代码如下，两句代码择一即可。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">"WEB-INF/jstl/jstlTest.jsp?num=9"</span>).forward(request, response);</span><br><span class="line"><span class="comment">//重定向</span></span><br><span class="line">response.sendRedirect(<span class="string">"WEB-INF/jstl/jstlTest.jsp?num=9"</span>);</span><br></pre></td></tr></table></figure></p>
-<p>跳转的路径需要加上WEB-INF/文件夹1/文件夹2/…/文件夹n/文件.jsp</p>
-<blockquote>
-<p>第二种：jsp页面就在WebContent根目录下面。跳转方向：从servlet跳转到jsp页面。</p>
-</blockquote>
-<p>我在WebContent的根目录下面新建了一个test.jsp文件。项目结构是这样的:</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%842.png" alt=""></p>
-<p>这个文件是可以直接通过地址访问到的。地址：<a href="http://localhost:8080/elandjstl/test.jsp" target="_blank" rel="noopener">http://localhost:8080/elandjstl/test.jsp</a><br>如果我们要从servlet跳转到这个jsp页面，也可以使用重定向或者转发。具体代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发</span></span><br><span class="line">request.getRequestDispatcher(<span class="string">"test.jsp"</span>).forward(request, response);</span><br><span class="line"><span class="comment">//重定向</span></span><br><span class="line">response.sendRedirect(<span class="string">"test.jsp"</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第三种：在WEB-INF文件夹下面的jsp页面要访问src里面的servlet文件做doGet或者doPost处理。跳转方向：jsp跳转到servlet</p>
-</blockquote>
-<p>这里我们不能直接在WEB-INF文件夹下面那个jsp页面使用重定向或者转发，因为直接运行该jsp页面会报404错误，我们先要在WebContent文件夹根目录下面创建一个jsp页面，在该页面中使用转发或者重定向跳转到WEB-INF下面那个jsp页面，然后在该jsp页面使用表单提交到servlet里面进行处理。</p>
+        <p>这篇文章简单的介绍一下一些 Oracle 中的流程控制怎么使用。</p>
+<h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  salary emp.sal%<span class="keyword">TYPE</span>;</span><br><span class="line">  empno_ emp.empno%TYPE;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  empno_ := &amp;请输入员工编号;</span><br><span class="line">  <span class="keyword">SELECT</span> sal <span class="keyword">INTO</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> empno = empno_;</span><br><span class="line">  IF salary &gt; 2000 THEN</span><br><span class="line">    dbms_output.put_line('土豪');</span><br><span class="line">  ELSIF salary BETWEEN 1000 AND 2000 THEN</span><br><span class="line">    dbms_output.put_line('小康');</span><br><span class="line">  ELSE</span><br><span class="line">    dbms_output.put_line('屌丝');</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="case-表达式"><a href="#case-表达式" class="headerlink" title="case 表达式"></a>case 表达式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CASE</span> grade</span><br><span class="line">  <span class="keyword">WHEN</span> <span class="number">1</span> <span class="keyword">THEN</span> <span class="string">'一级'</span></span><br><span class="line">  <span class="keyword">WHEN</span> <span class="number">2</span> <span class="keyword">THEN</span> <span class="string">'二级'</span></span><br><span class="line">  <span class="keyword">ELSE</span> <span class="string">'更高级'</span> <span class="keyword">END</span></span><br><span class="line"><span class="keyword">FROM</span> salgrade;</span><br></pre></td></tr></table></figure>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><h3 id="简单循环"><a href="#简单循环" class="headerlink" title="简单循环"></a>简单循环</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span> := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">LOOP</span></span><br><span class="line">    i := i + <span class="number">1</span>;</span><br><span class="line">    dbms_output.put_line(i);</span><br><span class="line">    EXIT WHEN i = 100;</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span> := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">WHILE</span> i &lt; <span class="number">100</span> <span class="keyword">LOOP</span></span><br><span class="line">    dbms_output.put_line(i);</span><br><span class="line">    i := i + 1;</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="数字式循环-for-in-n-m-loop"><a href="#数字式循环-for-in-n-m-loop" class="headerlink" title="数字式循环 for in n..m loop"></a>数字式循环 for in n..m loop</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span> := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">FOR</span> i <span class="keyword">IN</span> <span class="number">0.</span><span class="number">.100</span> <span class="keyword">LOOP</span></span><br><span class="line">    dbms_output.put_line(i);</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="顺序语句"><a href="#顺序语句" class="headerlink" title="顺序语句"></a>顺序语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  i := &amp;<span class="keyword">input</span>;</span><br><span class="line">  IF i = 2 THEN</span><br><span class="line">     GOTO label1;  </span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">  &lt;&lt;label1&gt;&gt; -- label1之后什么也不做需要运行 null 语句</span><br><span class="line">  NULL;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -210,11 +187,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">流程控制</a>
         		</li>
       		
 		</ul>
@@ -224,7 +201,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/JavaWeb-路径问题总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/解析-Oracle-流程控制基础/">展开全文 >></a>
         </p>
       
 
@@ -254,112 +231,47 @@
 
 
   
-    <article id="post-html5-实现图片上传" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-解析-Oracle-中函数基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/html5-实现图片上传/">html5 实现图片上传</a>
+      <a class="article-title" href="/2018/06/24/解析-Oracle-中函数基础/">解析 Oracle 中函数基础</a>
     </h1>
   
 
         
-        <a href="/2018/06/19/html5-实现图片上传/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:21:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/06/24/解析-Oracle-中函数基础/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>话说现在成熟的框架写一个文件上传挺简单的，但是因为直接学习框架中的文件上传会造成一种只会调用别人写好的代码来实现功能，但是自己并不会其中的原理的一种尴尬的情况，所以还是自己把图片上传用原生的js+servlet实现一下。
-        
-          <a class="article-more-a" href="/2018/06/19/html5-实现图片上传/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">html5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/html5-实现图片上传/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-谈谈-Java-中的-clone-方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/谈谈-Java-中的-clone-方法/">谈谈 Java 中的 clone 方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/谈谈-Java-中的-clone-方法/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:19:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java 中的对象创建有很多种，比如我所知道的以下几种：</p>
+        <h4 id="什么是函数"><a href="#什么是函数" class="headerlink" title="什么是函数"></a>什么是函数</h4><p>函数就是一组 SQL 语句或者 PL/SQL 语句块的集合，同时可以返回执行结果。</p>
+<h4 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">OR</span> <span class="keyword">REPLACE</span>] <span class="keyword">FUNCTION</span> function_name</span><br><span class="line"> (arg1 [ &#123; <span class="keyword">IN</span> | <span class="keyword">OUT</span> | <span class="keyword">IN</span> <span class="keyword">OUT</span> &#125;] type1 [<span class="keyword">DEFAULT</span> value1],</span><br><span class="line"> [arg2 [ &#123; <span class="keyword">IN</span> | <span class="keyword">OUT</span> | <span class="keyword">IN</span> <span class="keyword">OUT</span> &#125;] type2 [<span class="keyword">DEFAULT</span> value1]],</span><br><span class="line"> ......</span><br><span class="line"> [argn [ &#123; <span class="keyword">IN</span> | <span class="keyword">OUT</span> | <span class="keyword">IN</span> <span class="keyword">OUT</span> &#125;] typen [<span class="keyword">DEFAULT</span> valuen]])</span><br><span class="line"> [ <span class="keyword">AUTHID</span> DEFINER | <span class="keyword">CURRENT_USER</span> ]</span><br><span class="line"><span class="keyword">RETURN</span> return_type</span><br><span class="line"> <span class="keyword">IS</span> | <span class="keyword">AS</span></span><br><span class="line">    &lt;类型.变量的声明部分&gt;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    执行部分</span><br><span class="line">    <span class="keyword">RETURN</span> expression</span><br><span class="line"><span class="keyword">EXCEPTION</span></span><br><span class="line">    异常处理部分</span><br><span class="line"><span class="keyword">END</span> function_name;</span><br></pre></td></tr></table></figure>
+<h4 id="如何创建函数"><a href="#如何创建函数" class="headerlink" title="如何创建函数"></a>如何创建函数</h4><p>下面是一个求阶乘的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">function</span> jiecheng(n <span class="built_in">int</span>) <span class="keyword">return</span> <span class="built_in">int</span> <span class="keyword">is</span></span><br><span class="line">num_ <span class="built_in">int</span> := <span class="number">1</span>;</span><br><span class="line">i int;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span> .. n <span class="keyword">loop</span></span><br><span class="line">    num_:=num_*i;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">loop</span>;</span><br><span class="line">  return num_;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure></p>
+<p>然后执行函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> jiecheng(<span class="number">5</span>) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure></p>
+<h4 id="函数如何调用"><a href="#函数如何调用" class="headerlink" title="函数如何调用"></a>函数如何调用</h4><p>函数声明时所定义的参数叫做形参，然后调用函数时传进去的值成为实参。调用函数一般有以下三种方法向函数传递参数：</p>
 <ol>
-<li>通过 new 关键字分配内存去创建对象</li>
-<li>通过反射机制创建对象</li>
-<li>通过 clone() 方法复制对象</li>
-<li>通过 Spring 中 @Autowired 注解自动装配</li>
-<li>通过 xml 对 bean 的配置，再在 Java 类中通过创建应用上下文，以及 getBean(Class class) 方法创建对象。
-        
-          <a class="article-more-a" href="/2018/06/19/谈谈-Java-中的-clone-方法/#more">more >></a>
-        
+<li>位置表示法，就是严格按照形参的声明顺序来进行调用，例如函数：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">function</span> function_name(a <span class="built_in">int</span>,b varchar2(<span class="number">10</span>),c <span class="built_in">number</span>(<span class="number">4</span>,<span class="number">2</span>)) ..</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>那么调用就必须按照 abc 的顺序来进行调用。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function_name(1,'test',3.2)</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li><p>名称表示法<br>这种表示法对次序没有要求，但是对参数之间的对应有要求，具体格式如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function_name(a =&gt; 1,b =&gt; 'test',c =&gt; 3.2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组合传递法<br>这种方式就是同时调用位置表示法和名称表示法为函数传递参数。这种表示法的要求就是，只要其中有一个参数使用名称表示法，那么后面的参数都需要使用名称表示法。具体格式如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function_name(1,b=&gt;'test',c=&gt;3.2)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="关于参数的-IN-OUT-IN-OUT-以及-函数参数默认值"><a href="#关于参数的-IN-OUT-IN-OUT-以及-函数参数默认值" class="headerlink" title="关于参数的 IN,OUT,IN OUT 以及 函数参数默认值"></a>关于参数的 IN,OUT,IN OUT 以及 函数参数默认值</h4><p>IN,OUT,IN OUT 都是形参的模式，如果省略，那么则都是 IN 输入模式，这种模式只能输入，也就是只能读不能写，而 OUT 则相反，只能输出，不能输入，也就是只能写，不能读，IN OUT 则是既能读又能写。</p>
+<p>函数参数的默认值在创建函数的时候就已经确立，在函数调用时没有提供实参的情况下会使用默认值，当提供实参时会使用实际值，只能为输入参数提供默认值，而不能为 OUT 和 IN OUT 提供默认值。</p>
+
       
 
       
@@ -372,166 +284,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/谈谈-Java-中的-clone-方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-解析-Java-中的堆栈基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/解析-Java-中的堆栈基础/">解析 Java 中的堆栈基础</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/解析-Java-中的堆栈基础/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:17:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用于存放由 new 关键字创建的对象和数组。在堆中分配的内存，是由 Java 虚拟机的垃圾回收器进行回收，回收是在当这个对象没有引用指向这个对象实例的情况下，在今后的某一个不确定的时间点由 JVM 回收。
-        
-          <a class="article-more-a" href="/2018/06/19/解析-Java-中的堆栈基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/解析-Java-中的堆栈基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-谈谈线程不同步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/谈谈线程不同步/">谈谈线程不同步</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/谈谈线程不同步/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>模拟银行转账代码</p>
-</blockquote>
-<p>以下的代码模拟一个有若干账户的银行，然后随机生成在这些账户之间转移钱款的交易。每一个账户都有一个线程。每一笔交易，都会从一个账户中随机转移一定的钱款到另外一个账户。
-        
-          <a class="article-more-a" href="/2018/06/19/谈谈线程不同步/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">函数</a>
         		</li>
       		
 		</ul>
@@ -541,7 +298,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/谈谈线程不同步/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/解析-Oracle-中函数基础/">展开全文 >></a>
         </p>
       
 
@@ -571,20 +328,20 @@
 
 
   
-    <article id="post-多线程的一点理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-oracle-登录账户的几种方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/18/多线程的一点理解/">多线程的一点理解</a>
+      <a class="article-title" href="/2018/06/24/oracle-登录账户的几种方法/">oracle 登录账户的几种方法</a>
     </h1>
   
 
         
-        <a href="/2018/06/18/多线程的一点理解/" class="archive-article-date">
-  	<time datetime="2018-06-17T23:36:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-18</time>
+        <a href="/2018/06/24/oracle-登录账户的几种方法/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:42:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
@@ -592,16 +349,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>什么是多线程</p>
+<p>登录scott账户分开输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conn scott/tiger</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>一个程序同时运行多个任务叫做多线程，一个任务就是一个线程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show user</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>多线程和多进程的区别</p>
+<p>登录sysdba账户输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys as sysdba;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>进程是计算机上的一次执行活动，所以进程是活的，进程是操作系统进行资源分配的单位。在windows下，进程被细分为线程，就是说一个线程下有多个能独立运行的更小的单位。
-        
-          <a class="article-more-a" href="/2018/06/18/多线程的一点理解/#more">more >></a>
-        
+<p>不用口令直接回车</p>
+<blockquote>
+<p>在网页中登录企业管理器</p>
+</blockquote>
+<p>在网页中输入<a href="https://localhost:5500/em" target="_blank" rel="noopener">https://localhost:5500/em</a> 进入企业管理器<br>用户名输入 ：sys<br>新装的oracle如果没有改过sys的密码需要先登录sys，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user sys identified by tiger;</span><br></pre></td></tr></table></figure></p>
+<p>tiger可以换成你想要的密码<br>最后在企业管理器登录界面输入你改过的密码。</p>
+<blockquote>
+<p>使用system账户登录oracle</p>
+</blockquote>
+<p>用户名是:system<br>密码是scott账户设置的密码，如果你的密码不是的话，可以用sys登录oracle再输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user system identified by tiger;</span><br></pre></td></tr></table></figure></p>
+<p>tiger可以换成你想要的密码。<br>最后登录.</p>
+
       
 
       
@@ -614,11 +379,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
         		</li>
       		
 		</ul>
@@ -628,7 +389,721 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/18/多线程的一点理解/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/oracle-登录账户的几种方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-oracle-设置自增序列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/oracle-设置自增序列/">oracle 设置自增序列</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/oracle-设置自增序列/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:41:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>oracle和mysql的自增区别</p>
+</blockquote>
+<p>mysql自增使用的是auto increment，但是oracle中需要使用序列配合触发器来实现自增。</p>
+<blockquote>
+<p>步骤1:创建表</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table classroom</span><br><span class="line">(</span><br><span class="line">c_id NUMBER(4) not null primary key,</span><br><span class="line">c_address VARCHAR2(10) not null,</span><br><span class="line">c_count NUMBER(2) not null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>步骤2：创建序列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create sequence class_id_increment</span><br><span class="line">INCREMENT by 1</span><br><span class="line">start with 1001</span><br><span class="line">maxvalue 1999</span><br><span class="line">nocycle</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>步骤3：创建触发器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create TRIGGER class_id_trigger</span><br><span class="line">before insert on classroom for each row when (new.c_id is null)</span><br><span class="line">BEGIN</span><br><span class="line">SELECT class_id_increment.nextval into :new.c_id from dual;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>步骤4：插入语句测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into classroom VALUES(1001,&apos;101&apos;,50);</span><br><span class="line">INSERT into classroom(c_address,c_count) VALUES(&apos;102&apos;,60);</span><br><span class="line">INSERT into classroom(c_address,c_count) VALUES(&apos;103&apos;,70);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>以上的插入语句中后两条在不插入主键的情况下，使用序列和触发器完成了主键编号自增。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">序列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/oracle-设置自增序列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-oracle-总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/oracle-总结/">oracle 总结</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/oracle-总结/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:40:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter session set nls_date_format = &quot;YYYY-MM-DD&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table XSB</span><br><span class="line">(</span><br><span class="line">学号 CHAR(6) NOT NULL PRIMARY KEY,</span><br><span class="line">姓名 CHAR(8) NOT NULL,</span><br><span class="line">性别 CHAR(2char) DEFAULT &apos;男&apos; NOT NULL,</span><br><span class="line">出生时间 date NOT NULL,</span><br><span class="line">专业 char(12) null,</span><br><span class="line">总学分 number(2) null,</span><br><span class="line">备注 varchar2(200) null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列的约束主要有五种:not null,unique,primary key ,reference table,check.分别是非空，唯一，主键，外键，检查约束。</p>
+</li>
+<li><p>如何创建一个表的备份表,表后面可以加where条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table xs_jsj as select * from xsb where 专业=&apos;计算机&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加表的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (奖学金等级 number(1),等级说明 varchar2(40) default &apos;奖金1000元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj modify (等级说明 default &apos;奖金800元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj drop column 奖学金等级</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表创建主键，注意主键的名字不能是单引号包裹，单引号会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (constraint &quot;pk_jsj&quot; primary key(学号))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table xs_jsj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>insert into语句可以将一个表中的数据插入进另外一张表中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into xsb1 select 学号 姓名 专业 from xsb where 姓名 = &apos;王林&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>merge关键字的使用,下面这段代码的意思是如果学号匹配，就把a表中的数据更新成XSB中的数据,如果不匹配，那就插入这条记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">merge into A </span><br><span class="line">using xsb on (a.xh=xsb.学号)</span><br><span class="line">when matched </span><br><span class="line">  then update set a.xm = xsb.姓名,a.xb=xsb.性别,a.cssj=xsb.出生时间,a.zy=xsb.专业,a.zxf=xsb.总学分,a.bz=xsb.备注</span><br><span class="line">when not matched</span><br><span class="line">  then insert values(xsb.学号,xsb.姓名,xsb.性别,xsb.出生时间,xsb.专业,xsb.总学分,xsb.备注);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空值的比较</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from cp where 备注 is not null</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>all关键字的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from xsb where 出生时间 &lt; all (select 出生时间 from xsb where 专业=&apos;计算机&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EXISTS子查询，EXISTS谓词用于测试子查询的结果是否为空表，若子查询的结果集不为空，则exists返回true，否则返回false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 姓名 from xsb where exists (select * from cjb where 学号 = xsb.学号 and 课程号 = &apos;206&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在写存储过程代码遇到一个如何执行存储过程的问题，算是一个小坑，我先贴上代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--查询某人的总学分</span><br><span class="line">create or replace procedure update_info (vxh in char) as</span><br><span class="line">xf number;</span><br><span class="line">begin</span><br><span class="line">  select zxf into xf from xsb where xh = vxh and rownum = 1;</span><br><span class="line">  if xf&gt;50 then</span><br><span class="line">    update xsb set bz = &apos;三好学生&apos; where xh = vxh;</span><br><span class="line">  else</span><br><span class="line">    update xsb set bz = &apos;三差学生&apos; where xh = vxh;</span><br><span class="line">  end if;</span><br><span class="line">end;</span><br><span class="line">--执行存储过程</span><br><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行存储过程的时候我最开始用的代码是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh&gt;=&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>仔细看书上我发现存储过程的赋值是这样的是使用的 ‘=&gt;’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/oracle-总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-oracle 函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/oracle 函数/">函数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/oracle 函数/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:39:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h3><h4 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h4><h5 id="获取系统日期"><a href="#获取系统日期" class="headerlink" title="获取系统日期"></a>获取系统日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysdate</span><br></pre></td></tr></table></figure>
+<p>java 中日期格式化：yyyy-MM-dd HH:mm:ss</p>
+<p>mysql 中日期格式化：%Y-%m-%d %H:%i:%s</p>
+<p>oracle 中日期格式化：yyyy-mm-dd hh24:mi:ss</p>
+<h5 id="格式化日期"><a href="#格式化日期" class="headerlink" title="格式化日期"></a>格式化日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">to_char(sysdate,&apos;yyyy-mm-dd hh24:mi:ss&apos;)</span><br></pre></td></tr></table></figure>
+<h5 id="将字符串转换为日期"><a href="#将字符串转换为日期" class="headerlink" title="将字符串转换为日期"></a>将字符串转换为日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">to_date(&apos;2000-01-22&apos;,&apos;yyyy-mm-dd hh24:mi:ss&apos;)</span><br></pre></td></tr></table></figure>
+<h5 id="添加月份"><a href="#添加月份" class="headerlink" title="添加月份"></a>添加月份</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select add_months(sysdate,2) from dual</span><br></pre></td></tr></table></figure>
+<h5 id="返回指定月的最后一天"><a href="#返回指定月的最后一天" class="headerlink" title="返回指定月的最后一天"></a>返回指定月的最后一天</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select last_day(sysdate) from dual</span><br></pre></td></tr></table></figure>
+<h5 id="计算两个日期之间相差多少月"><a href="#计算两个日期之间相差多少月" class="headerlink" title="计算两个日期之间相差多少月"></a>计算两个日期之间相差多少月</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select months_between(sysdate,add_months(sysdate,4)) from dual</span><br></pre></td></tr></table></figure>
+<h5 id="返回下一个日期"><a href="#返回下一个日期" class="headerlink" title="返回下一个日期"></a>返回下一个日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select next_day(sysdate,2) from dual</span><br></pre></td></tr></table></figure>
+<p>星期日 = 1  星期一 = 2  星期二 = 3  星期三 = 4  星期四 = 5  星期五 = 6  星期六 = 7</p>
+<h5 id="返回日期-时间的单独部分，比如年月日时分秒等等"><a href="#返回日期-时间的单独部分，比如年月日时分秒等等" class="headerlink" title="返回日期/时间的单独部分，比如年月日时分秒等等"></a>返回日期/时间的单独部分，比如年月日时分秒等等</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- sysdate中只能获取年月日</span><br><span class="line">select extract(year from sysdate) from dual;</span><br><span class="line">select extract(month from sysdate) from dual;</span><br><span class="line">select extract(day from sysdate) from dual;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/oracle 函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-oracle12c如何创建scott用户并且授予权限" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/oracle12c如何创建scott用户并且授予权限/">oracle12c如何创建scott用户并且授予权限</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/oracle12c如何创建scott用户并且授予权限/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:38:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前一直用的 oracle11g，每次安装都没有 sql developer,今天 google 看到原来 11g 好像没有内置 sql developer,并且删除了 scott 用户，又解决了我一个使用 oracle 的困惑。</p>
+<p>下面讲讲如何创建 scott 用户并且授予权限。</p>
+<p>参考链接如下：<a href="http://blog.csdn.net/btt2013/article/details/52554514" target="_blank" rel="noopener">http://blog.csdn.net/btt2013/article/details/52554514</a></p>
+<h5 id="使用数据库管理员身份登陆账户"><a href="#使用数据库管理员身份登陆账户" class="headerlink" title="使用数据库管理员身份登陆账户"></a>使用数据库管理员身份登陆账户</h5><p>在这一步之前你先要保证自己的数据库服务启动，这里我就不说了，然后打开 sql plus 之后登陆。输入口令直接回车即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys  as sysdba;</span><br></pre></td></tr></table></figure></p>
+<h5 id="创建用户并且设置密码"><a href="#创建用户并且设置密码" class="headerlink" title="创建用户并且设置密码"></a>创建用户并且设置密码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user scott identified by 123456;</span><br></pre></td></tr></table></figure>
+<h5 id="授予权限"><a href="#授予权限" class="headerlink" title="授予权限"></a>授予权限</h5><p>由于我在安装 oracle 的时候把创建为容器数据库给取消了，所以授予权限有一点点不同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant connect,resource,unlimited tablespace to scott;</span><br></pre></td></tr></table></figure></p>
+<p>如果创建容器数据库可以使用下面这行语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant connect,resource,unlimited tablespace to scott container=all;</span><br></pre></td></tr></table></figure></p>
+<h5 id="设置用户使用的表空间"><a href="#设置用户使用的表空间" class="headerlink" title="设置用户使用的表空间"></a>设置用户使用的表空间</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter user scott default tablespace users;</span><br><span class="line">alter user scott temporary tablespace temp;</span><br></pre></td></tr></table></figure>
+<h5 id="使用-scott-用户登录"><a href="#使用-scott-用户登录" class="headerlink" title="使用 scott 用户登录"></a>使用 scott 用户登录</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect scott/123456;</span><br></pre></td></tr></table></figure>
+<h5 id="显示当前用户"><a href="#显示当前用户" class="headerlink" title="显示当前用户"></a>显示当前用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show user;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">权限</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/oracle12c如何创建scott用户并且授予权限/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ubuntu-基础命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/ubuntu-基础命令/">ubuntu 基础命令</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/ubuntu-基础命令/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Ubuntu基础命令"><a href="#Ubuntu基础命令" class="headerlink" title="Ubuntu基础命令"></a>Ubuntu基础命令</h4><h6 id="cd-切换位置"><a href="#cd-切换位置" class="headerlink" title="cd 切换位置"></a>cd 切换位置</h6><p>移动到 Document<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Documents</span><br></pre></td></tr></table></figure></p>
+<p>移动到上一级目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br></pre></td></tr></table></figure></p>
+<p>返回到 Home 目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure></p>
+<p>返回到你刚刚所在的目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd -</span><br></pre></td></tr></table></figure></p>
+<p>去往电脑的任何一个位置,使用的是绝对位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/cier</span><br></pre></td></tr></table></figure></p>
+<h5 id="ls-浏览文件"><a href="#ls-浏览文件" class="headerlink" title="ls 浏览文件"></a>ls 浏览文件</h5><p>显示当前目录下所有文件（不包括隐藏文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure></p>
+<p>显示当前目录下文件的详细信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p>显示所有文件，包括隐藏文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure></p>
+<p>更人性化的显示文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lh</span><br></pre></td></tr></table></figure></p>
+<p>显示 ls 所有的功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls --help</span><br></pre></td></tr></table></figure></p>
+<h5 id="touch-创建文件"><a href="#touch-创建文件" class="headerlink" title="touch 创建文件"></a>touch 创建文件</h5><p>创建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1</span><br></pre></td></tr></table></figure></p>
+<p>创建多个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1 file2 file3 file4 file5</span><br></pre></td></tr></table></figure></p>
+<h5 id="cp-复制文件或者文件夹"><a href="#cp-复制文件或者文件夹" class="headerlink" title="cp 复制文件或者文件夹"></a>cp 复制文件或者文件夹</h5><p>将老文件复制到新文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy</span><br></pre></td></tr></table></figure></p>
+<p>如果file1copy已经存在，上面的语句会直接覆盖原来的file1copy,为了避免覆盖，需要在cp后面加一个选项。回复任意大小写的’y’或者’yes’就确认复制，直接回车或者输入其他字母会取消复制，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -i file1 file1copy</span><br></pre></td></tr></table></figure></p>
+<p>复制进文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>复制文件夹，需要加上 -R (recursive)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -R folder1/ folder2/</span><br></pre></td></tr></table></figure></p>
+<p>复制文件名称部分相同的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file* folder2/</span><br></pre></td></tr></table></figure></p>
+<p>复制单独的几个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy file2 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>#####　mv 移动文件<br>移动一个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file6 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>移动文件到原来的地点，但是以不同的名字，就是重命名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file1 file1rename</span><br></pre></td></tr></table></figure></p>
+<p>找到更多的 mv 的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv --help</span><br></pre></td></tr></table></figure></p>
+<h5 id="mkdir-创建文件夹"><a href="#mkdir-创建文件夹" class="headerlink" title="mkdir 创建文件夹"></a>mkdir 创建文件夹</h5><p>在当前目录添加一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3</span><br></pre></td></tr></table></figure></p>
+<p>在文件夹中建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3/file1</span><br></pre></td></tr></table></figure></p>
+<h5 id="rmdir-移除文件夹"><a href="#rmdir-移除文件夹" class="headerlink" title="rmdir 移除文件夹"></a>rmdir 移除文件夹</h5><p>rmdir 就是 remove directory 的意思，但是这个命令只能删除文件夹内没有文件的文件夹。也就是说只能移除空文件夹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir folder3</span><br></pre></td></tr></table></figure></p>
+<h5 id="rm-移除文件"><a href="#rm-移除文件" class="headerlink" title="rm 移除文件"></a>rm 移除文件</h5><p>移除单个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm file1</span><br></pre></td></tr></table></figure></p>
+<p>有提示的移除文件<br>-i 每个要移除的文件都进行提示<br>-I 超过三个要移除的文件才进行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -i file1 file2 file3</span><br><span class="line">rm -I file*</span><br></pre></td></tr></table></figure></p>
+<p>删除非空文件夹,加上 -r 或者 -R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -r folder1</span><br></pre></td></tr></table></figure></p>
+<h5 id="nano-编辑脚本"><a href="#nano-编辑脚本" class="headerlink" title="nano 编辑脚本"></a>nano 编辑脚本</h5><p>打开一个python脚本进行编辑,编辑完之后 ctrl+x 保存，再通过 python 指令运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano file.py</span><br><span class="line">python file.py</span><br></pre></td></tr></table></figure></p>
+<h5 id="cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中"><a href="#cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中" class="headerlink" title="cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中"></a>cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中</h5><p>查看 python 脚本内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py</span><br></pre></td></tr></table></figure></p>
+<p>将文件的内容写进另外一个文件，另外一个文件不存在时会自动创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py &gt; file2.py</span><br></pre></td></tr></table></figure></p>
+<p>将多个文件写进另外一个文件，另外一个文件不存在时会自动创建,内容顺序为 file1 file2 file3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py file2.py &gt; file3.py</span><br></pre></td></tr></table></figure></p>
+<p>将一个文件写入到另外一个文件的末尾<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py &gt;&gt; file2.py</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/ubuntu-基础命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux-文件权限" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/Linux-文件权限/">Linux 文件权限</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/Linux-文件权限/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:20:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="为什么有权限"><a href="#为什么有权限" class="headerlink" title="为什么有权限"></a>为什么有权限</h4><p>在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。</p>
+<h4 id="如何查看权限"><a href="#如何查看权限" class="headerlink" title="如何查看权限"></a>如何查看权限</h4><p>查看文件的权限只需要输入以下命令即可查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/03-01-02.png" alt="Linux文件权限"><br>图片来源:<a href="https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/" target="_blank" rel="noopener">https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/</a> 侵删。</p>
+<p>类似于 drwxrwxr-x 这种格式的就是文件的权限。细节展示在上面的图中，下面解释一下这个字符串的四个部分。</p>
+<ul>
+<li>Type:文件的类型，(- 为文件，d 为文件夹，其他的还有 l,n,有需求再搜)</li>
+<li>User:在 Type 后面紧跟着的三个空就是说是用 User 的身份能对这个做什么处理(r 能读；w 能写；x 能执行；- 不能完成某个操作)，User 一般指的是当前使用电脑的人。</li>
+<li>Group:一个 Group 里面可能有一个或者多个 User,这些权限的样式和 User 一样。</li>
+<li>Others:除了 User 和 Group 以外人的权限。<h4 id="如何修改权限"><a href="#如何修改权限" class="headerlink" title="如何修改权限"></a>如何修改权限</h4>先看一个例子，如何给 User 添加执行权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+r file.py</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>归纳一下得到以下公式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [谁][怎么修改][修改哪个文件]</span><br></pre></td></tr></table></figure></p>
+<p>u+r 就是说给 User 加上 read 权限，给 file.py 这个文件进行修改。<br>[谁]</p>
+<ul>
+<li>u:修改 User</li>
+<li>g:修改 Group</li>
+<li>o:修改 Others</li>
+<li>a:修改 all<br>[怎么修改]</li>
+<li>+,-,= : 加上，剪掉，等于某些权限</li>
+<li>r,w,x : 或者多个权限一起，比如 rw.</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">权限</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/Linux-文件权限/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ubuntu-中利用-git-上传项目到-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/">ubuntu 中利用 git 上传项目到 github</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:19:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h4><p>参考文章：<a href="http://www.xgllseo.com/?p=5428" target="_blank" rel="noopener">http://www.xgllseo.com/?p=5428</a><br>感谢大神。</p>
+<p>下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。</p>
+<ol>
+<li>测试git是否安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>记住一定是–,不是一个-。</p>
+<ol start="2">
+<li>获取ssh密钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;你的github邮箱&quot; -f ~/.ssh/github</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行的过程中会提示你需要设置密码，不要管它，一路回车。<br>这时候会在你的～/目录下面生成一个.ssh/目录，但是Ubuntu默认是不显示这个目录的。查看.ssh目录下的github.pub获取公钥认证，就是一串乱码。<br>接下来获取这串乱码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">sudo gedit github.pub</span><br></pre></td></tr></table></figure></p>
+<p>这个时候会打开这个文件，只需要复制里面的代码到github里面的SSH and GPG keys 里面填写一下就好了。</p>
+<ol start="3">
+<li><p>创建本地项目文件<br>这个文件就是专门负责项目的上传和更新，进入这个文件夹，然后在终端输入以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &quot;你的github仓库地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交文件夹到github上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add . // 更新整个目录</span><br><span class="line">git config user.name &quot;liuenci&quot; //第一次需要配置</span><br><span class="line">git config user.email &quot;154910381@qq.com&quot; //第一次需要配置</span><br><span class="line">git commit -m &quot;更新版本简要说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样子就能够上传我们的项目了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/">展开全文 >></a>
         </p>
       
 
@@ -660,7 +1135,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -766,11 +1241,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">蓝桥杯</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -779,6 +1254,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -794,6 +1289,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -806,31 +1317,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">游戏辅助</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">跳一跳</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,7 +1333,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">项目</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -850,11 +1345,63 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+                <a href="javascript:void(0)" class="js-tag color4">线性表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ROWID</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ROWNUM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">序列</a>
               </li>
             
             <div class="clearfix"></div>

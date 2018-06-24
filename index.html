@@ -228,58 +228,39 @@
 
 
   
-    <article id="post-ubuntu-基础命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-BASIC-12-十六进制转八进制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/ubuntu-基础命令/">ubuntu 基础命令</a>
+      <a class="article-title" href="/2018/06/24/BASIC-12-十六进制转八进制/">BASIC-12 十六进制转八进制</a>
     </h1>
   
 
         
-        <a href="/2018/06/22/ubuntu-基础命令/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+        <a href="/2018/06/24/BASIC-12-十六进制转八进制/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:06:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Ubuntu基础命令"><a href="#Ubuntu基础命令" class="headerlink" title="Ubuntu基础命令"></a>Ubuntu基础命令</h4><h6 id="cd-切换位置"><a href="#cd-切换位置" class="headerlink" title="cd 切换位置"></a>cd 切换位置</h6><p>移动到 Document<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Documents</span><br></pre></td></tr></table></figure></p>
-<p>移动到上一级目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br></pre></td></tr></table></figure></p>
-<p>返回到 Home 目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure></p>
-<p>返回到你刚刚所在的目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd -</span><br></pre></td></tr></table></figure></p>
-<p>去往电脑的任何一个位置,使用的是绝对位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/cier</span><br></pre></td></tr></table></figure></p>
-<h5 id="ls-浏览文件"><a href="#ls-浏览文件" class="headerlink" title="ls 浏览文件"></a>ls 浏览文件</h5><p>显示当前目录下所有文件（不包括隐藏文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure></p>
-<p>显示当前目录下文件的详细信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
-<p>显示所有文件，包括隐藏文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure></p>
-<p>更人性化的显示文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lh</span><br></pre></td></tr></table></figure></p>
-<p>显示 ls 所有的功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls --help</span><br></pre></td></tr></table></figure></p>
-<h5 id="touch-创建文件"><a href="#touch-创建文件" class="headerlink" title="touch 创建文件"></a>touch 创建文件</h5><p>创建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1</span><br></pre></td></tr></table></figure></p>
-<p>创建多个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1 file2 file3 file4 file5</span><br></pre></td></tr></table></figure></p>
-<h5 id="cp-复制文件或者文件夹"><a href="#cp-复制文件或者文件夹" class="headerlink" title="cp 复制文件或者文件夹"></a>cp 复制文件或者文件夹</h5><p>将老文件复制到新文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy</span><br></pre></td></tr></table></figure></p>
-<p>如果file1copy已经存在，上面的语句会直接覆盖原来的file1copy,为了避免覆盖，需要在cp后面加一个选项。回复任意大小写的’y’或者’yes’就确认复制，直接回车或者输入其他字母会取消复制，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -i file1 file1copy</span><br></pre></td></tr></table></figure></p>
-<p>复制进文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 folder1/</span><br></pre></td></tr></table></figure></p>
-<p>复制文件夹，需要加上 -R (recursive)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -R folder1/ folder2/</span><br></pre></td></tr></table></figure></p>
-<p>复制文件名称部分相同的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file* folder2/</span><br></pre></td></tr></table></figure></p>
-<p>复制单独的几个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy file2 folder1/</span><br></pre></td></tr></table></figure></p>
-<p>#####　mv 移动文件<br>移动一个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file6 folder1/</span><br></pre></td></tr></table></figure></p>
-<p>移动文件到原来的地点，但是以不同的名字，就是重命名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file1 file1rename</span><br></pre></td></tr></table></figure></p>
-<p>找到更多的 mv 的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv --help</span><br></pre></td></tr></table></figure></p>
-<h5 id="mkdir-创建文件夹"><a href="#mkdir-创建文件夹" class="headerlink" title="mkdir 创建文件夹"></a>mkdir 创建文件夹</h5><p>在当前目录添加一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3</span><br></pre></td></tr></table></figure></p>
-<p>在文件夹中建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3/file1</span><br></pre></td></tr></table></figure></p>
-<h5 id="rmdir-移除文件夹"><a href="#rmdir-移除文件夹" class="headerlink" title="rmdir 移除文件夹"></a>rmdir 移除文件夹</h5><p>rmdir 就是 remove directory 的意思，但是这个命令只能删除文件夹内没有文件的文件夹。也就是说只能移除空文件夹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir folder3</span><br></pre></td></tr></table></figure></p>
-<h5 id="rm-移除文件"><a href="#rm-移除文件" class="headerlink" title="rm 移除文件"></a>rm 移除文件</h5><p>移除单个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm file1</span><br></pre></td></tr></table></figure></p>
-<p>有提示的移除文件<br>-i 每个要移除的文件都进行提示<br>-I 超过三个要移除的文件才进行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -i file1 file2 file3</span><br><span class="line">rm -I file*</span><br></pre></td></tr></table></figure></p>
-<p>删除非空文件夹,加上 -r 或者 -R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -r folder1</span><br></pre></td></tr></table></figure></p>
-<h5 id="nano-编辑脚本"><a href="#nano-编辑脚本" class="headerlink" title="nano 编辑脚本"></a>nano 编辑脚本</h5><p>打开一个python脚本进行编辑,编辑完之后 ctrl+x 保存，再通过 python 指令运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano file.py</span><br><span class="line">python file.py</span><br></pre></td></tr></table></figure></p>
-<h5 id="cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中"><a href="#cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中" class="headerlink" title="cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中"></a>cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中</h5><p>查看 python 脚本内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py</span><br></pre></td></tr></table></figure></p>
-<p>将文件的内容写进另外一个文件，另外一个文件不存在时会自动创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py &gt; file2.py</span><br></pre></td></tr></table></figure></p>
-<p>将多个文件写进另外一个文件，另外一个文件不存在时会自动创建,内容顺序为 file1 file2 file3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py file2.py &gt; file3.py</span><br></pre></td></tr></table></figure></p>
-<p>将一个文件写入到另外一个文件的末尾<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py &gt;&gt; file2.py</span><br></pre></td></tr></table></figure></p>
+        <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lqb.grounding;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HexToOctal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		String[] str = <span class="keyword">new</span> String[n];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			str[i] = input.next();</span><br><span class="line">		&#125;</span><br><span class="line">		input.close();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			String strBinary = toBinary(str[i]);</span><br><span class="line">			<span class="comment">// 不满足三的倍数补全位数</span></span><br><span class="line">			<span class="keyword">int</span> len_strBin = strBinary.length();</span><br><span class="line">			<span class="keyword">if</span>(len_strBin%<span class="number">3</span> ==<span class="number">1</span>) &#123;</span><br><span class="line">				strBinary = <span class="string">"00"</span> + strBinary;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(len_strBin%<span class="number">3</span>==<span class="number">2</span>) &#123;</span><br><span class="line">				strBinary = <span class="string">"0"</span> + strBinary;</span><br><span class="line">			&#125;</span><br><span class="line">			String strOctal = toOctal(strBinary);</span><br><span class="line">			System.out.println(strOctal);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">/*Scanner input = new Scanner(System.in);</span></span><br><span class="line"><span class="comment">		int n = input.nextInt();</span></span><br><span class="line"><span class="comment">		String[] str = new String[n];</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			str[i] = input.next();</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		String[] binaryStr = new String[n];</span></span><br><span class="line"><span class="comment">		// 先将16进制转化为2进制</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			char[] c = str[i].toCharArray();</span></span><br><span class="line"><span class="comment">			StringBuilder strBuilder = new StringBuilder("");</span></span><br><span class="line"><span class="comment">			for(int j=0;j&lt;c.length;j++) &#123;</span></span><br><span class="line"><span class="comment">				switch(c[j]) &#123;</span></span><br><span class="line"><span class="comment">				case '0':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0000");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '1':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0001");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '2':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0010");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '3':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0011");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '4':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0100");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '5':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0101");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '6':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0110");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '7':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0111");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '8':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1000");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '9':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1001");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'A':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1010");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'B':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1011");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'C':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1100");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'D':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1101");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'E':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1110");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'F':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1111");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				default:</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">				binaryStr[i] = strBuilder.toString();</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		// 判断长度是不是3的倍数</span></span><br><span class="line"><span class="comment">		for(int i = 0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			if(binaryStr[i].length()%3==1) &#123;</span></span><br><span class="line"><span class="comment">				binaryStr[i]="00"+binaryStr[i];</span></span><br><span class="line"><span class="comment">			&#125;else if(binaryStr[i].length()%3==2)&#123;</span></span><br><span class="line"><span class="comment">				binaryStr[i]="0"+binaryStr[i];</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		// 将2进制转化为8进制</span></span><br><span class="line"><span class="comment">		long[] octNum = new long[n];</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			// 将二进制数分成三个数一组的字符数组</span></span><br><span class="line"><span class="comment">			String[] octStr = new String[binaryStr[i].length()/3];</span></span><br><span class="line"><span class="comment">			// 拆分二进制数填入数组</span></span><br><span class="line"><span class="comment">			for(int j = 1;j&lt;=binaryStr[i].length();j++) &#123;</span></span><br><span class="line"><span class="comment">				if(j%3==0) &#123;</span></span><br><span class="line"><span class="comment">					octStr[j/3-1] = binaryStr[i].substring(j-3, j);</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			StringBuilder octBuilder = new StringBuilder();</span></span><br><span class="line"><span class="comment">			for(int k=0;k&lt;octStr.length;k++) &#123;</span></span><br><span class="line"><span class="comment">				if("000".equals(octStr[k])) &#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("0");</span></span><br><span class="line"><span class="comment">				&#125;else if("001".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("1");</span></span><br><span class="line"><span class="comment">				&#125;else if("010".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("2");</span></span><br><span class="line"><span class="comment">				&#125;else if("011".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("3");</span></span><br><span class="line"><span class="comment">				&#125;else if("100".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("4");</span></span><br><span class="line"><span class="comment">				&#125;else if("101".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("5");</span></span><br><span class="line"><span class="comment">				&#125;else if("110".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("6");</span></span><br><span class="line"><span class="comment">				&#125;else if("111".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("7");</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			octNum[i]=Integer.parseInt(octBuilder.toString());</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		for(int i = 0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			System.out.println(octNum[i]);</span></span><br><span class="line"><span class="comment">		&#125;*/</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toBinary</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len_str = str.length();</span><br><span class="line">		StringBuffer stb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len_str;i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span>(str.charAt(i)) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'0'</span>:</span><br><span class="line">				stb.append(<span class="string">"0000"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'1'</span>:</span><br><span class="line">				stb.append(<span class="string">"0001"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'2'</span>:</span><br><span class="line">				stb.append(<span class="string">"0010"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'3'</span>:</span><br><span class="line">				stb.append(<span class="string">"0011"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'4'</span>:</span><br><span class="line">				stb.append(<span class="string">"0100"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'5'</span>:</span><br><span class="line">				stb.append(<span class="string">"0101"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'6'</span>:</span><br><span class="line">				stb.append(<span class="string">"0110"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'7'</span>:</span><br><span class="line">				stb.append(<span class="string">"0111"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'8'</span>:</span><br><span class="line">				stb.append(<span class="string">"1000"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'9'</span>:</span><br><span class="line">				stb.append(<span class="string">"1001"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">				stb.append(<span class="string">"1010"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">				stb.append(<span class="string">"1011"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">				stb.append(<span class="string">"1100"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">				stb.append(<span class="string">"1101"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">				stb.append(<span class="string">"1110"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">				stb.append(<span class="string">"1111"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> stb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toOctal</span><span class="params">(String strBinary)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len = strBinary.length();</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		StringBuffer stb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">if</span>(strBinary.substring(<span class="number">0</span>, <span class="number">3</span>).equals(<span class="string">"000"</span>)) &#123;</span><br><span class="line">			k = <span class="number">3</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			k = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = k;i&lt;len - <span class="number">2</span>;i+=<span class="number">3</span>) &#123;</span><br><span class="line">			<span class="keyword">switch</span>(strBinary.substring(i,i+<span class="number">3</span>)) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"000"</span>:</span><br><span class="line">				stb.append(<span class="string">"0"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"001"</span>:</span><br><span class="line">				stb.append(<span class="string">"1"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"010"</span>:</span><br><span class="line">				stb.append(<span class="string">"2"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"011"</span>:</span><br><span class="line">				stb.append(<span class="string">"3"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"100"</span>:</span><br><span class="line">				stb.append(<span class="string">"4"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"101"</span>:</span><br><span class="line">				stb.append(<span class="string">"5"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"110"</span>:</span><br><span class="line">				stb.append(<span class="string">"6"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"111"</span>:</span><br><span class="line">				stb.append(<span class="string">"7"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> stb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>先来解释一下为什么16进制的1位数字等于二进制的4位。<br>因为16进制数的进率是16，二进制的进率是2，16是2的4次方，所以二进制数需要连续进位4次才能等效于16进制数进位1次。<br>所以同样的推理可以得到8进制的1位数字等于2进制的3位。<br>这个题的思路如下：</p>
+<ol>
+<li>先用数组存储输入的16进制数。</li>
+<li>将16进制数转化为2进制数。</li>
+<li>如果2进制数不满足3的倍数，少2位就补”00”,少1位就补”0”.</li>
+<li>将2进制数转化为8进制数。</li>
+<li>去除前导0，输出8进制数。<br>经验教训：</li>
+<li>16进制转化为2进制和2进制转化为8进制都用方法表示会更好。</li>
+<li>打开了输入流记得关闭输入流，因为输入流是jvm无法通过垃圾回收机制回收的资源，只能自己显示通过close回收。</li>
+<li>java1.7的版本开始支持switch匹配字符串了，上课没听，哎，估计又打酱油去了。</li>
+<li>String字符串的单个字符扫描不需要将字符串转化为字符数组，只需要使用循环调用charAt(i)进行扫描即可。</li>
+</ol>
 
       
 
@@ -293,11 +274,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">蓝桥杯</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -307,7 +288,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/ubuntu-基础命令/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/BASIC-12-十六进制转八进制/">展开全文 >></a>
         </p>
       
 
@@ -337,47 +318,118 @@
 
 
   
-    <article id="post-Linux-文件权限" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-BASIC-11-十六进制转十进制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/Linux-文件权限/">Linux 文件权限</a>
+      <a class="article-title" href="/2018/06/24/BASIC-11-十六进制转十进制/">BASIC-11 十六进制转十进制</a>
     </h1>
   
 
         
-        <a href="/2018/06/22/Linux-文件权限/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:20:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+        <a href="/2018/06/24/BASIC-11-十六进制转十进制/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:05:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="为什么有权限"><a href="#为什么有权限" class="headerlink" title="为什么有权限"></a>为什么有权限</h4><p>在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。</p>
-<h4 id="如何查看权限"><a href="#如何查看权限" class="headerlink" title="如何查看权限"></a>如何查看权限</h4><p>查看文件的权限只需要输入以下命令即可查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/03-01-02.png" alt="Linux文件权限"><br>图片来源:<a href="https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/" target="_blank" rel="noopener">https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/</a> 侵删。</p>
-<p>类似于 drwxrwxr-x 这种格式的就是文件的权限。细节展示在上面的图中，下面解释一下这个字符串的四个部分。</p>
-<ul>
-<li>Type:文件的类型，(- 为文件，d 为文件夹，其他的还有 l,n,有需求再搜)</li>
-<li>User:在 Type 后面紧跟着的三个空就是说是用 User 的身份能对这个做什么处理(r 能读；w 能写；x 能执行；- 不能完成某个操作)，User 一般指的是当前使用电脑的人。</li>
-<li>Group:一个 Group 里面可能有一个或者多个 User,这些权限的样式和 User 一样。</li>
-<li>Others:除了 User 和 Group 以外人的权限。<h4 id="如何修改权限"><a href="#如何修改权限" class="headerlink" title="如何修改权限"></a>如何修改权限</h4>先看一个例子，如何给 User 添加执行权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+r file.py</span><br></pre></td></tr></table></figure>
-</li>
+        <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%8D%81%E8%BF%9B%E5%88%B6.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HexadecimalToDecimal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		String str = input.next();</span><br><span class="line">		<span class="keyword">char</span>[] c = str.toCharArray();</span><br><span class="line">		<span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">long</span> num = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (n &lt; c.length) &#123;</span><br><span class="line">			<span class="keyword">char</span> d = c[n];</span><br><span class="line">			<span class="keyword">switch</span> (d) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">				num += <span class="number">10</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">				num += <span class="number">11</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">				num += <span class="number">12</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">				num += <span class="number">13</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">				num += <span class="number">14</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">				num += <span class="number">15</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				String e = String.valueOf(d);</span><br><span class="line">				<span class="keyword">int</span> f = Integer.parseInt(e);</span><br><span class="line">				num += f * Math.pow(<span class="number">16</span>, c.length -<span class="number">1</span>- n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			n++;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(num);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>首先要知道16进制如何转化为10进制，16进制的范围为[0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F]，16进制数n转换为十进制数m时，先要将n拆成一个个单个字符，每一个字符代表的数乘以16的（位数-1）次方，最后在相加得到十进制数。</li>
+<li>当16进制数为FFFFFFFF时，如果使用int型去存储这个十进制数会出现精度丢失，所以需要使用长整形long去存储。注：长整形long初始化为0，后面加不加L对结果没有影响。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">蓝桥杯</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/BASIC-11-十六进制转十进制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-BASIC-6-杨辉三角形" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/BASIC-6-杨辉三角形/">BASIC-6 杨辉三角形</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/BASIC-6-杨辉三角形/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:04:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目如图：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92%E5%BD%A2.png" alt=""><br>解题思路：</p>
+<ol>
+<li>找规律<ul>
+<li>从输入和输出格式来看，输入数为n,则为n行n列的二维数组</li>
+<li>每一行的第一个数和最后一个数都是1.</li>
+<li>从第三行开始，除开第一个数和最后一个数，中间所有的数，假设该数的坐标为[i,j]，都等于[i-1,j-1]+[i-1,j]的和。</li>
 </ul>
-<p>归纳一下得到以下公式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [谁][怎么修改][修改哪个文件]</span><br></pre></td></tr></table></figure></p>
-<p>u+r 就是说给 User 加上 read 权限，给 file.py 这个文件进行修改。<br>[谁]</p>
-<ul>
-<li>u:修改 User</li>
-<li>g:修改 Group</li>
-<li>o:修改 Others</li>
-<li>a:修改 all<br>[怎么修改]</li>
-<li>+,-,= : 加上，剪掉，等于某些权限</li>
-<li>r,w,x : 或者多个权限一起，比如 rw.</li>
-</ul>
+</li>
+<li>写代码<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		<span class="keyword">int</span>[][] array = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);</span><br><span class="line">			System.out.print(<span class="number">1</span>+<span class="string">" "</span>+<span class="number">1</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			array[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			array[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			array[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(j==<span class="number">0</span>||j==n) &#123;</span><br><span class="line">						array[i][j]=<span class="number">1</span>;</span><br><span class="line">					&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">						array[i][j]=array[i-<span class="number">1</span>][j-<span class="number">1</span>]+array[i-<span class="number">1</span>][j];</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(array[i][j]!=<span class="number">0</span>) &#123;</span><br><span class="line">						System.out.print(array[i][j]+<span class="string">" "</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.println();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
 
@@ -391,15 +443,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">蓝桥杯</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">权限</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -409,7 +457,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/Linux-文件权限/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/BASIC-6-杨辉三角形/">展开全文 >></a>
         </p>
       
 
@@ -439,754 +487,157 @@
 
 
   
-    <article id="post-ubuntu-中利用-git-上传项目到-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-谈谈-https-和-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/">ubuntu 中利用 git 上传项目到 github</a>
+      <a class="article-title" href="/2018/06/24/谈谈-https-和-http/">谈谈 https 和 http</a>
     </h1>
   
 
         
-        <a href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:19:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+        <a href="/2018/06/24/谈谈-https-和-http/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:02:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h4><p>参考文章：<a href="http://www.xgllseo.com/?p=5428" target="_blank" rel="noopener">http://www.xgllseo.com/?p=5428</a><br>感谢大神。</p>
-<p>下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。</p>
-<ol>
-<li>测试git是否安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
-</li>
+        <p>http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果需要传输敏感信息，比如密码什么的 http 协议不是一个好的协议。</p>
+<p>https:比 http 多了一个 s,这个 s 代表着 security（安全），全称叫做 安全套接字层超文本传输协议,https 在 http 上加入了 ssl 协议，而 ssl 协议依靠证书来验证服务器的身份，并且为浏览器和服务器之间的数据传输加密。</p>
+<p>https 协议的主要作用主要有两种：一种是建立一个信息安全通道，来保证数据传输的安全；另外一个就是确认网站的真实性。</p>
+<h2 id="https-和-http-的区别"><a href="#https-和-http-的区别" class="headerlink" title="https 和 http 的区别"></a>https 和 http 的区别</h2><ol>
+<li>https 协议需要到 ca 申请证书，一般免费证书较少，因而需要一定费用，（好像可以自己制作证书来着，但是要服务器端支持）括号内自动忽略就好，我记得在哪看到过。</li>
+<li>http 是超文本传输协议，信息 是明文传输，https 则是具有安全性的 ssl 加密传输协议。</li>
+<li>http 和 https 使用的两种不同的连接方式，使用的默认端口也是不一致的，http 使用的 80 端口，https 使用的 443 端口。</li>
+<li>http 的连接比较简单，是无状态的；https 协议则是使用 ssl + http 协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。</li>
 </ol>
-<p>记住一定是–,不是一个-。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">https</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/谈谈-https-和-http/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-https-的工作原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/https-的工作原理/">https 的工作原理</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/https-的工作原理/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:01:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>看到好多网站现在都换成了 https 传输方式，http 要凉了啊。苦逼程序员又要去了解一下 https 的工作原理了。</p>
+<p>参考链接：<a href="https://juejin.im/entry/58d7635e5c497d0057fae036" target="_blank" rel="noopener">https://juejin.im/entry/58d7635e5c497d0057fae036</a></p>
+<ol>
+<li>首先客户端发起 https 请求</li>
+</ol>
+<p>这里注意 http 默认连接的是 80 端口，而 https 连接的是 443 端口。</p>
 <ol start="2">
-<li>获取ssh密钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;你的github邮箱&quot; -f ~/.ssh/github</span><br></pre></td></tr></table></figure>
-</li>
+<li>服务器的配置</li>
 </ol>
-<p>执行的过程中会提示你需要设置密码，不要管它，一路回车。<br>这时候会在你的～/目录下面生成一个.ssh/目录，但是Ubuntu默认是不显示这个目录的。查看.ssh目录下的github.pub获取公钥认证，就是一串乱码。<br>接下来获取这串乱码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">sudo gedit github.pub</span><br></pre></td></tr></table></figure></p>
-<p>这个时候会打开这个文件，只需要复制里面的代码到github里面的SSH and GPG keys 里面填写一下就好了。</p>
+<p>使用 https 协议的服务器需要一套数字证书，这个可以自己做，也可以向组织申请。区别就是自己做的证书需要客户端验证通过才能继续访问，而使用受信任的公司申请的证书则不会弹出提示页面。</p>
+<p>这套证书可以理解成私钥和公钥，可以把公钥理解成锁头，私钥理解成钥匙，全世界都能往这把锁头里面存东西，然后把锁给你，但是私钥只有一把，而且在你自己手里，你能打开锁然后读取里面的信息。</p>
+<p>说到底还是一个加密和解密的过程。</p>
 <ol start="3">
-<li><p>创建本地项目文件<br>这个文件就是专门负责项目的上传和更新，进入这个文件夹，然后在终端输入以下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &quot;你的github仓库地址&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>提交文件夹到github上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add . // 更新整个目录</span><br><span class="line">git config user.name &quot;liuenci&quot; //第一次需要配置</span><br><span class="line">git config user.email &quot;154910381@qq.com&quot; //第一次需要配置</span><br><span class="line">git commit -m &quot;更新版本简要说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-</li>
+<li>传送证书</li>
 </ol>
-<p>这样子就能够上传我们的项目了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git-常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/git-常用命令/">git 常用命令</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/git-常用命令/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:17:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这篇文章用来记录自己学习git时所遇到的一些命令。</p>
-<ol>
-<li><p>设置全局的用户名和邮箱</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;cier&quot;</span><br><span class="line">git config --global user.email &quot;154910381@qq.com&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看设置的用户名和邮箱</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>清屏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>显示隐藏文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 1.py</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看文件状态，看是否有文件没有添加到我们的git版本库中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>简单的拉取代码操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &quot;https://github.com/liuenci/Git-Test.git&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>这个可以在新建一个仓库并且初始化有readme.md的文件时使用</p>
-<ol start="9">
-<li><p>查看日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看此次add和上次commit的两个版本之间的不同</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>还有一种查看方式是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br></pre></td></tr></table></figure></p>
-<p>具体是啥我也没弄懂，以后要是找到答案再补上</p>
-<ol start="11">
-<li><p>add所有的改变的文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将日志一行一行打印</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>补充上一次提交的内容，并且不改变commit的message,但是commit ID改变了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend --no-edit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>add 之后想要继续更改其中的内容，可以选择回退</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset 1.py</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>reset回到HEAD指针所在的版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>回退到当前版本的第 n 个版本,把 n 替换成你想要回退的版本即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~n</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>回到指定的commit ID 的版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 7757af1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看所有的日志，包括未来的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>单个文件的版本回退</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br><span class="line">git checkout 7757af1 -- 1.py</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用图形的方式打印日志，一般用于多分支的情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --graph</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看所有的分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>切换分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 没有合并的分支</span><br><span class="line">git branch -D dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>建立分支的同时将head指针移动到新创建的分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在add的同时commit，这种方式只适合于当前版本库中已经有的文件，新创建的文件无法被是被</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -am &quot;新创建的文件无法识别&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在当前分支上合并其它分支的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff &quot;合并的message&quot; dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>简单的合并分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>另外一种合并分支的方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将未完成的工作暂存在缓存区。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将暂存区中的内容拿出来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>忽略windows和unix换行符</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">命令</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/git-常用命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git-上传文件到-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/git-上传文件到-github/">git 上传文件到 github</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/git-上传文件到-github/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:16:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为自己老是忘记 git 上传的步骤，每次上传文件都要重新谷歌找答案，所以<br>干脆写下来记录一下。</p>
-<ol>
-<li><p>在github上创建仓库，创建仓库的时候勾选初始化readme文件</p>
-</li>
-<li><p>如果是从来没有上传过github的代码，则执行以下代码。</p>
-</li>
-<li><p>先初始化git的本地仓库。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再将readme文件从云端拉下来，这样云端仓库中的readme文件就到自己本地来了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &quot;github仓库地址&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将文件提交到缓存区,2.x版本的git两个命令都是一样都能将被删除的文件提交到缓存区</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">// 或者 git add -A</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>提交一个版本到本地仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;message&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加远程仓库分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &quot;github地址&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将本地master分支的代码推送到远程仓库origin的master分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master.</span><br><span class="line">// 我试了下下面这个命令也是正确的可以上传的</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h6 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h6><p>git 的学习是一门大学问，技术是永远学不完的，只能一点一点慢慢学，遇到问题解决完再进行总结才能得到最大的收益，这样才能避免下次再出这样的错误。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/git-上传文件到-github/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-原生-Js-实现的-Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/原生-Js-实现的-Ajax/">原生 Js 实现的 Ajax</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/原生-Js-实现的-Ajax/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前面写过一个用原生的js写的文件上传，今天就把原生的ajax也写一下吧，毕竟这个东西还是很常用的。<br>我先把代码贴上来。</p>
-<h3 id="html代码"><a href="#html代码" class="headerlink" title="html代码"></a>html代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"get()"</span>&gt;</span>get请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"post()"</span>&gt;</span>post请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="js代码"><a href="#js代码" class="headerlink" title="js代码"></a>js代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">// 创建请求对象</span></span><br><span class="line">	<span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">	<span class="comment">// 设置请求方式和路径</span></span><br><span class="line">	ajax.open(<span class="string">"get"</span>,<span class="string">"ajax?name=zhangsan"</span>);</span><br><span class="line">	<span class="comment">// 发送请求</span></span><br><span class="line">	ajax.send();</span><br><span class="line">	<span class="comment">// 处理请求</span></span><br><span class="line">	ajax.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(ajax.readyState ==<span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>)&#123;</span><br><span class="line">			<span class="comment">// 更新数据</span></span><br><span class="line">			<span class="keyword">var</span> data = ajax.responseText;</span><br><span class="line">			alert(data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">// 创建请求对象</span></span><br><span class="line">	<span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">	<span class="comment">// 设置请求方式和路径</span></span><br><span class="line">	ajax.open(<span class="string">"post"</span>,<span class="string">"ajax"</span>);</span><br><span class="line">	<span class="comment">// post请求提交参数，必须要设置头部类型</span></span><br><span class="line">	ajax.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">	<span class="comment">// 发送请求</span></span><br><span class="line">	ajax.send(<span class="string">"name=zhangsan"</span>);</span><br><span class="line">	<span class="comment">// 处理请求</span></span><br><span class="line">	ajax.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(ajax.readyState == <span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>)&#123;</span><br><span class="line">			<span class="comment">// 更新数据</span></span><br><span class="line">			<span class="keyword">var</span> data = ajax.responseText;</span><br><span class="line">			alert(data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="后端servlet代码"><a href="#后端servlet代码" class="headerlink" title="后端servlet代码"></a>后端servlet代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.liuenci.ajax;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/ajax"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAjax</span> <span class="keyword">extends</span> <span class="title">ServletImpl</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		String name = req.getParameter(<span class="string">"name"</span>);</span><br><span class="line">		System.out.println(name);</span><br><span class="line">		resp.getWriter().print(name);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		String name = req.getParameter(<span class="string">"name"</span>);</span><br><span class="line">		System.out.println(name);</span><br><span class="line">		resp.getWriter().print(name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>ajax:一种请求数据的方式，不需要刷新整个页面。</p>
-<p>ajax的核心技术是 XMLHttpRequest 对象。</p>
-<p>ajax请求过程：创建XMLHttpRequest对象、连接服务器、发送请求、接收响应数据。</p>
-<ol>
-<li>创建对象</li>
-</ol>
-<p>IE7以上版本直接用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure></p>
-<p>创建即可</p>
-<ol start="2">
-<li>连接和发送</li>
-</ol>
-<p>open()函数有三个参数：请求方式、请求地址、是否异步请求（同步比较少，我就只写两个参数了）。</p>
-<p>get请求方式是通过url链接后面带参数提交到服务器的，post是将数据作为send()的参数提交到服务器的。</p>
-<p>post请求中，在发送数据之前，必须设置表单提交的内容类型。</p>
-<ol start="3">
-<li>接收<br>接收到响应后，响应的数据会自动填充XHR对象，相关属性如下：</li>
-</ol>
-<p>responseText:返回字符串类型，现在开发基本上是返回一个json数据。</p>
-<p>responseXML：如果响应的内容类型是”text/xml”或者”application/xml”,这个属性中将保存着相应的xml数据，是xml的document类型。</p>
-<p>status:响应的HTTP状态码。</p>
-<p>statusText:HTTP状态的说明。</p>
+<p>证书就是公钥，我把它理解成你把锁头给用户的过程。</p>
 <ol start="4">
-<li>ajax对象的readyState属性表示请求/响应过程的当前活动阶段，这个属性的值如下</li>
+<li>客户端解析证书</li>
 </ol>
-<p>0-未初始化，尚未调用open()方法</p>
-<p>1-启动，调用了open()方法，没有调用send()方法</p>
-<p>2-发送，已经调用send()方法，未接收到响应。</p>
-<p>3-接收，已经接收到部分响应数据。</p>
-<p>4-完成，已经接收到全部响应数据。</p>
+<p>首先判断证书是否有效，如果证书有问题就会警告用户。</p>
+<p>如果没有问题就会生成随机值，然后用证书对该随机值进行加密，就是说用锁头把随机值锁起来，这样除非有钥匙，不然看不到被锁住的内容。</p>
 <ol start="5">
-<li><p>ajax.status是状态码，状态码以2开头的都是成功，304表示从缓存中获取。</p>
-</li>
-<li><p>ajax请求是不能跨域的。</p>
-</li>
+<li>传输加密信息</li>
 </ol>
-<p>参考链接：<a href="http://caibaojian.com/ajax-jsonp.html，侵删。" target="_blank" rel="noopener">http://caibaojian.com/ajax-jsonp.html，侵删。</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ajax</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/原生-Js-实现的-Ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-走的更快-走的更远" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/走的更快-走的更远/">走的更快&amp;走的更远</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/走的更快-走的更远/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:14:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>没啥，我就瞎逼逼几句</p>
-</blockquote>
-<p>最近一个月在做jsp项目，我个人觉得学习jsp这个阶段自己学的不是很好，但是却发现自己已经沉浸在一个技术的怪圈中。明明自己的技术基础不是很好，但是却很执着于研究很奇妙的技术，花了两天时间研究了一下高德地图的API,终于能使用高德地图的接口，还让我高兴了好一阵。我不把编程当成一种生活的工具，所以我不觉得编程是一件很苦的事情。相反，我觉得编程是一件很好玩的事情，特别是当你修复了一个自己想了好久没改出来的bug,或者是做出一件令自己满意的作品。我不喜欢把我写出来的源码集合叫做产品，那是一件很无聊的事情，产品就是意味着这个东西投入进社会，并且给我创造了效益，而且为他人提供了方便或者满足。我把写代码看成一种艺术，有人说我装逼，是不是有一句话说的是”世人笑我太疯癫，我笑别人看不穿”。其实我也不是大牛，也不是别人真像别人叫我大神那样有很高深的技术。但是我很看重我自己的成长，我觉得自己的学习能力还算可以，你只要给我时间，简单的东西我自己就能搞懂，要是难的东西，给我一点引导我觉得我也能弄出来，除非一些真的超出我的能力范围，毕竟这个世界上还是有智力差异的，不然岂不是每个人都能成为爱因斯坦。我现在很多思想可能和我从小接受的教育有关，好好读书，好好学技术，然后赚钱，养家等等。读书这东西吧，你觉得它没用，它就真的没用，但是你觉得它有用，那它就真的有用。就像别人看待学英语的作用一样，有的人觉得学英语没用，然后学习其它感兴趣的东西照样走上人生巅峰，但是有的人觉得有用，然后通过英语的深入学习也实现了自己的人生成长。成功的方式不同，结果往往大同小异。<br>哎，小学，初中，高中好几年的时间还是没有把我这个说话不着主题的毛病给改掉，自己说着说着就不知道要说啥了，我可能是个假人了吧。还是和这个标题一样，是时候调用自己脑子里的分支语句来处理这个问题了。</p>
-<blockquote>
-<p>走的更快 &amp; 走的更远</p>
-</blockquote>
-<ol>
-<li><p>我个人认为，你走的很快，那你十之八九走不远，因为你根基不稳，很多你以为自己懂的东西，其实你是不懂的，就像我自己编程一样。看着很简单的东西，你看一遍，你以为自己懂了，但是让你自己写出来，你会吗？其实我应该是很久就发现自己这个问题了，我现在的速度很快了，真的很快了，代码看一遍，思路过一遍，自己再敲一遍。好了这个问题就过了，然后过段时间往前看这个问题，”excuse me，这是啥？”，上次写jdbc的basedao发现自己这个问题就应该及时止损了，但是习惯这个东西真的很难改的，越是让我去写简单的东西我真的觉得写的没意思，这就成为了现在的我，挺浮躁的，脚下生风，哈哈，应该稍不注意就会跳坑里了吧。</p>
-</li>
-<li><p>走的很稳应该就不会出现这个问题，我不记得谁说过一句话来着：我走的很慢，但是我从来不会后退。码农才粘贴复制，高手从来都是自己造轮子给别人用的呢。我感觉我自己很需要沉淀下来一段时间，把别人的轮子也拿过来写写了，也许自己能造一个新的轮子呢？我记得我收藏过一段话来着。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">纽约时间比加州时间早三个小时，</span><br><span class="line">New York is 3 hours ahead of California,</span><br><span class="line">但加州时间并没有变慢。</span><br><span class="line">but it does not make California slow.</span><br><span class="line">有人22岁就毕业了，</span><br><span class="line">Someone graduated at the age of 22,</span><br><span class="line">但等了五年才找到好的工作！</span><br><span class="line">but waited 5 years before securing a good job!</span><br><span class="line">有人25岁就当上CEO，</span><br><span class="line">Someone became a CEO at 25,</span><br><span class="line">却在50岁撒手人寰。</span><br><span class="line">and died at 50.</span><br><span class="line">也有人迟到50岁才当上CEO，</span><br><span class="line">While another became a CEO at 50,</span><br><span class="line">然后活到90岁。</span><br><span class="line">and lived to 90 years.</span><br><span class="line">有人依然单身，</span><br><span class="line">Someone is still single,</span><br><span class="line">同时也有人已婚。</span><br><span class="line">while someone else got married.</span><br><span class="line">奥巴马55岁就退休，</span><br><span class="line">Obama retires at 55,</span><br><span class="line">川普70岁才开始当总统。</span><br><span class="line">but Trump starts at 70.</span><br><span class="line">世上每个人本来就有自己的发展时区。</span><br><span class="line">Absolutely everyone in this world works based on their Time Zone.</span><br><span class="line">身边有些人看似走在你前面，</span><br><span class="line">People around you might seem to go ahead of you,</span><br><span class="line">也有人看似走在你后面。</span><br><span class="line">some might seem to be behind you </span><br><span class="line">但其实每个人在自己的时区有自己的步程。</span><br><span class="line">But everyone is running their own RACE, in their own TIME.</span><br><span class="line">不用嫉妒或嘲笑他们。</span><br><span class="line">Don’t envy them or mock them.</span><br><span class="line">他们都在自己的时区里，你也是！</span><br><span class="line">They are in their TIME ZONE,and you are in yours!</span><br><span class="line">生命就是等待正确的行动时机。</span><br><span class="line">Life is about waiting for the right moment to act.</span><br><span class="line">所以，放轻松。</span><br><span class="line">So, RELAX.</span><br><span class="line">你没有落后。</span><br><span class="line">You’re not LATE.</span><br><span class="line">你没有领先。</span><br><span class="line">You’re not EARLY.</span><br><span class="line">在命运为你安排的属于自己的时区里，</span><br><span class="line">一切都准时。</span><br><span class="line">You are very much ON TIME, </span><br><span class="line">and in your TIME ZONE Destiny set up for you</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>将来还有这么久，谁会成为你，你又成为了谁。谁又说的定呢，我们慢慢来就好了，走的太快了，路上的风景你就看不到了，以后慢一点，走的稳一点，将来还有几十年，谁说你走不远呢。<br>一想这些东西自己就能扯好多没营养的东西，好了，夜深了，猿还是去睡觉了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/走的更快-走的更远/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-阿里云利用-wordpress-搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">阿里云利用 wordpress 搭建个人博客</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:13:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>如何搭建自己的博客</p>
-</blockquote>
-<p>第一步:购买域名和服务器。服务器镜像选择(LAMP环境(Ubuntu16.04 Apache PHP7.1)),该环境是主流的linux建站环境。设置自己的密码，账号是root，无法更改。</p>
-<p>第二步:设置安全组。进入ecs服务器，找到本实例安全组—-&gt;点击配置规则—&gt;点击添加安全组规则。设置协议类型为全部，在授权对象内填入0.0.0.0/0。在地址栏输入你的服务器IP地址，如果显示”恭喜您，OneinStack 安装成功！”,表示配置成功。</p>
-<p>第三步:安装wordpress博客程序。</p>
-<ul>
-<li>这里我们需要使用PuTTY和FileZiila来实现对ECS的远程终端控制和文件传输。putty下载地址：<a href="https://github.com/larryli/PuTTY/releases" target="_blank" rel="noopener">https://github.com/larryli/PuTTY/releases</a>。下载下来之后解压，打开其中的putty.exe，主机地址填你的IP地址，端口填22，连接类型SSH,保存的会话填个test即可。然后保存。点击打开会出现一个黑窗口，输入账号root，和你自己购买服务器的密码，输入的时候不会显示，输入完成回车即可。如果显示(Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-85-generic x86_64)),说明linux登录成功。</li>
-<li>FileZiila下载地址：<a href="https://filezilla-project.org/download.php?type=client" target="_blank" rel="noopener">https://filezilla-project.org/download.php?type=client</a>,下载安装之后打开。在主机那里输入s<a href="ftp://IP地址。然后输入用户名和密码，端口默认是22" target="_blank" rel="noopener">ftp://IP地址。然后输入用户名和密码，端口默认是22</a>.</li>
-<li>在远程站点处输入/data/wwwroot/default，回车之后在default目录下面创建一个old目录，然后把除old以外的文件都拖到old目录下面，这个时候我们就可以上传wordpress文件了，wordpress下载地址：<a href="https://cn.wordpress.org/wordpress-4.8-zh_CN.zip" target="_blank" rel="noopener">https://cn.wordpress.org/wordpress-4.8-zh_CN.zip</a> ,在左侧找到我们的wordpress文件上传到和old同级的目录下。</li>
-<li>获取mysql的root密码。在我们的putty终端中登陆到服务器，复制grep dbrootpwd /root/oneinstack/options.conf，右键点击即可粘贴到终端中。默认密码是 KeYpZrZx 。</li>
-<li>打开浏览器，输入<a href="http://IP地址/old/phpMyAdmin/" target="_blank" rel="noopener">http://IP地址/old/phpMyAdmin/</a> ，用户名是：root,密码是：KeYpZrZx，点击New,输入数据库名wp即可完成创建数据库。然后在地址栏输入<a href="http://IP地址/wp-admin/setup-config.php" target="_blank" rel="noopener">http://IP地址/wp-admin/setup-config.php</a> ，点击现在就开始，新的页面数据库名：wp,用户名：root,密码：KeYpZrZx，其他保持不变，点击提交，再点击安装。填写站点标题：随意，用户名：随意，密码：随意，电子邮件：随意然后点击安装，然后点击登陆。博客就搭好了。</li>
-</ul>
-<p>第四步：解析域名。</p>
-<ul>
-<li>进入阿里的管理控制台，进入域名及网站。</li>
-<li>找到你要解析的域名，点击右边的解析。</li>
-<li>点击新手引导设置</li>
-<li>设置网站解析，输入你的服务器IP地址。</li>
-<li>过个十几分钟，打开浏览器，输入你的域名，即可访问你的博客。</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">wordpress</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-「跳一跳」辅助高分攻略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/「跳一跳」辅助高分攻略/">「跳一跳」辅助高分攻略</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/「跳一跳」辅助高分攻略/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:12:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前段时间微信更新了最新版本 (6.6.1版本)，沉寂了一年的微信小程序开始迎接了它的春天，其中微信官方开发的「跳一跳」就开始肆虐了我的微信社交平台。<br><img src="http://ove4nglsb.bkt.clouddn.com/%E8%B7%B3%E4%B8%80%E8%B7%B3.png" alt=""><br>「跳一跳」是一款长按蓄力，松开按键就起跳的小游戏，根据不同的距离需不同时间的力。正常的高分攻略有以下几种:</p>
-<p>1、连续跳中心点，可以+2、+4、+6……<br>2、跳到音乐盒，停留，播放音乐并且+30分<br>3、跳到便利店，停留，便利店会开门+15分<br>4、跳到魔方，停留，魔方会旋转修正，+10分<br>5、跳到井盖，停留，会有冲水的声音+5分</p>
-<p>但是<br>我们是谁<br>我们是程序员啊<br>旨在用技术拯救手残党<br>所以<br>下面教大家使用python脚本配合adb实现自动跳一跳。</p>
-<ol>
-<li>安装adb。</li>
-</ol>
-<p>adb安装包可以通过关注我，后台回复「跳一跳」三个字即可获得。</p>
-<p>安装adb的步骤非常简单，一直点下一步就好了。<br>但是特别要记住一点的是要记住安装路径，因为下一步需要配置环境。</p>
-<ol start="2">
-<li>配置adb的环境。</li>
-</ol>
-<p>此电脑 &gt; 右键属性 &gt; 高级系统设置 &gt; 环境变量 &gt; 新建系统变量<br><img src="http://ove4nglsb.bkt.clouddn.com/adb.png" alt=""><br>变量名可以随便填，变量值就是adb的安装路径，因为我安装在D盘，所以我的变量值是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Program Files (x86)\ClockworkMod\Universal Adb Driver</span><br></pre></td></tr></table></figure></p>
-<p>看公众号的同学填自己的安装路径也是OK的。</p>
-<ol start="3">
-<li>配置path的环境</li>
-</ol>
-<p>在系统变量中找到Path这个系统变量，点击编辑 &gt; 新建<br>输入%第二步中adb自己输入的变量名%，格式如下:</p>
-<p>%变量名%</p>
-<p>因为我第二步中填的是android，所以我输入的是</p>
-<p>%android%。</p>
-<ol start="4">
-<li>拷贝python脚本到电脑中任意位置即可</li>
-</ol>
-<p>python项目在公众号后台回复「跳一跳」即可得到网盘的下载链接。</p>
-<ol start="5">
-<li>准备工作</li>
-</ol>
-<p>手机使用usb数据线连接电脑，打开开发者模式中的USB调试，然后打开微信的跳一跳，点击开始游戏。</p>
+<p>这里是传输证书加密后的随机值，目的是让服务端得到这个随机值，以后客户端和服务端的通信就可以通过这个随机值来进行加密和解密了。</p>
 <ol start="6">
-<li>测试是否可用</li>
+<li>服务端解密信息</li>
 </ol>
-<p>打开下载的STOP_jump_win中的one_step_auto_beta1.exe，输入y即可开始你的刷分之旅。</p>
-<p>正常的刷分界面如下:<br><img src="http://ove4nglsb.bkt.clouddn.com/%E8%BF%90%E8%A1%8C.png" alt=""></p>
-<p>好啦，尽情享受吧。</p>
-<p>对了，既然看到最后，确定不关注一下我的公众号再走?</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/qrcode_for_gh_8d1d4568814d_258.jpg" alt=""></p>
+<p>服务端用私钥解密之后就得到了客户端传输过来的随机值，然后把内容通过该值进行对称加密，所谓对称加密就是，将信息和私钥通过某种算法混合在一起，这样除非知道私钥，不然无法获取内容，而正好客户端和服务端都知道这个私钥，所有只要加密算法的加密强度强，私钥够复杂，数据就足够安全了。</p>
+<ol start="7">
+<li>传输加密后的信息</li>
+</ol>
+<p>这部分信息是服务端用私钥加密之后的信息，由于是对称加密，是可以在客户端被还原的。</p>
+<ol start="8">
+<li>客户端解密信息</li>
+</ol>
+<p>客户端用之前生成的私钥解密服务端传过来的信息，于是获取了解密之后的内容，这样即使有人监听客户端与服务端之间的报文传输，也束手无策。</p>
 
       
 
@@ -1200,11 +651,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">游戏辅助</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">https</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">跳一跳</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		
 		</ul>
@@ -1214,7 +669,400 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/「跳一跳」辅助高分攻略/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/https-的工作原理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-http-返回码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/http-返回码/">http 返回码</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/http-返回码/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:01:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>http 返回码，应该说是状态码，是用户发送请求给服务器，服务器给出响应，响应是一个包括 http 包含 http 状态码的的信息头。</p>
+<p>http 的状态码的英文名为 http status code</p>
+<h1 id="常用的状态码"><a href="#常用的状态码" class="headerlink" title="常用的状态码"></a>常用的状态码</h1><ol>
+<li>200 请求成功</li>
+<li>301 请求的资源或者网页被永久的转移到其他的 url 中</li>
+<li>404 请求的网页或者资源不存在</li>
+<li>500 服务器内部错误，一般是代码写错了，哈哈哈</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/http-返回码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-队列-顺序结构和循环队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-队列-顺序结构和循环队列/">数据结构-队列-顺序结构和循环队列</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-队列-顺序结构和循环队列/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:59:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h4><p>队列是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。</p>
+<p>换个意思说，队列是一种先进先出的的线性表，简称FIFO.允许插入的一端称为队尾，允许删除的一端叫做队头。</p>
+<h4 id="队列的实际应用"><a href="#队列的实际应用" class="headerlink" title="队列的实际应用"></a>队列的实际应用</h4><p>键盘的输入，到显示器上记事本软件的输出都是队列的应用。</p>
+<h4 id="队列顺序存储的不足"><a href="#队列顺序存储的不足" class="headerlink" title="队列顺序存储的不足"></a>队列顺序存储的不足</h4><p>顺序存储使用数组来存储队列的元素，队列的添加就是在队尾追加一个元素，这个时候不需要移动任何元素，时间复杂度为o(1),但是队列删除元素是在队头，即是下标为0的位置，那也就意味着队列中的所有元素都得向前移动一位，因此时间复杂度为o(n)，但是这样子性能就会特别的差，因此我们想到了更好的解决方案。</p>
+<p>那就是引入 front 和 rear 指针，front 指针指向队头元素，rear 指向队尾元素的下一个位置，当 front 等于 rear 时，队列为空。</p>
+<p>但是这样子就会出现假溢出的问题。</p>
+<p>假设是长度为 5 的数组，初始状态下，front 和 rear 都指向下标为 0 的位置，然后入队 a1,a2,a3,a4. 这时候 front 指针仍然指向 0 ，而 rear 指针指向 4,。</p>
+<p>然后出对 a1,a2, front 指向 2,rear 不变。</p>
+<p>这时候入队 a5,front 指针不变，但是 rear 会指向数组之外。</p>
+<p>如果再入队 a6，就会发生数组越界的错误，但是 0 和 1 两个位置上还是空闲的，这种现象就是假溢出现象。</p>
+<h4 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h4><p>解决假溢出的方法就是当后面满了，再从头开始入队，也就是头尾相接的循环。我们把这种头尾相接的顺序存储结构称为循环队列。</p>
+<h4 id="循环队列解决队列顺序存储的不足"><a href="#循环队列解决队列顺序存储的不足" class="headerlink" title="循环队列解决队列顺序存储的不足"></a>循环队列解决队列顺序存储的不足</h4><p>从入队 a5 开始讲起，front 指针不变，rear 指向 0.</p>
+<p>接着入队 a6,队列满，这时候 front == rear。</p>
+<p>前面我们说到 front == rear 是队列空。但是此时是队列慢，那么如何判断一个循环队列是空队列还是满队列呢？</p>
+<p>这里我们创建数组的大小需要在预先设计的数组大小加 1，当队列为空时，条件就是 front == rear,当队列满时，数组中还有一个空闲的单位。<br>通过规律可以得到队列中的长度元素为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(rear - front + arraySize) % arraySize</span><br></pre></td></tr></table></figure></p>
+<p>如果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(rear + 1) % arraySize = front</span><br></pre></td></tr></table></figure></p>
+<p>则队列满。<br>如果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">front == rear</span><br></pre></td></tr></table></figure></p>
+<p>则队列空。</p>
+<h4 id="关于代码"><a href="#关于代码" class="headerlink" title="关于代码"></a>关于代码</h4><p>关于队列的坑估计就是上面这些了，如果想了解详细的源码可以前往我的 github 地址详细了解。<br>github : <a href="https://github.com/liuenci/Data-Structure" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-队列-顺序结构和循环队列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-队列-链式结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-队列-链式结构/">数据结构-队列-链式结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-队列-链式结构/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:58:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是队列的链式结构"><a href="#什么是队列的链式结构" class="headerlink" title="什么是队列的链式结构"></a>什么是队列的链式结构</h4><p>队列的链式结构其实就是线性表中的单链表，不过队列只允许尾进头出，队列的链式存储结构我们也称为链队列。</p>
+<h4 id="关于链队列的数据结构"><a href="#关于链队列的数据结构" class="headerlink" title="关于链队列的数据结构"></a>关于链队列的数据结构</h4><p>为了操作上的方便，我们把队头指针 front 指向链队列的头结点，队尾指针 rear 指向链队列的最后一个结点。</p>
+<p>当队列为空时，front 和 rear 都指向头结点。</p>
+<h4 id="链队列的基本操作"><a href="#链队列的基本操作" class="headerlink" title="链队列的基本操作"></a>链队列的基本操作</h4><h5 id="入队操作"><a href="#入队操作" class="headerlink" title="入队操作"></a>入队操作</h5><p>入队操作时，其实就是在链表尾部插入结点。先创建结点，然后将 rear 的 next 引用指向新插入的结点，然后将 rear 指向新插入的结点。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建一个结点</span></span><br><span class="line">        Node node = <span class="keyword">new</span> Node(data, <span class="keyword">null</span>);</span><br><span class="line">        <span class="comment">// 将队尾指针指向新加入的结点，将结点插入队尾</span></span><br><span class="line">        rear.next = node;</span><br><span class="line">        rear = node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="出队操作"><a href="#出队操作" class="headerlink" title="出队操作"></a>出队操作</h5><p>出队操作时，就是头结点的后继节点出队，然后将头结点的后继改为他后面的结点，当链队列只有头结点时，需要将 rear 指向头结点。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">dequeue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.printf(<span class="string">"队列为空，无法删除"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 暂存队头元素</span></span><br><span class="line">            Node node = front.next;</span><br><span class="line">            T t = node.data;</span><br><span class="line">            front.next = node.next;</span><br><span class="line">            size--;</span><br><span class="line">            <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">                rear = front;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 删除结点</span></span><br><span class="line">            node = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">return</span> t;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="循环队列和链队列的比较"><a href="#循环队列和链队列的比较" class="headerlink" title="循环队列和链队列的比较"></a>循环队列和链队列的比较</h4><p>从时间上看，两种数据结构都是常数时间，即都是常数时间，都是O(1)的时间复杂度，不过循环队列是事先申请好空间，使用期间不释放，而对于链队列，每次申请和释放结点也会存在一些时间开销，如果入队出队频繁，则两者还是有一点差异。</p>
+<p>从空间上看，循环队列必须有一个固定的长度，所以就有了存储元素个数和空间浪费的问题。而链队列不存在这个问题，尽量它需要一个指针域，我用Java写的代码那就是引用域，本质上类似，引用域会产生一些空间上的开销，但是也可以接受。</p>
+<h4 id="说点别的"><a href="#说点别的" class="headerlink" title="说点别的"></a>说点别的</h4><p>今天2017年的最后一天，提前祝大家新年快乐啊。以后就不把文章转发到朋友圈了，有点骗粉的感觉哈哈哈，虽然确实是的。</p>
+<p>这是今年的最后一篇，有头有尾。</p>
+<p>下一篇不知道要等到什么时候去，我有时间就更新，想看的可以关注公众号的信息。</p>
+<p>想看源码的同学可以看下面。</p>
+<h4 id="源码获取方式"><a href="#源码获取方式" class="headerlink" title="源码获取方式"></a>源码获取方式</h4><p>github 地址：<a href="https://github.com/liuenci/Data-Structure。" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure。</a></p>
+<p>有兴趣的同学可以点个 Star 啊。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-队列-链式结构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-线性表-顺序结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-线性表-顺序结构/">数据结构-线性表-顺序结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-线性表-顺序结构/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:57:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是线性表"><a href="#什么是线性表" class="headerlink" title="什么是线性表"></a>什么是线性表</h4><p>线性表就是零个或多个数据元素的有限序列。<br>首先是一个序列，然后序列之间有顺序，序列中的元素如果存在多个，则第一个元素无前驱，最后一个元素无后继，其他每个元素都有且一个前驱和一个后继。</p>
+<h4 id="什么是线性表的顺序存储结构"><a href="#什么是线性表的顺序存储结构" class="headerlink" title="什么是线性表的顺序存储结构"></a>什么是线性表的顺序存储结构</h4><p>线性表的顺序存储结构就是用一段地址连续的存储单元依次存储线性表的数据元素，也就是用数组去实现顺序存储结构。<br>下面用代码实现一下顺序结构。</p>
+<h4 id="首先写一个接口"><a href="#首先写一个接口" class="headerlink" title="首先写一个接口"></a>首先写一个接口</h4><p>接口主要描述一下实现类要实现哪些方法，这里顺序结构包括三个方法，分别是获得元素，插入元素以及删除元素的方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线性表顺序存储结构的接口</span></span><br><span class="line"><span class="comment"> * 指的是用一段地址连续的存储单元存储线性表的数据元素</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>: ISeqList</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018-1-22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISeqList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要获得第i个元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getElem</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 元素的插入位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 需要插入的元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 是否成功删除</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertElem</span><span class="params">(<span class="keyword">int</span> i,T t)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要删除元素的位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">deleteElem</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="然后写一个接口的实现类"><a href="#然后写一个接口的实现类" class="headerlink" title="然后写一个接口的实现类"></a>然后写一个接口的实现类</h4><p>该类主要实现了接口的三个方法，下面描述一下三个方法要注意的点。</p>
+<h5 id="获得元素方法"><a href="#获得元素方法" class="headerlink" title="获得元素方法"></a>获得元素方法</h5><ol>
+<li>因为我这里用的泛型，所以返回的也是泛型的结果，用泛型的优点就是可扩展性更强了，在后面泛型可以不受类型的约束，可以使用整型，字符串型。</li>
+<li>因为线性表的下标索引是从1开始的，所以我们返回的是 i-1 的数据元素<h5 id="插入元素方法"><a href="#插入元素方法" class="headerlink" title="插入元素方法"></a>插入元素方法</h5></li>
+<li>如果插入的位置不合理，打印错误语句并返回。</li>
+<li>如果线性表的长度大于等于默认分配的MAXSIZE，答应错误语句并返回。</li>
+<li>如果插入的位置不在表尾，那就从最后一个元素开始向前遍历到 i 个位置，分别将他们都向后移动一个位置。</li>
+<li>将要插入元素填入数组 i-1 的位置处。</li>
+<li>表长加 1。<h5 id="删除元素方法"><a href="#删除元素方法" class="headerlink" title="删除元素方法"></a>删除元素方法</h5></li>
+<li>如果线性表为空，打印错误语句并返回。</li>
+<li>如果删除的位置不合理，打印错误语句并返回。</li>
+<li>如果删除的元素不在表尾，那就从删除元素位置开始遍历到最后一个元素位置，分别将它们都向前移动一个位置。</li>
+<li>表长减 1。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/1/22 10:57</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeqList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">ISeqList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXSIZE = <span class="number">20</span>; <span class="comment">// 存储空间的初始化大小</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> T[] data; <span class="comment">// 数组存储数据元素</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> length; <span class="comment">// 线性表当前长度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SeqList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        data = (T[]) <span class="keyword">new</span> Object[MAXSIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要获得第i个元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getElem</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; MAXSIZE) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        T t = data[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 元素的插入位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 插入的元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertElem</span><span class="params">(<span class="keyword">int</span> i, T t)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 线性表已经满了</span></span><br><span class="line">        <span class="keyword">if</span> (length == MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该线性表已经满了"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入的位置不在范围内</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该位置不合法"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入的位置不在表尾</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; length) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = length; j &gt;= i; j--) &#123;</span><br><span class="line">                data[j] = data[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 线性表的下标是从1开始，但是数组的下标是从0开始的，所以插入的t是在 i-1 的位置</span></span><br><span class="line">        data[i - <span class="number">1</span>] = t;</span><br><span class="line">        length++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">deleteElem</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 线性表为空时</span></span><br><span class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"线性表为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 删除的数据不在范围内时</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; length) &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除位置不在范围内"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        T t = data[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; length; j++) &#123;</span><br><span class="line">            data[j - <span class="number">1</span>] = data[j];</span><br><span class="line">        &#125;</span><br><span class="line">        length--;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> T[] getData() &#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setData</span><span class="params">(T[] data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLength</span><span class="params">(<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (length &lt; <span class="number">0</span> || length &gt; MAXSIZE)&#123;</span><br><span class="line">            System.out.println(<span class="string">"长度不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.length = length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="最后测试线性表"><a href="#最后测试线性表" class="headerlink" title="最后测试线性表"></a>最后测试线性表</h4><p>测试线性表需要注意以下几点：</p>
+<ol>
+<li>初始化线性表，这里我使用的是伪随机种子设置数组的长度以及数组中元素的值。</li>
+<li>随机生成删除元素的下标，满足条件则自动删除元素。</li>
+<li>随机生成插入元素的下标和数据，满足条件则自动插入元素。</li>
+<li>最后展示线性表中的数据。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试线性表</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/1/22 11:47</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeqListTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> MAX = <span class="number">25</span>;</span><br><span class="line">    Random r = <span class="keyword">new</span> Random();</span><br><span class="line">    SeqList&lt;Integer&gt; seqList;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SeqListTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        initSeqList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建一个线性表顺序存储结构</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initSeqList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        seqList = <span class="keyword">new</span> SeqList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">int</span> length = Math.abs(r.nextInt(MAX));</span><br><span class="line">        System.out.println(<span class="string">"产生的数组长度为："</span>+length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (length &gt; SeqList.MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该长度不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=length; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> j = r.nextInt(MAX);</span><br><span class="line">            System.out.print(j + <span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">if</span> (!seqList.insertElem(i,j)) &#123;</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"\n原始数组是："</span>);</span><br><span class="line">        display(seqList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试删除元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteElem</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n\n删除的位置是："</span>+i);</span><br><span class="line">        Integer deleteNumber = seqList.deleteElem(i);</span><br><span class="line">        <span class="keyword">if</span>(deleteNumber == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除的元素是："</span>+ deleteNumber);</span><br><span class="line">            System.out.println(<span class="string">"删除元素后数组是："</span>);</span><br><span class="line">            display(seqList);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试随机插入方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertByRandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n\n随机插入的位置是："</span>+i);</span><br><span class="line">        <span class="keyword">int</span> elem = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"随机插入数据是："</span>+elem);</span><br><span class="line">        seqList.insertElem(i,elem);</span><br><span class="line">        System.out.println(<span class="string">"随机插入数据后数组是："</span>);</span><br><span class="line">        display(seqList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据展示</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(SeqList seqList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seqList.getData().length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (seqList.getElem(i) != <span class="keyword">null</span>)&#123;</span><br><span class="line">                System.out.print(seqList.getElem(i) + <span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"\n数组的长度为："</span>+seqList.getLength());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getElem</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n获取位置为："</span>+i);</span><br><span class="line">        System.out.println(<span class="string">"获取到的元素为："</span>+seqList.getElem(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SeqListTest seqListTest = <span class="keyword">new</span> SeqListTest();</span><br><span class="line">        seqListTest.insertByRandom();</span><br><span class="line">        seqListTest.deleteElem();</span><br><span class="line">        seqListTest.getElem();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="关于运行结果"><a href="#关于运行结果" class="headerlink" title="关于运行结果"></a>关于运行结果</h4><p>因为不是手动插入数据，删除数据，而是使用随机数自动插入和删除，所以结果会有很多组，不过没关系，多运行几次数据不一样反而能对比着得到结果，下面贴一个完美的运行结果。</p>
+<blockquote>
+<p>产生的数组长度为：16<br>22 4 8 11 17 3 10 8 18 18 7 9 14 4 3 18<br>原始数组是：<br>22 4 8 11 17 3 10 8 18 18 7 9 14 4 3 18<br>数组的长度为：16</p>
+</blockquote>
+<blockquote>
+<p>随机插入的位置是：12<br>随机插入数据是：14<br>随机插入数据后数组是：<br>22 4 8 11 17 3 10 8 18 18 7 14 9 14 4 3 18<br>数组的长度为：17</p>
+</blockquote>
+<blockquote>
+<p>删除的位置是：15<br>删除的元素是：4<br>删除元素后数组是：<br>22 4 8 11 17 3 10 8 18 18 7 14 9 14 3 18 18<br>数组的长度为：16</p>
+</blockquote>
+<blockquote>
+<p>获取位置为：17<br>获取到的元素为：18</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-线性表-顺序结构/">展开全文 >></a>
         </p>
       
 
@@ -1246,7 +1094,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1352,11 +1200,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">蓝桥杯</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1365,6 +1213,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1380,6 +1248,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -1392,31 +1276,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">游戏辅助</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">跳一跳</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1428,7 +1292,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">项目</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1436,11 +1304,63 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+                <a href="javascript:void(0)" class="js-tag color4">线性表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ROWID</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ROWNUM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">序列</a>
               </li>
             
             <div class="clearfix"></div>

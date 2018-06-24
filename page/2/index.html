@@ -147,242 +147,253 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-谈谈反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构-线性表-静态链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/谈谈反射/">谈谈反射</a>
+      <a class="article-title" href="/2018/06/24/数据结构-线性表-静态链表/">数据结构-线性表-静态链表</a>
     </h1>
   
 
         
-        <a href="/2018/06/22/谈谈反射/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:11:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+        <a href="/2018/06/24/数据结构-线性表-静态链表/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:56:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h4><p>反射是 Java 语言中的一种特征，他允许程序在运行的时候获取自身的信息，并且操纵类或者对象中的内部属性和方法。</p>
-<p>程序中的对象的类型一般在编译期就确定下来了，而 Java 的反射机制可以动态地创建对象并且调用其属性，这样的对象的类型在编译期都是未知的，所以我们可以通过反射机制直接创建对象，即使这个对象的类型在编译期是未知的。</p>
-<h4 id="反射的核心"><a href="#反射的核心" class="headerlink" title="反射的核心"></a>反射的核心</h4><p>反射的核心是 JVM 在运行时才动态加载类或者调用方法/访问属性，它不需要事先(写代码的时候或者编译期)知道运行对象是谁。</p>
-<h4 id="反射提供的功能"><a href="#反射提供的功能" class="headerlink" title="反射提供的功能"></a>反射提供的功能</h4><ol>
-<li>在运行时判断任意一个对象所属的类</li>
-<li>在运行时构造一个类的对象</li>
-<li>在运行时判断任意一个类所具有的的成员变量和方法（通过反射甚至可以调用 private 方法，只需要打开权限即可）</li>
-<li>在运行时调用任意一个对象的方法。</li>
-</ol>
-<h4 id="反射在框架中的用途"><a href="#反射在框架中的用途" class="headerlink" title="反射在框架中的用途"></a>反射在框架中的用途</h4><p>反射最重要的用途就是开发各种通用框架。<br>比方说我们在 Struts 框架中需要去 Struts.xml 中配置 Action,<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"login"</span> <span class="attr">class</span>=<span class="string">"org.ScZyhSoft.test.action.SimpleLoginAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span>&gt;</span>/shop/shop-index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"error"</span>&gt;</span>login.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>配置文件与 Action 之间建立一种映射关系，当 View 层发出请求时，请求会被 StrustsPrepareAndExecuteFilter 拦截，然后动态地创建 Action 实例。</p>
-<p>比如我们请求 name = “login” 这个控制器，StrustsPrepareAndExecuteFilter 先会去解析 Struts.xml 文件，检索 action 中 name = “login” 的 Action,并且根据 class 属性创建 SimpleLoginAction 实例，并用 invoke 方法来调用 execute 方法，这个地方就用到了反射。</p>
-<h4 id="反射的基本运用"><a href="#反射的基本运用" class="headerlink" title="反射的基本运用"></a>反射的基本运用</h4><p>代码注释中有详细的解释，就不另外做解释了。</p>
-<p>创建一个学生类。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer userId;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userId;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.userId = userId;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String userName, Integer age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">		System.out.println(userName);</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"setAge:"</span> + age);</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Student [userId="</span> + userId + <span class="string">", userName="</span> + userName + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后就是测试学生类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestStudent</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">// 常规方法构建对象</span></span><br><span class="line">		Student stu = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 三种获取 Class 对象的方法</span></span><br><span class="line">		Class&lt;?&gt; clazz1 = Class.forName(<span class="string">"cn.liuenci.study.Student"</span>);</span><br><span class="line">		Class&lt;?&gt; clazz2 = Student.class;</span><br><span class="line">		Class&lt;?&gt; clazz3 = stu.getClass();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获得类的名称</span></span><br><span class="line">		<span class="comment">// cn.liuenci.Student 全限定名</span></span><br><span class="line">		System.out.println(clazz1.getName());</span><br><span class="line">		System.out.println(clazz2.getName());</span><br><span class="line">		System.out.println(clazz3.getName());</span><br><span class="line">		<span class="comment">// 简单类名 Student</span></span><br><span class="line">		System.out.println(clazz1.getSimpleName());</span><br><span class="line">		System.out.println(clazz2.getSimpleName());</span><br><span class="line">		System.out.println(clazz3.getSimpleName());</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获取类中已定义的属性</span></span><br><span class="line">		Field[] fields = clazz1.getDeclaredFields();</span><br><span class="line">		<span class="keyword">for</span>(Field field : fields) &#123;</span><br><span class="line">			System.out.println(field.getName());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获取类中已定义的方法</span></span><br><span class="line">		Method[] methods = clazz1.getDeclaredMethods();</span><br><span class="line">		<span class="keyword">for</span>(Method method : methods) &#123;</span><br><span class="line">			System.out.println(method.getName());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获取某一个方法</span></span><br><span class="line">		Field userNameField = clazz1.getDeclaredField(<span class="string">"userName"</span>);</span><br><span class="line">		System.out.println(stu);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 操作属性</span></span><br><span class="line">		userNameField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		userNameField.set(stu, <span class="string">"张三"</span>);</span><br><span class="line">		System.out.println(stu);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 操作对象的方法</span></span><br><span class="line">		Method ageMethod = clazz1.getDeclaredMethod(<span class="string">"setAge"</span>, Integer.class);</span><br><span class="line">		ageMethod.invoke(stu, <span class="number">18</span>);</span><br><span class="line">		System.out.println(stu);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 通过类构建具体的对象</span></span><br><span class="line">		Student stu2 = (Student)clazz1.newInstance();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="反射的优缺点"><a href="#反射的优缺点" class="headerlink" title="反射的优缺点"></a>反射的优缺点</h4><p>优点：</p>
-<ol>
-<li>能够动态地获取类的实例，提高系统的灵活性和扩展性。</li>
-<li>与 Java 动态编译相结合，可以实现无比强大的功能。<br>缺点：</li>
-<li>消耗一定的系统资源，而且反射的性能低。</li>
-<li>因为调用方法或者属性可以忽略权限检查，所以可能会破坏封装性而导致安全问题。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/谈谈反射/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-利用-Java-反射构建-CRUD-语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/利用-Java-反射构建-CRUD-语句/">利用 Java 反射构建 CRUD 语句</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/利用-Java-反射构建-CRUD-语句/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:10:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先我们需要一个 Student 类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.study;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Integer userId;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userId;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.userId = userId;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String userName, Integer age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">		System.out.println(userName);</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userName;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"setAge:"</span> + age);</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Student [userId="</span> + userId + <span class="string">", userName="</span> + userName + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>下面来构建我们的（insert）增加语句，假设我们的语句是这样的。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student (userId,userName,age) <span class="keyword">values</span> (?,?,?);</span><br></pre></td></tr></table></figure></p>
-<p>那么我们需要做以下几步操作：</p>
-<ol>
-<li>获取学生类的简单类名，不能获取全限定名。</li>
-<li>获取所有学生类的属性。</li>
-<li>拼装(?,?,?)。</li>
-<li>拼装整条语句。</li>
-</ol>
-<p>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">insertSql</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = obj.getClass();</span><br><span class="line">		String tableName = clazz.getSimpleName();</span><br><span class="line">		Field[] field = clazz.getDeclaredFields();</span><br><span class="line">		StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		StringBuffer sb2 = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">for</span>(Field f : field) &#123;</span><br><span class="line">			sb1.append(f.getName()).append(<span class="string">","</span>);</span><br><span class="line">			sb2.append(<span class="string">"?"</span>).append(<span class="string">","</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		sb1.deleteCharAt(sb1.length()-<span class="number">1</span>);</span><br><span class="line">		sb2.deleteCharAt(sb2.length()-<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">return</span> String.format(<span class="string">"insert into %s (%s) values (%s)"</span>, tableName,sb1,sb2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样 insert 语句就用反射给组装好了。<br>然后 delete,update,select 就大同小异了。全部代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlBuilder</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构建插入语句 insert into student (userId,userName,age) values (?,?,?);</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> obj</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">insertSql</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = obj.getClass();</span><br><span class="line">		String tableName = clazz.getSimpleName();</span><br><span class="line">		Field[] field = clazz.getDeclaredFields();</span><br><span class="line">		StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		StringBuffer sb2 = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">for</span>(Field f : field) &#123;</span><br><span class="line">			sb1.append(f.getName()).append(<span class="string">","</span>);</span><br><span class="line">			sb2.append(<span class="string">"?"</span>).append(<span class="string">","</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		sb1.deleteCharAt(sb1.length()-<span class="number">1</span>);</span><br><span class="line">		sb2.deleteCharAt(sb2.length()-<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">return</span> String.format(<span class="string">"insert into %s (%s) values (%s)"</span>, tableName,sb1,sb2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构建删除语句 delete from student where userId = ?;</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> obj</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">deleteSql</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 获取类型</span></span><br><span class="line">		Class&lt;?&gt; c = obj.getClass();</span><br><span class="line">		<span class="comment">// 获取表名</span></span><br><span class="line">		String tableName = c.getSimpleName();</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 获取属性</span></span><br><span class="line">		Field[] field = c.getDeclaredFields();</span><br><span class="line">		String f = field[<span class="number">0</span>].getName();</span><br><span class="line">		<span class="keyword">return</span> String.format(<span class="string">"delete from %s where %s = ?"</span>, tableName, f);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构建修改语句 update Student set userName = ? and age = ? where userId = ?;</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> obj</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">updateSql</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		Class&lt;?&gt; c = obj.getClass();</span><br><span class="line">		String tableName = c.getSimpleName();</span><br><span class="line">		Field[] field = c.getDeclaredFields();</span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">for</span> (Field f : field) &#123;</span><br><span class="line">			sb.append(f.getName()).append(<span class="string">" = ? and "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		sb.delete(sb.length() - <span class="number">4</span>, sb.length());</span><br><span class="line">		String userId = field[<span class="number">0</span>].getName();</span><br><span class="line">		<span class="keyword">return</span> String.format(<span class="string">"update %s set %s where %s = ?"</span>, tableName, sb, userId);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构建选择语句 select * from student where userId = ?</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> obj</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">selectSql</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		Class&lt;?&gt; c = obj.getClass();</span><br><span class="line">		String tableName = c.getSimpleName();</span><br><span class="line">		Field[] field = c.getDeclaredFields();</span><br><span class="line">		String userId = field[<span class="number">0</span>].getName();</span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">for</span>(Field f : field) &#123;</span><br><span class="line">			sb.append(f.getName()).append(<span class="string">","</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		sb.deleteCharAt(sb.length()-<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">return</span> String.format(<span class="string">"select %s from %s where %s = ?"</span>,sb, tableName, userId);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>测试代码就不贴出来了，比较简单，这个构建 CRUD 语句只是为了练习一下 Java 的反射机制，代码有点 low ,构建的语句也比较简单，基本上都是写死的，如果你有好的写法，欢迎评论。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/利用-Java-反射构建-CRUD-语句/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-的-p-名称空间注入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/Spring-的-p-名称空间注入/">Spring 的 p 名称空间注入</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/Spring-的-p-名称空间注入/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:08:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为不是很常用，所以就只贴下代码和步骤明白如何使用即可。</p>
-<blockquote>
-<p>创建Person类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.property;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"person:"</span>+name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h4 id="什么是静态链表"><a href="#什么是静态链表" class="headerlink" title="什么是静态链表"></a>什么是静态链表</h4><p>在我公众号上一篇文章中实现了单链表的基本操作，创建单链表的过程就是一个动态生成链表的过程，即从”空表”的初始状态起，依次建立各元素结点，并逐个插入链表中。<br>而静态链表就是单链表和数组的结合。<br>首先我们让数组的元素都是由两个数据域组成，data 和 cursor。也就是说数组的每个下标都对应一个 data 和 cursor。数据域 data,用来存放数据元素，也就是通常我们要处理的数据；而 cursor 相当于单链表中的 next 指针，存放该元素的后继在数组中的下标，我们把 cursor 叫做游标。<br>这种用数组描述的链表叫做静态链表。</p>
+<h4 id="静态链表的三个核心"><a href="#静态链表的三个核心" class="headerlink" title="静态链表的三个核心"></a>静态链表的三个核心</h4><ol>
+<li>结点的两个属性：实际有用的数据 data + 存储数据的数组单元下标值 cursor</li>
+<li>备用链表：备用链表是静态链表中删除元素和未被使用到的数组元素</li>
+<li>首尾特殊元素：数组的第一个元素不存放数据信息，其中 cursor 存放备用链表中第一个结点的下标值；数组的最后一个元素也不存放数据信息，其中 cursor 存放首结点的下标<h4 id="静态链表的插入和删除的基本思想"><a href="#静态链表的插入和删除的基本思想" class="headerlink" title="静态链表的插入和删除的基本思想"></a>静态链表的插入和删除的基本思想</h4><h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><blockquote>
+<p>假设插入的位置为 i, 结点为 element</p>
 </blockquote>
-<blockquote>
-<p>配置xml文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">	xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">	xmlns:p=<span class="string">"http://www.springframework.org/schema/p"</span></span><br><span class="line">	xsi:schemaLocation=<span class="string">"</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;	</span><br><span class="line">	&lt;!-- p名称空间注入 --&gt;</span><br><span class="line">	&lt;bean id="person" class="cn.liuenci.property.Person" p:name="lucy"&gt;&lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>这一步需要着重讲一下一些重要的点：</p>
-<ol>
-<li>我这里新建了一条语句就是<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns:p="http://www.springframework.org/schema/p"</span><br></pre></td></tr></table></figure>
+</li>
+<li>判断插入位置是否合理，不合理则返回。</li>
+<li>如果合理则插入时先要从备用链表中申请一个数组单元用于存放结点</li>
+<li>找到数组中 i-1 个元素的位置，因为这个元素的游标 cursor 存放了 i 元素的数组下标</li>
+<li>将插入的结点插入到申请的数组元素位置上，cursor 值为 i-1 元素的 cursor</li>
+<li>将 i-1 元素的 cursor 更新为新的结点的位置。<br>核心代码如下:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i, T element)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= MAXSIZE - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> l = length();</span><br><span class="line">    <span class="keyword">if</span> (i &gt; l) &#123;</span><br><span class="line">        i = l + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; l) &#123;</span><br><span class="line">        i = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> k = MAXSIZE - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 向备用链表申请空间，以存放要添加的数据元素结点</span></span><br><span class="line">    <span class="keyword">int</span> m = applySpaceFromBackupList();</span><br><span class="line">    <span class="keyword">if</span> (m &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 找到数组第 i 个元素的前一个元素的位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++) &#123;</span><br><span class="line">            k = node[k].getCursor();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 创建一个新的结点，数据是element,cursor指向第 i 个元素</span></span><br><span class="line">        node[m] = <span class="keyword">new</span> Node&lt;T&gt;(element,node[k].getCursor());</span><br><span class="line">        <span class="comment">// 是当前数组第 i 个元素前面一个元素的 cursor 指向插入的新结点</span></span><br><span class="line">        node[k].setCursor(m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>它其实就是下面这条语句的变体<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns="http://www.springframework.org/schema/beans"</span><br></pre></td></tr></table></figure></p>
-<p>这一步其实就是新建了一个叫做p的名称空间。</p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><blockquote>
+<p>假设插入的位置为 i</p>
+<ol>
+<li>如果删除的位置不合理则直接返回</li>
+<li>如果合理仍然需要找到链表第 i - 1 个元素的数组下标</li>
+<li>将 i-1 元素的 cursor 指向 i 元素的 cursor</li>
+<li>回收要删除的结点<br>核心代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span>||i &gt; MAXSIZE - <span class="number">1</span> || i &gt; length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> k = MAXSIZE - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 找到第 i 个位置的前一个元素位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++) &#123;</span><br><span class="line">            k = node[k].getCursor();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 取出前一个元素的 cursor ,也就是 i</span></span><br><span class="line">        m = node[k].getCursor();</span><br><span class="line">        <span class="comment">// 将前一个数据元素的 cursor 设置为当前位置上的 cursor,</span></span><br><span class="line">        <span class="comment">// 即让当前元素的上一个元素的 cursor 指向当前元素的下一个元素</span></span><br><span class="line">        node[k].setCursor(node[m].getCursor());</span><br><span class="line">        <span class="comment">// 将删除的元素空间回收至备用链表，并将删除位置作为添加元素的有限存储空间</span></span><br><span class="line">        <span class="keyword">return</span> increaseSpaceToBackupList(m);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h4 id="静态链表的优缺点"><a href="#静态链表的优缺点" class="headerlink" title="静态链表的优缺点"></a>静态链表的优缺点</h4><blockquote>
+<p>优点：在插入和删除操作时，只需要移动元素，从而改进了顺序存储结构中的插入和删除操作需要移动大量元素的缺点。<br>缺点：没有解决连续存储分配带来的表长难以确定的问题，以及失去了顺序存储结构随机存取的特性。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-线性表-静态链表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-线性表-链式结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-线性表-链式结构/">数据结构-线性表-链式结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-线性表-链式结构/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:55:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在用代码实现我们的线性表的链式结构之前我们先来了解一下链式结构的几个概念。</p>
+<h4 id="什么是线性表的链式结构"><a href="#什么是线性表的链式结构" class="headerlink" title="什么是线性表的链式结构"></a>什么是线性表的链式结构</h4><p>为了表示每个数据元素 a(i) 与其直接后继数据元素 a(i+1) 之间的逻辑关系，对数据元素 a(i) 来说，除了存储本身的信息外，还需存储一个指示其直接后继的信息,即直接后继的存储位置。我们把存储数据元素信息的域为数据域，把存储直接后继位置的域称为指针域，也是Java中我们说的地址域。这两部分信息组成数据元素位置的域 a(i) 的存储映像，也就是我们所说的结点。<br>n 个结点链结成一个链表，即为线性表的链式结构。</p>
+<h4 id="什么是单链表"><a href="#什么是单链表" class="headerlink" title="什么是单链表"></a>什么是单链表</h4><p>链表中的每个结点中只包含一个地址域，也就是单链表。</p>
+<h4 id="为什么要有链式结构"><a href="#为什么要有链式结构" class="headerlink" title="为什么要有链式结构"></a>为什么要有链式结构</h4><p>在我前面一篇文章中讲到了线性表的顺序结构，为什么有顺序结构还要有链式结构呢？<br>因为顺序结构是有缺点的，最大的缺点就是插入和删除需要移动大量的元素，如果只需要查找某个元素，顺序结构会比链式结构效率要高，但是如果需要插入或者删除元素时，链式结构会比顺序结构好用。<br>因此什么时候用顺序结构，什么时候用链式结构取决于具体的应用场景。</p>
+<h4 id="区分一下头结点和头指针"><a href="#区分一下头结点和头指针" class="headerlink" title="区分一下头结点和头指针"></a>区分一下头结点和头指针</h4><p>头结点是指第一个结点之前的那个结点，也就是说在第一个真正的结点之前还有一个结点，称之为头结点。<br>头结点包含一个数据域和一个指针域，数据域一般是用来存储单链表的长度，而指针域用来存储下一个结点的地址，我们的头指针就是存储在这个指针域里面，使用头结点的好处就是在第一个元素之前插入元素和删除第一个结点会方便很多。</p>
+<h4 id="下面进入正题，如何用代码实现线性表的链式结构"><a href="#下面进入正题，如何用代码实现线性表的链式结构" class="headerlink" title="下面进入正题，如何用代码实现线性表的链式结构"></a>下面进入正题，如何用代码实现线性表的链式结构</h4><h5 id="接口类-ILinkedList"><a href="#接口类-ILinkedList" class="headerlink" title="接口类 ILinkedList"></a>接口类 ILinkedList<t></t></h5><p>写接口的目的主要是提供一个规范，规范实现类中这些方法必须要实现，主要方法如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">T <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> i, T t)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i, T t)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">append</span><span class="params">(T t)</span></span>;</span><br><span class="line"><span class="function">T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeAll</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">T <span class="title">search</span><span class="params">(T t)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h5 id="结点类-Node"><a href="#结点类-Node" class="headerlink" title="结点类 Node"></a>结点类 Node</h5><p>根据Java的面向对象的思想，我们可以把结点抽象为一个结点类，类中的属性有数据域和指针域，以及重写了 equals()方法，方便比较数据域中元素是否相同。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> T data;</span><br><span class="line">    <span class="keyword">public</span> Node&lt;T&gt; next;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(T data, Node&lt;T&gt; next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.next = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> obj == <span class="keyword">this</span> || obj <span class="keyword">instanceof</span> Node &amp;&amp; <span class="keyword">this</span>.data.equals(((Node&lt;T&gt;)obj).data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="链表实现类-LinkedListImpl"><a href="#链表实现类-LinkedListImpl" class="headerlink" title="链表实现类 LinkedListImpl"></a>链表实现类 LinkedListImpl</h5><p>这里主要讲下链表的插入和删除两个操作。</p>
+<h6 id="关于插入"><a href="#关于插入" class="headerlink" title="关于插入"></a>关于插入</h6><ol>
+<li>插入的值不能为 null。</li>
+<li>结点的赋值是从头结点开始，方便插入的元素的下标索引是 1 。</li>
+<li>下标索引从 1 开始遍历，链表的索引都是从 1 开始的。</li>
+<li>如果插入的位置 i 不合理，需要那么会出现最后一个结点的后继结点为 null，这样子就会插入到最后一结点后面，也就是尾插法。</li>
+<li>重点理解 p.next = new Node<t>(t, p.next); 这一行代码</t></li>
+</ol>
+<h6 id="关于删除"><a href="#关于删除" class="headerlink" title="关于删除"></a>关于删除</h6><ol>
+<li>如果要删除的下标索引不合理需要打印错误信息。</li>
+<li>结点的赋值从头结点开始，方便删除的元素的下标索引是 1 。</li>
+<li>下标索引从 1 开始遍历，这个和插入的原则一致。</li>
+<li>如果下标索引的位置 i 不合理，需要打印错误信息。</li>
+<li>重点理解 p.next = p.next.next;这一行代码。</li>
+</ol>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i, T t)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 不能插入空对象</span></span><br><span class="line">        <span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// p 指向头结点</span></span><br><span class="line">        Node&lt;T&gt; p = <span class="keyword">this</span>.head;</span><br><span class="line">        <span class="comment">// 找到插入的位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; p.next != <span class="keyword">null</span> &amp;&amp; j &lt; i; j++) &#123;</span><br><span class="line">            <span class="comment">// 当下一个结点不为空对象的时候才能赋值给 p;</span></span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入 t 作为 p 结点的后继结点</span></span><br><span class="line">        <span class="comment">// 因为是插入，所以插入的结点的地址域是 p.next</span></span><br><span class="line">        p.next = <span class="keyword">new</span> Node&lt;T&gt;(t, p.next);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &amp;&amp; i &lt;= length()) &#123;</span><br><span class="line">            <span class="comment">// 从头结点开始</span></span><br><span class="line">            Node&lt;T&gt; p = <span class="keyword">this</span>.head;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; p.next != <span class="keyword">null</span> &amp;&amp; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="comment">// 如果下一个结点不为空对象才能进行赋值</span></span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 获得原对象,这个地方为什么是 p.next.data可以通过简单的推导得出</span></span><br><span class="line">                T t = p.next.data;</span><br><span class="line">                <span class="comment">// 删除 p 的后继结点</span></span><br><span class="line">                p.next = p.next.next;</span><br><span class="line">                <span class="keyword">return</span> t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"warning : 下标索引不在范围之内"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="测试类-LinkedListTest"><a href="#测试类-LinkedListTest" class="headerlink" title="测试类 LinkedListTest"></a>测试类 LinkedListTest</h5><p>测试类主要测试上一个实现类中链表的思想是否正确地被实现,测试类比较简单，一眼就能看懂。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">LinkedListImpl&lt;String&gt; linkedList = <span class="keyword">new</span> LinkedListImpl&lt;String&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">5</span>;i++)&#123;</span><br><span class="line">            linkedList.insert(i,<span class="keyword">new</span> String((<span class="keyword">char</span>)(<span class="string">'A'</span>+i-<span class="number">1</span>)+<span class="string">""</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        linkedList.insert(<span class="number">1</span>,<span class="string">"H"</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        String removeOne = linkedList.remove(<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line">        System.out.println(<span class="string">"移除的元素为:"</span>+removeOne);</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        String searchOne = linkedList.search(<span class="string">"A"</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line">        System.out.println(<span class="string">"查找的元素为:"</span>+searchOne);</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        linkedList.set(<span class="number">1</span>,<span class="string">"W"</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        String[] str = <span class="keyword">new</span> String[]&#123;<span class="string">"W"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>&#125;;</span><br><span class="line">        LinkedListImpl&lt;String&gt; stringLinkedList = <span class="keyword">new</span> LinkedListImpl&lt;&gt;(str);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(<span class="string">"两个链表是否相等:"</span>+linkedList.equals(stringLinkedList));</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        linkedList.set(<span class="number">1</span>,<span class="string">"A"</span>);</span><br><span class="line">        System.out.println(<span class="string">"两个链表是否相等:"</span>+linkedList.equals(stringLinkedList));</span><br></pre></td></tr></table></figure></p>
+<h5 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h5><p>为了不占篇幅就不把运行结果贴上来了，线性表的链式结构不是很难，多敲几遍代码就能熟练的掌握，希望自己能把数据结构这一个系列的代码使用Java写完，也希望看我公众号的同学熟练掌握数据结构，找到自己心仪的公司。</p>
+<h4 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h4><p>github地址：<a href="https://github.com/liuenci/Data-Structure。" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure。</a><br>有兴趣的同学可以帮我点个Star啊。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-线性表-链式结构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-线性表-循环链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-线性表-循环链表/">数据结构-线性表-循环链表</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-线性表-循环链表/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:54:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是循环链表"><a href="#什么是循环链表" class="headerlink" title="什么是循环链表"></a>什么是循环链表</h4><p>在前面的一篇讲单链表的文章中我们知道单链表终端结点的指针域为 null，为了实现循环链表，所以我们把单链表中终端结点的指针段由空指针改为指向头结点，这样子使整个单链表形成一个环，这种头尾相接的单链表称为单循环链表，简称循环链表。</p>
+<h4 id="为什么使用循环链表"><a href="#为什么使用循环链表" class="headerlink" title="为什么使用循环链表"></a>为什么使用循环链表</h4><p>在单链表中因为我们有头结点，所以可以用 O(1) 的时间方位第一个结点，但是如果我们要访问到最后一个结点，需要将整个单链表都访问一遍，因此要 O(n) 的时间才能访问到最后一个结点。<br>而循环链表刚好解决了这个问题。<br>不过我们需要改造一下这个循环链表，这里我们用到了指向终端结点的尾指针来表示循环链表。这个时候如果查找开始结点和终端结点就很方便。<br>下面来讲讲如何实现一个循环链表。</p>
+<h4 id="如何实现一个循环链表"><a href="#如何实现一个循环链表" class="headerlink" title="如何实现一个循环链表"></a>如何实现一个循环链表</h4><h5 id="结点类-Node"><a href="#结点类-Node" class="headerlink" title="结点类 Node"></a>结点类 Node</h5><p>Node 具有两个属性， data 和 next, data 属性用于我们数据的管理，而 next 则是下一个结点的地址域。</p>
+<h5 id="循环链表类-CirclarList"><a href="#循环链表类-CirclarList" class="headerlink" title="循环链表类 CirclarList"></a>循环链表类 CirclarList</h5><p>CirclarList 具有两个属性。</p>
+<ol>
+<li>head : head 表示头指针。</li>
+<li>tail : tail 表示尾指针。</li>
+</ol>
+<p>CirclarList 具有两个关键行为。</p>
+<ol>
+<li>添加结点：<br>添加结点时需要考虑两种情况。<br>当循环链表为空链表时，添加的结点即是头结点，又是尾结点。<br>当循环链表不为空时，如果插入的位置大于链表的长度就将结点插入到循环链表的最后，如果小于或者等于 1 ，就将其当成新的头结点插入到循环链表的第一个结点处，否则就遍历链表，将其插入到要插入的位置上。</li>
+</ol>
+<p>核心代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(<span class="keyword">int</span> i, Node node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; size) &#123;</span><br><span class="line">            addTail(node);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            addHead(node);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">                node.setNext(node);</span><br><span class="line">                head = tail = node;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">                Node nd = head;</span><br><span class="line">                <span class="keyword">while</span> (index &lt; i - <span class="number">1</span>) &#123;</span><br><span class="line">                    nd = nd.getNext();</span><br><span class="line">                    index++;</span><br><span class="line">                &#125;</span><br><span class="line">                node.setNext(nd.getNext());</span><br><span class="line">                nd.setNext(node);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <ol start="2">
-<li>使用p名称空间注入<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.liuenci.property.Person"</span> <span class="attr">p:name</span>=<span class="string">"lucy"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>删除结点：<br>这里也需要讨论两种情况。<br>当循环链表为空链表时，即输出错误警告。<br>当循环链表不为空时，先判断要删除的结点位置是否有误，有误即输出错误警告。否则遍历链表找到要删除结点前一个结点，将这个结点的指针域指向要删除结点的下一个结点即可。<br>核心代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delNode</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; size) &#123;</span><br><span class="line">            System.out.println(<span class="string">"要删除的位置非法，删除失败"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">1</span>)&#123;</span><br><span class="line">            delHead();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Node node = head;</span><br><span class="line">            <span class="keyword">if</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (index &lt; i - <span class="number">1</span>) &#123;</span><br><span class="line">                    node = node.getNext();</span><br><span class="line">                    index++;</span><br><span class="line">                &#125;</span><br><span class="line">                node.setNext(node.getNext().getNext());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">"循环链表为空，不能删除"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>就是在标签中加了一句<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p:name="lucy"</span><br></pre></td></tr></table></figure></p>
-<p>实现的p名称空间的注入方式</p>
-<blockquote>
-<p>测试类</p>
-</blockquote>
-<p>略，这里写一个单元测试然后测试一下test方法即可。</p>
+<h5 id="测试类-CircularListTest"><a href="#测试类-CircularListTest" class="headerlink" title="测试类 CircularListTest"></a>测试类 CircularListTest</h5><p>测试类相对循环链表类没有那么复杂，只需要将循环链表类初始化，然后先在循环链表中插入结点，然后测试链表中每个结点是否是预想中的结果，测试删除结点的操作和测试添加结点的步骤一致，这里我就不多占篇幅了。</p>
+<h4 id="数据结构源码获取方式"><a href="#数据结构源码获取方式" class="headerlink" title="数据结构源码获取方式"></a>数据结构源码获取方式</h4><p>详情请进入我的 github 地址：<br>喜欢的给个 star 啊。</p>
 
       
 
@@ -396,15 +407,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
         		</li>
       		
 		</ul>
@@ -414,7 +421,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/Spring-的-p-名称空间注入/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/数据结构-线性表-循环链表/">展开全文 >></a>
         </p>
       
 
@@ -444,577 +451,51 @@
 
 
   
-    <article id="post-Spring-注入复杂类型属性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据结构-线性表-双向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/Spring-注入复杂类型属性/">Spring 注入复杂类型属性</a>
+      <a class="article-title" href="/2018/06/24/数据结构-线性表-双向链表/">数据结构-线性表-双向链表</a>
     </h1>
   
 
         
-        <a href="/2018/06/22/Spring-注入复杂类型属性/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:07:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+        <a href="/2018/06/24/数据结构-线性表-双向链表/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:52:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前面几篇文章讲了一下字符串属性注入，对象属性注入，p名称空间注入，这篇文章讲一下如何注入复杂类型的属性例如：</p>
+        <p>我们在单链表中，由于只有后继结点的指针域，所以如果我们需要查找上一个结点的时候，最坏的时间复杂度就是 O(n),因为我们每次都需要从头结点开始遍历。<br>所以在后来者中提出了双向链表来解决单链表的问题。<br>那什么是双向链表呢？<br>双向链表就是在单链表的每个结点中，再设置一个指向其前驱结点的指针域。<br>具体的代码结构如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 保存结点的数据</span></span><br><span class="line">        <span class="keyword">private</span> T data;</span><br><span class="line">        <span class="comment">// 保存上一个结点的引用</span></span><br><span class="line">        <span class="keyword">private</span> Node prev;</span><br><span class="line">        <span class="comment">// 保存下一个结点的引用</span></span><br><span class="line">        <span class="keyword">private</span> Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在链表的操作中最重要的操作一般有以下两个：</p>
 <ol>
-<li>数组</li>
-<li>List</li>
-<li>Map</li>
-<li>Properties<br>步骤如下：<blockquote>
-<p>新建一个Person类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.property;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String[] array;</span><br><span class="line">	<span class="keyword">private</span> List&lt;String&gt; list;</span><br><span class="line">	<span class="keyword">private</span> Map&lt;String,String&gt; map;</span><br><span class="line">	<span class="keyword">private</span> Properties properties;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setArray</span><span class="params">(String[] array)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.array = array;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setList</span><span class="params">(List&lt;String&gt; list)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.list = list;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMap</span><span class="params">(Map&lt;String, String&gt; map)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.map = map;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProperties</span><span class="params">(Properties properties)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.properties = properties;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"array:"</span>+array);</span><br><span class="line">		System.out.println(<span class="string">"list:"</span>+list);</span><br><span class="line">		System.out.println(<span class="string">"map:"</span>+map);</span><br><span class="line">		System.out.println(<span class="string">"properties:"</span>+properties);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
+<li>插入结点</li>
+<li>删除结点</li>
 </ol>
-<blockquote>
-<p>配置XML文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>	</span><br><span class="line">	<span class="comment">&lt;!-- 复杂属性注入 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"cn.liuenci.property.Person"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 数组注入 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"array"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>a<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>b<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>c<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- list集合注入 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"list"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>e<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>f<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>g<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- map集合注入 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"a"</span> <span class="attr">value</span>=<span class="string">"aa"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"b"</span> <span class="attr">value</span>=<span class="string">"bb"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"c"</span> <span class="attr">value</span>=<span class="string">"cc"</span>&gt;</span><span class="tag">&lt;/<span class="name">entry</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- properties注入 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"properties"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"driverclass"</span>&gt;</span>com.mysql.jdbc.driver<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"name"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"password"</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>这里的话掌握一下使用的格式应该就可以了，数组和List的注入方式一样，Map和Properties的注入方式类似，记住他们之间的相似点和不同点即可。</p>
-<blockquote>
-<p>新建一个测试TestIOC类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.property;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestIOC</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 1. 加载spring配置文件，根据配置文件创建对象</span></span><br><span class="line">		ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"bean1.xml"</span>);</span><br><span class="line">		<span class="comment">// 2. 得到创建配置的对象</span></span><br><span class="line">		Person person = (Person)context.getBean(<span class="string">"person"</span>);</span><br><span class="line">		person.test();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>运行结果如下:<br><img src="http://ove4nglsb.bkt.clouddn.com/%E5%A4%8D%E6%9D%82%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/Spring-注入复杂类型属性/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-如何注入对象属性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/Spring-如何注入对象属性/">Spring 如何注入对象属性</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/Spring-如何注入对象属性/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:05:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于比较简单，所以直接贴代码和步骤，最后总结一下关键点。</p>
-<blockquote>
-<p>创建一个UserDao类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.ioc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"DAO"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>创建一个UserService类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.ioc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> UserDao userDao;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserDao</span><span class="params">(UserDao userDao)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.userDao = userDao;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"SERVICE"</span>);</span><br><span class="line">		</span><br><span class="line">		userDao.add();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>配置XML文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 注入对象属性 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userDao"</span> <span class="attr">class</span>=<span class="string">"cn.liuenci.ioc.UserDao"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"cn.liuenci.ioc.UserService"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"userDao"</span> <span class="attr">ref</span>=<span class="string">"userDao"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>总结:</p>
+<p>下面将详细的告诉大家如何实现以上三种基本操作。</p>
+<h5 id="插入结点如何实现"><a href="#插入结点如何实现" class="headerlink" title="插入结点如何实现"></a>插入结点如何实现</h5><p>双向链表的插入先需要判断几种情况：</p>
 <ol>
-<li>写UserService类时需要写set方法，get方法可以不用，因为我们只需要注入对象，而且一般set注入属性会比较多，使用构造方法注入也可以，但一般使用set注入。</li>
-<li>配置XML时注意要先注入UserDao的对象，然后注入需要调用UserDao的方法的对象，另外需要注意的就是属性中对象的值的标签不是用 value 了，而使用 ref (引用) 来注入对象属性。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/Spring-如何注入对象属性/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-IOC-底层原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/Spring-IOC-底层原理/">Spring IOC 底层原理</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/Spring-IOC-底层原理/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:31:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>什么是IOC控制反转</p>
-</blockquote>
-<p>专业术语就是将创建对象的权力交给第三方框架去处理。
-        
-          <a class="article-more-a" href="/2018/06/19/Spring-IOC-底层原理/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/Spring-IOC-底层原理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring-Bean-的三种实例化方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/Spring-Bean-的三种实例化方式/">Spring Bean 的三种实例化方式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/Spring-Bean-的三种实例化方式/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>第一种：使用无参构造方法进行实例化</p>
-<blockquote>
-<p>创建User类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.liuenci.ioc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"add"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/06/19/Spring-Bean-的三种实例化方式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/Spring-Bean-的三种实例化方式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-joda-time-和-SimpleDateFormat-的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/">joda-time 和 SimpleDateFormat 的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:28:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>参考链接：<a href="http://jjhpeopl.iteye.com/blog/2321528" target="_blank" rel="noopener">http://jjhpeopl.iteye.com/blog/2321528</a></p>
-</blockquote>
-<h4 id="joda-date和SimpleDateFormat的相同点"><a href="#joda-date和SimpleDateFormat的相同点" class="headerlink" title="joda-date和SimpleDateFormat的相同点"></a>joda-date和SimpleDateFormat的相同点</h4><p>两者都是对日期的格式化操作。</p>
-<h4 id="joda-date和SimpleDateFormat的不同点"><a href="#joda-date和SimpleDateFormat的不同点" class="headerlink" title="joda-date和SimpleDateFormat的不同点"></a>joda-date和SimpleDateFormat的不同点</h4><p>joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 Calendar 的赋值进行覆盖，进而产生问题。</p>
-<p>joda-date 依赖于第三方的 maven 配置，具体配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?--&gt; &lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.9.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>SimpleDateFormat不依赖于第三方包，直接 jdk 支持。</p>
-<h5 id="如何解决-SimpleDateFormat-在高并发情况下的时间处理问题"><a href="#如何解决-SimpleDateFormat-在高并发情况下的时间处理问题" class="headerlink" title="如何解决 SimpleDateFormat 在高并发情况下的时间处理问题"></a>如何解决 SimpleDateFormat 在高并发情况下的时间处理问题</h5><ol>
-<li><p>在每次需要使用的时候，进行SimpleDateFormat实例的创建，这种方式会导致创建一些对象实例，占用一些内存，不建议这样使用。</p>
-</li>
-<li><p>使用同步的方式，在调用方法的时候加上synchronized，这样可以让线程调用方法时，进行加锁，也就是会造成线程间的互斥，对性能影响比较大。</p>
-</li>
-<li><p>使用ThreadLocal进行保存，相当于一个线程只会有一个实例，进而减少了实例数量，也防止了线程间的互斥，推荐使用这种方式。</p>
+<li>如果为空链表，直接使用尾插法插入结点进入链表中，同时 head 结点和 tail 结点都将指向插入的这个结点。</li>
+<li>如果不为空链表，但是插入的索引不合理，比如说小于 1（因为链表都是从 1 开始计数）或者大于链表的长度都是不合理的，这个时候需要输出错误警告信息。</li>
+<li>当插入的位置合理时，如果是插入的头结点，直接使用头插法插入结点。</li>
+<li>如果不是插入的头结点，假设插入结点为 s,插入索引为 index，则需要先找到 index-1 的结点 p,以及原来链表的 index 位置的结点 q,先将新插入的结点 node 的前驱设置为 p,后继设置为 q,然后再设置 p 的后继为 node, q 的前驱为 node,最后将链表的长度递增即可完成双向链表的插入操作。核心代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(T element, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果是空链表直接插入</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            add(element);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (index &lt; <span class="number">1</span> || index &gt; size) &#123;</span><br><span class="line">                System.out.println(<span class="string">"插入位置不合理"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index == <span class="number">1</span>) &#123;</span><br><span class="line">                addAtHead(element);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 获取插入结点的前一个结点</span></span><br><span class="line">                Node prev = getNodeByIndex(index - <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 获取插入点的结点</span></span><br><span class="line">                Node next = prev.next;</span><br><span class="line">                <span class="comment">// 让新结点的 next 引用指向 next 结点， prev 引用指向 prev 结点</span></span><br><span class="line">                Node newNode = <span class="keyword">new</span> Node(element,prev,next);</span><br><span class="line">                <span class="comment">// 让 prev 的 next 结点指向新结点</span></span><br><span class="line">                prev.next = newNode;</span><br><span class="line">                <span class="comment">// 让 prev 的下一个结点的 prev 指向新结点</span></span><br><span class="line">                next.prev = newNode;</span><br><span class="line">                size++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-博客项目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/博客项目总结/">博客项目总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/博客项目总结/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:26:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>总结一下这次为期21天的两人团队博客项目。</p>
-<h4 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h4><blockquote>
-<p>数据库设计不当。</p>
-</blockquote>
-<p>什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。</p>
-<p>数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。</p>
-<p>数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处理，尽量少联结表，多联结一张表性能会下降不少。</p>
-<blockquote>
-<p>需求分析设计不当</p>
-</blockquote>
-<p>找参考的对象尽量找成熟的平台做需求分析，我最开始用的是自己用阿里云搭建的博客，需求设计的时候随便设计了一下，导致后期只有简单的增删改查功能。</p>
-<blockquote>
-<p>技术上还有很大的改进</p>
-</blockquote>
-<p>页面的风格不统一，融合了CSDN和wordpress以及自己搭建的后台框架，配上登录注册完全不同的三种风格，形成了我这个四不像的博客。</p>
-<p>没写分页，没写图片上传，还有华哥指出的横向越权和纵向越权的自己没有考虑的问题，没写Nginx反向代理，没写FTP上传图片服务器…寒假学的一些骚操作基本上都没用上。</p>
-<h4 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h4><blockquote>
-<p>　任务分配不当</p>
-</blockquote>
-<p>团队项目就应该团队一起做。虽然搞技术我一向的想法是不做伸手党，遇到问题第一时间应该寻找搜索引擎，因为我们现在遇到的问题基本上全世界上的其他人都已经遇到过了，但是下次组员技术不是很强的时候我还是要换个方法，先教会他一个功能，然后再让他做同类型的功能，然后我再教一个新功能，如此循环，这样避免组员划水，我也会轻松不少。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">项目</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/博客项目总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Jsp-入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/Jsp-入门/">Jsp 入门</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/Jsp-入门/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:25:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>什么叫JSP:</p>
+<h5 id="删除结点如何实现"><a href="#删除结点如何实现" class="headerlink" title="删除结点如何实现"></a>删除结点如何实现</h5><p>删除结点仍然需要判断以下几种情况:</p>
 <ol>
-<li>全称：java server pages</li>
-<li>JSP是一种动态网页编程语言，将java作为脚本，为网页提供服务器数据。
-        
-          <a class="article-more-a" href="/2018/06/19/Jsp-入门/#more">more >></a>
-        
+<li>当双向链表为空链表时当然就无法删除了，需要输出错误警告信息。</li>
+<li>当双向链表不为空链表时，这时候就需要判断删除的结点下标是否不合理，不合理的情况和插入链表时一致，这个时候也需要输出错误警告信息。</li>
+<li>如果删除的是头结点，只需要将头结点的后一个结点设置为头结点，并且将前驱设置为 null 即可，因为未被使用的结点对象会被 Java 的垃圾回收机制回收。</li>
+<li>如果删除的不是头结点，就需要找到删除结点的前一个结点，将这个结点的后继指向为要删除结点的后继结点，然后将要删除结点的后继结点的前驱结点设置为要删除结点的前驱结点，最后将要删除结点的前驱和后继结点都设置为  null,这样 Java 的垃圾回收机制将会回收这个未被使用的结点。核心代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该链表是空链表无法删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; size - <span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除的位置不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node node = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (index == <span class="number">1</span>) &#123;</span><br><span class="line">            node = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">            head.prev = <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 获取删除结点的前一个结点</span></span><br><span class="line">            Node prev = getNodeByIndex(index - <span class="number">1</span>);</span><br><span class="line">            <span class="comment">// 获得将要被删除的结点</span></span><br><span class="line">            node = prev.next;</span><br><span class="line">            <span class="comment">// 让被删除结点的 next 指向被删除结点的下一个结点</span></span><br><span class="line">            prev.next = node.next;</span><br><span class="line">            <span class="comment">// 让被删除结点的下一个结点的 prev 指向 prev 结点</span></span><br><span class="line">            <span class="keyword">if</span> (node.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">                node.next.prev = prev;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 将被删除结点的 prev,next 引用赋给 null</span></span><br><span class="line">            node.prev = <span class="keyword">null</span>;</span><br><span class="line">            node.next = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>双向链表比单链表要复杂挺多的，而且考虑的东西更多，毕竟多了一个指针域，对于删除和插入结点时，需要格外小心，而且双向链表比单链表更占用空间，因为多了一个指针域，不过它的优点就是不只是可以从头结点开始遍历，也可以从尾结点开始遍历，提高了算法的时间性能，总而言之，就是用空间来换取了时间。</p>
+
       
 
       
@@ -1027,7 +508,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
         		</li>
       		
 		</ul>
@@ -1037,7 +522,618 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/Jsp-入门/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/24/数据结构-线性表-双向链表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/树/">树</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/树/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h5><p>前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。</p>
+<p>树(Tree)是n(n&gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中：</p>
+<p>(1) 有且仅有一个特定的称为根 (Root) 的结点。</p>
+<p>(2) 当 n &gt; 1 时，其余结点可分为 m (m &gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本身又是一棵树，并且称有根的子树 (SubTree)。</p>
+<p>具体如图:</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E6%A0%91.png" alt=""></p>
+<p>对于树的定义需要强调两点:</p>
+<ol>
+<li><p>n &gt; 0 时根结点是唯一的，不可能存在多个根结点，现实中的大树有多个根，但是数据结构中只能有一个根。</p>
+</li>
+<li><p>m &gt; 0 时，子树的个数没有限制，但是它们一定是互不相交的。一旦两颗子树相交，则不是树。如图就是两颗错误的树。</p>
+</li>
+</ol>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%B8%E4%BA%A4%E6%A0%91.png" alt=""></p>
+<h5 id="结点的分类"><a href="#结点的分类" class="headerlink" title="结点的分类"></a>结点的分类</h5><p>树的结点包含一个数据元素及若干指向其子树的分支。结点拥有的子树数称为结点的度。</p>
+<p>度为0的结点也就是叶节点或者称为终端结点。度不为0的结点称为非终端结点或分支结点。</p>
+<p>除了根节点之外，分支结点也称为内部结点。树的度是树内各结点的度的最大值。</p>
+<p>如图所示:</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E5%BA%A6.png" alt=""></p>
+<h5 id="结点间关系"><a href="#结点间关系" class="headerlink" title="结点间关系"></a>结点间关系</h5><p>结点的子树的跟称为该结点的孩子，相应地，该结点称为孩子的双亲。</p>
+<p>同一个双亲的孩子之间互称兄弟。</p>
+<p>结点的祖先是从根到该结点所经分支上的所有结点。</p>
+<p>反之，以某结点为根的子树中的任一结点都称为该结点的子孙。</p>
+<p>家族关系如图所示：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%BB%93%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt=""></p>
+<h5 id="树的其他相关概念"><a href="#树的其他相关概念" class="headerlink" title="树的其他相关概念"></a>树的其他相关概念</h5><p>结点的层次从根结点开始，根为第一层，根的孩子为第二层。</p>
+<p>如果两个结点的双亲在同一层，那么这两个结点互为堂兄弟。</p>
+<p>树中结点的最大层次称为树的深度或者高度。</p>
+<p>如果将树中结点的各子树看成从左到右是有次序的，不能互换的，则称该树为有序树，否则称为无序树。</p>
+<p>森林是 m (m &gt;= 0) 颗互不相交的树的集合。</p>
+<h5 id="树结构与线性结构的区别"><a href="#树结构与线性结构的区别" class="headerlink" title="树结构与线性结构的区别"></a>树结构与线性结构的区别</h5><p>树结构：</p>
+<blockquote>
+<p>根结点：无双亲，唯一</p>
+</blockquote>
+<blockquote>
+<p>叶节点：无孩子，可以有多个叶节点</p>
+</blockquote>
+<blockquote>
+<p>中间结点：一个双亲多个孩子</p>
+</blockquote>
+<p>线性结构：</p>
+<blockquote>
+<p>第一个数据元素没有前驱</p>
+</blockquote>
+<blockquote>
+<p>最后一个数据元素没有后继</p>
+</blockquote>
+<blockquote>
+<p>中间元素：有一个前驱和一个后继</p>
+</blockquote>
+<h5 id="开工了"><a href="#开工了" class="headerlink" title="开工了"></a>开工了</h5><p>好像停更了好久了，上班族应该都开始上班了，学生党也陆陆续续地开始要上课了，我也要开始立 flag 更新我的公众号了哈哈哈，答应自己要把数据结构这个系列写完，自己一定要在今年三月份写完，由于写的都是干货，所以每一个字都值得各位读者深思，所以我建议想学数据结构的读者，建议大家只字不差的阅读我这个系列，同时我提供 Java 版的数据结构代码给大家参考，每一个代码都是能够直接运行了，所以大家有时间可以自己去写写这些代码，另外大家如果有什么好的建议可以在公众号后台留言呀，开设这个公众号的意义不在于我给大家普及一些知识，更重要的是共同学习，毕竟，学习，不仅是陪着自己成长，也是一个陪着他人成长的过程，谢谢大家。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-双亲表示法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/双亲表示法/">双亲表示法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/双亲表示法/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:51:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h5><p>在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。</p>
+<p>顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。</p>
+<p>链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。</p>
+<p>因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完成树的表示。</p>
+<p>主流的树的存储方式有三种，分别为：双亲表示法、孩子表示法、孩子兄弟表示法。</p>
+<p>下面讲下双亲表示法。</p>
+<h5 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a>双亲表示法</h5><p>我们假设以一组连续空间来存储树的结点，同时在每一个结点中，附设一个指示器指向其双亲结点在数组中的位置，这种结构就称之为双亲表示法。</p>
+<p>核心代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E data; <span class="comment">// 数据域</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> parent; <span class="comment">// 双亲</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E data, <span class="keyword">int</span> parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h5><blockquote>
+<p>如何创建树</p>
+</blockquote>
+<p>树的基本元素有根节点与结点数，所以我们需要先初始化结点数组，然后在将根结点存储到数组的第一个位置中，也就是nodes[0]，最后将实际存在的结点加一即可。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">IParentalTreeImpl</span><span class="params">(E data, <span class="keyword">int</span> treeSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.treeSize = treeSize;</span><br><span class="line">        nodes = <span class="keyword">new</span> Node[treeSize];</span><br><span class="line">        nodes[<span class="number">0</span>] = <span class="keyword">new</span> Node&lt;E&gt;(data, -<span class="number">1</span>); <span class="comment">// 定义根节点</span></span><br><span class="line">        nodeNum++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如何添加结点</p>
+</blockquote>
+<p>首先我们需要知道新结点在数组中添加的位置是数组中第一个 nodes[i] == null 的 i 值处。然后我们需要知道新结点的双亲结点在数组中的位置，知道这两个之后我们才能进行添加新结点。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(E data, Node&lt;E&gt; parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nodes[i] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                nodes[i] = <span class="keyword">new</span> Node&lt;E&gt;(data, getPos(parent));</span><br><span class="line">                nodeNum++;</span><br><span class="line">                <span class="keyword">return</span>; <span class="comment">// 必须 return，不然循环会继续找到下一个 nodes[i] == null;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如何获取树的深度</p>
+</blockquote>
+<p>因为树是有很多分支的，我们预先不知道哪个分支才是深度最大的那个分支，所以我们需要遍历所有的分支然后进行比较才能得到树的深度。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDeepth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>; <span class="comment">// 用于记录节点的最大深度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize &amp;&amp; nodes[i] != <span class="keyword">null</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 初始化节点的深度</span></span><br><span class="line">            <span class="keyword">int</span> deepth = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// m 用于记录当前节点的双亲节点的位置</span></span><br><span class="line">            <span class="keyword">int</span> m = nodes[i].getParent();</span><br><span class="line">            <span class="comment">// 如果双亲节点存在，则向上继续搜索双亲节点</span></span><br><span class="line">            <span class="keyword">while</span> (m != -<span class="number">1</span> &amp;&amp; nodes[m] != <span class="keyword">null</span>) &#123;</span><br><span class="line">                m = nodes[m].getParent();</span><br><span class="line">                deepth++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (max &lt; deepth) &#123;</span><br><span class="line">                max = deepth;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="如何获取源代码"><a href="#如何获取源代码" class="headerlink" title="如何获取源代码"></a>如何获取源代码</h5><p>上面对树的一些核心操作进行了讲解，还有一些小功能因为比较简单就不进行详解了，有兴趣的同学可以前往我的 Github 进行克隆学习。</p>
+<p>我的 github 地址为：<a href="https://github.com/liuenci/Data-Structure.git" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure.git</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/双亲表示法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-栈-顺序结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-栈-顺序结构/">数据结构-栈-顺序结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-栈-顺序结构/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:50:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是栈"><a href="#什么是栈" class="headerlink" title="什么是栈"></a>什么是栈</h4><p>栈是一种特殊的线性表，但是只允许在表尾进行插入和删除。相对于普遍意义上的线性表来说，实现要简单不少，不过这里我们还要知道栈的几个关键的概念。</p>
+<h4 id="栈的关键点"><a href="#栈的关键点" class="headerlink" title="栈的关键点"></a>栈的关键点</h4><p>我们把允许插入和删除的一端称为栈顶(top),另一端称为栈底(bottom);不含任何数据元素的栈称为空栈。<br>栈又称为后进先出(Last In First Out)的线性表，简称为LIFO结构。</p>
+<h4 id="关于栈的插入和删除"><a href="#关于栈的插入和删除" class="headerlink" title="关于栈的插入和删除"></a>关于栈的插入和删除</h4><p>栈的插入操作，叫做进栈，也称压栈、入栈。<br>栈的删除操作，叫做出栈，也称弹栈。</p>
+<h4 id="栈的顺序结构实现"><a href="#栈的顺序结构实现" class="headerlink" title="栈的顺序结构实现"></a>栈的顺序结构实现</h4><p>在我的前几篇文章中，说到线性表有两种实现方式，一种是顺序结构，一种是链式结构。而我们的栈作为一种特殊的线性表，因而也具有这两种实现方式，这里我们详细讲述栈的顺序结构的实现。</p>
+<h5 id="先来一个接口-ISequenceStack"><a href="#先来一个接口-ISequenceStack" class="headerlink" title="先来一个接口 ISequenceStack"></a>先来一个接口 ISequenceStack</h5><p>这段时间自己写数据结构的代码，特别中意接口，以前一直不怎么写接口的，现在发现写接口特别有利于自己的代码规范，写接口就像自己高中写作文列提纲一样，你知道自己该写哪些内容，所以我建议大家都好好学习写接口。<br>这里的接口主要为了规范 push(压栈) 和 pop(出栈)操作，辅助操作有 getTop()(得到栈顶元素) 和 isEmpty()(栈的判空操作)。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISequenceStack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">getTop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="接口实现类-SequenceStackImpl"><a href="#接口实现类-SequenceStackImpl" class="headerlink" title="接口实现类 SequenceStackImpl"></a>接口实现类 SequenceStackImpl</h5><p>接口实现类主要包括一个栈的初始化(init()),压栈(push())，以及出栈(pop())。<br>栈的初始化：<br>栈的实现需要一个数组作为依托，所以需要将数组实例化。此外，我们需要一个栈顶指针，表明栈顶所在的位置。<br>核心代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.maxSize = size;</span><br><span class="line">        top = -<span class="number">1</span>;</span><br><span class="line">        stack = <span class="keyword">new</span> Object[size];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>压栈：<br>压栈就是在这个栈中插入数据的过程，所以先要判断栈是否已经满了，如果满了则返回并且输出错误警告信息。<br>如果栈不满，将 top 指针后移，再将数据插入。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( top == maxSize) &#123;</span><br><span class="line">            System.out.println(<span class="string">"栈已满"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        top++;</span><br><span class="line">        stack[top] = obj;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>出栈：<br>出栈就是在这个栈中删除数据的过程，所以先要判断该栈是否为空，如果为空则返回 null，并且输出错误警告信息。<br>如果不为空，则将该结点设置为 null，然后 top 指针前移。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Object obj = stack[top];</span><br><span class="line">        stack[top] = <span class="keyword">null</span>;</span><br><span class="line">        top--;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="栈的测试类"><a href="#栈的测试类" class="headerlink" title="栈的测试类"></a>栈的测试类</h5><p>栈的测试类比较简单，主要是测试栈的实现类中每一个方法是否可用，以及边界条件下测试栈会不会报异常。这里就不贴源代码占篇幅了，想要了解详情的可以去我的 github 上面查看数据结构全部的源代码。</p>
+<h4 id="项目源码获取地址"><a href="#项目源码获取地址" class="headerlink" title="项目源码获取地址"></a>项目源码获取地址</h4><p>github:<a href="https://github.com/liuenci/Data-Structure" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure</a>.<br>觉得可以的同学可以点一波 Star 再走啊。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-栈-顺序结构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-栈-链式结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-栈-链式结构/">数据结构-栈-链式结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-栈-链式结构/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在我的前一篇文章中讲述了栈的顺序结构，这篇文章将带大家实现栈的链式结构。</p>
+<h4 id="什么是栈的链式结构"><a href="#什么是栈的链式结构" class="headerlink" title="什么是栈的链式结构"></a>什么是栈的链式结构</h4><p>栈的顺序结构需要依托于数组来实现，而栈的链式结构则不需要依托于数组，而是在每个结点中存放一个指针域，这个指针域指向这个结点的直接后继，这种依次链接并且插入和删除结点只允许在栈顶进行就叫做栈的链式结构。<br>栈的链式结构也叫做链栈。</p>
+<h4 id="从链表进化为链栈"><a href="#从链表进化为链栈" class="headerlink" title="从链表进化为链栈"></a>从链表进化为链栈</h4><p>栈只是栈顶来做插入和删除操作，栈顶放在链表的头部还是尾部呢？由于单链表有头指针，而栈顶指针也是必须的，那干嘛不让它俩合二为一呢，所以比较好的办法是把链顶放在单链表的头部。另外，都已经有了栈顶在头部了，单链表中比较常用的头结点也就失去了意义，通常对于链栈来说，是不需要头结点的。</p>
+<h4 id="如何实现链栈"><a href="#如何实现链栈" class="headerlink" title="如何实现链栈"></a>如何实现链栈</h4><h5 id="结点类-Node"><a href="#结点类-Node" class="headerlink" title="结点类 Node"></a>结点类 Node</h5><p>由于链栈也是由一个个的结点组成,所以结点类是少不了的，每个结点包括两个部分，一个数据域，一个指针域。<br>数据域存储要处理的数据，指针域存储当前结点的直接后继的引用。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object element; <span class="comment">// 数据域</span></span><br><span class="line">    <span class="keyword">private</span> Node next; <span class="comment">// 指针域</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="接口-ILinkedStack"><a href="#接口-ILinkedStack" class="headerlink" title="接口 ILinkedStack"></a>接口 ILinkedStack</h5><p>这个接口和我写的栈的顺序结构的接口一，一模一样。关键还是规范入栈和出栈操作，辅助实现一个获取栈顶元素以及判空操作。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILinkedStack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Object object)</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">getTop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="接口实现类-LinkedStackImpl"><a href="#接口实现类-LinkedStackImpl" class="headerlink" title="接口实现类 LinkedStackImpl"></a>接口实现类 LinkedStackImpl</h5><p>链栈初始化：链栈的初始化只需要将链顶引用 head 赋值为空并且将链栈的大小 size 赋值为 0 即可完成初始化。<br>入栈：因为链栈没有大小限制，不像顺序栈需要考虑数组预先分配的大小，所以在入栈只需要将插入的结点的指针域指向当前的栈顶指针，再将栈顶指针指向插入的新的结点，最后将链栈的大小更新。<br>出栈：出栈的话还是需要判断当前的链栈是否为空，如果为空栈当然就不能删除结点了，如果为空栈则需要输出错误警告信息，并且返回 null；如果不为空则需要将栈顶指针指向当前栈顶的下一个结点，并且将链栈的大小更新。<br>判空：判断当前链栈是否为空只需要判断 head == null 为 true 还是 false 即可。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedStackImpl</span> <span class="keyword">implements</span> <span class="title">ILinkedStack</span> </span>&#123;</span><br><span class="line">    Node head; <span class="comment">// 栈顶指针</span></span><br><span class="line">    <span class="keyword">int</span> size; <span class="comment">// 结点的个数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LinkedStackImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        head = <span class="keyword">null</span>;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object object)</span> </span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(object,head);</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Object object = head.getElement();</span><br><span class="line">        head = head.getNext();</span><br><span class="line">        size--;</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getTop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head.getElement();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="测试类-LinkedStackTest"><a href="#测试类-LinkedStackTest" class="headerlink" title="测试类 LinkedStackTest"></a>测试类 LinkedStackTest</h5><p>测试类比较简单，无非是按照初始化链栈，进行入栈，再进行出栈操作，测试每一个方法是否正确，这里就不贴代码了，想了解详情的可以查看我的 github 地址，上面有所有的用 Java 写的数据结构的代码。</p>
+<h4 id="项目源码获取方式"><a href="#项目源码获取方式" class="headerlink" title="项目源码获取方式"></a>项目源码获取方式</h4><p>github 地址：<a href="https://github.com/liuenci/Data-Structure。" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure。</a><br>有兴趣的同学点个 Star 再走啊。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-栈-链式结构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-算法时间复杂度判断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/算法时间复杂度判断/">算法时间复杂度判断</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/算法时间复杂度判断/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:47:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在判断时间复杂度之间，我们需要知道什么是如何推导大O阶方法。</p>
+<blockquote>
+<p>推导大O阶方法的步骤</p>
+<ol>
+<li>用常数1取代运行时间中的所有加法常数。</li>
+<li>在修改后的运行次数函数中，只保留最高阶项。</li>
+<li>如果最高阶项存在且不是1，则去除与这个项相乘的常数</li>
+</ol>
+</blockquote>
+<p>经过上面三步得到的结果就是大O阶，下面讲解几种常见的时间复杂度的判断。</p>
+<blockquote>
+<p>常数阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>,n = <span class="number">100</span>; <span class="comment">// 执行一次</span></span><br><span class="line">sum = ( <span class="number">1</span> + n ) * n / <span class="number">2</span>; <span class="comment">// 执行一次</span></span><br><span class="line">System.out.println(sum); <span class="comment">// 执行一次</span></span><br></pre></td></tr></table></figure></p>
+<p>以上这个算法的运行次数函数是f(n) = 3;<br>现在根据推导大O阶的方法推导一下这个算法的时间复杂度。<br>首先将常数3变为1，然后保留最高阶项，但是这个算法没有最高阶项，所以它的时间复杂度就是O(1)。</p>
+<blockquote>
+<p>线性阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>很明显这个算法的循环次数为n，所以推导大O阶得到O(n)。</p>
+<blockquote>
+<p>对数阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (count &lt; n)&#123;</span><br><span class="line">    count = count * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为每次 count 乘以 2 之后，就距离 n 就更近了一份。因为 2 的 x 次方等于 n，得到时间复杂度 x = log2n (以 2 为底的 n 对数)。</p>
+<blockquote>
+<p>平方阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i,j;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">        System.out.println(i*j);   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于内循环是一个 O(n) 的时间复杂度，外层循环只不过是将内层循环再循环 n 次，所以时间复杂度为 O(n2)（n 的平方），因此可以总结出循环的时间复杂度等于循环体的复杂度乘以该循环运行的次数。</p>
+<p>总结常用的时间复杂度所耗费的时间从小到大依次是:<br>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n 平方) &lt; O(n 三次方) &lt; O(2 的 n 次方) &lt; O(n!) &lt; O(n 的 n 次方)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">时间复杂度</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/算法时间复杂度判断/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-解析-ROWID-和-ROWNUM-基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/">解析 ROWID 和 ROWNUM 基础</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:46:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>oracle 中存在伪列这个说法，它就像一个表的列一样，但是它并不存储在表中，伪列可以从数据库中查出，但是无法对伪列进行更新，删除和插入。常用的伪列就有 ROWNUM 和 ROWID.</p>
+<h4 id="ROWNUM-伪列"><a href="#ROWNUM-伪列" class="headerlink" title="ROWNUM 伪列"></a>ROWNUM 伪列</h4><p>ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果集，然后再在结果集上加上一个伪列，伪列的作用就是在结果集中添加一个从 1 开始的序列号。例如以下 sql.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/rownum.png" alt=""></p>
+<p>通过结果可以看到如果我们需要获取某个数据集下的前 10 条数据的话就可以通过判断 rownum 的大小即可。例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept <span class="keyword">where</span> <span class="keyword">rownum</span> &lt;= <span class="number">10</span>;</span><br></pre></td></tr></table></figure></p>
+<p>由于 rownum 是先有结果集，再添加伪列，并且伪列都是从 1 开始的，所以以下语句会查不到任何结果。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept <span class="keyword">where</span> <span class="keyword">rownum</span> &gt;=<span class="number">2</span> <span class="keyword">and</span> <span class="keyword">rownum</span> &lt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
+<p>如果想要得到想要的结果，可以使用子查询的方法。例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">rownum</span> <span class="keyword">num</span>,deptno <span class="keyword">from</span> dept) <span class="keyword">where</span> <span class="keyword">num</span> &gt;=<span class="number">2</span> <span class="keyword">and</span> <span class="keyword">num</span> &lt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20180419093212.png" alt=""></p>
+<h4 id="ROWID-伪列"><a href="#ROWID-伪列" class="headerlink" title="ROWID 伪列"></a>ROWID 伪列</h4><p>ROWNUM 是物理上不存在的，但是 ROWID 是物理上存在的，它的作用是用来唯一标识一条记录物理位置的一个 ID,类似于 Java 中的一个对象的哈希码，都是为了标识对应对象的物理位置。</p>
+<p>利用 ROWID 的唯一特性，可以用 ROWID 来进行去重。<br>例如创建一个表：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> dept_bak <span class="keyword">AS</span> <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept;  </span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept_bak <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept;</span><br></pre></td></tr></table></figure></p>
+<p>查询表中的数据:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rowid</span>,dept_bak.* <span class="keyword">from</span> dept_bak;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/rowid.png" alt=""><br>最后利用 rowid 进行去重。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> dept_bak <span class="keyword">WHERE</span> <span class="keyword">ROWID</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> <span class="keyword">MIN</span>(<span class="keyword">ROWID</span>) <span class="keyword">FROM</span> dept_bak <span class="keyword">GROUP</span> <span class="keyword">BY</span> DEPTNO);</span><br></pre></td></tr></table></figure></p>
+<p>这样就完成了利用 rowid 的唯一特性去重了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ROWID</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ROWNUM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/">展开全文 >></a>
         </p>
       
 
@@ -1069,7 +1165,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1175,11 +1271,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">蓝桥杯</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,6 +1284,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1203,6 +1319,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">oracle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -1215,31 +1347,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">游戏辅助</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">跳一跳</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1251,7 +1363,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">项目</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1259,11 +1375,63 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+                <a href="javascript:void(0)" class="js-tag color4">线性表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ROWID</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ROWNUM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">序列</a>
               </li>
             
             <div class="clearfix"></div>
