@@ -1,96 +1,1786 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block title %}{{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-{% set comment = false %}
-<div id="index" class="index">
-  {% for post in page.posts.toArray() %}
-  <article class="index-post card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="{{ config.author }}">
-        <meta itemprop="description" content="{{ config.description }}">
-        <meta itemprop="image" content="{{ url_for( theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="{{ config.title }}">
-      </span>
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="hello world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="cier">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="hello world">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cier">
+<meta name="twitter:description" content="hello world">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ url_for(post.path) }}" itemprop="url">{{ post.title }}</a>
-      </h1>
-      <div class="post-meta">
-        {% if post.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if post.categories and post.categories.toArray().length %}
-        {% if post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in post.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if post.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if post.categories or post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(post.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ post.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      {% if post.excerpt  %}
-      {{ post.excerpt }}
-      {% elif post.description %}
-      {{ post.description }}
-      {% elif theme.auto_excerpt %}
-      {{ post.content.substring(0, theme.auto_excerpt) }}
-      {% else %}
-      {{ post.content }}
-      {% endif %}
-    </main>
-    <footer class="post-footer">
-      {% if post.tags and post.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in post.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% endfor %}
-  {% if page.prev or page.next %}
-  <nav class="pagination">
-    {{
-      paginator({
-        prev_text: "<i class=\"fas fa-angle-left\"></i>",
-        next_text: "<i class=\"fas fa-angle-right\"></i>",
-        mid_size: 1
-      })
-    }}
-  </nav>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
-{% endblock %}
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2028/06/15/写在开始之前/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2028/06/15/写在开始之前/" itemprop="url">写在开始之前</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2028-06-15T12:13:11+08:00">
+                2028-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>首先算下我写博客以来迭代了几次版本。记得最开始的时候是在博客园上注册的博客账号，和面发现博客园的 seo 做的挺差的，在百度上进行搜索的时候，同样的文章基本上都搜索不到博客园上这个平台的文章。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2028/06/15/写在开始之前/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/推荐几个不错的刷题网站/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/推荐几个不错的刷题网站/" itemprop="url">推荐几个不错的刷题网站</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:21:00+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在准备秋招的面试，看了一下各个大厂的面试要求，无一不是要求要熟悉数据结构和算法的，就算是偏小一点的公司，都会在末尾注明【熟悉算法和数据结构者优先】。如果没有算法基础，就算你做了很多项目，都不一定能得到面试官的青睐。</p>
+<p>很多人对算法有深深地恐惧感，不知道自己为什么要学习算法和数据结构，明明计算机是一门实践的学科，能自己折腾出东西不就行了吗？这就是我们的问题所在，下面解释一下我们为什么要学习数据结构和算法。</p>
+<p>首先要明白大厂的刷人制度，数据结构和算法的掌握程度也从侧面体现一个人的聪明程度，如果我们能在数据结构和算法上有所建树的话，说明我们是具备企业的培养价值的。而且在我们入职之后，因为每个公司有每个公司用的技术，如果一个人非常聪明的话，他会很容易上手公司的业务。</p>
+<p>记得刚开始学习数据结构的时候简直头皮发麻，那是建立在自己没有编程语言的基础上的。到现在自己掌握了基本编程语言的前提下，数据结构对我来说就没有那么难了。不过在计算机学科中，有输入，就一定要用输出去检验。学习数据结构是输入，刷数据结构的题那就是输出。</p>
+<p>下面推荐几个不错的刷题网站，下面这些网站，不仅能让你巩固自己的编程水平，也能让你的编程水平得到一个质的提升，前提建立在坚持刷题的基础上。</p>
+<ol>
+<li>LintCode</li>
+</ol>
+<p>LintCode 收集了网上最常见的编程题目，而且包括很多领域例如算法、数据结构、人工智能、系统设计等等，在我看来是一个比较人性化的刷题平台了，为什么呢？因为可以让你选择刷题的语言，对于英文不好的同学，LintCode 是一个不错的刷题网站。</p>
+<p>对于不会的题目，九章算法提供了参考答案查询，算是比较良心了。网址：<a href="https://www.jiuzhang.com/solution/" target="_blank" rel="noopener">https://www.jiuzhang.com/solution/</a></p>
+<ol start="2">
+<li>LeetCode</li>
+</ol>
+<p>LeetCode 和 LintCode 差不多，但是 LeetCode 更贴近面试，很多大厂选择算法题都喜欢在 LeetCode 上挑选，然后自己修改参数，再给面试者解答，很多朋友在 LeetCode 上把算法题刷了两遍，不管是在面试时面试官要求解释算法思路还是要求写白板算法，都游刃有余，最终拿到了不错的 offer。唯一的不足可能对纯正的中文学习者不太友好，全英文的界面就能难住很多人了。</p>
+<ol start="3">
+<li>牛客网</li>
+</ol>
+<p>这个网站是我用的最多的，也是用的最舒服的。不是因为它是国内的，提供了非常好的中文界面，而是牛客网不只是有 Web,而且还有 App 端。有 App 端的好处就是在没有电脑的时候，你也可以站着刷题，躺着刷题，让你在教室可以刷题，也能在床上刷题。另外牛客网提供了 LintCode 和 LeetCode 所没有的优点，在牛客网上有讨论区，在讨论区里面你可以看到各个大厂的面试精华，多看看别人的面经有助于面试者更好的把握面试，有更大的机会拿到 offer。</p>
+<p>题目刷起来。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/我想做一个产品/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/我想做一个产品/" itemprop="url">我想做一个产品</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:19:35+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>公众号里熟悉我的人都知道我是一名软件工程师，或者说是码农，科班出身，喜欢研究各种各样的技术，并且应用在实际的项目中。为了在自己的项目中能够有很多的技术亮点，我往往会去学习一些自己以前没有研究过的技术，或者说那些看起来很牛 x 的技术。</p>
+<p>这些技术做出来的效果往往会让别人觉得你很厉害，很多时候，我一直以自己能做出别人做不出来的技术而感到骄傲。以至于自己忽略了很多基础的技术是如何实现，或者说某个很基础的技术的底层原理是什么，我一直在学别人不会的技术以期望超过别人或者说是显示自己的不同，因而也忘记了那些通用了，实用性强的技术。</p>
+<p>后面想到技术是为了解决问题，而不是炫耀的工具。</p>
+<p>因而产生做一个产品的想法，这个产品就是公众号。事实上做一个公众号并不是那么容易的事情，自己必须时刻的学习才能有足够的输出，而且公众号作为一种信息获取的媒介，作者必须无时无刻注意自己的说辞，以防止对读者产生误导。</p>
+<p>公众号脱更了一段时间，我其实也没闲着，去年的寒假偶然的机会认识了很多的大 V,基本上是那种公号上十万，每次阅读量都会上万的作者，在看过一些他们最初的文章以及整体的公众号的内容中，我找到了一些自身的问题。</p>
+<p>公众号最开始的名字是叫做：CierToString。</p>
+<p>名字的来源分为两部分，Cier 来自自己的博客名，顺便给自己的博客打个广告，博客地址：<a href="http://www.liuenci.cn。" target="_blank" rel="noopener">www.liuenci.cn。</a><br>致力于分享互联网技术。因为自己是 Java 程序员，搞 Java 的对 ToString 肯定不会陌生。所以公众号的名字就是由 Cier 和 ToString 拼接而成。</p>
+<p>名字的问题出在哪呢？</p>
+<p>我们现在提起【微信】，都知道是一款社交软件，但是如果提起【CierToString】,我猜大家在听到这个名字的时候百分之九十不知道这个公众号是干啥的。</p>
+<p>因而我将公众号的名字改成了【编程这件小事】，这样大家就能一眼就知道我是一个写互联网技术的作者。</p>
+<p>第二个问题是自己的公众号太过于单调，看过我所有的文章的读者应该都知道，我所写的技术范围太窄，以至于受众在那么一小部分中。但是我其实对很多东西都有熟悉过或者了解过，我完全可以把这些东西写下来。</p>
+<p>所以我接下来将扩大自己的分享范围，不仅仅是技术，以后还会有关于产品，关于认知等等一系列的分享。</p>
+<p>还有一些问题是关于公众号的排版方面的内容，这个就不和大家细说了哈，作为一位后端开发工程师，对页面色彩实在是没有一点概念，不过发现了这个问题，终归是要解决的，只能在慢慢的学习中改变自己对美感的敏感度了。</p>
+<p>最后，希望每一位读者在此公众号中让自身受益。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/ALGO-2-最大最小公倍数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/ALGO-2-最大最小公倍数/" itemprop="url">ALGO-2 最大最小公倍数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:17:12+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TheMaxCommonNum</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">long</span> n = input.nextLong();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">long</span> result1 = n * (n - <span class="number">1</span>) * (n - <span class="number">2</span>);</span><br><span class="line">		<span class="keyword">long</span> result2 = n * (n - <span class="number">1</span>) * (n - <span class="number">3</span>);</span><br><span class="line">		<span class="keyword">long</span> result3 = (n - <span class="number">1</span>) * (n - <span class="number">2</span>) * (n - <span class="number">3</span>);</span><br><span class="line">		input.close();</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">2</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (n % <span class="number">2</span> != <span class="number">0</span>) &#123;</span><br><span class="line">				System.out.println(result1);</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span>(n%<span class="number">3</span>!=<span class="number">0</span>) &#123;</span><br><span class="line">					System.out.println(result2);</span><br><span class="line">				&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">					System.out.println(result3);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解题思路如下：<br>这道题用到了贪心算法，将大规模的数据分解成小块的数据去解题<br>如果n、n-1和n-2三个数两两互质的话，那么结果就是这三个数的积。<br>我们可以知道，当n是奇数时，n 和n-2都是奇数，n-1是偶数,那么他们三个的公约数肯定不是2,而因为这三个数是连续的，所以大于2的数都不可能成为他们或其中任意两个数的公约数了.结果就是他们三个的乘积.<br>而当n为偶数时，n<em>(n-1)</em>(n-2)肯定不行了，因为n和n-2都是偶数，那么只能将n-2改成n-3，即n<em>(n-1)</em>(n-3),如果这三个数两两互质那么肯定就是结果了.<br>但是因为n和n-3相差3,所以当其中一个数能被3整除时，另一个肯定也可以.而当其中一个不可以时，另一个肯定也不可以.而因为n为偶数,n-3为奇数，所以2不可能成为他俩的公因子。对于大于3的数，肯定就都不可能成为这三个数或者其中任意两个数的公约数了.因此只需再对3进行判断：<br>如果n能整除3，那么，n<em>(n-1)</em>(n-3)就肯定不行了，因为n和n-3有了公约数3，结果肯定小了，那么就只能继续判下一个即n<em>(n-1)</em>(n-4)而这样n-4又是偶数，不行，继续下一个n<em>(n-1)</em>(n-5) = n^3 -6<em>n^2 + 5</em>n 而如果这个可以 那个其值肯定要小于(n-1)<em>(n-2)</em>(n-3) = n^3 -6<em>n^2+11n-6(对于n&gt;1来说都成立),而(n-1)</em>(n-2)<em>(n-3)由上一个奇数结论可知是一个符合要求的，因此到n-5就不用判断了。直接选答案为(n-1)</em>(n-2)<em>(n-3)；<br>而n不能整除3，那么结果就是n</em>(n-1)<em>(n-3)，因为n和n-3都不能整除3,此时n-1能不能整除3都无关紧要了.而对于其它数 都是不可能的.上面已证.<br>简单的提炼一下，先判断n是不是奇数 ，如果是  直接输出n</em>(n-1)<em>(n-2)  否则判断n能不能被3整除，如果不能，输出n</em>(n-1)<em>(n-3)，否则输出(n-1)</em>(n-2)*(n-3)</p>
+<p>首先要写n=1和n=2的情况，即使你不写，也会是满分，因为测试数据中没有1和2.</p>
+<p>以上是参考的百度一位同学的解释，自己模拟着解释了一遍，为了保护原创，原文链接如下：<br><a href="http://blog.csdn.net/qq_34594236/article/details/51178164" target="_blank" rel="noopener">http://blog.csdn.net/qq_34594236/article/details/51178164</a></p>
+<ol>
+<li>如果是奇数，那么最大最小公倍数就是n<em>(n-1)</em>(n-2);</li>
+<li>如果是偶数，那么n<em>(n-1)</em>(n-2)就不是最大最小公倍数，因为n和(n-2)有公约数2，如果n不能被3整除，则最大最小公倍数是n<em>(n-1)</em>(n-3)，如果能被3整除，那么最大最小公倍数就不是n<em>(n-1)</em>(n-3)，所以换成n<em>(n-1)</em>(n-4),但是n和n-4有公约数2,所以又推到n<em>(n-1)</em>(n-5),但是n<em>(n-1)</em>(n-5)对于n&gt;1的数来说肯定要小于(n-1)<em>(n-2)</em>(n-3),因为(n-1)是奇数了，所以满足条件就是最大最小公倍数。                                                        </li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/ALGO-1-区间-k-大数查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/ALGO-1-区间-k-大数查询/" itemprop="url">ALGO-1 区间 k 大数查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:13:42+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E5%8C%BA%E9%97%B4k%E6%95%B0.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntervalKLargeQuery</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		<span class="keyword">int</span>[] num = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			num[i] = input.nextInt();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> m = input.nextInt();</span><br><span class="line">		<span class="keyword">int</span>[] mint = <span class="keyword">new</span> <span class="keyword">int</span>[m];</span><br><span class="line">		<span class="comment">// 保存每行输入的三个数</span></span><br><span class="line">		<span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> c = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++) &#123;</span><br><span class="line">			a = input.nextInt();</span><br><span class="line">			b = input.nextInt();</span><br><span class="line">			c = input.nextInt();</span><br><span class="line">			mint[i] = search(a, b, c, num);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++) &#123;</span><br><span class="line">			System.out.println(mint[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		input.close();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c,<span class="keyword">int</span>[] num)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 提取数组,长度正确</span></span><br><span class="line">		<span class="keyword">int</span>[] subNum = <span class="keyword">new</span> <span class="keyword">int</span>[b+<span class="number">1</span>-a];</span><br><span class="line">		<span class="comment">// 赋值</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;subNum.length;i++) &#123;</span><br><span class="line">			subNum[i] = num[a++-<span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;subNum.length;i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;subNum.length-i;j++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(subNum[j]&lt;subNum[j+<span class="number">1</span>]) &#123;</span><br><span class="line">					<span class="keyword">int</span> temp = subNum[j];</span><br><span class="line">					subNum[j] = subNum[j+<span class="number">1</span>];</span><br><span class="line">					subNum[j+<span class="number">1</span>] = temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> subNum[c-<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这道题的思路就是将要求k大值的区间提取出来放到一个新的数组里面，中间赋值的时候要注意两边数组的开始下标不是一样的，另外要分清++i和i++。<br>经验教训：</p>
+<ol>
+<li>当代码量比较大的时候，最好使用方法去分步骤实现。这样比较容易找到自己的错误在哪。</li>
+<li>++i和i++要熟练分清。</li>
+<li>不要写出超过三层for循环的代码，即使能够实现功能，但是效率太慢。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/BASIC-13-数列排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/BASIC-13-数列排序/" itemprop="url">BASIC-13 数列排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:11:17+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E6%95%B0%E5%88%97%E6%8E%92%E5%BA%8F.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTheColumns</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		<span class="keyword">int</span>[] num = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			num[i] = input.nextInt();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 冒泡排序只需要循环n-1次</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">			<span class="comment">// 外层循环每次循环完之后已经将最大的数字排到数组的后面，所以只需要循环n-i次了</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n-i;j++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(num[j]&gt;num[j+<span class="number">1</span>]) &#123;</span><br><span class="line">					<span class="keyword">int</span> temp = num[j];</span><br><span class="line">					num[j] = num[j+<span class="number">1</span>];</span><br><span class="line">					num[j+<span class="number">1</span>] = temp;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			System.out.print(num[i]+<span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>好惭愧啊，都大三了，写个冒泡排序还这个吃力，再次遇到冒泡排序，总结一下。<br>冒泡排序总共分成两层，外层控制的循环的次数，且每次循环完之后会将最大的或者最小的那个数放到数组的最后面，内层循环控制的是每两个数进行比较，因为外层循环完之后找到了最大的或者最小的那个数之后，内层循环就不需要再去比较了，因此只需要比较n-i次就可以了。<br>再错打脸。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/BASIC-12-十六进制转八进制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/BASIC-12-十六进制转八进制/" itemprop="url">BASIC-12 十六进制转八进制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:06:07+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lqb.grounding;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HexToOctal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		String[] str = <span class="keyword">new</span> String[n];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			str[i] = input.next();</span><br><span class="line">		&#125;</span><br><span class="line">		input.close();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			String strBinary = toBinary(str[i]);</span><br><span class="line">			<span class="comment">// 不满足三的倍数补全位数</span></span><br><span class="line">			<span class="keyword">int</span> len_strBin = strBinary.length();</span><br><span class="line">			<span class="keyword">if</span>(len_strBin%<span class="number">3</span> ==<span class="number">1</span>) &#123;</span><br><span class="line">				strBinary = <span class="string">"00"</span> + strBinary;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(len_strBin%<span class="number">3</span>==<span class="number">2</span>) &#123;</span><br><span class="line">				strBinary = <span class="string">"0"</span> + strBinary;</span><br><span class="line">			&#125;</span><br><span class="line">			String strOctal = toOctal(strBinary);</span><br><span class="line">			System.out.println(strOctal);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">/*Scanner input = new Scanner(System.in);</span></span><br><span class="line"><span class="comment">		int n = input.nextInt();</span></span><br><span class="line"><span class="comment">		String[] str = new String[n];</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			str[i] = input.next();</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		String[] binaryStr = new String[n];</span></span><br><span class="line"><span class="comment">		// 先将16进制转化为2进制</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			char[] c = str[i].toCharArray();</span></span><br><span class="line"><span class="comment">			StringBuilder strBuilder = new StringBuilder("");</span></span><br><span class="line"><span class="comment">			for(int j=0;j&lt;c.length;j++) &#123;</span></span><br><span class="line"><span class="comment">				switch(c[j]) &#123;</span></span><br><span class="line"><span class="comment">				case '0':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0000");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '1':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0001");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '2':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0010");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '3':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0011");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '4':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0100");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '5':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0101");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '6':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0110");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '7':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0111");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '8':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1000");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '9':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1001");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'A':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1010");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'B':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1011");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'C':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1100");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'D':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1101");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'E':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1110");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'F':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1111");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				default:</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">				binaryStr[i] = strBuilder.toString();</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		// 判断长度是不是3的倍数</span></span><br><span class="line"><span class="comment">		for(int i = 0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			if(binaryStr[i].length()%3==1) &#123;</span></span><br><span class="line"><span class="comment">				binaryStr[i]="00"+binaryStr[i];</span></span><br><span class="line"><span class="comment">			&#125;else if(binaryStr[i].length()%3==2)&#123;</span></span><br><span class="line"><span class="comment">				binaryStr[i]="0"+binaryStr[i];</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		// 将2进制转化为8进制</span></span><br><span class="line"><span class="comment">		long[] octNum = new long[n];</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			// 将二进制数分成三个数一组的字符数组</span></span><br><span class="line"><span class="comment">			String[] octStr = new String[binaryStr[i].length()/3];</span></span><br><span class="line"><span class="comment">			// 拆分二进制数填入数组</span></span><br><span class="line"><span class="comment">			for(int j = 1;j&lt;=binaryStr[i].length();j++) &#123;</span></span><br><span class="line"><span class="comment">				if(j%3==0) &#123;</span></span><br><span class="line"><span class="comment">					octStr[j/3-1] = binaryStr[i].substring(j-3, j);</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			StringBuilder octBuilder = new StringBuilder();</span></span><br><span class="line"><span class="comment">			for(int k=0;k&lt;octStr.length;k++) &#123;</span></span><br><span class="line"><span class="comment">				if("000".equals(octStr[k])) &#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("0");</span></span><br><span class="line"><span class="comment">				&#125;else if("001".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("1");</span></span><br><span class="line"><span class="comment">				&#125;else if("010".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("2");</span></span><br><span class="line"><span class="comment">				&#125;else if("011".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("3");</span></span><br><span class="line"><span class="comment">				&#125;else if("100".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("4");</span></span><br><span class="line"><span class="comment">				&#125;else if("101".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("5");</span></span><br><span class="line"><span class="comment">				&#125;else if("110".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("6");</span></span><br><span class="line"><span class="comment">				&#125;else if("111".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("7");</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			octNum[i]=Integer.parseInt(octBuilder.toString());</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		for(int i = 0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			System.out.println(octNum[i]);</span></span><br><span class="line"><span class="comment">		&#125;*/</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toBinary</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len_str = str.length();</span><br><span class="line">		StringBuffer stb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len_str;i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span>(str.charAt(i)) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'0'</span>:</span><br><span class="line">				stb.append(<span class="string">"0000"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'1'</span>:</span><br><span class="line">				stb.append(<span class="string">"0001"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'2'</span>:</span><br><span class="line">				stb.append(<span class="string">"0010"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'3'</span>:</span><br><span class="line">				stb.append(<span class="string">"0011"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'4'</span>:</span><br><span class="line">				stb.append(<span class="string">"0100"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'5'</span>:</span><br><span class="line">				stb.append(<span class="string">"0101"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'6'</span>:</span><br><span class="line">				stb.append(<span class="string">"0110"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'7'</span>:</span><br><span class="line">				stb.append(<span class="string">"0111"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'8'</span>:</span><br><span class="line">				stb.append(<span class="string">"1000"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'9'</span>:</span><br><span class="line">				stb.append(<span class="string">"1001"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">				stb.append(<span class="string">"1010"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">				stb.append(<span class="string">"1011"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">				stb.append(<span class="string">"1100"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">				stb.append(<span class="string">"1101"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">				stb.append(<span class="string">"1110"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">				stb.append(<span class="string">"1111"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> stb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toOctal</span><span class="params">(String strBinary)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len = strBinary.length();</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		StringBuffer stb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">if</span>(strBinary.substring(<span class="number">0</span>, <span class="number">3</span>).equals(<span class="string">"000"</span>)) &#123;</span><br><span class="line">			k = <span class="number">3</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			k = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = k;i&lt;len - <span class="number">2</span>;i+=<span class="number">3</span>) &#123;</span><br><span class="line">			<span class="keyword">switch</span>(strBinary.substring(i,i+<span class="number">3</span>)) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"000"</span>:</span><br><span class="line">				stb.append(<span class="string">"0"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"001"</span>:</span><br><span class="line">				stb.append(<span class="string">"1"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"010"</span>:</span><br><span class="line">				stb.append(<span class="string">"2"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"011"</span>:</span><br><span class="line">				stb.append(<span class="string">"3"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"100"</span>:</span><br><span class="line">				stb.append(<span class="string">"4"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"101"</span>:</span><br><span class="line">				stb.append(<span class="string">"5"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"110"</span>:</span><br><span class="line">				stb.append(<span class="string">"6"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"111"</span>:</span><br><span class="line">				stb.append(<span class="string">"7"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> stb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>先来解释一下为什么16进制的1位数字等于二进制的4位。<br>因为16进制数的进率是16，二进制的进率是2，16是2的4次方，所以二进制数需要连续进位4次才能等效于16进制数进位1次。<br>所以同样的推理可以得到8进制的1位数字等于2进制的3位。<br>这个题的思路如下：</p>
+<ol>
+<li>先用数组存储输入的16进制数。</li>
+<li>将16进制数转化为2进制数。</li>
+<li>如果2进制数不满足3的倍数，少2位就补”00”,少1位就补”0”.</li>
+<li>将2进制数转化为8进制数。</li>
+<li>去除前导0，输出8进制数。<br>经验教训：</li>
+<li>16进制转化为2进制和2进制转化为8进制都用方法表示会更好。</li>
+<li>打开了输入流记得关闭输入流，因为输入流是jvm无法通过垃圾回收机制回收的资源，只能自己显示通过close回收。</li>
+<li>java1.7的版本开始支持switch匹配字符串了，上课没听，哎，估计又打酱油去了。</li>
+<li>String字符串的单个字符扫描不需要将字符串转化为字符数组，只需要使用循环调用charAt(i)进行扫描即可。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/BASIC-11-十六进制转十进制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/BASIC-11-十六进制转十进制/" itemprop="url">BASIC-11 十六进制转十进制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:05:14+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%8D%81%E8%BF%9B%E5%88%B6.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HexadecimalToDecimal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		String str = input.next();</span><br><span class="line">		<span class="keyword">char</span>[] c = str.toCharArray();</span><br><span class="line">		<span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">long</span> num = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (n &lt; c.length) &#123;</span><br><span class="line">			<span class="keyword">char</span> d = c[n];</span><br><span class="line">			<span class="keyword">switch</span> (d) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">				num += <span class="number">10</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">				num += <span class="number">11</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">				num += <span class="number">12</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">				num += <span class="number">13</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">				num += <span class="number">14</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">				num += <span class="number">15</span> * Math.pow(<span class="number">16</span>, c.length - <span class="number">1</span> - n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				String e = String.valueOf(d);</span><br><span class="line">				<span class="keyword">int</span> f = Integer.parseInt(e);</span><br><span class="line">				num += f * Math.pow(<span class="number">16</span>, c.length -<span class="number">1</span>- n);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			n++;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(num);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>首先要知道16进制如何转化为10进制，16进制的范围为[0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F]，16进制数n转换为十进制数m时，先要将n拆成一个个单个字符，每一个字符代表的数乘以16的（位数-1）次方，最后在相加得到十进制数。</li>
+<li>当16进制数为FFFFFFFF时，如果使用int型去存储这个十进制数会出现精度丢失，所以需要使用长整形long去存储。注：长整形long初始化为0，后面加不加L对结果没有影响。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/BASIC-6-杨辉三角形/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/BASIC-6-杨辉三角形/" itemprop="url">BASIC-6 杨辉三角形</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:04:08+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目如图：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92%E5%BD%A2.png" alt=""><br>解题思路：</p>
+<ol>
+<li>找规律<ul>
+<li>从输入和输出格式来看，输入数为n,则为n行n列的二维数组</li>
+<li>每一行的第一个数和最后一个数都是1.</li>
+<li>从第三行开始，除开第一个数和最后一个数，中间所有的数，假设该数的坐标为[i,j]，都等于[i-1,j-1]+[i-1,j]的和。</li>
+</ul>
+</li>
+<li>写代码<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		<span class="keyword">int</span>[][] array = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);</span><br><span class="line">			System.out.print(<span class="number">1</span>+<span class="string">" "</span>+<span class="number">1</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			array[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			array[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			array[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(j==<span class="number">0</span>||j==n) &#123;</span><br><span class="line">						array[i][j]=<span class="number">1</span>;</span><br><span class="line">					&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">						array[i][j]=array[i-<span class="number">1</span>][j-<span class="number">1</span>]+array[i-<span class="number">1</span>][j];</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(array[i][j]!=<span class="number">0</span>) &#123;</span><br><span class="line">						System.out.print(array[i][j]+<span class="string">" "</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.println();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/谈谈-https-和-http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/谈谈-https-和-http/" itemprop="url">谈谈 https 和 http</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:02:46+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果需要传输敏感信息，比如密码什么的 http 协议不是一个好的协议。</p>
+<p>https:比 http 多了一个 s,这个 s 代表着 security（安全），全称叫做 安全套接字层超文本传输协议,https 在 http 上加入了 ssl 协议，而 ssl 协议依靠证书来验证服务器的身份，并且为浏览器和服务器之间的数据传输加密。</p>
+<p>https 协议的主要作用主要有两种：一种是建立一个信息安全通道，来保证数据传输的安全；另外一个就是确认网站的真实性。</p>
+<h2 id="https-和-http-的区别"><a href="#https-和-http-的区别" class="headerlink" title="https 和 http 的区别"></a>https 和 http 的区别</h2><ol>
+<li>https 协议需要到 ca 申请证书，一般免费证书较少，因而需要一定费用，（好像可以自己制作证书来着，但是要服务器端支持）括号内自动忽略就好，我记得在哪看到过。</li>
+<li>http 是超文本传输协议，信息 是明文传输，https 则是具有安全性的 ssl 加密传输协议。</li>
+<li>http 和 https 使用的两种不同的连接方式，使用的默认端口也是不一致的，http 使用的 80 端口，https 使用的 443 端口。</li>
+<li>http 的连接比较简单，是无状态的；https 协议则是使用 ssl + http 协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

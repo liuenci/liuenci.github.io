@@ -1,96 +1,1895 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block title %}{{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-{% set comment = false %}
-<div id="index" class="index">
-  {% for post in page.posts.toArray() %}
-  <article class="index-post card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="{{ config.author }}">
-        <meta itemprop="description" content="{{ config.description }}">
-        <meta itemprop="image" content="{{ url_for( theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="{{ config.title }}">
-      </span>
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="hello world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="cier">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="hello world">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cier">
+<meta name="twitter:description" content="hello world">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+
+
+
+
+
+  <title>cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ url_for(post.path) }}" itemprop="url">{{ post.title }}</a>
-      </h1>
-      <div class="post-meta">
-        {% if post.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if post.categories and post.categories.toArray().length %}
-        {% if post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in post.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if post.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if post.categories or post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(post.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ post.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      {% if post.excerpt  %}
-      {{ post.excerpt }}
-      {% elif post.description %}
-      {{ post.description }}
-      {% elif theme.auto_excerpt %}
-      {{ post.content.substring(0, theme.auto_excerpt) }}
-      {% else %}
-      {{ post.content }}
-      {% endif %}
-    </main>
-    <footer class="post-footer">
-      {% if post.tags and post.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in post.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% endfor %}
-  {% if page.prev or page.next %}
-  <nav class="pagination">
-    {{
-      paginator({
-        prev_text: "<i class=\"fas fa-angle-left\"></i>",
-        next_text: "<i class=\"fas fa-angle-right\"></i>",
-        mid_size: 1
-      })
-    }}
-  </nav>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
-{% endblock %}
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/双亲表示法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/双亲表示法/" itemprop="url">双亲表示法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:51:12+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h5><p>在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。</p>
+<p>顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。</p>
+<p>链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。</p>
+<p>因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完成树的表示。</p>
+<p>主流的树的存储方式有三种，分别为：双亲表示法、孩子表示法、孩子兄弟表示法。</p>
+<p>下面讲下双亲表示法。</p>
+<h5 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a>双亲表示法</h5><p>我们假设以一组连续空间来存储树的结点，同时在每一个结点中，附设一个指示器指向其双亲结点在数组中的位置，这种结构就称之为双亲表示法。</p>
+<p>核心代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E data; <span class="comment">// 数据域</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> parent; <span class="comment">// 双亲</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E data, <span class="keyword">int</span> parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h5><blockquote>
+<p>如何创建树</p>
+</blockquote>
+<p>树的基本元素有根节点与结点数，所以我们需要先初始化结点数组，然后在将根结点存储到数组的第一个位置中，也就是nodes[0]，最后将实际存在的结点加一即可。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">IParentalTreeImpl</span><span class="params">(E data, <span class="keyword">int</span> treeSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.treeSize = treeSize;</span><br><span class="line">        nodes = <span class="keyword">new</span> Node[treeSize];</span><br><span class="line">        nodes[<span class="number">0</span>] = <span class="keyword">new</span> Node&lt;E&gt;(data, -<span class="number">1</span>); <span class="comment">// 定义根节点</span></span><br><span class="line">        nodeNum++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如何添加结点</p>
+</blockquote>
+<p>首先我们需要知道新结点在数组中添加的位置是数组中第一个 nodes[i] == null 的 i 值处。然后我们需要知道新结点的双亲结点在数组中的位置，知道这两个之后我们才能进行添加新结点。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(E data, Node&lt;E&gt; parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nodes[i] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                nodes[i] = <span class="keyword">new</span> Node&lt;E&gt;(data, getPos(parent));</span><br><span class="line">                nodeNum++;</span><br><span class="line">                <span class="keyword">return</span>; <span class="comment">// 必须 return，不然循环会继续找到下一个 nodes[i] == null;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如何获取树的深度</p>
+</blockquote>
+<p>因为树是有很多分支的，我们预先不知道哪个分支才是深度最大的那个分支，所以我们需要遍历所有的分支然后进行比较才能得到树的深度。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDeepth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>; <span class="comment">// 用于记录节点的最大深度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize &amp;&amp; nodes[i] != <span class="keyword">null</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 初始化节点的深度</span></span><br><span class="line">            <span class="keyword">int</span> deepth = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// m 用于记录当前节点的双亲节点的位置</span></span><br><span class="line">            <span class="keyword">int</span> m = nodes[i].getParent();</span><br><span class="line">            <span class="comment">// 如果双亲节点存在，则向上继续搜索双亲节点</span></span><br><span class="line">            <span class="keyword">while</span> (m != -<span class="number">1</span> &amp;&amp; nodes[m] != <span class="keyword">null</span>) &#123;</span><br><span class="line">                m = nodes[m].getParent();</span><br><span class="line">                deepth++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (max &lt; deepth) &#123;</span><br><span class="line">                max = deepth;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="如何获取源代码"><a href="#如何获取源代码" class="headerlink" title="如何获取源代码"></a>如何获取源代码</h5><p>上面对树的一些核心操作进行了讲解，还有一些小功能因为比较简单就不进行详解了，有兴趣的同学可以前往我的 Github 进行克隆学习。</p>
+<p>我的 github 地址为：<a href="https://github.com/liuenci/Data-Structure.git" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure.git</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/数据结构-栈-顺序结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/数据结构-栈-顺序结构/" itemprop="url">数据结构-栈-顺序结构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:50:28+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="什么是栈"><a href="#什么是栈" class="headerlink" title="什么是栈"></a>什么是栈</h4><p>栈是一种特殊的线性表，但是只允许在表尾进行插入和删除。相对于普遍意义上的线性表来说，实现要简单不少，不过这里我们还要知道栈的几个关键的概念。</p>
+<h4 id="栈的关键点"><a href="#栈的关键点" class="headerlink" title="栈的关键点"></a>栈的关键点</h4><p>我们把允许插入和删除的一端称为栈顶(top),另一端称为栈底(bottom);不含任何数据元素的栈称为空栈。<br>栈又称为后进先出(Last In First Out)的线性表，简称为LIFO结构。</p>
+<h4 id="关于栈的插入和删除"><a href="#关于栈的插入和删除" class="headerlink" title="关于栈的插入和删除"></a>关于栈的插入和删除</h4><p>栈的插入操作，叫做进栈，也称压栈、入栈。<br>栈的删除操作，叫做出栈，也称弹栈。</p>
+<h4 id="栈的顺序结构实现"><a href="#栈的顺序结构实现" class="headerlink" title="栈的顺序结构实现"></a>栈的顺序结构实现</h4><p>在我的前几篇文章中，说到线性表有两种实现方式，一种是顺序结构，一种是链式结构。而我们的栈作为一种特殊的线性表，因而也具有这两种实现方式，这里我们详细讲述栈的顺序结构的实现。</p>
+<h5 id="先来一个接口-ISequenceStack"><a href="#先来一个接口-ISequenceStack" class="headerlink" title="先来一个接口 ISequenceStack"></a>先来一个接口 ISequenceStack</h5><p>这段时间自己写数据结构的代码，特别中意接口，以前一直不怎么写接口的，现在发现写接口特别有利于自己的代码规范，写接口就像自己高中写作文列提纲一样，你知道自己该写哪些内容，所以我建议大家都好好学习写接口。<br>这里的接口主要为了规范 push(压栈) 和 pop(出栈)操作，辅助操作有 getTop()(得到栈顶元素) 和 isEmpty()(栈的判空操作)。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISequenceStack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">getTop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="接口实现类-SequenceStackImpl"><a href="#接口实现类-SequenceStackImpl" class="headerlink" title="接口实现类 SequenceStackImpl"></a>接口实现类 SequenceStackImpl</h5><p>接口实现类主要包括一个栈的初始化(init()),压栈(push())，以及出栈(pop())。<br>栈的初始化：<br>栈的实现需要一个数组作为依托，所以需要将数组实例化。此外，我们需要一个栈顶指针，表明栈顶所在的位置。<br>核心代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.maxSize = size;</span><br><span class="line">        top = -<span class="number">1</span>;</span><br><span class="line">        stack = <span class="keyword">new</span> Object[size];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>压栈：<br>压栈就是在这个栈中插入数据的过程，所以先要判断栈是否已经满了，如果满了则返回并且输出错误警告信息。<br>如果栈不满，将 top 指针后移，再将数据插入。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( top == maxSize) &#123;</span><br><span class="line">            System.out.println(<span class="string">"栈已满"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        top++;</span><br><span class="line">        stack[top] = obj;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>出栈：<br>出栈就是在这个栈中删除数据的过程，所以先要判断该栈是否为空，如果为空则返回 null，并且输出错误警告信息。<br>如果不为空，则将该结点设置为 null，然后 top 指针前移。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Object obj = stack[top];</span><br><span class="line">        stack[top] = <span class="keyword">null</span>;</span><br><span class="line">        top--;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="栈的测试类"><a href="#栈的测试类" class="headerlink" title="栈的测试类"></a>栈的测试类</h5><p>栈的测试类比较简单，主要是测试栈的实现类中每一个方法是否可用，以及边界条件下测试栈会不会报异常。这里就不贴源代码占篇幅了，想要了解详情的可以去我的 github 上面查看数据结构全部的源代码。</p>
+<h4 id="项目源码获取地址"><a href="#项目源码获取地址" class="headerlink" title="项目源码获取地址"></a>项目源码获取地址</h4><p>github:<a href="https://github.com/liuenci/Data-Structure" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure</a>.<br>觉得可以的同学可以点一波 Star 再走啊。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/数据结构-栈-链式结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/数据结构-栈-链式结构/" itemprop="url">数据结构-栈-链式结构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:48:58+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在我的前一篇文章中讲述了栈的顺序结构，这篇文章将带大家实现栈的链式结构。</p>
+<h4 id="什么是栈的链式结构"><a href="#什么是栈的链式结构" class="headerlink" title="什么是栈的链式结构"></a>什么是栈的链式结构</h4><p>栈的顺序结构需要依托于数组来实现，而栈的链式结构则不需要依托于数组，而是在每个结点中存放一个指针域，这个指针域指向这个结点的直接后继，这种依次链接并且插入和删除结点只允许在栈顶进行就叫做栈的链式结构。<br>栈的链式结构也叫做链栈。</p>
+<h4 id="从链表进化为链栈"><a href="#从链表进化为链栈" class="headerlink" title="从链表进化为链栈"></a>从链表进化为链栈</h4><p>栈只是栈顶来做插入和删除操作，栈顶放在链表的头部还是尾部呢？由于单链表有头指针，而栈顶指针也是必须的，那干嘛不让它俩合二为一呢，所以比较好的办法是把链顶放在单链表的头部。另外，都已经有了栈顶在头部了，单链表中比较常用的头结点也就失去了意义，通常对于链栈来说，是不需要头结点的。</p>
+<h4 id="如何实现链栈"><a href="#如何实现链栈" class="headerlink" title="如何实现链栈"></a>如何实现链栈</h4><h5 id="结点类-Node"><a href="#结点类-Node" class="headerlink" title="结点类 Node"></a>结点类 Node</h5><p>由于链栈也是由一个个的结点组成,所以结点类是少不了的，每个结点包括两个部分，一个数据域，一个指针域。<br>数据域存储要处理的数据，指针域存储当前结点的直接后继的引用。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object element; <span class="comment">// 数据域</span></span><br><span class="line">    <span class="keyword">private</span> Node next; <span class="comment">// 指针域</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="接口-ILinkedStack"><a href="#接口-ILinkedStack" class="headerlink" title="接口 ILinkedStack"></a>接口 ILinkedStack</h5><p>这个接口和我写的栈的顺序结构的接口一，一模一样。关键还是规范入栈和出栈操作，辅助实现一个获取栈顶元素以及判空操作。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILinkedStack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Object object)</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">getTop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="接口实现类-LinkedStackImpl"><a href="#接口实现类-LinkedStackImpl" class="headerlink" title="接口实现类 LinkedStackImpl"></a>接口实现类 LinkedStackImpl</h5><p>链栈初始化：链栈的初始化只需要将链顶引用 head 赋值为空并且将链栈的大小 size 赋值为 0 即可完成初始化。<br>入栈：因为链栈没有大小限制，不像顺序栈需要考虑数组预先分配的大小，所以在入栈只需要将插入的结点的指针域指向当前的栈顶指针，再将栈顶指针指向插入的新的结点，最后将链栈的大小更新。<br>出栈：出栈的话还是需要判断当前的链栈是否为空，如果为空栈当然就不能删除结点了，如果为空栈则需要输出错误警告信息，并且返回 null；如果不为空则需要将栈顶指针指向当前栈顶的下一个结点，并且将链栈的大小更新。<br>判空：判断当前链栈是否为空只需要判断 head == null 为 true 还是 false 即可。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedStackImpl</span> <span class="keyword">implements</span> <span class="title">ILinkedStack</span> </span>&#123;</span><br><span class="line">    Node head; <span class="comment">// 栈顶指针</span></span><br><span class="line">    <span class="keyword">int</span> size; <span class="comment">// 结点的个数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LinkedStackImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        head = <span class="keyword">null</span>;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object object)</span> </span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(object,head);</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Object object = head.getElement();</span><br><span class="line">        head = head.getNext();</span><br><span class="line">        size--;</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getTop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head.getElement();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="测试类-LinkedStackTest"><a href="#测试类-LinkedStackTest" class="headerlink" title="测试类 LinkedStackTest"></a>测试类 LinkedStackTest</h5><p>测试类比较简单，无非是按照初始化链栈，进行入栈，再进行出栈操作，测试每一个方法是否正确，这里就不贴代码了，想了解详情的可以查看我的 github 地址，上面有所有的用 Java 写的数据结构的代码。</p>
+<h4 id="项目源码获取方式"><a href="#项目源码获取方式" class="headerlink" title="项目源码获取方式"></a>项目源码获取方式</h4><p>github 地址：<a href="https://github.com/liuenci/Data-Structure。" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure。</a><br>有兴趣的同学点个 Star 再走啊。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/算法时间复杂度判断/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/算法时间复杂度判断/" itemprop="url">算法时间复杂度判断</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:47:22+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在判断时间复杂度之间，我们需要知道什么是如何推导大O阶方法。</p>
+<blockquote>
+<p>推导大O阶方法的步骤</p>
+<ol>
+<li>用常数1取代运行时间中的所有加法常数。</li>
+<li>在修改后的运行次数函数中，只保留最高阶项。</li>
+<li>如果最高阶项存在且不是1，则去除与这个项相乘的常数</li>
+</ol>
+</blockquote>
+<p>经过上面三步得到的结果就是大O阶，下面讲解几种常见的时间复杂度的判断。</p>
+<blockquote>
+<p>常数阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>,n = <span class="number">100</span>; <span class="comment">// 执行一次</span></span><br><span class="line">sum = ( <span class="number">1</span> + n ) * n / <span class="number">2</span>; <span class="comment">// 执行一次</span></span><br><span class="line">System.out.println(sum); <span class="comment">// 执行一次</span></span><br></pre></td></tr></table></figure></p>
+<p>以上这个算法的运行次数函数是f(n) = 3;<br>现在根据推导大O阶的方法推导一下这个算法的时间复杂度。<br>首先将常数3变为1，然后保留最高阶项，但是这个算法没有最高阶项，所以它的时间复杂度就是O(1)。</p>
+<blockquote>
+<p>线性阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>很明显这个算法的循环次数为n，所以推导大O阶得到O(n)。</p>
+<blockquote>
+<p>对数阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (count &lt; n)&#123;</span><br><span class="line">    count = count * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为每次 count 乘以 2 之后，就距离 n 就更近了一份。因为 2 的 x 次方等于 n，得到时间复杂度 x = log2n (以 2 为底的 n 对数)。</p>
+<blockquote>
+<p>平方阶</p>
+</blockquote>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i,j;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">        System.out.println(i*j);   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于内循环是一个 O(n) 的时间复杂度，外层循环只不过是将内层循环再循环 n 次，所以时间复杂度为 O(n2)（n 的平方），因此可以总结出循环的时间复杂度等于循环体的复杂度乘以该循环运行的次数。</p>
+<p>总结常用的时间复杂度所耗费的时间从小到大依次是:<br>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n 平方) &lt; O(n 三次方) &lt; O(2 的 n 次方) &lt; O(n!) &lt; O(n 的 n 次方)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/解析-ROWID-和-ROWNUM-基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/" itemprop="url">解析 ROWID 和 ROWNUM 基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:46:09+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>oracle 中存在伪列这个说法，它就像一个表的列一样，但是它并不存储在表中，伪列可以从数据库中查出，但是无法对伪列进行更新，删除和插入。常用的伪列就有 ROWNUM 和 ROWID.</p>
+<h4 id="ROWNUM-伪列"><a href="#ROWNUM-伪列" class="headerlink" title="ROWNUM 伪列"></a>ROWNUM 伪列</h4><p>ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果集，然后再在结果集上加上一个伪列，伪列的作用就是在结果集中添加一个从 1 开始的序列号。例如以下 sql.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/rownum.png" alt=""></p>
+<p>通过结果可以看到如果我们需要获取某个数据集下的前 10 条数据的话就可以通过判断 rownum 的大小即可。例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept <span class="keyword">where</span> <span class="keyword">rownum</span> &lt;= <span class="number">10</span>;</span><br></pre></td></tr></table></figure></p>
+<p>由于 rownum 是先有结果集，再添加伪列，并且伪列都是从 1 开始的，所以以下语句会查不到任何结果。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept <span class="keyword">where</span> <span class="keyword">rownum</span> &gt;=<span class="number">2</span> <span class="keyword">and</span> <span class="keyword">rownum</span> &lt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
+<p>如果想要得到想要的结果，可以使用子查询的方法。例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">rownum</span> <span class="keyword">num</span>,deptno <span class="keyword">from</span> dept) <span class="keyword">where</span> <span class="keyword">num</span> &gt;=<span class="number">2</span> <span class="keyword">and</span> <span class="keyword">num</span> &lt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20180419093212.png" alt=""></p>
+<h4 id="ROWID-伪列"><a href="#ROWID-伪列" class="headerlink" title="ROWID 伪列"></a>ROWID 伪列</h4><p>ROWNUM 是物理上不存在的，但是 ROWID 是物理上存在的，它的作用是用来唯一标识一条记录物理位置的一个 ID,类似于 Java 中的一个对象的哈希码，都是为了标识对应对象的物理位置。</p>
+<p>利用 ROWID 的唯一特性，可以用 ROWID 来进行去重。<br>例如创建一个表：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> dept_bak <span class="keyword">AS</span> <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept;  </span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept_bak <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept;</span><br></pre></td></tr></table></figure></p>
+<p>查询表中的数据:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rowid</span>,dept_bak.* <span class="keyword">from</span> dept_bak;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/rowid.png" alt=""><br>最后利用 rowid 进行去重。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> dept_bak <span class="keyword">WHERE</span> <span class="keyword">ROWID</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> <span class="keyword">MIN</span>(<span class="keyword">ROWID</span>) <span class="keyword">FROM</span> dept_bak <span class="keyword">GROUP</span> <span class="keyword">BY</span> DEPTNO);</span><br></pre></td></tr></table></figure></p>
+<p>这样就完成了利用 rowid 的唯一特性去重了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/解析-Oracle-流程控制基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/解析-Oracle-流程控制基础/" itemprop="url">解析 Oracle 流程控制基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:45:07+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这篇文章简单的介绍一下一些 Oracle 中的流程控制怎么使用。</p>
+<h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  salary emp.sal%<span class="keyword">TYPE</span>;</span><br><span class="line">  empno_ emp.empno%TYPE;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  empno_ := &amp;请输入员工编号;</span><br><span class="line">  <span class="keyword">SELECT</span> sal <span class="keyword">INTO</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> empno = empno_;</span><br><span class="line">  IF salary &gt; 2000 THEN</span><br><span class="line">    dbms_output.put_line('土豪');</span><br><span class="line">  ELSIF salary BETWEEN 1000 AND 2000 THEN</span><br><span class="line">    dbms_output.put_line('小康');</span><br><span class="line">  ELSE</span><br><span class="line">    dbms_output.put_line('屌丝');</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="case-表达式"><a href="#case-表达式" class="headerlink" title="case 表达式"></a>case 表达式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CASE</span> grade</span><br><span class="line">  <span class="keyword">WHEN</span> <span class="number">1</span> <span class="keyword">THEN</span> <span class="string">'一级'</span></span><br><span class="line">  <span class="keyword">WHEN</span> <span class="number">2</span> <span class="keyword">THEN</span> <span class="string">'二级'</span></span><br><span class="line">  <span class="keyword">ELSE</span> <span class="string">'更高级'</span> <span class="keyword">END</span></span><br><span class="line"><span class="keyword">FROM</span> salgrade;</span><br></pre></td></tr></table></figure>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><h3 id="简单循环"><a href="#简单循环" class="headerlink" title="简单循环"></a>简单循环</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span> := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">LOOP</span></span><br><span class="line">    i := i + <span class="number">1</span>;</span><br><span class="line">    dbms_output.put_line(i);</span><br><span class="line">    EXIT WHEN i = 100;</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span> := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">WHILE</span> i &lt; <span class="number">100</span> <span class="keyword">LOOP</span></span><br><span class="line">    dbms_output.put_line(i);</span><br><span class="line">    i := i + 1;</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="数字式循环-for-in-n-m-loop"><a href="#数字式循环-for-in-n-m-loop" class="headerlink" title="数字式循环 for in n..m loop"></a>数字式循环 for in n..m loop</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span> := <span class="number">0</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">FOR</span> i <span class="keyword">IN</span> <span class="number">0.</span><span class="number">.100</span> <span class="keyword">LOOP</span></span><br><span class="line">    dbms_output.put_line(i);</span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="顺序语句"><a href="#顺序语句" class="headerlink" title="顺序语句"></a>顺序语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">  i <span class="built_in">INT</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  i := &amp;<span class="keyword">input</span>;</span><br><span class="line">  IF i = 2 THEN</span><br><span class="line">     GOTO label1;  </span><br><span class="line">  <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">  &lt;&lt;label1&gt;&gt; -- label1之后什么也不做需要运行 null 语句</span><br><span class="line">  NULL;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/解析-Oracle-中函数基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/解析-Oracle-中函数基础/" itemprop="url">解析 Oracle 中函数基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:43:59+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="什么是函数"><a href="#什么是函数" class="headerlink" title="什么是函数"></a>什么是函数</h4><p>函数就是一组 SQL 语句或者 PL/SQL 语句块的集合，同时可以返回执行结果。</p>
+<h4 id="函数语法"><a href="#函数语法" class="headerlink" title="函数语法"></a>函数语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">OR</span> <span class="keyword">REPLACE</span>] <span class="keyword">FUNCTION</span> function_name</span><br><span class="line"> (arg1 [ &#123; <span class="keyword">IN</span> | <span class="keyword">OUT</span> | <span class="keyword">IN</span> <span class="keyword">OUT</span> &#125;] type1 [<span class="keyword">DEFAULT</span> value1],</span><br><span class="line"> [arg2 [ &#123; <span class="keyword">IN</span> | <span class="keyword">OUT</span> | <span class="keyword">IN</span> <span class="keyword">OUT</span> &#125;] type2 [<span class="keyword">DEFAULT</span> value1]],</span><br><span class="line"> ......</span><br><span class="line"> [argn [ &#123; <span class="keyword">IN</span> | <span class="keyword">OUT</span> | <span class="keyword">IN</span> <span class="keyword">OUT</span> &#125;] typen [<span class="keyword">DEFAULT</span> valuen]])</span><br><span class="line"> [ <span class="keyword">AUTHID</span> DEFINER | <span class="keyword">CURRENT_USER</span> ]</span><br><span class="line"><span class="keyword">RETURN</span> return_type</span><br><span class="line"> <span class="keyword">IS</span> | <span class="keyword">AS</span></span><br><span class="line">    &lt;类型.变量的声明部分&gt;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    执行部分</span><br><span class="line">    <span class="keyword">RETURN</span> expression</span><br><span class="line"><span class="keyword">EXCEPTION</span></span><br><span class="line">    异常处理部分</span><br><span class="line"><span class="keyword">END</span> function_name;</span><br></pre></td></tr></table></figure>
+<h4 id="如何创建函数"><a href="#如何创建函数" class="headerlink" title="如何创建函数"></a>如何创建函数</h4><p>下面是一个求阶乘的函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">function</span> jiecheng(n <span class="built_in">int</span>) <span class="keyword">return</span> <span class="built_in">int</span> <span class="keyword">is</span></span><br><span class="line">num_ <span class="built_in">int</span> := <span class="number">1</span>;</span><br><span class="line">i int;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span> .. n <span class="keyword">loop</span></span><br><span class="line">    num_:=num_*i;</span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">loop</span>;</span><br><span class="line">  return num_;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure></p>
+<p>然后执行函数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> jiecheng(<span class="number">5</span>) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure></p>
+<h4 id="函数如何调用"><a href="#函数如何调用" class="headerlink" title="函数如何调用"></a>函数如何调用</h4><p>函数声明时所定义的参数叫做形参，然后调用函数时传进去的值成为实参。调用函数一般有以下三种方法向函数传递参数：</p>
+<ol>
+<li>位置表示法，就是严格按照形参的声明顺序来进行调用，例如函数：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">function</span> function_name(a <span class="built_in">int</span>,b varchar2(<span class="number">10</span>),c <span class="built_in">number</span>(<span class="number">4</span>,<span class="number">2</span>)) ..</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>那么调用就必须按照 abc 的顺序来进行调用。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function_name(1,'test',3.2)</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li><p>名称表示法<br>这种表示法对次序没有要求，但是对参数之间的对应有要求，具体格式如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function_name(a =&gt; 1,b =&gt; 'test',c =&gt; 3.2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组合传递法<br>这种方式就是同时调用位置表示法和名称表示法为函数传递参数。这种表示法的要求就是，只要其中有一个参数使用名称表示法，那么后面的参数都需要使用名称表示法。具体格式如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function_name(1,b=&gt;'test',c=&gt;3.2)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="关于参数的-IN-OUT-IN-OUT-以及-函数参数默认值"><a href="#关于参数的-IN-OUT-IN-OUT-以及-函数参数默认值" class="headerlink" title="关于参数的 IN,OUT,IN OUT 以及 函数参数默认值"></a>关于参数的 IN,OUT,IN OUT 以及 函数参数默认值</h4><p>IN,OUT,IN OUT 都是形参的模式，如果省略，那么则都是 IN 输入模式，这种模式只能输入，也就是只能读不能写，而 OUT 则相反，只能输出，不能输入，也就是只能写，不能读，IN OUT 则是既能读又能写。</p>
+<p>函数参数的默认值在创建函数的时候就已经确立，在函数调用时没有提供实参的情况下会使用默认值，当提供实参时会使用实际值，只能为输入参数提供默认值，而不能为 OUT 和 IN OUT 提供默认值。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/oracle-登录账户的几种方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/oracle-登录账户的几种方法/" itemprop="url">oracle 登录账户的几种方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:42:58+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>登录scott账户分开输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conn scott/tiger</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show user</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>登录sysdba账户输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys as sysdba;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>不用口令直接回车</p>
+<blockquote>
+<p>在网页中登录企业管理器</p>
+</blockquote>
+<p>在网页中输入<a href="https://localhost:5500/em" target="_blank" rel="noopener">https://localhost:5500/em</a> 进入企业管理器<br>用户名输入 ：sys<br>新装的oracle如果没有改过sys的密码需要先登录sys，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user sys identified by tiger;</span><br></pre></td></tr></table></figure></p>
+<p>tiger可以换成你想要的密码<br>最后在企业管理器登录界面输入你改过的密码。</p>
+<blockquote>
+<p>使用system账户登录oracle</p>
+</blockquote>
+<p>用户名是:system<br>密码是scott账户设置的密码，如果你的密码不是的话，可以用sys登录oracle再输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user system identified by tiger;</span><br></pre></td></tr></table></figure></p>
+<p>tiger可以换成你想要的密码。<br>最后登录.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/oracle-设置自增序列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/oracle-设置自增序列/" itemprop="url">oracle 设置自增序列</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:41:47+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>oracle和mysql的自增区别</p>
+</blockquote>
+<p>mysql自增使用的是auto increment，但是oracle中需要使用序列配合触发器来实现自增。</p>
+<blockquote>
+<p>步骤1:创建表</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table classroom</span><br><span class="line">(</span><br><span class="line">c_id NUMBER(4) not null primary key,</span><br><span class="line">c_address VARCHAR2(10) not null,</span><br><span class="line">c_count NUMBER(2) not null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>步骤2：创建序列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create sequence class_id_increment</span><br><span class="line">INCREMENT by 1</span><br><span class="line">start with 1001</span><br><span class="line">maxvalue 1999</span><br><span class="line">nocycle</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>步骤3：创建触发器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create TRIGGER class_id_trigger</span><br><span class="line">before insert on classroom for each row when (new.c_id is null)</span><br><span class="line">BEGIN</span><br><span class="line">SELECT class_id_increment.nextval into :new.c_id from dual;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>步骤4：插入语句测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into classroom VALUES(1001,&apos;101&apos;,50);</span><br><span class="line">INSERT into classroom(c_address,c_count) VALUES(&apos;102&apos;,60);</span><br><span class="line">INSERT into classroom(c_address,c_count) VALUES(&apos;103&apos;,70);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>以上的插入语句中后两条在不插入主键的情况下，使用序列和触发器完成了主键编号自增。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/oracle-总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/oracle-总结/" itemprop="url">oracle 总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:40:50+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter session set nls_date_format = &quot;YYYY-MM-DD&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table XSB</span><br><span class="line">(</span><br><span class="line">学号 CHAR(6) NOT NULL PRIMARY KEY,</span><br><span class="line">姓名 CHAR(8) NOT NULL,</span><br><span class="line">性别 CHAR(2char) DEFAULT &apos;男&apos; NOT NULL,</span><br><span class="line">出生时间 date NOT NULL,</span><br><span class="line">专业 char(12) null,</span><br><span class="line">总学分 number(2) null,</span><br><span class="line">备注 varchar2(200) null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列的约束主要有五种:not null,unique,primary key ,reference table,check.分别是非空，唯一，主键，外键，检查约束。</p>
+</li>
+<li><p>如何创建一个表的备份表,表后面可以加where条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table xs_jsj as select * from xsb where 专业=&apos;计算机&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加表的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (奖学金等级 number(1),等级说明 varchar2(40) default &apos;奖金1000元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj modify (等级说明 default &apos;奖金800元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj drop column 奖学金等级</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表创建主键，注意主键的名字不能是单引号包裹，单引号会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (constraint &quot;pk_jsj&quot; primary key(学号))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table xs_jsj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>insert into语句可以将一个表中的数据插入进另外一张表中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into xsb1 select 学号 姓名 专业 from xsb where 姓名 = &apos;王林&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>merge关键字的使用,下面这段代码的意思是如果学号匹配，就把a表中的数据更新成XSB中的数据,如果不匹配，那就插入这条记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">merge into A </span><br><span class="line">using xsb on (a.xh=xsb.学号)</span><br><span class="line">when matched </span><br><span class="line">  then update set a.xm = xsb.姓名,a.xb=xsb.性别,a.cssj=xsb.出生时间,a.zy=xsb.专业,a.zxf=xsb.总学分,a.bz=xsb.备注</span><br><span class="line">when not matched</span><br><span class="line">  then insert values(xsb.学号,xsb.姓名,xsb.性别,xsb.出生时间,xsb.专业,xsb.总学分,xsb.备注);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空值的比较</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from cp where 备注 is not null</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>all关键字的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from xsb where 出生时间 &lt; all (select 出生时间 from xsb where 专业=&apos;计算机&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EXISTS子查询，EXISTS谓词用于测试子查询的结果是否为空表，若子查询的结果集不为空，则exists返回true，否则返回false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 姓名 from xsb where exists (select * from cjb where 学号 = xsb.学号 and 课程号 = &apos;206&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在写存储过程代码遇到一个如何执行存储过程的问题，算是一个小坑，我先贴上代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--查询某人的总学分</span><br><span class="line">create or replace procedure update_info (vxh in char) as</span><br><span class="line">xf number;</span><br><span class="line">begin</span><br><span class="line">  select zxf into xf from xsb where xh = vxh and rownum = 1;</span><br><span class="line">  if xf&gt;50 then</span><br><span class="line">    update xsb set bz = &apos;三好学生&apos; where xh = vxh;</span><br><span class="line">  else</span><br><span class="line">    update xsb set bz = &apos;三差学生&apos; where xh = vxh;</span><br><span class="line">  end if;</span><br><span class="line">end;</span><br><span class="line">--执行存储过程</span><br><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行存储过程的时候我最开始用的代码是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh&gt;=&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>仔细看书上我发现存储过程的赋值是这样的是使用的 ‘=&gt;’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

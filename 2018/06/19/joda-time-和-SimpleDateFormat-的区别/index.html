@@ -1,98 +1,689 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
-{% endblock %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-<div id="post" class="post">
-  {% set post = page %}
-  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ config.author }}">
-       <meta itemprop="description" content="{{ config.description }}">
-       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ config.title }}">
-      </span>
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="并发," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考链接：http://jjhpeopl.iteye.com/blog/2321528  joda-date和SimpleDateFormat的相同点两者都是对日期的格式化操作。 joda-date和SimpleDateFormat的不同点joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 C">
+<meta name="keywords" content="并发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="joda-time 和 SimpleDateFormat 的区别">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/joda-time-和-SimpleDateFormat-的区别/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="参考链接：http://jjhpeopl.iteye.com/blog/2321528  joda-date和SimpleDateFormat的相同点两者都是对日期的格式化操作。 joda-date和SimpleDateFormat的不同点joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 C">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-19T06:28:42.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="joda-time 和 SimpleDateFormat 的区别">
+<meta name="twitter:description" content="参考链接：http://jjhpeopl.iteye.com/blog/2321528  joda-date和SimpleDateFormat的相同点两者都是对日期的格式化操作。 joda-date和SimpleDateFormat的不同点joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 C">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/19/joda-time-和-SimpleDateFormat-的区别/"/>
+
+
+
+
+
+  <title>joda-time 和 SimpleDateFormat 的区别 | cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <div class="post-meta">
-        {% if page.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if page.categories and page.categories.toArray().length %}
-        {% if page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in page.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if page.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if page.categories or page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      {{ page.content }}
-    </main>
-    <footer class="post-footer">
-      {% if theme.alipay or theme.wechatpay %}
-      {% include "reward.njk" %}
-      {% endif %}
-      {% if page.tags and page.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in page.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% if theme.reward %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
-      {% if page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
-      {% endif %}
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/joda-time-和-SimpleDateFormat-的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">joda-time 和 SimpleDateFormat 的区别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-19T14:28:02+08:00">
+                2018-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考链接：<a href="http://jjhpeopl.iteye.com/blog/2321528" target="_blank" rel="noopener">http://jjhpeopl.iteye.com/blog/2321528</a></p>
+</blockquote>
+<h4 id="joda-date和SimpleDateFormat的相同点"><a href="#joda-date和SimpleDateFormat的相同点" class="headerlink" title="joda-date和SimpleDateFormat的相同点"></a>joda-date和SimpleDateFormat的相同点</h4><p>两者都是对日期的格式化操作。</p>
+<h4 id="joda-date和SimpleDateFormat的不同点"><a href="#joda-date和SimpleDateFormat的不同点" class="headerlink" title="joda-date和SimpleDateFormat的不同点"></a>joda-date和SimpleDateFormat的不同点</h4><p>joda-date 是线程安全的，SimpleDateFormat是线程不安全的，如果多个线程同时操作一个 SimpleDateFormat 实例，就会对 Calendar 的赋值进行覆盖，进而产生问题。</p>
+<p>joda-date 依赖于第三方的 maven 配置，具体配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?--&gt; &lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;joda-time&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.9.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>SimpleDateFormat不依赖于第三方包，直接 jdk 支持。</p>
+<h5 id="如何解决-SimpleDateFormat-在高并发情况下的时间处理问题"><a href="#如何解决-SimpleDateFormat-在高并发情况下的时间处理问题" class="headerlink" title="如何解决 SimpleDateFormat 在高并发情况下的时间处理问题"></a>如何解决 SimpleDateFormat 在高并发情况下的时间处理问题</h5><ol>
+<li><p>在每次需要使用的时候，进行SimpleDateFormat实例的创建，这种方式会导致创建一些对象实例，占用一些内存，不建议这样使用。</p>
+</li>
+<li><p>使用同步的方式，在调用方法的时候加上synchronized，这样可以让线程调用方法时，进行加锁，也就是会造成线程间的互斥，对性能影响比较大。</p>
+</li>
+<li><p>使用ThreadLocal进行保存，相当于一个线程只会有一个实例，进而减少了实例数量，也防止了线程间的互斥，推荐使用这种方式。</p>
+</li>
+</ol>
+
+      
     </div>
-    <div class="post-nav-prev post-nav-item">
-      {% if page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
-      {% endif %}
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/并发/" rel="tag"># 并发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/19/博客项目总结/" rel="next" title="博客项目总结">
+                <i class="fa fa-chevron-left"></i> 博客项目总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/19/Spring-Bean-的三种实例化方式/" rel="prev" title="Spring Bean 的三种实例化方式">
+                Spring Bean 的三种实例化方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#joda-date和SimpleDateFormat的相同点"><span class="nav-number">1.</span> <span class="nav-text">joda-date和SimpleDateFormat的相同点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#joda-date和SimpleDateFormat的不同点"><span class="nav-number">2.</span> <span class="nav-text">joda-date和SimpleDateFormat的不同点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何解决-SimpleDateFormat-在高并发情况下的时间处理问题"><span class="nav-number">2.1.</span> <span class="nav-text">如何解决 SimpleDateFormat 在高并发情况下的时间处理问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
 </div>
-{% endblock %}
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

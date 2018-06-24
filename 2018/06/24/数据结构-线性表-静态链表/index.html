@@ -1,98 +1,704 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
-{% endblock %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-<div id="post" class="post">
-  {% set post = page %}
-  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ config.author }}">
-       <meta itemprop="description" content="{{ config.description }}">
-       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ config.title }}">
-      </span>
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,线性表," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是静态链表在我公众号上一篇文章中实现了单链表的基本操作，创建单链表的过程就是一个动态生成链表的过程，即从”空表”的初始状态起，依次建立各元素结点，并逐个插入链表中。而静态链表就是单链表和数组的结合。首先我们让数组的元素都是由两个数据域组成，data 和 cursor。也就是说数组的每个下标都对应一个 data 和 cursor。数据域 data,用来存放数据元素，也就是通常我们要处理的数据；而">
+<meta name="keywords" content="数据结构,线性表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-线性表-静态链表">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/数据结构-线性表-静态链表/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="什么是静态链表在我公众号上一篇文章中实现了单链表的基本操作，创建单链表的过程就是一个动态生成链表的过程，即从”空表”的初始状态起，依次建立各元素结点，并逐个插入链表中。而静态链表就是单链表和数组的结合。首先我们让数组的元素都是由两个数据域组成，data 和 cursor。也就是说数组的每个下标都对应一个 data 和 cursor。数据域 data,用来存放数据元素，也就是通常我们要处理的数据；而">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-24T07:57:22.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构-线性表-静态链表">
+<meta name="twitter:description" content="什么是静态链表在我公众号上一篇文章中实现了单链表的基本操作，创建单链表的过程就是一个动态生成链表的过程，即从”空表”的初始状态起，依次建立各元素结点，并逐个插入链表中。而静态链表就是单链表和数组的结合。首先我们让数组的元素都是由两个数据域组成，data 和 cursor。也就是说数组的每个下标都对应一个 data 和 cursor。数据域 data,用来存放数据元素，也就是通常我们要处理的数据；而">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/24/数据结构-线性表-静态链表/"/>
+
+
+
+
+
+  <title>数据结构-线性表-静态链表 | cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <div class="post-meta">
-        {% if page.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if page.categories and page.categories.toArray().length %}
-        {% if page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in page.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if page.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if page.categories or page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      {{ page.content }}
-    </main>
-    <footer class="post-footer">
-      {% if theme.alipay or theme.wechatpay %}
-      {% include "reward.njk" %}
-      {% endif %}
-      {% if page.tags and page.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in page.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% if theme.reward %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
-      {% if page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
-      {% endif %}
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/数据结构-线性表-静态链表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构-线性表-静态链表</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:56:58+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="什么是静态链表"><a href="#什么是静态链表" class="headerlink" title="什么是静态链表"></a>什么是静态链表</h4><p>在我公众号上一篇文章中实现了单链表的基本操作，创建单链表的过程就是一个动态生成链表的过程，即从”空表”的初始状态起，依次建立各元素结点，并逐个插入链表中。<br>而静态链表就是单链表和数组的结合。<br>首先我们让数组的元素都是由两个数据域组成，data 和 cursor。也就是说数组的每个下标都对应一个 data 和 cursor。数据域 data,用来存放数据元素，也就是通常我们要处理的数据；而 cursor 相当于单链表中的 next 指针，存放该元素的后继在数组中的下标，我们把 cursor 叫做游标。<br>这种用数组描述的链表叫做静态链表。</p>
+<h4 id="静态链表的三个核心"><a href="#静态链表的三个核心" class="headerlink" title="静态链表的三个核心"></a>静态链表的三个核心</h4><ol>
+<li>结点的两个属性：实际有用的数据 data + 存储数据的数组单元下标值 cursor</li>
+<li>备用链表：备用链表是静态链表中删除元素和未被使用到的数组元素</li>
+<li>首尾特殊元素：数组的第一个元素不存放数据信息，其中 cursor 存放备用链表中第一个结点的下标值；数组的最后一个元素也不存放数据信息，其中 cursor 存放首结点的下标<h4 id="静态链表的插入和删除的基本思想"><a href="#静态链表的插入和删除的基本思想" class="headerlink" title="静态链表的插入和删除的基本思想"></a>静态链表的插入和删除的基本思想</h4><h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><blockquote>
+<p>假设插入的位置为 i, 结点为 element</p>
+</blockquote>
+</li>
+<li>判断插入位置是否合理，不合理则返回。</li>
+<li>如果合理则插入时先要从备用链表中申请一个数组单元用于存放结点</li>
+<li>找到数组中 i-1 个元素的位置，因为这个元素的游标 cursor 存放了 i 元素的数组下标</li>
+<li>将插入的结点插入到申请的数组元素位置上，cursor 值为 i-1 元素的 cursor</li>
+<li>将 i-1 元素的 cursor 更新为新的结点的位置。<br>核心代码如下:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i, T element)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= MAXSIZE - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> l = length();</span><br><span class="line">    <span class="keyword">if</span> (i &gt; l) &#123;</span><br><span class="line">        i = l + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; l) &#123;</span><br><span class="line">        i = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> k = MAXSIZE - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 向备用链表申请空间，以存放要添加的数据元素结点</span></span><br><span class="line">    <span class="keyword">int</span> m = applySpaceFromBackupList();</span><br><span class="line">    <span class="keyword">if</span> (m &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 找到数组第 i 个元素的前一个元素的位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++) &#123;</span><br><span class="line">            k = node[k].getCursor();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 创建一个新的结点，数据是element,cursor指向第 i 个元素</span></span><br><span class="line">        node[m] = <span class="keyword">new</span> Node&lt;T&gt;(element,node[k].getCursor());</span><br><span class="line">        <span class="comment">// 是当前数组第 i 个元素前面一个元素的 cursor 指向插入的新结点</span></span><br><span class="line">        node[k].setCursor(m);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><blockquote>
+<p>假设插入的位置为 i</p>
+<ol>
+<li>如果删除的位置不合理则直接返回</li>
+<li>如果合理仍然需要找到链表第 i - 1 个元素的数组下标</li>
+<li>将 i-1 元素的 cursor 指向 i 元素的 cursor</li>
+<li>回收要删除的结点<br>核心代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span>||i &gt; MAXSIZE - <span class="number">1</span> || i &gt; length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> k = MAXSIZE - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 找到第 i 个位置的前一个元素位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++) &#123;</span><br><span class="line">            k = node[k].getCursor();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 取出前一个元素的 cursor ,也就是 i</span></span><br><span class="line">        m = node[k].getCursor();</span><br><span class="line">        <span class="comment">// 将前一个数据元素的 cursor 设置为当前位置上的 cursor,</span></span><br><span class="line">        <span class="comment">// 即让当前元素的上一个元素的 cursor 指向当前元素的下一个元素</span></span><br><span class="line">        node[k].setCursor(node[m].getCursor());</span><br><span class="line">        <span class="comment">// 将删除的元素空间回收至备用链表，并将删除位置作为添加元素的有限存储空间</span></span><br><span class="line">        <span class="keyword">return</span> increaseSpaceToBackupList(m);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h4 id="静态链表的优缺点"><a href="#静态链表的优缺点" class="headerlink" title="静态链表的优缺点"></a>静态链表的优缺点</h4><blockquote>
+<p>优点：在插入和删除操作时，只需要移动元素，从而改进了顺序存储结构中的插入和删除操作需要移动大量元素的缺点。<br>缺点：没有解决连续存储分配带来的表长难以确定的问题，以及失去了顺序存储结构随机存取的特性。</p>
+</blockquote>
+
+      
     </div>
-    <div class="post-nav-prev post-nav-item">
-      {% if page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
-      {% endif %}
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/线性表/" rel="tag"># 线性表</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/24/数据结构-线性表-链式结构/" rel="next" title="数据结构-线性表-链式结构">
+                <i class="fa fa-chevron-left"></i> 数据结构-线性表-链式结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/数据结构-线性表-顺序结构/" rel="prev" title="数据结构-线性表-顺序结构">
+                数据结构-线性表-顺序结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是静态链表"><span class="nav-number">1.</span> <span class="nav-text">什么是静态链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态链表的三个核心"><span class="nav-number">2.</span> <span class="nav-text">静态链表的三个核心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态链表的插入和删除的基本思想"><span class="nav-number">3.</span> <span class="nav-text">静态链表的插入和删除的基本思想</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#插入"><span class="nav-number">3.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除"><span class="nav-number">3.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态链表的优缺点"><span class="nav-number">4.</span> <span class="nav-text">静态链表的优缺点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
 </div>
-{% endblock %}
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

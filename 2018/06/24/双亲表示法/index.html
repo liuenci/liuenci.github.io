@@ -1,98 +1,702 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
-{% endblock %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-<div id="post" class="post">
-  {% set post = page %}
-  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ config.author }}">
-       <meta itemprop="description" content="{{ config.description }}">
-       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ config.title }}">
-      </span>
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,树," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="树的存储结构在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。 顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。 链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。 因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完成树的">
+<meta name="keywords" content="数据结构,树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双亲表示法">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/双亲表示法/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="树的存储结构在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。 顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。 链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。 因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完成树的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-24T07:51:37.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="双亲表示法">
+<meta name="twitter:description" content="树的存储结构在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。 顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。 链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。 因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完成树的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/24/双亲表示法/"/>
+
+
+
+
+
+  <title>双亲表示法 | cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <div class="post-meta">
-        {% if page.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if page.categories and page.categories.toArray().length %}
-        {% if page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in page.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if page.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if page.categories or page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      {{ page.content }}
-    </main>
-    <footer class="post-footer">
-      {% if theme.alipay or theme.wechatpay %}
-      {% include "reward.njk" %}
-      {% endif %}
-      {% if page.tags and page.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in page.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% if theme.reward %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
-      {% if page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
-      {% endif %}
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/双亲表示法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">双亲表示法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:51:12+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h5><p>在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。</p>
+<p>顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。</p>
+<p>链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。</p>
+<p>因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完成树的表示。</p>
+<p>主流的树的存储方式有三种，分别为：双亲表示法、孩子表示法、孩子兄弟表示法。</p>
+<p>下面讲下双亲表示法。</p>
+<h5 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a>双亲表示法</h5><p>我们假设以一组连续空间来存储树的结点，同时在每一个结点中，附设一个指示器指向其双亲结点在数组中的位置，这种结构就称之为双亲表示法。</p>
+<p>核心代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E data; <span class="comment">// 数据域</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> parent; <span class="comment">// 双亲</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E data, <span class="keyword">int</span> parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h5><blockquote>
+<p>如何创建树</p>
+</blockquote>
+<p>树的基本元素有根节点与结点数，所以我们需要先初始化结点数组，然后在将根结点存储到数组的第一个位置中，也就是nodes[0]，最后将实际存在的结点加一即可。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">IParentalTreeImpl</span><span class="params">(E data, <span class="keyword">int</span> treeSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.treeSize = treeSize;</span><br><span class="line">        nodes = <span class="keyword">new</span> Node[treeSize];</span><br><span class="line">        nodes[<span class="number">0</span>] = <span class="keyword">new</span> Node&lt;E&gt;(data, -<span class="number">1</span>); <span class="comment">// 定义根节点</span></span><br><span class="line">        nodeNum++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如何添加结点</p>
+</blockquote>
+<p>首先我们需要知道新结点在数组中添加的位置是数组中第一个 nodes[i] == null 的 i 值处。然后我们需要知道新结点的双亲结点在数组中的位置，知道这两个之后我们才能进行添加新结点。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(E data, Node&lt;E&gt; parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nodes[i] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                nodes[i] = <span class="keyword">new</span> Node&lt;E&gt;(data, getPos(parent));</span><br><span class="line">                nodeNum++;</span><br><span class="line">                <span class="keyword">return</span>; <span class="comment">// 必须 return，不然循环会继续找到下一个 nodes[i] == null;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如何获取树的深度</p>
+</blockquote>
+<p>因为树是有很多分支的，我们预先不知道哪个分支才是深度最大的那个分支，所以我们需要遍历所有的分支然后进行比较才能得到树的深度。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDeepth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>; <span class="comment">// 用于记录节点的最大深度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize &amp;&amp; nodes[i] != <span class="keyword">null</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 初始化节点的深度</span></span><br><span class="line">            <span class="keyword">int</span> deepth = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// m 用于记录当前节点的双亲节点的位置</span></span><br><span class="line">            <span class="keyword">int</span> m = nodes[i].getParent();</span><br><span class="line">            <span class="comment">// 如果双亲节点存在，则向上继续搜索双亲节点</span></span><br><span class="line">            <span class="keyword">while</span> (m != -<span class="number">1</span> &amp;&amp; nodes[m] != <span class="keyword">null</span>) &#123;</span><br><span class="line">                m = nodes[m].getParent();</span><br><span class="line">                deepth++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (max &lt; deepth) &#123;</span><br><span class="line">                max = deepth;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="如何获取源代码"><a href="#如何获取源代码" class="headerlink" title="如何获取源代码"></a>如何获取源代码</h5><p>上面对树的一些核心操作进行了讲解，还有一些小功能因为比较简单就不进行详解了，有兴趣的同学可以前往我的 Github 进行克隆学习。</p>
+<p>我的 github 地址为：<a href="https://github.com/liuenci/Data-Structure.git" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure.git</a></p>
+
+      
     </div>
-    <div class="post-nav-prev post-nav-item">
-      {% if page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
-      {% endif %}
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/24/数据结构-栈-顺序结构/" rel="next" title="数据结构-栈-顺序结构">
+                <i class="fa fa-chevron-left"></i> 数据结构-栈-顺序结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/树/" rel="prev" title="树">
+                树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#树的存储结构"><span class="nav-number">1.</span> <span class="nav-text">树的存储结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#双亲表示法"><span class="nav-number">2.</span> <span class="nav-text">双亲表示法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#核心功能"><span class="nav-number">3.</span> <span class="nav-text">核心功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何获取源代码"><span class="nav-number">4.</span> <span class="nav-text">如何获取源代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
 </div>
-{% endblock %}
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

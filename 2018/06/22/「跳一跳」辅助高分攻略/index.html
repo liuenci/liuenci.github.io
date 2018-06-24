@@ -1,98 +1,692 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
-{% endblock %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-<div id="post" class="post">
-  {% set post = page %}
-  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ config.author }}">
-       <meta itemprop="description" content="{{ config.description }}">
-       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ config.title }}">
-      </span>
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="游戏辅助,跳一跳," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前段时间微信更新了最新版本 (6.6.1版本)，沉寂了一年的微信小程序开始迎接了它的春天，其中微信官方开发的「跳一跳」就开始肆虐了我的微信社交平台。「跳一跳」是一款长按蓄力，松开按键就起跳的小游戏，根据不同的距离需不同时间的力。正常的高分攻略有以下几种: 1、连续跳中心点，可以+2、+4、+6……2、跳到音乐盒，停留，播放音乐并且+30分3、跳到便利店，停留，便利店会开门+15分4、跳到魔方，停留">
+<meta name="keywords" content="游戏辅助,跳一跳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「跳一跳」辅助高分攻略">
+<meta property="og:url" content="http://yoursite.com/2018/06/22/「跳一跳」辅助高分攻略/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="前段时间微信更新了最新版本 (6.6.1版本)，沉寂了一年的微信小程序开始迎接了它的春天，其中微信官方开发的「跳一跳」就开始肆虐了我的微信社交平台。「跳一跳」是一款长按蓄力，松开按键就起跳的小游戏，根据不同的距离需不同时间的力。正常的高分攻略有以下几种: 1、连续跳中心点，可以+2、+4、+6……2、跳到音乐盒，停留，播放音乐并且+30分3、跳到便利店，停留，便利店会开门+15分4、跳到魔方，停留">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E8%B7%B3%E4%B8%80%E8%B7%B3.png">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/adb.png">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E8%BF%90%E8%A1%8C.png">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/qrcode_for_gh_8d1d4568814d_258.jpg">
+<meta property="og:updated_time" content="2018-06-22T12:13:14.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「跳一跳」辅助高分攻略">
+<meta name="twitter:description" content="前段时间微信更新了最新版本 (6.6.1版本)，沉寂了一年的微信小程序开始迎接了它的春天，其中微信官方开发的「跳一跳」就开始肆虐了我的微信社交平台。「跳一跳」是一款长按蓄力，松开按键就起跳的小游戏，根据不同的距离需不同时间的力。正常的高分攻略有以下几种: 1、连续跳中心点，可以+2、+4、+6……2、跳到音乐盒，停留，播放音乐并且+30分3、跳到便利店，停留，便利店会开门+15分4、跳到魔方，停留">
+<meta name="twitter:image" content="http://ove4nglsb.bkt.clouddn.com/%E8%B7%B3%E4%B8%80%E8%B7%B3.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/22/「跳一跳」辅助高分攻略/"/>
+
+
+
+
+
+  <title>「跳一跳」辅助高分攻略 | cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <div class="post-meta">
-        {% if page.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if page.categories and page.categories.toArray().length %}
-        {% if page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in page.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if page.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if page.categories or page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      {{ page.content }}
-    </main>
-    <footer class="post-footer">
-      {% if theme.alipay or theme.wechatpay %}
-      {% include "reward.njk" %}
-      {% endif %}
-      {% if page.tags and page.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in page.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% if theme.reward %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
-      {% if page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
-      {% endif %}
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/「跳一跳」辅助高分攻略/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">「跳一跳」辅助高分攻略</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:12:27+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前段时间微信更新了最新版本 (6.6.1版本)，沉寂了一年的微信小程序开始迎接了它的春天，其中微信官方开发的「跳一跳」就开始肆虐了我的微信社交平台。<br><img src="http://ove4nglsb.bkt.clouddn.com/%E8%B7%B3%E4%B8%80%E8%B7%B3.png" alt=""><br>「跳一跳」是一款长按蓄力，松开按键就起跳的小游戏，根据不同的距离需不同时间的力。正常的高分攻略有以下几种:</p>
+<p>1、连续跳中心点，可以+2、+4、+6……<br>2、跳到音乐盒，停留，播放音乐并且+30分<br>3、跳到便利店，停留，便利店会开门+15分<br>4、跳到魔方，停留，魔方会旋转修正，+10分<br>5、跳到井盖，停留，会有冲水的声音+5分</p>
+<p>但是<br>我们是谁<br>我们是程序员啊<br>旨在用技术拯救手残党<br>所以<br>下面教大家使用python脚本配合adb实现自动跳一跳。</p>
+<ol>
+<li>安装adb。</li>
+</ol>
+<p>adb安装包可以通过关注我，后台回复「跳一跳」三个字即可获得。</p>
+<p>安装adb的步骤非常简单，一直点下一步就好了。<br>但是特别要记住一点的是要记住安装路径，因为下一步需要配置环境。</p>
+<ol start="2">
+<li>配置adb的环境。</li>
+</ol>
+<p>此电脑 &gt; 右键属性 &gt; 高级系统设置 &gt; 环境变量 &gt; 新建系统变量<br><img src="http://ove4nglsb.bkt.clouddn.com/adb.png" alt=""><br>变量名可以随便填，变量值就是adb的安装路径，因为我安装在D盘，所以我的变量值是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Program Files (x86)\ClockworkMod\Universal Adb Driver</span><br></pre></td></tr></table></figure></p>
+<p>看公众号的同学填自己的安装路径也是OK的。</p>
+<ol start="3">
+<li>配置path的环境</li>
+</ol>
+<p>在系统变量中找到Path这个系统变量，点击编辑 &gt; 新建<br>输入%第二步中adb自己输入的变量名%，格式如下:</p>
+<p>%变量名%</p>
+<p>因为我第二步中填的是android，所以我输入的是</p>
+<p>%android%。</p>
+<ol start="4">
+<li>拷贝python脚本到电脑中任意位置即可</li>
+</ol>
+<p>python项目在公众号后台回复「跳一跳」即可得到网盘的下载链接。</p>
+<ol start="5">
+<li>准备工作</li>
+</ol>
+<p>手机使用usb数据线连接电脑，打开开发者模式中的USB调试，然后打开微信的跳一跳，点击开始游戏。</p>
+<ol start="6">
+<li>测试是否可用</li>
+</ol>
+<p>打开下载的STOP_jump_win中的one_step_auto_beta1.exe，输入y即可开始你的刷分之旅。</p>
+<p>正常的刷分界面如下:<br><img src="http://ove4nglsb.bkt.clouddn.com/%E8%BF%90%E8%A1%8C.png" alt=""></p>
+<p>好啦，尽情享受吧。</p>
+<p>对了，既然看到最后，确定不关注一下我的公众号再走?</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/qrcode_for_gh_8d1d4568814d_258.jpg" alt=""></p>
+
+      
     </div>
-    <div class="post-nav-prev post-nav-item">
-      {% if page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
-      {% endif %}
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/游戏辅助/" rel="tag"># 游戏辅助</a>
+          
+            <a href="/tags/跳一跳/" rel="tag"># 跳一跳</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/22/谈谈反射/" rel="next" title="谈谈反射">
+                <i class="fa fa-chevron-left"></i> 谈谈反射
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/" rel="prev" title="阿里云利用 wordpress 搭建个人博客">
+                阿里云利用 wordpress 搭建个人博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
 </div>
-{% endblock %}
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

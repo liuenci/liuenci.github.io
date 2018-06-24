@@ -1,98 +1,664 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
-{% endblock %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-<div id="post" class="post">
-  {% set post = page %}
-  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ config.author }}">
-       <meta itemprop="description" content="{{ config.description }}">
-       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ config.title }}">
-      </span>
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="生活," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="没啥，我就瞎逼逼几句  最近一个月在做jsp项目，我个人觉得学习jsp这个阶段自己学的不是很好，但是却发现自己已经沉浸在一个技术的怪圈中。明明自己的技术基础不是很好，但是却很执着于研究很奇妙的技术，花了两天时间研究了一下高德地图的API,终于能使用高德地图的接口，还让我高兴了好一阵。我不把编程当成一种生活的工具，所以我不觉得编程是一件很苦的事情。相反，我觉得编程是一件很好玩的事情，特别是当你修复">
+<meta name="keywords" content="生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="走的更快&amp;走的更远">
+<meta property="og:url" content="http://yoursite.com/2018/06/22/走的更快-走的更远/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="没啥，我就瞎逼逼几句  最近一个月在做jsp项目，我个人觉得学习jsp这个阶段自己学的不是很好，但是却发现自己已经沉浸在一个技术的怪圈中。明明自己的技术基础不是很好，但是却很执着于研究很奇妙的技术，花了两天时间研究了一下高德地图的API,终于能使用高德地图的接口，还让我高兴了好一阵。我不把编程当成一种生活的工具，所以我不觉得编程是一件很苦的事情。相反，我觉得编程是一件很好玩的事情，特别是当你修复">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-22T12:15:16.606Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="走的更快&amp;走的更远">
+<meta name="twitter:description" content="没啥，我就瞎逼逼几句  最近一个月在做jsp项目，我个人觉得学习jsp这个阶段自己学的不是很好，但是却发现自己已经沉浸在一个技术的怪圈中。明明自己的技术基础不是很好，但是却很执着于研究很奇妙的技术，花了两天时间研究了一下高德地图的API,终于能使用高德地图的接口，还让我高兴了好一阵。我不把编程当成一种生活的工具，所以我不觉得编程是一件很苦的事情。相反，我觉得编程是一件很好玩的事情，特别是当你修复">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/22/走的更快-走的更远/"/>
+
+
+
+
+
+  <title>走的更快&走的更远 | cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <div class="post-meta">
-        {% if page.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if page.categories and page.categories.toArray().length %}
-        {% if page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in page.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if page.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if page.categories or page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      {{ page.content }}
-    </main>
-    <footer class="post-footer">
-      {% if theme.alipay or theme.wechatpay %}
-      {% include "reward.njk" %}
-      {% endif %}
-      {% if page.tags and page.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in page.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% if theme.reward %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
-      {% if page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
-      {% endif %}
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/走的更快-走的更远/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">走的更快&走的更远</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:14:53+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>没啥，我就瞎逼逼几句</p>
+</blockquote>
+<p>最近一个月在做jsp项目，我个人觉得学习jsp这个阶段自己学的不是很好，但是却发现自己已经沉浸在一个技术的怪圈中。明明自己的技术基础不是很好，但是却很执着于研究很奇妙的技术，花了两天时间研究了一下高德地图的API,终于能使用高德地图的接口，还让我高兴了好一阵。我不把编程当成一种生活的工具，所以我不觉得编程是一件很苦的事情。相反，我觉得编程是一件很好玩的事情，特别是当你修复了一个自己想了好久没改出来的bug,或者是做出一件令自己满意的作品。我不喜欢把我写出来的源码集合叫做产品，那是一件很无聊的事情，产品就是意味着这个东西投入进社会，并且给我创造了效益，而且为他人提供了方便或者满足。我把写代码看成一种艺术，有人说我装逼，是不是有一句话说的是”世人笑我太疯癫，我笑别人看不穿”。其实我也不是大牛，也不是别人真像别人叫我大神那样有很高深的技术。但是我很看重我自己的成长，我觉得自己的学习能力还算可以，你只要给我时间，简单的东西我自己就能搞懂，要是难的东西，给我一点引导我觉得我也能弄出来，除非一些真的超出我的能力范围，毕竟这个世界上还是有智力差异的，不然岂不是每个人都能成为爱因斯坦。我现在很多思想可能和我从小接受的教育有关，好好读书，好好学技术，然后赚钱，养家等等。读书这东西吧，你觉得它没用，它就真的没用，但是你觉得它有用，那它就真的有用。就像别人看待学英语的作用一样，有的人觉得学英语没用，然后学习其它感兴趣的东西照样走上人生巅峰，但是有的人觉得有用，然后通过英语的深入学习也实现了自己的人生成长。成功的方式不同，结果往往大同小异。<br>哎，小学，初中，高中好几年的时间还是没有把我这个说话不着主题的毛病给改掉，自己说着说着就不知道要说啥了，我可能是个假人了吧。还是和这个标题一样，是时候调用自己脑子里的分支语句来处理这个问题了。</p>
+<blockquote>
+<p>走的更快 &amp; 走的更远</p>
+</blockquote>
+<ol>
+<li><p>我个人认为，你走的很快，那你十之八九走不远，因为你根基不稳，很多你以为自己懂的东西，其实你是不懂的，就像我自己编程一样。看着很简单的东西，你看一遍，你以为自己懂了，但是让你自己写出来，你会吗？其实我应该是很久就发现自己这个问题了，我现在的速度很快了，真的很快了，代码看一遍，思路过一遍，自己再敲一遍。好了这个问题就过了，然后过段时间往前看这个问题，”excuse me，这是啥？”，上次写jdbc的basedao发现自己这个问题就应该及时止损了，但是习惯这个东西真的很难改的，越是让我去写简单的东西我真的觉得写的没意思，这就成为了现在的我，挺浮躁的，脚下生风，哈哈，应该稍不注意就会跳坑里了吧。</p>
+</li>
+<li><p>走的很稳应该就不会出现这个问题，我不记得谁说过一句话来着：我走的很慢，但是我从来不会后退。码农才粘贴复制，高手从来都是自己造轮子给别人用的呢。我感觉我自己很需要沉淀下来一段时间，把别人的轮子也拿过来写写了，也许自己能造一个新的轮子呢？我记得我收藏过一段话来着。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">纽约时间比加州时间早三个小时，</span><br><span class="line">New York is 3 hours ahead of California,</span><br><span class="line">但加州时间并没有变慢。</span><br><span class="line">but it does not make California slow.</span><br><span class="line">有人22岁就毕业了，</span><br><span class="line">Someone graduated at the age of 22,</span><br><span class="line">但等了五年才找到好的工作！</span><br><span class="line">but waited 5 years before securing a good job!</span><br><span class="line">有人25岁就当上CEO，</span><br><span class="line">Someone became a CEO at 25,</span><br><span class="line">却在50岁撒手人寰。</span><br><span class="line">and died at 50.</span><br><span class="line">也有人迟到50岁才当上CEO，</span><br><span class="line">While another became a CEO at 50,</span><br><span class="line">然后活到90岁。</span><br><span class="line">and lived to 90 years.</span><br><span class="line">有人依然单身，</span><br><span class="line">Someone is still single,</span><br><span class="line">同时也有人已婚。</span><br><span class="line">while someone else got married.</span><br><span class="line">奥巴马55岁就退休，</span><br><span class="line">Obama retires at 55,</span><br><span class="line">川普70岁才开始当总统。</span><br><span class="line">but Trump starts at 70.</span><br><span class="line">世上每个人本来就有自己的发展时区。</span><br><span class="line">Absolutely everyone in this world works based on their Time Zone.</span><br><span class="line">身边有些人看似走在你前面，</span><br><span class="line">People around you might seem to go ahead of you,</span><br><span class="line">也有人看似走在你后面。</span><br><span class="line">some might seem to be behind you </span><br><span class="line">但其实每个人在自己的时区有自己的步程。</span><br><span class="line">But everyone is running their own RACE, in their own TIME.</span><br><span class="line">不用嫉妒或嘲笑他们。</span><br><span class="line">Don’t envy them or mock them.</span><br><span class="line">他们都在自己的时区里，你也是！</span><br><span class="line">They are in their TIME ZONE,and you are in yours!</span><br><span class="line">生命就是等待正确的行动时机。</span><br><span class="line">Life is about waiting for the right moment to act.</span><br><span class="line">所以，放轻松。</span><br><span class="line">So, RELAX.</span><br><span class="line">你没有落后。</span><br><span class="line">You’re not LATE.</span><br><span class="line">你没有领先。</span><br><span class="line">You’re not EARLY.</span><br><span class="line">在命运为你安排的属于自己的时区里，</span><br><span class="line">一切都准时。</span><br><span class="line">You are very much ON TIME, </span><br><span class="line">and in your TIME ZONE Destiny set up for you</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>将来还有这么久，谁会成为你，你又成为了谁。谁又说的定呢，我们慢慢来就好了，走的太快了，路上的风景你就看不到了，以后慢一点，走的稳一点，将来还有几十年，谁说你走不远呢。<br>一想这些东西自己就能扯好多没营养的东西，好了，夜深了，猿还是去睡觉了。</p>
+
+      
     </div>
-    <div class="post-nav-prev post-nav-item">
-      {% if page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
-      {% endif %}
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/生活/" rel="tag"># 生活</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/" rel="next" title="阿里云利用 wordpress 搭建个人博客">
+                <i class="fa fa-chevron-left"></i> 阿里云利用 wordpress 搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/22/原生-Js-实现的-Ajax/" rel="prev" title="原生 Js 实现的 Ajax">
+                原生 Js 实现的 Ajax <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
 </div>
-{% endblock %}
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

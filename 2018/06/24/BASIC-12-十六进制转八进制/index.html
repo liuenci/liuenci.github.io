@@ -1,98 +1,666 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
-{% endblock %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-<div id="post" class="post">
-  {% set post = page %}
-  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ config.author }}">
-       <meta itemprop="description" content="{{ config.description }}">
-       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ config.title }}">
-      </span>
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="蓝桥杯,算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目如下：代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+<meta name="keywords" content="蓝桥杯,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BASIC-12 十六进制转八进制">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/BASIC-12-十六进制转八进制/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="题目如下：代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0.png">
+<meta property="og:updated_time" content="2018-06-24T08:08:31.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BASIC-12 十六进制转八进制">
+<meta name="twitter:description" content="题目如下：代码如下：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+<meta name="twitter:image" content="http://ove4nglsb.bkt.clouddn.com/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/24/BASIC-12-十六进制转八进制/"/>
+
+
+
+
+
+  <title>BASIC-12 十六进制转八进制 | cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <div class="post-meta">
-        {% if page.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if page.categories and page.categories.toArray().length %}
-        {% if page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in page.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if page.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if page.categories or page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      {{ page.content }}
-    </main>
-    <footer class="post-footer">
-      {% if theme.alipay or theme.wechatpay %}
-      {% include "reward.njk" %}
-      {% endif %}
-      {% if page.tags and page.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in page.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% if theme.reward %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
-      {% if page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
-      {% endif %}
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/BASIC-12-十六进制转八进制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BASIC-12 十六进制转八进制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T16:06:07+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>题目如下：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0.png" alt=""><br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lqb.grounding;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HexToOctal</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		String[] str = <span class="keyword">new</span> String[n];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			str[i] = input.next();</span><br><span class="line">		&#125;</span><br><span class="line">		input.close();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">			String strBinary = toBinary(str[i]);</span><br><span class="line">			<span class="comment">// 不满足三的倍数补全位数</span></span><br><span class="line">			<span class="keyword">int</span> len_strBin = strBinary.length();</span><br><span class="line">			<span class="keyword">if</span>(len_strBin%<span class="number">3</span> ==<span class="number">1</span>) &#123;</span><br><span class="line">				strBinary = <span class="string">"00"</span> + strBinary;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(len_strBin%<span class="number">3</span>==<span class="number">2</span>) &#123;</span><br><span class="line">				strBinary = <span class="string">"0"</span> + strBinary;</span><br><span class="line">			&#125;</span><br><span class="line">			String strOctal = toOctal(strBinary);</span><br><span class="line">			System.out.println(strOctal);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">/*Scanner input = new Scanner(System.in);</span></span><br><span class="line"><span class="comment">		int n = input.nextInt();</span></span><br><span class="line"><span class="comment">		String[] str = new String[n];</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			str[i] = input.next();</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		String[] binaryStr = new String[n];</span></span><br><span class="line"><span class="comment">		// 先将16进制转化为2进制</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			char[] c = str[i].toCharArray();</span></span><br><span class="line"><span class="comment">			StringBuilder strBuilder = new StringBuilder("");</span></span><br><span class="line"><span class="comment">			for(int j=0;j&lt;c.length;j++) &#123;</span></span><br><span class="line"><span class="comment">				switch(c[j]) &#123;</span></span><br><span class="line"><span class="comment">				case '0':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0000");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '1':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0001");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '2':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0010");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '3':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0011");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '4':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0100");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '5':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0101");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '6':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0110");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '7':</span></span><br><span class="line"><span class="comment">					strBuilder.append("0111");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '8':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1000");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case '9':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1001");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'A':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1010");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'B':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1011");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'C':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1100");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'D':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1101");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'E':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1110");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				case 'F':</span></span><br><span class="line"><span class="comment">					strBuilder.append("1111");</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				default:</span></span><br><span class="line"><span class="comment">					break;</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">				binaryStr[i] = strBuilder.toString();</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		// 判断长度是不是3的倍数</span></span><br><span class="line"><span class="comment">		for(int i = 0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			if(binaryStr[i].length()%3==1) &#123;</span></span><br><span class="line"><span class="comment">				binaryStr[i]="00"+binaryStr[i];</span></span><br><span class="line"><span class="comment">			&#125;else if(binaryStr[i].length()%3==2)&#123;</span></span><br><span class="line"><span class="comment">				binaryStr[i]="0"+binaryStr[i];</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		// 将2进制转化为8进制</span></span><br><span class="line"><span class="comment">		long[] octNum = new long[n];</span></span><br><span class="line"><span class="comment">		for(int i=0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			// 将二进制数分成三个数一组的字符数组</span></span><br><span class="line"><span class="comment">			String[] octStr = new String[binaryStr[i].length()/3];</span></span><br><span class="line"><span class="comment">			// 拆分二进制数填入数组</span></span><br><span class="line"><span class="comment">			for(int j = 1;j&lt;=binaryStr[i].length();j++) &#123;</span></span><br><span class="line"><span class="comment">				if(j%3==0) &#123;</span></span><br><span class="line"><span class="comment">					octStr[j/3-1] = binaryStr[i].substring(j-3, j);</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			StringBuilder octBuilder = new StringBuilder();</span></span><br><span class="line"><span class="comment">			for(int k=0;k&lt;octStr.length;k++) &#123;</span></span><br><span class="line"><span class="comment">				if("000".equals(octStr[k])) &#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("0");</span></span><br><span class="line"><span class="comment">				&#125;else if("001".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("1");</span></span><br><span class="line"><span class="comment">				&#125;else if("010".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("2");</span></span><br><span class="line"><span class="comment">				&#125;else if("011".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("3");</span></span><br><span class="line"><span class="comment">				&#125;else if("100".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("4");</span></span><br><span class="line"><span class="comment">				&#125;else if("101".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("5");</span></span><br><span class="line"><span class="comment">				&#125;else if("110".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("6");</span></span><br><span class="line"><span class="comment">				&#125;else if("111".equals(octStr[k]))&#123;</span></span><br><span class="line"><span class="comment">					octBuilder.append("7");</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			octNum[i]=Integer.parseInt(octBuilder.toString());</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		for(int i = 0;i&lt;n;i++) &#123;</span></span><br><span class="line"><span class="comment">			System.out.println(octNum[i]);</span></span><br><span class="line"><span class="comment">		&#125;*/</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toBinary</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len_str = str.length();</span><br><span class="line">		StringBuffer stb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len_str;i++) &#123;</span><br><span class="line">			<span class="keyword">switch</span>(str.charAt(i)) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'0'</span>:</span><br><span class="line">				stb.append(<span class="string">"0000"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'1'</span>:</span><br><span class="line">				stb.append(<span class="string">"0001"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'2'</span>:</span><br><span class="line">				stb.append(<span class="string">"0010"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'3'</span>:</span><br><span class="line">				stb.append(<span class="string">"0011"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'4'</span>:</span><br><span class="line">				stb.append(<span class="string">"0100"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'5'</span>:</span><br><span class="line">				stb.append(<span class="string">"0101"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'6'</span>:</span><br><span class="line">				stb.append(<span class="string">"0110"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'7'</span>:</span><br><span class="line">				stb.append(<span class="string">"0111"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'8'</span>:</span><br><span class="line">				stb.append(<span class="string">"1000"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'9'</span>:</span><br><span class="line">				stb.append(<span class="string">"1001"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">				stb.append(<span class="string">"1010"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">				stb.append(<span class="string">"1011"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">				stb.append(<span class="string">"1100"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">				stb.append(<span class="string">"1101"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">				stb.append(<span class="string">"1110"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">				stb.append(<span class="string">"1111"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> stb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toOctal</span><span class="params">(String strBinary)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len = strBinary.length();</span><br><span class="line">		<span class="keyword">int</span> k;</span><br><span class="line">		StringBuffer stb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">if</span>(strBinary.substring(<span class="number">0</span>, <span class="number">3</span>).equals(<span class="string">"000"</span>)) &#123;</span><br><span class="line">			k = <span class="number">3</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			k = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = k;i&lt;len - <span class="number">2</span>;i+=<span class="number">3</span>) &#123;</span><br><span class="line">			<span class="keyword">switch</span>(strBinary.substring(i,i+<span class="number">3</span>)) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"000"</span>:</span><br><span class="line">				stb.append(<span class="string">"0"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"001"</span>:</span><br><span class="line">				stb.append(<span class="string">"1"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"010"</span>:</span><br><span class="line">				stb.append(<span class="string">"2"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"011"</span>:</span><br><span class="line">				stb.append(<span class="string">"3"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"100"</span>:</span><br><span class="line">				stb.append(<span class="string">"4"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"101"</span>:</span><br><span class="line">				stb.append(<span class="string">"5"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"110"</span>:</span><br><span class="line">				stb.append(<span class="string">"6"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">"111"</span>:</span><br><span class="line">				stb.append(<span class="string">"7"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> stb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>先来解释一下为什么16进制的1位数字等于二进制的4位。<br>因为16进制数的进率是16，二进制的进率是2，16是2的4次方，所以二进制数需要连续进位4次才能等效于16进制数进位1次。<br>所以同样的推理可以得到8进制的1位数字等于2进制的3位。<br>这个题的思路如下：</p>
+<ol>
+<li>先用数组存储输入的16进制数。</li>
+<li>将16进制数转化为2进制数。</li>
+<li>如果2进制数不满足3的倍数，少2位就补”00”,少1位就补”0”.</li>
+<li>将2进制数转化为8进制数。</li>
+<li>去除前导0，输出8进制数。<br>经验教训：</li>
+<li>16进制转化为2进制和2进制转化为8进制都用方法表示会更好。</li>
+<li>打开了输入流记得关闭输入流，因为输入流是jvm无法通过垃圾回收机制回收的资源，只能自己显示通过close回收。</li>
+<li>java1.7的版本开始支持switch匹配字符串了，上课没听，哎，估计又打酱油去了。</li>
+<li>String字符串的单个字符扫描不需要将字符串转化为字符数组，只需要使用循环调用charAt(i)进行扫描即可。</li>
+</ol>
+
+      
     </div>
-    <div class="post-nav-prev post-nav-item">
-      {% if page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
-      {% endif %}
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/蓝桥杯/" rel="tag"># 蓝桥杯</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/24/BASIC-11-十六进制转十进制/" rel="next" title="BASIC-11 十六进制转十进制">
+                <i class="fa fa-chevron-left"></i> BASIC-11 十六进制转十进制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/BASIC-13-数列排序/" rel="prev" title="BASIC-13 数列排序">
+                BASIC-13 数列排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
 </div>
-{% endblock %}
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,98 +1,715 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for("css/post.css") }}">
-{% endblock %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-<div id="post" class="post">
-  {% set post = page %}
-  <article class="post-container card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(page.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ config.author }}">
-       <meta itemprop="description" content="{{ config.description }}">
-       <meta itemprop="image" content="{{ url_for(theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ config.title }}">
-      </span>
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构,线性表," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是线性表线性表就是零个或多个数据元素的有限序列。首先是一个序列，然后序列之间有顺序，序列中的元素如果存在多个，则第一个元素无前驱，最后一个元素无后继，其他每个元素都有且一个前驱和一个后继。 什么是线性表的顺序存储结构线性表的顺序存储结构就是用一段地址连续的存储单元依次存储线性表的数据元素，也就是用数组去实现顺序存储结构。下面用代码实现一下顺序结构。 首先写一个接口接口主要描述一下实现类要实现哪">
+<meta name="keywords" content="数据结构,线性表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-线性表-顺序结构">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/数据结构-线性表-顺序结构/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="什么是线性表线性表就是零个或多个数据元素的有限序列。首先是一个序列，然后序列之间有顺序，序列中的元素如果存在多个，则第一个元素无前驱，最后一个元素无后继，其他每个元素都有且一个前驱和一个后继。 什么是线性表的顺序存储结构线性表的顺序存储结构就是用一段地址连续的存储单元依次存储线性表的数据元素，也就是用数组去实现顺序存储结构。下面用代码实现一下顺序结构。 首先写一个接口接口主要描述一下实现类要实现哪">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-24T07:58:20.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构-线性表-顺序结构">
+<meta name="twitter:description" content="什么是线性表线性表就是零个或多个数据元素的有限序列。首先是一个序列，然后序列之间有顺序，序列中的元素如果存在多个，则第一个元素无前驱，最后一个元素无后继，其他每个元素都有且一个前驱和一个后继。 什么是线性表的顺序存储结构线性表的顺序存储结构就是用一段地址连续的存储单元依次存储线性表的数据元素，也就是用数组去实现顺序存储结构。下面用代码实现一下顺序结构。 首先写一个接口接口主要描述一下实现类要实现哪">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/24/数据结构-线性表-顺序结构/"/>
+
+
+
+
+
+  <title>数据结构-线性表-顺序结构 | cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <div class="post-meta">
-        {% if page.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if page.categories and page.categories.toArray().length %}
-        {% if page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in page.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if page.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if page.categories or page.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(page.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ page.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
-    <main class="post-main" itemprop="articleBody">
-      {{ page.content }}
-    </main>
-    <footer class="post-footer">
-      {% if theme.alipay or theme.wechatpay %}
-      {% include "reward.njk" %}
-      {% endif %}
-      {% if page.tags and page.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in page.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% if theme.reward %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
-      {% if page.next %}
-      <a href="{{ url_for(page.next.path) }}" rel="next" title="{{ page.next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ page.next.title }}</span></a>
-      {% endif %}
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/数据结构-线性表-顺序结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构-线性表-顺序结构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:57:45+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="什么是线性表"><a href="#什么是线性表" class="headerlink" title="什么是线性表"></a>什么是线性表</h4><p>线性表就是零个或多个数据元素的有限序列。<br>首先是一个序列，然后序列之间有顺序，序列中的元素如果存在多个，则第一个元素无前驱，最后一个元素无后继，其他每个元素都有且一个前驱和一个后继。</p>
+<h4 id="什么是线性表的顺序存储结构"><a href="#什么是线性表的顺序存储结构" class="headerlink" title="什么是线性表的顺序存储结构"></a>什么是线性表的顺序存储结构</h4><p>线性表的顺序存储结构就是用一段地址连续的存储单元依次存储线性表的数据元素，也就是用数组去实现顺序存储结构。<br>下面用代码实现一下顺序结构。</p>
+<h4 id="首先写一个接口"><a href="#首先写一个接口" class="headerlink" title="首先写一个接口"></a>首先写一个接口</h4><p>接口主要描述一下实现类要实现哪些方法，这里顺序结构包括三个方法，分别是获得元素，插入元素以及删除元素的方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线性表顺序存储结构的接口</span></span><br><span class="line"><span class="comment"> * 指的是用一段地址连续的存储单元存储线性表的数据元素</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>: ISeqList</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018-1-22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISeqList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要获得第i个元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getElem</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 元素的插入位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 需要插入的元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 是否成功删除</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertElem</span><span class="params">(<span class="keyword">int</span> i,T t)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要删除元素的位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">deleteElem</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="然后写一个接口的实现类"><a href="#然后写一个接口的实现类" class="headerlink" title="然后写一个接口的实现类"></a>然后写一个接口的实现类</h4><p>该类主要实现了接口的三个方法，下面描述一下三个方法要注意的点。</p>
+<h5 id="获得元素方法"><a href="#获得元素方法" class="headerlink" title="获得元素方法"></a>获得元素方法</h5><ol>
+<li>因为我这里用的泛型，所以返回的也是泛型的结果，用泛型的优点就是可扩展性更强了，在后面泛型可以不受类型的约束，可以使用整型，字符串型。</li>
+<li>因为线性表的下标索引是从1开始的，所以我们返回的是 i-1 的数据元素<h5 id="插入元素方法"><a href="#插入元素方法" class="headerlink" title="插入元素方法"></a>插入元素方法</h5></li>
+<li>如果插入的位置不合理，打印错误语句并返回。</li>
+<li>如果线性表的长度大于等于默认分配的MAXSIZE，答应错误语句并返回。</li>
+<li>如果插入的位置不在表尾，那就从最后一个元素开始向前遍历到 i 个位置，分别将他们都向后移动一个位置。</li>
+<li>将要插入元素填入数组 i-1 的位置处。</li>
+<li>表长加 1。<h5 id="删除元素方法"><a href="#删除元素方法" class="headerlink" title="删除元素方法"></a>删除元素方法</h5></li>
+<li>如果线性表为空，打印错误语句并返回。</li>
+<li>如果删除的位置不合理，打印错误语句并返回。</li>
+<li>如果删除的元素不在表尾，那就从删除元素位置开始遍历到最后一个元素位置，分别将它们都向前移动一个位置。</li>
+<li>表长减 1。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/1/22 10:57</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeqList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">ISeqList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXSIZE = <span class="number">20</span>; <span class="comment">// 存储空间的初始化大小</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> T[] data; <span class="comment">// 数组存储数据元素</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> length; <span class="comment">// 线性表当前长度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SeqList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        data = (T[]) <span class="keyword">new</span> Object[MAXSIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要获得第i个元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getElem</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; MAXSIZE) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        T t = data[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 元素的插入位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 插入的元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertElem</span><span class="params">(<span class="keyword">int</span> i, T t)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 线性表已经满了</span></span><br><span class="line">        <span class="keyword">if</span> (length == MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该线性表已经满了"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入的位置不在范围内</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该位置不合法"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入的位置不在表尾</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; length) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = length; j &gt;= i; j--) &#123;</span><br><span class="line">                data[j] = data[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 线性表的下标是从1开始，但是数组的下标是从0开始的，所以插入的t是在 i-1 的位置</span></span><br><span class="line">        data[i - <span class="number">1</span>] = t;</span><br><span class="line">        length++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">deleteElem</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 线性表为空时</span></span><br><span class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"线性表为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 删除的数据不在范围内时</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; length) &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除位置不在范围内"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        T t = data[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; length; j++) &#123;</span><br><span class="line">            data[j - <span class="number">1</span>] = data[j];</span><br><span class="line">        &#125;</span><br><span class="line">        length--;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> T[] getData() &#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setData</span><span class="params">(T[] data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLength</span><span class="params">(<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (length &lt; <span class="number">0</span> || length &gt; MAXSIZE)&#123;</span><br><span class="line">            System.out.println(<span class="string">"长度不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.length = length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="最后测试线性表"><a href="#最后测试线性表" class="headerlink" title="最后测试线性表"></a>最后测试线性表</h4><p>测试线性表需要注意以下几点：</p>
+<ol>
+<li>初始化线性表，这里我使用的是伪随机种子设置数组的长度以及数组中元素的值。</li>
+<li>随机生成删除元素的下标，满足条件则自动删除元素。</li>
+<li>随机生成插入元素的下标和数据，满足条件则自动插入元素。</li>
+<li>最后展示线性表中的数据。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试线性表</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/1/22 11:47</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeqListTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> MAX = <span class="number">25</span>;</span><br><span class="line">    Random r = <span class="keyword">new</span> Random();</span><br><span class="line">    SeqList&lt;Integer&gt; seqList;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SeqListTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        initSeqList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建一个线性表顺序存储结构</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initSeqList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        seqList = <span class="keyword">new</span> SeqList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">int</span> length = Math.abs(r.nextInt(MAX));</span><br><span class="line">        System.out.println(<span class="string">"产生的数组长度为："</span>+length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (length &gt; SeqList.MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该长度不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=length; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> j = r.nextInt(MAX);</span><br><span class="line">            System.out.print(j + <span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">if</span> (!seqList.insertElem(i,j)) &#123;</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"\n原始数组是："</span>);</span><br><span class="line">        display(seqList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试删除元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteElem</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n\n删除的位置是："</span>+i);</span><br><span class="line">        Integer deleteNumber = seqList.deleteElem(i);</span><br><span class="line">        <span class="keyword">if</span>(deleteNumber == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除的元素是："</span>+ deleteNumber);</span><br><span class="line">            System.out.println(<span class="string">"删除元素后数组是："</span>);</span><br><span class="line">            display(seqList);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试随机插入方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertByRandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n\n随机插入的位置是："</span>+i);</span><br><span class="line">        <span class="keyword">int</span> elem = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"随机插入数据是："</span>+elem);</span><br><span class="line">        seqList.insertElem(i,elem);</span><br><span class="line">        System.out.println(<span class="string">"随机插入数据后数组是："</span>);</span><br><span class="line">        display(seqList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据展示</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(SeqList seqList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seqList.getData().length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (seqList.getElem(i) != <span class="keyword">null</span>)&#123;</span><br><span class="line">                System.out.print(seqList.getElem(i) + <span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"\n数组的长度为："</span>+seqList.getLength());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getElem</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n获取位置为："</span>+i);</span><br><span class="line">        System.out.println(<span class="string">"获取到的元素为："</span>+seqList.getElem(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SeqListTest seqListTest = <span class="keyword">new</span> SeqListTest();</span><br><span class="line">        seqListTest.insertByRandom();</span><br><span class="line">        seqListTest.deleteElem();</span><br><span class="line">        seqListTest.getElem();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="关于运行结果"><a href="#关于运行结果" class="headerlink" title="关于运行结果"></a>关于运行结果</h4><p>因为不是手动插入数据，删除数据，而是使用随机数自动插入和删除，所以结果会有很多组，不过没关系，多运行几次数据不一样反而能对比着得到结果，下面贴一个完美的运行结果。</p>
+<blockquote>
+<p>产生的数组长度为：16<br>22 4 8 11 17 3 10 8 18 18 7 9 14 4 3 18<br>原始数组是：<br>22 4 8 11 17 3 10 8 18 18 7 9 14 4 3 18<br>数组的长度为：16</p>
+</blockquote>
+<blockquote>
+<p>随机插入的位置是：12<br>随机插入数据是：14<br>随机插入数据后数组是：<br>22 4 8 11 17 3 10 8 18 18 7 14 9 14 4 3 18<br>数组的长度为：17</p>
+</blockquote>
+<blockquote>
+<p>删除的位置是：15<br>删除的元素是：4<br>删除元素后数组是：<br>22 4 8 11 17 3 10 8 18 18 7 14 9 14 3 18 18<br>数组的长度为：16</p>
+</blockquote>
+<blockquote>
+<p>获取位置为：17<br>获取到的元素为：18</p>
+</blockquote>
+
+      
     </div>
-    <div class="post-nav-prev post-nav-item">
-      {% if page.prev %}
-      <a href="{{ url_for(page.prev.path) }}" rel="prev" title="{{ page.prev.title }}"><span class="nav-title">{{ page.prev.title }}</span><i class="fas fa-angle-right"></i></a>
-      {% endif %}
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/线性表/" rel="tag"># 线性表</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/24/数据结构-线性表-静态链表/" rel="next" title="数据结构-线性表-静态链表">
+                <i class="fa fa-chevron-left"></i> 数据结构-线性表-静态链表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/数据结构-队列-链式结构/" rel="prev" title="数据结构-队列-链式结构">
+                数据结构-队列-链式结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是线性表"><span class="nav-number">1.</span> <span class="nav-text">什么是线性表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是线性表的顺序存储结构"><span class="nav-number">2.</span> <span class="nav-text">什么是线性表的顺序存储结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首先写一个接口"><span class="nav-number">3.</span> <span class="nav-text">首先写一个接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后写一个接口的实现类"><span class="nav-number">4.</span> <span class="nav-text">然后写一个接口的实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获得元素方法"><span class="nav-number">4.1.</span> <span class="nav-text">获得元素方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插入元素方法"><span class="nav-number">4.2.</span> <span class="nav-text">插入元素方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除元素方法"><span class="nav-number">4.3.</span> <span class="nav-text">删除元素方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后测试线性表"><span class="nav-number">5.</span> <span class="nav-text">最后测试线性表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于运行结果"><span class="nav-number">6.</span> <span class="nav-text">关于运行结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
 </div>
-{% endblock %}
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

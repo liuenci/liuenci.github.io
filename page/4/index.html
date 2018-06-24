@@ -1,96 +1,1999 @@
-{% extends "_layout.njk" %}
+<!DOCTYPE html>
 
-{% block title %}{{ config.title }}{% if config.subtitle %} - {{ config.subtitle }}{% endif %}{% endblock %}
 
-{% block content %}
-{% set comment = false %}
-<div id="index" class="index">
-  {% for post in page.posts.toArray() %}
-  <article class="index-post card{% if theme.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="{{ config.author }}">
-        <meta itemprop="description" content="{{ config.description }}">
-        <meta itemprop="image" content="{{ url_for( theme.avatar) }}">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="{{ config.title }}">
-      </span>
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="hello world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="cier">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="hello world">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cier">
+<meta name="twitter:description" content="hello world">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/4/"/>
+
+
+
+
+
+  <title>cier</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cier</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ url_for(post.path) }}" itemprop="url">{{ post.title }}</a>
-      </h1>
-      <div class="post-meta">
-        {% if post.date %}
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ date(post.date, config.date_format) }} {{ time(post.date, config.time_format) }}</time></span>
-        </span>
-        {% endif %}
-        {% if post.categories and post.categories.toArray().length %}
-        {% if post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in post.categories.toArray() -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
-        </span>
-        {% endif %}
-        {% if post.comment !== false and theme.comment.enable %}
-        {% if theme.comment.disqus_shortname %}
-        {% if post.categories or post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ url_for(post.path) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ post.path }}" itemprop="commentCount"></span></a></span>
-        </span>
-        {% endif %}
-        {% endif %}
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      {% if post.excerpt  %}
-      {{ post.excerpt }}
-      {% elif post.description %}
-      {{ post.description }}
-      {% elif theme.auto_excerpt %}
-      {{ post.content.substring(0, theme.auto_excerpt) }}
-      {% else %}
-      {{ post.content }}
-      {% endif %}
-    </main>
-    <footer class="post-footer">
-      {% if post.tags and post.tags.toArray().length %}
-      <div class="post-tags">
-        {% if theme.tags_color %}
-        {% set colors = theme.tags_color %}
-        {% else %}
-        {% set colors = ["#fc6423", "#a3bb54", "#47aaff"] %}
-        {% endif %}
-        {% for tag in post.tags.toArray() %}
-        <a class="post-tag button" href="{{ url_for(tag.path) }}" style="background: {{ colors[loop.index0 % colors.length] }};" rel="tag"><i class="fas fa-tags"></i>{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </footer>
-  </article>
-  {% endfor %}
-  {% if page.prev or page.next %}
-  <nav class="pagination">
-    {{
-      paginator({
-        prev_text: "<i class=\"fas fa-angle-left\"></i>",
-        next_text: "<i class=\"fas fa-angle-right\"></i>",
-        mid_size: 1
-      })
-    }}
-  </nav>
-  {% endif %}
-  {% if theme.comment.enable %}
-  {% include "comment.njk" %}
-  {% endif %}
+      
+        <p class="site-subtitle">一个假不正经的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
-{% endblock %}
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/oracle 函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/oracle 函数/" itemprop="url">函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:39:07+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h3><h4 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h4><h5 id="获取系统日期"><a href="#获取系统日期" class="headerlink" title="获取系统日期"></a>获取系统日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysdate</span><br></pre></td></tr></table></figure>
+<p>java 中日期格式化：yyyy-MM-dd HH:mm:ss</p>
+<p>mysql 中日期格式化：%Y-%m-%d %H:%i:%s</p>
+<p>oracle 中日期格式化：yyyy-mm-dd hh24:mi:ss</p>
+<h5 id="格式化日期"><a href="#格式化日期" class="headerlink" title="格式化日期"></a>格式化日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">to_char(sysdate,&apos;yyyy-mm-dd hh24:mi:ss&apos;)</span><br></pre></td></tr></table></figure>
+<h5 id="将字符串转换为日期"><a href="#将字符串转换为日期" class="headerlink" title="将字符串转换为日期"></a>将字符串转换为日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">to_date(&apos;2000-01-22&apos;,&apos;yyyy-mm-dd hh24:mi:ss&apos;)</span><br></pre></td></tr></table></figure>
+<h5 id="添加月份"><a href="#添加月份" class="headerlink" title="添加月份"></a>添加月份</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select add_months(sysdate,2) from dual</span><br></pre></td></tr></table></figure>
+<h5 id="返回指定月的最后一天"><a href="#返回指定月的最后一天" class="headerlink" title="返回指定月的最后一天"></a>返回指定月的最后一天</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select last_day(sysdate) from dual</span><br></pre></td></tr></table></figure>
+<h5 id="计算两个日期之间相差多少月"><a href="#计算两个日期之间相差多少月" class="headerlink" title="计算两个日期之间相差多少月"></a>计算两个日期之间相差多少月</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select months_between(sysdate,add_months(sysdate,4)) from dual</span><br></pre></td></tr></table></figure>
+<h5 id="返回下一个日期"><a href="#返回下一个日期" class="headerlink" title="返回下一个日期"></a>返回下一个日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select next_day(sysdate,2) from dual</span><br></pre></td></tr></table></figure>
+<p>星期日 = 1  星期一 = 2  星期二 = 3  星期三 = 4  星期四 = 5  星期五 = 6  星期六 = 7</p>
+<h5 id="返回日期-时间的单独部分，比如年月日时分秒等等"><a href="#返回日期-时间的单独部分，比如年月日时分秒等等" class="headerlink" title="返回日期/时间的单独部分，比如年月日时分秒等等"></a>返回日期/时间的单独部分，比如年月日时分秒等等</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- sysdate中只能获取年月日</span><br><span class="line">select extract(year from sysdate) from dual;</span><br><span class="line">select extract(month from sysdate) from dual;</span><br><span class="line">select extract(day from sysdate) from dual;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/oracle12c如何创建scott用户并且授予权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/24/oracle12c如何创建scott用户并且授予权限/" itemprop="url">oracle12c如何创建scott用户并且授予权限</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-24T15:38:17+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以前一直用的 oracle11g，每次安装都没有 sql developer,今天 google 看到原来 11g 好像没有内置 sql developer,并且删除了 scott 用户，又解决了我一个使用 oracle 的困惑。</p>
+<p>下面讲讲如何创建 scott 用户并且授予权限。</p>
+<p>参考链接如下：<a href="http://blog.csdn.net/btt2013/article/details/52554514" target="_blank" rel="noopener">http://blog.csdn.net/btt2013/article/details/52554514</a></p>
+<h5 id="使用数据库管理员身份登陆账户"><a href="#使用数据库管理员身份登陆账户" class="headerlink" title="使用数据库管理员身份登陆账户"></a>使用数据库管理员身份登陆账户</h5><p>在这一步之前你先要保证自己的数据库服务启动，这里我就不说了，然后打开 sql plus 之后登陆。输入口令直接回车即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys  as sysdba;</span><br></pre></td></tr></table></figure></p>
+<h5 id="创建用户并且设置密码"><a href="#创建用户并且设置密码" class="headerlink" title="创建用户并且设置密码"></a>创建用户并且设置密码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user scott identified by 123456;</span><br></pre></td></tr></table></figure>
+<h5 id="授予权限"><a href="#授予权限" class="headerlink" title="授予权限"></a>授予权限</h5><p>由于我在安装 oracle 的时候把创建为容器数据库给取消了，所以授予权限有一点点不同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant connect,resource,unlimited tablespace to scott;</span><br></pre></td></tr></table></figure></p>
+<p>如果创建容器数据库可以使用下面这行语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant connect,resource,unlimited tablespace to scott container=all;</span><br></pre></td></tr></table></figure></p>
+<h5 id="设置用户使用的表空间"><a href="#设置用户使用的表空间" class="headerlink" title="设置用户使用的表空间"></a>设置用户使用的表空间</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter user scott default tablespace users;</span><br><span class="line">alter user scott temporary tablespace temp;</span><br></pre></td></tr></table></figure>
+<h5 id="使用-scott-用户登录"><a href="#使用-scott-用户登录" class="headerlink" title="使用 scott 用户登录"></a>使用 scott 用户登录</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect scott/123456;</span><br></pre></td></tr></table></figure>
+<h5 id="显示当前用户"><a href="#显示当前用户" class="headerlink" title="显示当前用户"></a>显示当前用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show user;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/ubuntu-基础命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/ubuntu-基础命令/" itemprop="url">ubuntu 基础命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:24:23+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Ubuntu基础命令"><a href="#Ubuntu基础命令" class="headerlink" title="Ubuntu基础命令"></a>Ubuntu基础命令</h4><h6 id="cd-切换位置"><a href="#cd-切换位置" class="headerlink" title="cd 切换位置"></a>cd 切换位置</h6><p>移动到 Document<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Documents</span><br></pre></td></tr></table></figure></p>
+<p>移动到上一级目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br></pre></td></tr></table></figure></p>
+<p>返回到 Home 目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure></p>
+<p>返回到你刚刚所在的目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd -</span><br></pre></td></tr></table></figure></p>
+<p>去往电脑的任何一个位置,使用的是绝对位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/cier</span><br></pre></td></tr></table></figure></p>
+<h5 id="ls-浏览文件"><a href="#ls-浏览文件" class="headerlink" title="ls 浏览文件"></a>ls 浏览文件</h5><p>显示当前目录下所有文件（不包括隐藏文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure></p>
+<p>显示当前目录下文件的详细信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p>显示所有文件，包括隐藏文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure></p>
+<p>更人性化的显示文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lh</span><br></pre></td></tr></table></figure></p>
+<p>显示 ls 所有的功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls --help</span><br></pre></td></tr></table></figure></p>
+<h5 id="touch-创建文件"><a href="#touch-创建文件" class="headerlink" title="touch 创建文件"></a>touch 创建文件</h5><p>创建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1</span><br></pre></td></tr></table></figure></p>
+<p>创建多个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch file1 file2 file3 file4 file5</span><br></pre></td></tr></table></figure></p>
+<h5 id="cp-复制文件或者文件夹"><a href="#cp-复制文件或者文件夹" class="headerlink" title="cp 复制文件或者文件夹"></a>cp 复制文件或者文件夹</h5><p>将老文件复制到新文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy</span><br></pre></td></tr></table></figure></p>
+<p>如果file1copy已经存在，上面的语句会直接覆盖原来的file1copy,为了避免覆盖，需要在cp后面加一个选项。回复任意大小写的’y’或者’yes’就确认复制，直接回车或者输入其他字母会取消复制，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -i file1 file1copy</span><br></pre></td></tr></table></figure></p>
+<p>复制进文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>复制文件夹，需要加上 -R (recursive)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -R folder1/ folder2/</span><br></pre></td></tr></table></figure></p>
+<p>复制文件名称部分相同的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file* folder2/</span><br></pre></td></tr></table></figure></p>
+<p>复制单独的几个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp file1 file1copy file2 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>#####　mv 移动文件<br>移动一个文件到另外一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file6 folder1/</span><br></pre></td></tr></table></figure></p>
+<p>移动文件到原来的地点，但是以不同的名字，就是重命名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file1 file1rename</span><br></pre></td></tr></table></figure></p>
+<p>找到更多的 mv 的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv --help</span><br></pre></td></tr></table></figure></p>
+<h5 id="mkdir-创建文件夹"><a href="#mkdir-创建文件夹" class="headerlink" title="mkdir 创建文件夹"></a>mkdir 创建文件夹</h5><p>在当前目录添加一个文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3</span><br></pre></td></tr></table></figure></p>
+<p>在文件夹中建一个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir folder3/file1</span><br></pre></td></tr></table></figure></p>
+<h5 id="rmdir-移除文件夹"><a href="#rmdir-移除文件夹" class="headerlink" title="rmdir 移除文件夹"></a>rmdir 移除文件夹</h5><p>rmdir 就是 remove directory 的意思，但是这个命令只能删除文件夹内没有文件的文件夹。也就是说只能移除空文件夹。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir folder3</span><br></pre></td></tr></table></figure></p>
+<h5 id="rm-移除文件"><a href="#rm-移除文件" class="headerlink" title="rm 移除文件"></a>rm 移除文件</h5><p>移除单个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm file1</span><br></pre></td></tr></table></figure></p>
+<p>有提示的移除文件<br>-i 每个要移除的文件都进行提示<br>-I 超过三个要移除的文件才进行提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -i file1 file2 file3</span><br><span class="line">rm -I file*</span><br></pre></td></tr></table></figure></p>
+<p>删除非空文件夹,加上 -r 或者 -R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -r folder1</span><br></pre></td></tr></table></figure></p>
+<h5 id="nano-编辑脚本"><a href="#nano-编辑脚本" class="headerlink" title="nano 编辑脚本"></a>nano 编辑脚本</h5><p>打开一个python脚本进行编辑,编辑完之后 ctrl+x 保存，再通过 python 指令运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nano file.py</span><br><span class="line">python file.py</span><br></pre></td></tr></table></figure></p>
+<h5 id="cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中"><a href="#cat-查看脚本内容-或者将脚本中的内容写进另外一个脚本中" class="headerlink" title="cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中"></a>cat 查看脚本内容,或者将脚本中的内容写进另外一个脚本中</h5><p>查看 python 脚本内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py</span><br></pre></td></tr></table></figure></p>
+<p>将文件的内容写进另外一个文件，另外一个文件不存在时会自动创建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file.py &gt; file2.py</span><br></pre></td></tr></table></figure></p>
+<p>将多个文件写进另外一个文件，另外一个文件不存在时会自动创建,内容顺序为 file1 file2 file3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py file2.py &gt; file3.py</span><br></pre></td></tr></table></figure></p>
+<p>将一个文件写入到另外一个文件的末尾<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1.py &gt;&gt; file2.py</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/Linux-文件权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/Linux-文件权限/" itemprop="url">Linux 文件权限</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:20:13+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="为什么有权限"><a href="#为什么有权限" class="headerlink" title="为什么有权限"></a>为什么有权限</h4><p>在一个系统中，如果只有一个用户，那有没有权限都无所谓，但是如果在一个系统上有多个用户的时候，为了避免其他用户对重要文件的查看修改等操作，所以就出现了权限的概念。</p>
+<h4 id="如何查看权限"><a href="#如何查看权限" class="headerlink" title="如何查看权限"></a>如何查看权限</h4><p>查看文件的权限只需要输入以下命令即可查看。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/03-01-02.png" alt="Linux文件权限"><br>图片来源:<a href="https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/" target="_blank" rel="noopener">https://morvanzhou.github.io/tutorials/others/linux-basic/3-01-file-permissions/</a> 侵删。</p>
+<p>类似于 drwxrwxr-x 这种格式的就是文件的权限。细节展示在上面的图中，下面解释一下这个字符串的四个部分。</p>
+<ul>
+<li>Type:文件的类型，(- 为文件，d 为文件夹，其他的还有 l,n,有需求再搜)</li>
+<li>User:在 Type 后面紧跟着的三个空就是说是用 User 的身份能对这个做什么处理(r 能读；w 能写；x 能执行；- 不能完成某个操作)，User 一般指的是当前使用电脑的人。</li>
+<li>Group:一个 Group 里面可能有一个或者多个 User,这些权限的样式和 User 一样。</li>
+<li>Others:除了 User 和 Group 以外人的权限。<h4 id="如何修改权限"><a href="#如何修改权限" class="headerlink" title="如何修改权限"></a>如何修改权限</h4>先看一个例子，如何给 User 添加执行权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+r file.py</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>归纳一下得到以下公式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [谁][怎么修改][修改哪个文件]</span><br></pre></td></tr></table></figure></p>
+<p>u+r 就是说给 User 加上 read 权限，给 file.py 这个文件进行修改。<br>[谁]</p>
+<ul>
+<li>u:修改 User</li>
+<li>g:修改 Group</li>
+<li>o:修改 Others</li>
+<li>a:修改 all<br>[怎么修改]</li>
+<li>+,-,= : 加上，剪掉，等于某些权限</li>
+<li>r,w,x : 或者多个权限一起，比如 rw.</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/ubuntu-中利用-git-上传项目到-github/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/" itemprop="url">ubuntu 中利用 git 上传项目到 github</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:19:12+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="git使用"><a href="#git使用" class="headerlink" title="git使用"></a>git使用</h4><p>参考文章：<a href="http://www.xgllseo.com/?p=5428" target="_blank" rel="noopener">http://www.xgllseo.com/?p=5428</a><br>感谢大神。</p>
+<p>下面是我挣扎了三天各种重装Ubuntu系统之后开始使用git的一点小经验。</p>
+<ol>
+<li>测试git是否安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>记住一定是–,不是一个-。</p>
+<ol start="2">
+<li>获取ssh密钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -C &quot;你的github邮箱&quot; -f ~/.ssh/github</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行的过程中会提示你需要设置密码，不要管它，一路回车。<br>这时候会在你的～/目录下面生成一个.ssh/目录，但是Ubuntu默认是不显示这个目录的。查看.ssh目录下的github.pub获取公钥认证，就是一串乱码。<br>接下来获取这串乱码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br><span class="line">sudo gedit github.pub</span><br></pre></td></tr></table></figure></p>
+<p>这个时候会打开这个文件，只需要复制里面的代码到github里面的SSH and GPG keys 里面填写一下就好了。</p>
+<ol start="3">
+<li><p>创建本地项目文件<br>这个文件就是专门负责项目的上传和更新，进入这个文件夹，然后在终端输入以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &quot;你的github仓库地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交文件夹到github上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add . // 更新整个目录</span><br><span class="line">git config user.name &quot;liuenci&quot; //第一次需要配置</span><br><span class="line">git config user.email &quot;154910381@qq.com&quot; //第一次需要配置</span><br><span class="line">git commit -m &quot;更新版本简要说明&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样子就能够上传我们的项目了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/git-常用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/git-常用命令/" itemprop="url">git 常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:17:40+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这篇文章用来记录自己学习git时所遇到的一些命令。</p>
+<ol>
+<li><p>设置全局的用户名和邮箱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;cier&quot;</span><br><span class="line">git config --global user.email &quot;154910381@qq.com&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看设置的用户名和邮箱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清屏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示隐藏文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 1.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看文件状态，看是否有文件没有添加到我们的git版本库中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单的拉取代码操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &quot;https://github.com/liuenci/Git-Test.git&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这个可以在新建一个仓库并且初始化有readme.md的文件时使用</p>
+<ol start="9">
+<li><p>查看日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看此次add和上次commit的两个版本之间的不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>还有一种查看方式是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br></pre></td></tr></table></figure></p>
+<p>具体是啥我也没弄懂，以后要是找到答案再补上</p>
+<ol start="11">
+<li><p>add所有的改变的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将日志一行一行打印</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>补充上一次提交的内容，并且不改变commit的message,但是commit ID改变了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend --no-edit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>add 之后想要继续更改其中的内容，可以选择回退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset 1.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reset回到HEAD指针所在的版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回退到当前版本的第 n 个版本,把 n 替换成你想要回退的版本即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~n</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回到指定的commit ID 的版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 7757af1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看所有的日志，包括未来的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单个文件的版本回退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br><span class="line">git checkout 7757af1 -- 1.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用图形的方式打印日志，一般用于多分支的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --graph</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看所有的分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切换分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 没有合并的分支</span><br><span class="line">git branch -D dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立分支的同时将head指针移动到新创建的分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在add的同时commit，这种方式只适合于当前版本库中已经有的文件，新创建的文件无法被是被</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -am &quot;新创建的文件无法识别&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在当前分支上合并其它分支的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff &quot;合并的message&quot; dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单的合并分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外一种合并分支的方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将未完成的工作暂存在缓存区。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将暂存区中的内容拿出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>忽略windows和unix换行符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/git-上传文件到-github/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/git-上传文件到-github/" itemprop="url">git 上传文件到 github</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:16:55+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>因为自己老是忘记 git 上传的步骤，每次上传文件都要重新谷歌找答案，所以<br>干脆写下来记录一下。</p>
+<ol>
+<li><p>在github上创建仓库，创建仓库的时候勾选初始化readme文件</p>
+</li>
+<li><p>如果是从来没有上传过github的代码，则执行以下代码。</p>
+</li>
+<li><p>先初始化git的本地仓库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再将readme文件从云端拉下来，这样云端仓库中的readme文件就到自己本地来了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &quot;github仓库地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将文件提交到缓存区,2.x版本的git两个命令都是一样都能将被删除的文件提交到缓存区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">// 或者 git add -A</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交一个版本到本地仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;message&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加远程仓库分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &quot;github地址&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将本地master分支的代码推送到远程仓库origin的master分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master.</span><br><span class="line">// 我试了下下面这个命令也是正确的可以上传的</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h6 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h6><p>git 的学习是一门大学问，技术是永远学不完的，只能一点一点慢慢学，遇到问题解决完再进行总结才能得到最大的收益，这样才能避免下次再出这样的错误。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/原生-Js-实现的-Ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/原生-Js-实现的-Ajax/" itemprop="url">原生 Js 实现的 Ajax</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:16:00+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前面写过一个用原生的js写的文件上传，今天就把原生的ajax也写一下吧，毕竟这个东西还是很常用的。<br>我先把代码贴上来。</p>
+<h3 id="html代码"><a href="#html代码" class="headerlink" title="html代码"></a>html代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"get()"</span>&gt;</span>get请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"post()"</span>&gt;</span>post请求<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="js代码"><a href="#js代码" class="headerlink" title="js代码"></a>js代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">// 创建请求对象</span></span><br><span class="line">	<span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">	<span class="comment">// 设置请求方式和路径</span></span><br><span class="line">	ajax.open(<span class="string">"get"</span>,<span class="string">"ajax?name=zhangsan"</span>);</span><br><span class="line">	<span class="comment">// 发送请求</span></span><br><span class="line">	ajax.send();</span><br><span class="line">	<span class="comment">// 处理请求</span></span><br><span class="line">	ajax.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(ajax.readyState ==<span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>)&#123;</span><br><span class="line">			<span class="comment">// 更新数据</span></span><br><span class="line">			<span class="keyword">var</span> data = ajax.responseText;</span><br><span class="line">			alert(data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">// 创建请求对象</span></span><br><span class="line">	<span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line">	<span class="comment">// 设置请求方式和路径</span></span><br><span class="line">	ajax.open(<span class="string">"post"</span>,<span class="string">"ajax"</span>);</span><br><span class="line">	<span class="comment">// post请求提交参数，必须要设置头部类型</span></span><br><span class="line">	ajax.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">	<span class="comment">// 发送请求</span></span><br><span class="line">	ajax.send(<span class="string">"name=zhangsan"</span>);</span><br><span class="line">	<span class="comment">// 处理请求</span></span><br><span class="line">	ajax.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(ajax.readyState == <span class="number">4</span> &amp;&amp; ajax.status == <span class="number">200</span>)&#123;</span><br><span class="line">			<span class="comment">// 更新数据</span></span><br><span class="line">			<span class="keyword">var</span> data = ajax.responseText;</span><br><span class="line">			alert(data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后端servlet代码"><a href="#后端servlet代码" class="headerlink" title="后端servlet代码"></a>后端servlet代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.liuenci.ajax;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/ajax"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAjax</span> <span class="keyword">extends</span> <span class="title">ServletImpl</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		String name = req.getParameter(<span class="string">"name"</span>);</span><br><span class="line">		System.out.println(name);</span><br><span class="line">		resp.getWriter().print(name);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		String name = req.getParameter(<span class="string">"name"</span>);</span><br><span class="line">		System.out.println(name);</span><br><span class="line">		resp.getWriter().print(name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>ajax:一种请求数据的方式，不需要刷新整个页面。</p>
+<p>ajax的核心技术是 XMLHttpRequest 对象。</p>
+<p>ajax请求过程：创建XMLHttpRequest对象、连接服务器、发送请求、接收响应数据。</p>
+<ol>
+<li>创建对象</li>
+</ol>
+<p>IE7以上版本直接用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ajax = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure></p>
+<p>创建即可</p>
+<ol start="2">
+<li>连接和发送</li>
+</ol>
+<p>open()函数有三个参数：请求方式、请求地址、是否异步请求（同步比较少，我就只写两个参数了）。</p>
+<p>get请求方式是通过url链接后面带参数提交到服务器的，post是将数据作为send()的参数提交到服务器的。</p>
+<p>post请求中，在发送数据之前，必须设置表单提交的内容类型。</p>
+<ol start="3">
+<li>接收<br>接收到响应后，响应的数据会自动填充XHR对象，相关属性如下：</li>
+</ol>
+<p>responseText:返回字符串类型，现在开发基本上是返回一个json数据。</p>
+<p>responseXML：如果响应的内容类型是”text/xml”或者”application/xml”,这个属性中将保存着相应的xml数据，是xml的document类型。</p>
+<p>status:响应的HTTP状态码。</p>
+<p>statusText:HTTP状态的说明。</p>
+<ol start="4">
+<li>ajax对象的readyState属性表示请求/响应过程的当前活动阶段，这个属性的值如下</li>
+</ol>
+<p>0-未初始化，尚未调用open()方法</p>
+<p>1-启动，调用了open()方法，没有调用send()方法</p>
+<p>2-发送，已经调用send()方法，未接收到响应。</p>
+<p>3-接收，已经接收到部分响应数据。</p>
+<p>4-完成，已经接收到全部响应数据。</p>
+<ol start="5">
+<li><p>ajax.status是状态码，状态码以2开头的都是成功，304表示从缓存中获取。</p>
+</li>
+<li><p>ajax请求是不能跨域的。</p>
+</li>
+</ol>
+<p>参考链接：<a href="http://caibaojian.com/ajax-jsonp.html，侵删。" target="_blank" rel="noopener">http://caibaojian.com/ajax-jsonp.html，侵删。</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/走的更快-走的更远/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/走的更快-走的更远/" itemprop="url">走的更快&走的更远</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:14:53+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>没啥，我就瞎逼逼几句</p>
+</blockquote>
+<p>最近一个月在做jsp项目，我个人觉得学习jsp这个阶段自己学的不是很好，但是却发现自己已经沉浸在一个技术的怪圈中。明明自己的技术基础不是很好，但是却很执着于研究很奇妙的技术，花了两天时间研究了一下高德地图的API,终于能使用高德地图的接口，还让我高兴了好一阵。我不把编程当成一种生活的工具，所以我不觉得编程是一件很苦的事情。相反，我觉得编程是一件很好玩的事情，特别是当你修复了一个自己想了好久没改出来的bug,或者是做出一件令自己满意的作品。我不喜欢把我写出来的源码集合叫做产品，那是一件很无聊的事情，产品就是意味着这个东西投入进社会，并且给我创造了效益，而且为他人提供了方便或者满足。我把写代码看成一种艺术，有人说我装逼，是不是有一句话说的是”世人笑我太疯癫，我笑别人看不穿”。其实我也不是大牛，也不是别人真像别人叫我大神那样有很高深的技术。但是我很看重我自己的成长，我觉得自己的学习能力还算可以，你只要给我时间，简单的东西我自己就能搞懂，要是难的东西，给我一点引导我觉得我也能弄出来，除非一些真的超出我的能力范围，毕竟这个世界上还是有智力差异的，不然岂不是每个人都能成为爱因斯坦。我现在很多思想可能和我从小接受的教育有关，好好读书，好好学技术，然后赚钱，养家等等。读书这东西吧，你觉得它没用，它就真的没用，但是你觉得它有用，那它就真的有用。就像别人看待学英语的作用一样，有的人觉得学英语没用，然后学习其它感兴趣的东西照样走上人生巅峰，但是有的人觉得有用，然后通过英语的深入学习也实现了自己的人生成长。成功的方式不同，结果往往大同小异。<br>哎，小学，初中，高中好几年的时间还是没有把我这个说话不着主题的毛病给改掉，自己说着说着就不知道要说啥了，我可能是个假人了吧。还是和这个标题一样，是时候调用自己脑子里的分支语句来处理这个问题了。</p>
+<blockquote>
+<p>走的更快 &amp; 走的更远</p>
+</blockquote>
+<ol>
+<li><p>我个人认为，你走的很快，那你十之八九走不远，因为你根基不稳，很多你以为自己懂的东西，其实你是不懂的，就像我自己编程一样。看着很简单的东西，你看一遍，你以为自己懂了，但是让你自己写出来，你会吗？其实我应该是很久就发现自己这个问题了，我现在的速度很快了，真的很快了，代码看一遍，思路过一遍，自己再敲一遍。好了这个问题就过了，然后过段时间往前看这个问题，”excuse me，这是啥？”，上次写jdbc的basedao发现自己这个问题就应该及时止损了，但是习惯这个东西真的很难改的，越是让我去写简单的东西我真的觉得写的没意思，这就成为了现在的我，挺浮躁的，脚下生风，哈哈，应该稍不注意就会跳坑里了吧。</p>
+</li>
+<li><p>走的很稳应该就不会出现这个问题，我不记得谁说过一句话来着：我走的很慢，但是我从来不会后退。码农才粘贴复制，高手从来都是自己造轮子给别人用的呢。我感觉我自己很需要沉淀下来一段时间，把别人的轮子也拿过来写写了，也许自己能造一个新的轮子呢？我记得我收藏过一段话来着。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">纽约时间比加州时间早三个小时，</span><br><span class="line">New York is 3 hours ahead of California,</span><br><span class="line">但加州时间并没有变慢。</span><br><span class="line">but it does not make California slow.</span><br><span class="line">有人22岁就毕业了，</span><br><span class="line">Someone graduated at the age of 22,</span><br><span class="line">但等了五年才找到好的工作！</span><br><span class="line">but waited 5 years before securing a good job!</span><br><span class="line">有人25岁就当上CEO，</span><br><span class="line">Someone became a CEO at 25,</span><br><span class="line">却在50岁撒手人寰。</span><br><span class="line">and died at 50.</span><br><span class="line">也有人迟到50岁才当上CEO，</span><br><span class="line">While another became a CEO at 50,</span><br><span class="line">然后活到90岁。</span><br><span class="line">and lived to 90 years.</span><br><span class="line">有人依然单身，</span><br><span class="line">Someone is still single,</span><br><span class="line">同时也有人已婚。</span><br><span class="line">while someone else got married.</span><br><span class="line">奥巴马55岁就退休，</span><br><span class="line">Obama retires at 55,</span><br><span class="line">川普70岁才开始当总统。</span><br><span class="line">but Trump starts at 70.</span><br><span class="line">世上每个人本来就有自己的发展时区。</span><br><span class="line">Absolutely everyone in this world works based on their Time Zone.</span><br><span class="line">身边有些人看似走在你前面，</span><br><span class="line">People around you might seem to go ahead of you,</span><br><span class="line">也有人看似走在你后面。</span><br><span class="line">some might seem to be behind you </span><br><span class="line">但其实每个人在自己的时区有自己的步程。</span><br><span class="line">But everyone is running their own RACE, in their own TIME.</span><br><span class="line">不用嫉妒或嘲笑他们。</span><br><span class="line">Don’t envy them or mock them.</span><br><span class="line">他们都在自己的时区里，你也是！</span><br><span class="line">They are in their TIME ZONE,and you are in yours!</span><br><span class="line">生命就是等待正确的行动时机。</span><br><span class="line">Life is about waiting for the right moment to act.</span><br><span class="line">所以，放轻松。</span><br><span class="line">So, RELAX.</span><br><span class="line">你没有落后。</span><br><span class="line">You’re not LATE.</span><br><span class="line">你没有领先。</span><br><span class="line">You’re not EARLY.</span><br><span class="line">在命运为你安排的属于自己的时区里，</span><br><span class="line">一切都准时。</span><br><span class="line">You are very much ON TIME, </span><br><span class="line">and in your TIME ZONE Destiny set up for you</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>将来还有这么久，谁会成为你，你又成为了谁。谁又说的定呢，我们慢慢来就好了，走的太快了，路上的风景你就看不到了，以后慢一点，走的稳一点，将来还有几十年，谁说你走不远呢。<br>一想这些东西自己就能扯好多没营养的东西，好了，夜深了，猿还是去睡觉了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/22/阿里云利用-wordpress-搭建个人博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cier">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cier">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/" itemprop="url">阿里云利用 wordpress 搭建个人博客</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-22T20:13:50+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>如何搭建自己的博客</p>
+</blockquote>
+<p>第一步:购买域名和服务器。服务器镜像选择(LAMP环境(Ubuntu16.04 Apache PHP7.1)),该环境是主流的linux建站环境。设置自己的密码，账号是root，无法更改。</p>
+<p>第二步:设置安全组。进入ecs服务器，找到本实例安全组—-&gt;点击配置规则—&gt;点击添加安全组规则。设置协议类型为全部，在授权对象内填入0.0.0.0/0。在地址栏输入你的服务器IP地址，如果显示”恭喜您，OneinStack 安装成功！”,表示配置成功。</p>
+<p>第三步:安装wordpress博客程序。</p>
+<ul>
+<li>这里我们需要使用PuTTY和FileZiila来实现对ECS的远程终端控制和文件传输。putty下载地址：<a href="https://github.com/larryli/PuTTY/releases" target="_blank" rel="noopener">https://github.com/larryli/PuTTY/releases</a>。下载下来之后解压，打开其中的putty.exe，主机地址填你的IP地址，端口填22，连接类型SSH,保存的会话填个test即可。然后保存。点击打开会出现一个黑窗口，输入账号root，和你自己购买服务器的密码，输入的时候不会显示，输入完成回车即可。如果显示(Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-85-generic x86_64)),说明linux登录成功。</li>
+<li>FileZiila下载地址：<a href="https://filezilla-project.org/download.php?type=client" target="_blank" rel="noopener">https://filezilla-project.org/download.php?type=client</a>,下载安装之后打开。在主机那里输入s<a href="ftp://IP地址。然后输入用户名和密码，端口默认是22" target="_blank" rel="noopener">ftp://IP地址。然后输入用户名和密码，端口默认是22</a>.</li>
+<li>在远程站点处输入/data/wwwroot/default，回车之后在default目录下面创建一个old目录，然后把除old以外的文件都拖到old目录下面，这个时候我们就可以上传wordpress文件了，wordpress下载地址：<a href="https://cn.wordpress.org/wordpress-4.8-zh_CN.zip" target="_blank" rel="noopener">https://cn.wordpress.org/wordpress-4.8-zh_CN.zip</a> ,在左侧找到我们的wordpress文件上传到和old同级的目录下。</li>
+<li>获取mysql的root密码。在我们的putty终端中登陆到服务器，复制grep dbrootpwd /root/oneinstack/options.conf，右键点击即可粘贴到终端中。默认密码是 KeYpZrZx 。</li>
+<li>打开浏览器，输入<a href="http://IP地址/old/phpMyAdmin/" target="_blank" rel="noopener">http://IP地址/old/phpMyAdmin/</a> ，用户名是：root,密码是：KeYpZrZx，点击New,输入数据库名wp即可完成创建数据库。然后在地址栏输入<a href="http://IP地址/wp-admin/setup-config.php" target="_blank" rel="noopener">http://IP地址/wp-admin/setup-config.php</a> ，点击现在就开始，新的页面数据库名：wp,用户名：root,密码：KeYpZrZx，其他保持不变，点击提交，再点击安装。填写站点标题：随意，用户名：随意，密码：随意，电子邮件：随意然后点击安装，然后点击登陆。博客就搭好了。</li>
+</ul>
+<p>第四步：解析域名。</p>
+<ul>
+<li>进入阿里的管理控制台，进入域名及网站。</li>
+<li>找到你要解析的域名，点击右边的解析。</li>
+<li>点击新手引导设置</li>
+<li>设置网站解析，输入你的服务器IP地址。</li>
+<li>过个十几分钟，打开浏览器，输入你的域名，即可访问你的博客。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cier</p>
+              <p class="site-description motion-element" itemprop="description">hello world</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cier</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
