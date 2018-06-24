@@ -1,94 +1,193 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  
-    <title>树 | cier</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
     
-    <meta name="author" content="cier">
+
+    <title>
+      树 | cier 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
-    <meta name="description" content="树的定义前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。
-树(Tree)是n(n&amp;gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中：
-(1) 有且仅有一个特定的称为根 (Root) 的结点。
-(2) 当 n &amp;gt; 1 时，其余结">
-    
-    
-    
+      <meta name="author" content="cier">
     
     
-    <link rel="icon" href="/img/favicon.ico">
+
+    <meta name="description" content="树的定义前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。 树(Tree)是n(n&amp;gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中： (1) 有且仅有一个特定的称为根 (Root) 的结点。 (2) 当 n &amp;gt; 1 时，其余结点可分为 m (m &amp;gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本身又是">
+<meta name="keywords" content="数据结构,树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树 | cier">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/树/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="树的定义前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。 树(Tree)是n(n&amp;gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中： (1) 有且仅有一个特定的称为根 (Root) 的结点。 (2) 当 n &amp;gt; 1 时，其余结点可分为 m (m &amp;gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本身又是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E6%A0%91.png">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E7%9B%B8%E4%BA%A4%E6%A0%91.png">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E5%BA%A6.png">
+<meta property="og:image" content="http://ove4nglsb.bkt.clouddn.com/%E7%BB%93%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png">
+<meta property="og:updated_time" content="2018-06-24T07:52:16.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树 | cier">
+<meta name="twitter:description" content="树的定义前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。 树(Tree)是n(n&amp;gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中： (1) 有且仅有一个特定的称为根 (Root) 的结点。 (2) 当 n &amp;gt; 1 时，其余结点可分为 m (m &amp;gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本身又是">
+<meta name="twitter:image" content="http://ove4nglsb.bkt.clouddn.com/%E6%A0%91.png">
     
     
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
 </head>
+<body>
 
-  <body>
-    <header>
-      <div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="cier" title="cier"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="cier">cier</a></h1>
-				<h2 class="blog-motto">一个假不正经的博客</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
 
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
     
-      <a href="/2018/06/24/树/" title="树" itemprop="url">树</a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="http://yoursite.com" title="cier">cier</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2018-06-24T07:51:56.000Z" itemprop="datePublished">2018-06-24</time>
-    更新日期:<time datetime="2018-06-24T07:52:16.460Z" itemprop="dateModified">2018-06-24</time>
-    
-  </p>
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">cier</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个假不正经的博客
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
 </header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#树的定义"><span class="toc-number">1.</span> <span class="toc-text">树的定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结点的分类"><span class="toc-number">2.</span> <span class="toc-text">结点的分类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结点间关系"><span class="toc-number">3.</span> <span class="toc-text">结点间关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树的其他相关概念"><span class="toc-number">4.</span> <span class="toc-text">树的其他相关概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树结构与线性结构的区别"><span class="toc-number">5.</span> <span class="toc-text">树结构与线性结构的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#开工了"><span class="toc-number">6.</span> <span class="toc-text">开工了</span></a></li></ol>
-		</div>
-		
-		<h5 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h5><p>前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。</p>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">树</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-06-24" class="post-meta__date date">2018-06-24</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/数据结构/">数据结构</a>, <a class="tags-link" href="/tags/树/">树</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h5 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h5><p>前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。</p>
 <p>树(Tree)是n(n&gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中：</p>
 <p>(1) 有且仅有一个特定的称为根 (Root) 的结点。</p>
 <p>(2) 当 n &gt; 1 时，其余结点可分为 m (m &gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本身又是一棵树，并且称有根的子树 (SubTree)。</p>
@@ -139,254 +238,64 @@
 <p>中间元素：有一个前驱和一个后继</p>
 </blockquote>
 <h5 id="开工了"><a href="#开工了" class="headerlink" title="开工了"></a>开工了</h5><p>好像停更了好久了，上班族应该都开始上班了，学生党也陆陆续续地开始要上课了，我也要开始立 flag 更新我的公众号了哈哈哈，答应自己要把数据结构这个系列写完，自己一定要在今年三月份写完，由于写的都是干货，所以每一个字都值得各位读者深思，所以我建议想学数据结构的读者，建议大家只字不差的阅读我这个系列，同时我提供 Java 版的数据结构代码给大家参考，每一个代码都是能够直接运行了，所以大家有时间可以自己去写写这些代码，另外大家如果有什么好的建议可以在公众号后台留言呀，开设这个公众号的意义不在于我给大家普及一些知识，更重要的是共同学习，毕竟，学习，不仅是陪着自己成长，也是一个陪着他人成长的过程，谢谢大家。</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/数据结构/">数据结构</a><a href="/tags/树/">树</a>
-  </div>
+  </section>
 
+  <section class="post-comments">
 
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
 
 
-<div class="article-share" id="share">
-
-  <div data-url="http://yoursite.com/2018/06/24/树/" data-title="树 | cier" data-tsina="" class="share clearfix">
-  </div>
-
-</div>
-</footer>   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2018/06/24/数据结构-线性表-双向链表/" title="数据结构-线性表-双向链表">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  数据结构-线性表-双向链表</span>
-</a>
-</div>
+</article>
 
 
-<div class="next">
-<a href="/2018/06/24/双亲表示法/"  title="双亲表示法">
- <strong>NEXT:</strong><br/> 
- <span>双亲表示法
-</span>
-</a>
-</div>
+            <footer class="footer">
 
-</nav>
-
-	
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#树的定义"><span class="toc-number">1.</span> <span class="toc-text">树的定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结点的分类"><span class="toc-number">2.</span> <span class="toc-text">结点的分类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结点间关系"><span class="toc-number">3.</span> <span class="toc-text">结点间关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树的其他相关概念"><span class="toc-number">4.</span> <span class="toc-text">树的其他相关概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#树结构与线性结构的区别"><span class="toc-number">5.</span> <span class="toc-text">树结构与线性结构的区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#开工了"><span class="toc-number">6.</span> <span class="toc-text">开工了</span></a></li></ol>
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
-		
-			<li><a href="/tags/JS/" title="JS">JS<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Java/" title="Java">Java<sup>9</sup></a></li>
-		
-			<li><a href="/tags/JavaWeb/" title="JavaWeb">JavaWeb<sup>2</sup></a></li>
-		
-			<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
-		
-			<li><a href="/tags/ROWID/" title="ROWID">ROWID<sup>1</sup></a></li>
-		
-			<li><a href="/tags/ROWNUM/" title="ROWNUM">ROWNUM<sup>1</sup></a></li>
-		
-			<li><a href="/tags/SQL/" title="SQL">SQL<sup>3</sup></a></li>
-		
-			<li><a href="/tags/Spring/" title="Spring">Spring<sup>4</sup></a></li>
-		
-			<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
-		
-			<li><a href="/tags/github/" title="github">github<sup>2</sup></a></li>
-		
-			<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
-		
-			<li><a href="/tags/http/" title="http">http<sup>2</sup></a></li>
-		
-			<li><a href="/tags/https/" title="https">https<sup>2</sup></a></li>
-		
-			<li><a href="/tags/oracle/" title="oracle">oracle<sup>8</sup></a></li>
-		
-			<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>2</sup></a></li>
-		
-			<li><a href="/tags/wordpress/" title="wordpress">wordpress<sup>1</sup></a></li>
-		
-			<li><a href="/tags/产品/" title="产品">产品<sup>1</sup></a></li>
-		
-			<li><a href="/tags/函数/" title="函数">函数<sup>1</sup></a></li>
-		
-			<li><a href="/tags/反射/" title="反射">反射<sup>2</sup></a></li>
-		
-		</ul>
-</div>
-
-
-  <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<div class="social-font clearfix">
-		
-		
-		
-		
-		
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
-		
-		<a href="http://yoursite.com" target="_blank" title="cier">cier</a>
-		
-		</p>
-</div>
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
 </footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
-</script>
+        </div>
+    </div>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
 
 
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
 
-
-
-
-  </body>
+</body>
 </html>

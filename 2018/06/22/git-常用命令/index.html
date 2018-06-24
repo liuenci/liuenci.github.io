@@ -1,96 +1,188 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  
-    <title>git 常用命令 | cier</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
-    
-    <meta name="author" content="cier">
-    
-    <meta name="description" content="这篇文章用来记录自己学习git时所遇到的一些命令。
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-设置全局的用户名和邮箱
-12git config --global user.name &amp;quot;cier&amp;quot;git config --global user.email &amp;quot;154910381@qq.com&amp;quot;
+    
 
-查看">
+    <title>
+      git 常用命令 | cier 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="cier">
+    
+    
+
+    <meta name="description" content="这篇文章用来记录自己学习git时所遇到的一些命令。  设置全局的用户名和邮箱 12git config --global user.name &amp;quot;cier&amp;quot;git config --global user.email &amp;quot;154910381@qq.com&amp;quot;  查看设置的用户名和邮箱 12git config user.namegit config user.em">
+<meta name="keywords" content="命令,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 常用命令 | cier">
+<meta property="og:url" content="http://yoursite.com/2018/06/22/git-常用命令/index.html">
+<meta property="og:site_name" content="cier">
+<meta property="og:description" content="这篇文章用来记录自己学习git时所遇到的一些命令。  设置全局的用户名和邮箱 12git config --global user.name &amp;quot;cier&amp;quot;git config --global user.email &amp;quot;154910381@qq.com&amp;quot;  查看设置的用户名和邮箱 12git config user.namegit config user.em">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-22T12:18:05.304Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git 常用命令 | cier">
+<meta name="twitter:description" content="这篇文章用来记录自己学习git时所遇到的一些命令。  设置全局的用户名和邮箱 12git config --global user.name &amp;quot;cier&amp;quot;git config --global user.email &amp;quot;154910381@qq.com&amp;quot;  查看设置的用户名和邮箱 12git config user.namegit config user.em">
     
     
     
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
     
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
 </head>
+<body>
 
-  <body>
-    <header>
-      <div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="cier" title="cier"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="cier">cier</a></h1>
-				<h2 class="blog-motto">一个假不正经的博客</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
 
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
     
-      <a href="/2018/06/22/git-常用命令/" title="git 常用命令" itemprop="url">git 常用命令</a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="http://yoursite.com" title="cier">cier</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2018-06-22T12:17:40.000Z" itemprop="datePublished">2018-06-22</time>
-    更新日期:<time datetime="2018-06-22T12:18:05.304Z" itemprop="dateModified">2018-06-22</time>
-    
-  </p>
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">cier</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          一个假不正经的博客
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
 </header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-		</div>
-		
-		<p>这篇文章用来记录自己学习git时所遇到的一些命令。</p>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">git 常用命令</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-06-22" class="post-meta__date date">2018-06-22</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/git/">git</a>, <a class="tags-link" href="/tags/命令/">命令</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>这篇文章用来记录自己学习git时所遇到的一些命令。</p>
 <ol>
 <li><p>设置全局的用户名和邮箱</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;cier&quot;</span><br><span class="line">git config --global user.email &quot;154910381@qq.com&quot;</span><br></pre></td></tr></table></figure>
@@ -196,254 +288,64 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf false</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-  
-	</div>
-		<footer class="article-footer clearfix">
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/命令/">命令</a><a href="/tags/git/">git</a>
-  </div>
+  </section>
 
+  <section class="post-comments">
 
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
 
 
-<div class="article-share" id="share">
-
-  <div data-url="http://yoursite.com/2018/06/22/git-常用命令/" data-title="git 常用命令 | cier" data-tsina="" class="share clearfix">
-  </div>
-
-</div>
-</footer>   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2018/06/22/ubuntu-中利用-git-上传项目到-github/" title="ubuntu 中利用 git 上传项目到 github">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  ubuntu 中利用 git 上传项目到 github</span>
-</a>
-</div>
+</article>
 
 
-<div class="next">
-<a href="/2018/06/22/git-上传文件到-github/"  title="git 上传文件到 github">
- <strong>NEXT:</strong><br/> 
- <span>git 上传文件到 github
-</span>
-</a>
-</div>
+            <footer class="footer">
 
-</nav>
-
-	
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
-  
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/Ajax/" title="Ajax">Ajax<sup>1</sup></a></li>
-		
-			<li><a href="/tags/JS/" title="JS">JS<sup>1</sup></a></li>
-		
-			<li><a href="/tags/Java/" title="Java">Java<sup>9</sup></a></li>
-		
-			<li><a href="/tags/JavaWeb/" title="JavaWeb">JavaWeb<sup>2</sup></a></li>
-		
-			<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
-		
-			<li><a href="/tags/ROWID/" title="ROWID">ROWID<sup>1</sup></a></li>
-		
-			<li><a href="/tags/ROWNUM/" title="ROWNUM">ROWNUM<sup>1</sup></a></li>
-		
-			<li><a href="/tags/SQL/" title="SQL">SQL<sup>3</sup></a></li>
-		
-			<li><a href="/tags/Spring/" title="Spring">Spring<sup>4</sup></a></li>
-		
-			<li><a href="/tags/git/" title="git">git<sup>3</sup></a></li>
-		
-			<li><a href="/tags/github/" title="github">github<sup>2</sup></a></li>
-		
-			<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
-		
-			<li><a href="/tags/http/" title="http">http<sup>2</sup></a></li>
-		
-			<li><a href="/tags/https/" title="https">https<sup>2</sup></a></li>
-		
-			<li><a href="/tags/oracle/" title="oracle">oracle<sup>8</sup></a></li>
-		
-			<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>2</sup></a></li>
-		
-			<li><a href="/tags/wordpress/" title="wordpress">wordpress<sup>1</sup></a></li>
-		
-			<li><a href="/tags/产品/" title="产品">产品<sup>1</sup></a></li>
-		
-			<li><a href="/tags/函数/" title="函数">函数<sup>1</sup></a></li>
-		
-			<li><a href="/tags/反射/" title="反射">反射<sup>2</sup></a></li>
-		
-		</ul>
-</div>
-
-
-  <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<div class="social-font clearfix">
-		
-		
-		
-		
-		
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
-		
-		<a href="http://yoursite.com" target="_blank" title="cier">cier</a>
-		
-		</p>
-</div>
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
 </footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
-</script>
+        </div>
+    </div>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
 
 
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
 
-
-
-
-  </body>
+</body>
 </html>
