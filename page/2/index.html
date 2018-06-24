@@ -147,6 +147,517 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-https-的工作原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/https-的工作原理/">https 的工作原理</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/https-的工作原理/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:01:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>看到好多网站现在都换成了 https 传输方式，http 要凉了啊。苦逼程序员又要去了解一下 https 的工作原理了。</p>
+<p>参考链接：<a href="https://juejin.im/entry/58d7635e5c497d0057fae036" target="_blank" rel="noopener">https://juejin.im/entry/58d7635e5c497d0057fae036</a></p>
+<ol>
+<li>首先客户端发起 https 请求</li>
+</ol>
+<p>这里注意 http 默认连接的是 80 端口，而 https 连接的是 443 端口。</p>
+<ol start="2">
+<li>服务器的配置</li>
+</ol>
+<p>使用 https 协议的服务器需要一套数字证书，这个可以自己做，也可以向组织申请。区别就是自己做的证书需要客户端验证通过才能继续访问，而使用受信任的公司申请的证书则不会弹出提示页面。</p>
+<p>这套证书可以理解成私钥和公钥，可以把公钥理解成锁头，私钥理解成钥匙，全世界都能往这把锁头里面存东西，然后把锁给你，但是私钥只有一把，而且在你自己手里，你能打开锁然后读取里面的信息。</p>
+<p>说到底还是一个加密和解密的过程。</p>
+<ol start="3">
+<li>传送证书</li>
+</ol>
+<p>证书就是公钥，我把它理解成你把锁头给用户的过程。</p>
+<ol start="4">
+<li>客户端解析证书</li>
+</ol>
+<p>首先判断证书是否有效，如果证书有问题就会警告用户。</p>
+<p>如果没有问题就会生成随机值，然后用证书对该随机值进行加密，就是说用锁头把随机值锁起来，这样除非有钥匙，不然看不到被锁住的内容。</p>
+<ol start="5">
+<li>传输加密信息</li>
+</ol>
+<p>这里是传输证书加密后的随机值，目的是让服务端得到这个随机值，以后客户端和服务端的通信就可以通过这个随机值来进行加密和解密了。</p>
+<ol start="6">
+<li>服务端解密信息</li>
+</ol>
+<p>服务端用私钥解密之后就得到了客户端传输过来的随机值，然后把内容通过该值进行对称加密，所谓对称加密就是，将信息和私钥通过某种算法混合在一起，这样除非知道私钥，不然无法获取内容，而正好客户端和服务端都知道这个私钥，所有只要加密算法的加密强度强，私钥够复杂，数据就足够安全了。</p>
+<ol start="7">
+<li>传输加密后的信息</li>
+</ol>
+<p>这部分信息是服务端用私钥加密之后的信息，由于是对称加密，是可以在客户端被还原的。</p>
+<ol start="8">
+<li>客户端解密信息</li>
+</ol>
+<p>客户端用之前生成的私钥解密服务端传过来的信息，于是获取了解密之后的内容，这样即使有人监听客户端与服务端之间的报文传输，也束手无策。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">https</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/https-的工作原理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-http-返回码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/http-返回码/">http 返回码</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/http-返回码/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:01:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>http 返回码，应该说是状态码，是用户发送请求给服务器，服务器给出响应，响应是一个包括 http 包含 http 状态码的的信息头。</p>
+<p>http 的状态码的英文名为 http status code</p>
+<h1 id="常用的状态码"><a href="#常用的状态码" class="headerlink" title="常用的状态码"></a>常用的状态码</h1><ol>
+<li>200 请求成功</li>
+<li>301 请求的资源或者网页被永久的转移到其他的 url 中</li>
+<li>404 请求的网页或者资源不存在</li>
+<li>500 服务器内部错误，一般是代码写错了，哈哈哈</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/http-返回码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-队列-顺序结构和循环队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-队列-顺序结构和循环队列/">数据结构-队列-顺序结构和循环队列</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-队列-顺序结构和循环队列/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:59:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h4><p>队列是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。</p>
+<p>换个意思说，队列是一种先进先出的的线性表，简称FIFO.允许插入的一端称为队尾，允许删除的一端叫做队头。</p>
+<h4 id="队列的实际应用"><a href="#队列的实际应用" class="headerlink" title="队列的实际应用"></a>队列的实际应用</h4><p>键盘的输入，到显示器上记事本软件的输出都是队列的应用。</p>
+<h4 id="队列顺序存储的不足"><a href="#队列顺序存储的不足" class="headerlink" title="队列顺序存储的不足"></a>队列顺序存储的不足</h4><p>顺序存储使用数组来存储队列的元素，队列的添加就是在队尾追加一个元素，这个时候不需要移动任何元素，时间复杂度为o(1),但是队列删除元素是在队头，即是下标为0的位置，那也就意味着队列中的所有元素都得向前移动一位，因此时间复杂度为o(n)，但是这样子性能就会特别的差，因此我们想到了更好的解决方案。</p>
+<p>那就是引入 front 和 rear 指针，front 指针指向队头元素，rear 指向队尾元素的下一个位置，当 front 等于 rear 时，队列为空。</p>
+<p>但是这样子就会出现假溢出的问题。</p>
+<p>假设是长度为 5 的数组，初始状态下，front 和 rear 都指向下标为 0 的位置，然后入队 a1,a2,a3,a4. 这时候 front 指针仍然指向 0 ，而 rear 指针指向 4,。</p>
+<p>然后出对 a1,a2, front 指向 2,rear 不变。</p>
+<p>这时候入队 a5,front 指针不变，但是 rear 会指向数组之外。</p>
+<p>如果再入队 a6，就会发生数组越界的错误，但是 0 和 1 两个位置上还是空闲的，这种现象就是假溢出现象。</p>
+<h4 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h4><p>解决假溢出的方法就是当后面满了，再从头开始入队，也就是头尾相接的循环。我们把这种头尾相接的顺序存储结构称为循环队列。</p>
+<h4 id="循环队列解决队列顺序存储的不足"><a href="#循环队列解决队列顺序存储的不足" class="headerlink" title="循环队列解决队列顺序存储的不足"></a>循环队列解决队列顺序存储的不足</h4><p>从入队 a5 开始讲起，front 指针不变，rear 指向 0.</p>
+<p>接着入队 a6,队列满，这时候 front == rear。</p>
+<p>前面我们说到 front == rear 是队列空。但是此时是队列慢，那么如何判断一个循环队列是空队列还是满队列呢？</p>
+<p>这里我们创建数组的大小需要在预先设计的数组大小加 1，当队列为空时，条件就是 front == rear,当队列满时，数组中还有一个空闲的单位。<br>通过规律可以得到队列中的长度元素为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(rear - front + arraySize) % arraySize</span><br></pre></td></tr></table></figure></p>
+<p>如果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(rear + 1) % arraySize = front</span><br></pre></td></tr></table></figure></p>
+<p>则队列满。<br>如果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">front == rear</span><br></pre></td></tr></table></figure></p>
+<p>则队列空。</p>
+<h4 id="关于代码"><a href="#关于代码" class="headerlink" title="关于代码"></a>关于代码</h4><p>关于队列的坑估计就是上面这些了，如果想了解详细的源码可以前往我的 github 地址详细了解。<br>github : <a href="https://github.com/liuenci/Data-Structure" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-队列-顺序结构和循环队列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-队列-链式结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-队列-链式结构/">数据结构-队列-链式结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-队列-链式结构/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:58:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是队列的链式结构"><a href="#什么是队列的链式结构" class="headerlink" title="什么是队列的链式结构"></a>什么是队列的链式结构</h4><p>队列的链式结构其实就是线性表中的单链表，不过队列只允许尾进头出，队列的链式存储结构我们也称为链队列。</p>
+<h4 id="关于链队列的数据结构"><a href="#关于链队列的数据结构" class="headerlink" title="关于链队列的数据结构"></a>关于链队列的数据结构</h4><p>为了操作上的方便，我们把队头指针 front 指向链队列的头结点，队尾指针 rear 指向链队列的最后一个结点。</p>
+<p>当队列为空时，front 和 rear 都指向头结点。</p>
+<h4 id="链队列的基本操作"><a href="#链队列的基本操作" class="headerlink" title="链队列的基本操作"></a>链队列的基本操作</h4><h5 id="入队操作"><a href="#入队操作" class="headerlink" title="入队操作"></a>入队操作</h5><p>入队操作时，其实就是在链表尾部插入结点。先创建结点，然后将 rear 的 next 引用指向新插入的结点，然后将 rear 指向新插入的结点。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建一个结点</span></span><br><span class="line">        Node node = <span class="keyword">new</span> Node(data, <span class="keyword">null</span>);</span><br><span class="line">        <span class="comment">// 将队尾指针指向新加入的结点，将结点插入队尾</span></span><br><span class="line">        rear.next = node;</span><br><span class="line">        rear = node;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="出队操作"><a href="#出队操作" class="headerlink" title="出队操作"></a>出队操作</h5><p>出队操作时，就是头结点的后继节点出队，然后将头结点的后继改为他后面的结点，当链队列只有头结点时，需要将 rear 指向头结点。</p>
+<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">dequeue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.printf(<span class="string">"队列为空，无法删除"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 暂存队头元素</span></span><br><span class="line">            Node node = front.next;</span><br><span class="line">            T t = node.data;</span><br><span class="line">            front.next = node.next;</span><br><span class="line">            size--;</span><br><span class="line">            <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">                rear = front;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 删除结点</span></span><br><span class="line">            node = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">return</span> t;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="循环队列和链队列的比较"><a href="#循环队列和链队列的比较" class="headerlink" title="循环队列和链队列的比较"></a>循环队列和链队列的比较</h4><p>从时间上看，两种数据结构都是常数时间，即都是常数时间，都是O(1)的时间复杂度，不过循环队列是事先申请好空间，使用期间不释放，而对于链队列，每次申请和释放结点也会存在一些时间开销，如果入队出队频繁，则两者还是有一点差异。</p>
+<p>从空间上看，循环队列必须有一个固定的长度，所以就有了存储元素个数和空间浪费的问题。而链队列不存在这个问题，尽量它需要一个指针域，我用Java写的代码那就是引用域，本质上类似，引用域会产生一些空间上的开销，但是也可以接受。</p>
+<h4 id="说点别的"><a href="#说点别的" class="headerlink" title="说点别的"></a>说点别的</h4><p>今天2017年的最后一天，提前祝大家新年快乐啊。以后就不把文章转发到朋友圈了，有点骗粉的感觉哈哈哈，虽然确实是的。</p>
+<p>这是今年的最后一篇，有头有尾。</p>
+<p>下一篇不知道要等到什么时候去，我有时间就更新，想看的可以关注公众号的信息。</p>
+<p>想看源码的同学可以看下面。</p>
+<h4 id="源码获取方式"><a href="#源码获取方式" class="headerlink" title="源码获取方式"></a>源码获取方式</h4><p>github 地址：<a href="https://github.com/liuenci/Data-Structure。" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure。</a></p>
+<p>有兴趣的同学可以点个 Star 啊。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">队列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-队列-链式结构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构-线性表-顺序结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/数据结构-线性表-顺序结构/">数据结构-线性表-顺序结构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/数据结构-线性表-顺序结构/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:57:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="什么是线性表"><a href="#什么是线性表" class="headerlink" title="什么是线性表"></a>什么是线性表</h4><p>线性表就是零个或多个数据元素的有限序列。<br>首先是一个序列，然后序列之间有顺序，序列中的元素如果存在多个，则第一个元素无前驱，最后一个元素无后继，其他每个元素都有且一个前驱和一个后继。</p>
+<h4 id="什么是线性表的顺序存储结构"><a href="#什么是线性表的顺序存储结构" class="headerlink" title="什么是线性表的顺序存储结构"></a>什么是线性表的顺序存储结构</h4><p>线性表的顺序存储结构就是用一段地址连续的存储单元依次存储线性表的数据元素，也就是用数组去实现顺序存储结构。<br>下面用代码实现一下顺序结构。</p>
+<h4 id="首先写一个接口"><a href="#首先写一个接口" class="headerlink" title="首先写一个接口"></a>首先写一个接口</h4><p>接口主要描述一下实现类要实现哪些方法，这里顺序结构包括三个方法，分别是获得元素，插入元素以及删除元素的方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线性表顺序存储结构的接口</span></span><br><span class="line"><span class="comment"> * 指的是用一段地址连续的存储单元存储线性表的数据元素</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span>: ISeqList</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018-1-22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISeqList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要获得第i个元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getElem</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 元素的插入位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 需要插入的元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 是否成功删除</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertElem</span><span class="params">(<span class="keyword">int</span> i,T t)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要删除元素的位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">deleteElem</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="然后写一个接口的实现类"><a href="#然后写一个接口的实现类" class="headerlink" title="然后写一个接口的实现类"></a>然后写一个接口的实现类</h4><p>该类主要实现了接口的三个方法，下面描述一下三个方法要注意的点。</p>
+<h5 id="获得元素方法"><a href="#获得元素方法" class="headerlink" title="获得元素方法"></a>获得元素方法</h5><ol>
+<li>因为我这里用的泛型，所以返回的也是泛型的结果，用泛型的优点就是可扩展性更强了，在后面泛型可以不受类型的约束，可以使用整型，字符串型。</li>
+<li>因为线性表的下标索引是从1开始的，所以我们返回的是 i-1 的数据元素<h5 id="插入元素方法"><a href="#插入元素方法" class="headerlink" title="插入元素方法"></a>插入元素方法</h5></li>
+<li>如果插入的位置不合理，打印错误语句并返回。</li>
+<li>如果线性表的长度大于等于默认分配的MAXSIZE，答应错误语句并返回。</li>
+<li>如果插入的位置不在表尾，那就从最后一个元素开始向前遍历到 i 个位置，分别将他们都向后移动一个位置。</li>
+<li>将要插入元素填入数组 i-1 的位置处。</li>
+<li>表长加 1。<h5 id="删除元素方法"><a href="#删除元素方法" class="headerlink" title="删除元素方法"></a>删除元素方法</h5></li>
+<li>如果线性表为空，打印错误语句并返回。</li>
+<li>如果删除的位置不合理，打印错误语句并返回。</li>
+<li>如果删除的元素不在表尾，那就从删除元素位置开始遍历到最后一个元素位置，分别将它们都向前移动一个位置。</li>
+<li>表长减 1。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/1/22 10:57</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeqList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">ISeqList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXSIZE = <span class="number">20</span>; <span class="comment">// 存储空间的初始化大小</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> T[] data; <span class="comment">// 数组存储数据元素</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> length; <span class="comment">// 线性表当前长度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SeqList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        data = (T[]) <span class="keyword">new</span> Object[MAXSIZE];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获得元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 需要获得第i个元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getElem</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt; MAXSIZE) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        T t = data[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入元素</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 元素的插入位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t 插入的元素</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertElem</span><span class="params">(<span class="keyword">int</span> i, T t)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 线性表已经满了</span></span><br><span class="line">        <span class="keyword">if</span> (length == MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该线性表已经满了"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入的位置不在范围内</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该位置不合法"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入的位置不在表尾</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; length) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = length; j &gt;= i; j--) &#123;</span><br><span class="line">                data[j] = data[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 线性表的下标是从1开始，但是数组的下标是从0开始的，所以插入的t是在 i-1 的位置</span></span><br><span class="line">        data[i - <span class="number">1</span>] = t;</span><br><span class="line">        length++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">deleteElem</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 线性表为空时</span></span><br><span class="line">        <span class="keyword">if</span> (length == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"线性表为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 删除的数据不在范围内时</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; length) &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除位置不在范围内"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        T t = data[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; length; j++) &#123;</span><br><span class="line">            data[j - <span class="number">1</span>] = data[j];</span><br><span class="line">        &#125;</span><br><span class="line">        length--;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> T[] getData() &#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setData</span><span class="params">(T[] data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLength</span><span class="params">(<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (length &lt; <span class="number">0</span> || length &gt; MAXSIZE)&#123;</span><br><span class="line">            System.out.println(<span class="string">"长度不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.length = length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="最后测试线性表"><a href="#最后测试线性表" class="headerlink" title="最后测试线性表"></a>最后测试线性表</h4><p>测试线性表需要注意以下几点：</p>
+<ol>
+<li>初始化线性表，这里我使用的是伪随机种子设置数组的长度以及数组中元素的值。</li>
+<li>随机生成删除元素的下标，满足条件则自动删除元素。</li>
+<li>随机生成插入元素的下标和数据，满足条件则自动插入元素。</li>
+<li>最后展示线性表中的数据。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.stucture.sqlList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试线性表</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> cier</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/1/22 11:47</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SeqListTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> MAX = <span class="number">25</span>;</span><br><span class="line">    Random r = <span class="keyword">new</span> Random();</span><br><span class="line">    SeqList&lt;Integer&gt; seqList;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SeqListTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        initSeqList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建一个线性表顺序存储结构</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initSeqList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        seqList = <span class="keyword">new</span> SeqList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">int</span> length = Math.abs(r.nextInt(MAX));</span><br><span class="line">        System.out.println(<span class="string">"产生的数组长度为："</span>+length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (length &gt; SeqList.MAXSIZE) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该长度不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=length; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> j = r.nextInt(MAX);</span><br><span class="line">            System.out.print(j + <span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">if</span> (!seqList.insertElem(i,j)) &#123;</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"\n原始数组是："</span>);</span><br><span class="line">        display(seqList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试删除元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteElem</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n\n删除的位置是："</span>+i);</span><br><span class="line">        Integer deleteNumber = seqList.deleteElem(i);</span><br><span class="line">        <span class="keyword">if</span>(deleteNumber == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.exit(<span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除的元素是："</span>+ deleteNumber);</span><br><span class="line">            System.out.println(<span class="string">"删除元素后数组是："</span>);</span><br><span class="line">            display(seqList);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试随机插入方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertByRandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n\n随机插入的位置是："</span>+i);</span><br><span class="line">        <span class="keyword">int</span> elem = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"随机插入数据是："</span>+elem);</span><br><span class="line">        seqList.insertElem(i,elem);</span><br><span class="line">        System.out.println(<span class="string">"随机插入数据后数组是："</span>);</span><br><span class="line">        display(seqList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据展示</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(SeqList seqList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; seqList.getData().length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (seqList.getElem(i) != <span class="keyword">null</span>)&#123;</span><br><span class="line">                System.out.print(seqList.getElem(i) + <span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"\n数组的长度为："</span>+seqList.getLength());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取元素</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getElem</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(MAX);</span><br><span class="line">        System.out.println(<span class="string">"\n获取位置为："</span>+i);</span><br><span class="line">        System.out.println(<span class="string">"获取到的元素为："</span>+seqList.getElem(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SeqListTest seqListTest = <span class="keyword">new</span> SeqListTest();</span><br><span class="line">        seqListTest.insertByRandom();</span><br><span class="line">        seqListTest.deleteElem();</span><br><span class="line">        seqListTest.getElem();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="关于运行结果"><a href="#关于运行结果" class="headerlink" title="关于运行结果"></a>关于运行结果</h4><p>因为不是手动插入数据，删除数据，而是使用随机数自动插入和删除，所以结果会有很多组，不过没关系，多运行几次数据不一样反而能对比着得到结果，下面贴一个完美的运行结果。</p>
+<blockquote>
+<p>产生的数组长度为：16<br>22 4 8 11 17 3 10 8 18 18 7 9 14 4 3 18<br>原始数组是：<br>22 4 8 11 17 3 10 8 18 18 7 9 14 4 3 18<br>数组的长度为：16</p>
+</blockquote>
+<blockquote>
+<p>随机插入的位置是：12<br>随机插入数据是：14<br>随机插入数据后数组是：<br>22 4 8 11 17 3 10 8 18 18 7 14 9 14 4 3 18<br>数组的长度为：17</p>
+</blockquote>
+<blockquote>
+<p>删除的位置是：15<br>删除的元素是：4<br>删除元素后数组是：<br>22 4 8 11 17 3 10 8 18 18 7 14 9 14 3 18 18<br>数组的长度为：16</p>
+</blockquote>
+<blockquote>
+<p>获取位置为：17<br>获取到的元素为：18</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/数据结构-线性表-顺序结构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据结构-线性表-静态链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -680,489 +1191,6 @@
 
 
   
-    <article id="post-双亲表示法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/双亲表示法/">双亲表示法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/双亲表示法/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:51:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h5><p>在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。</p>
-<p>顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。</p>
-<p>链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。</p>
-<p>因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完成树的表示。</p>
-<p>主流的树的存储方式有三种，分别为：双亲表示法、孩子表示法、孩子兄弟表示法。</p>
-<p>下面讲下双亲表示法。</p>
-<h5 id="双亲表示法"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a>双亲表示法</h5><p>我们假设以一组连续空间来存储树的结点，同时在每一个结点中，附设一个指示器指向其双亲结点在数组中的位置，这种结构就称之为双亲表示法。</p>
-<p>核心代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E data; <span class="comment">// 数据域</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> parent; <span class="comment">// 双亲</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(E data, <span class="keyword">int</span> parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.parent = parent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h5><blockquote>
-<p>如何创建树</p>
-</blockquote>
-<p>树的基本元素有根节点与结点数，所以我们需要先初始化结点数组，然后在将根结点存储到数组的第一个位置中，也就是nodes[0]，最后将实际存在的结点加一即可。</p>
-<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">IParentalTreeImpl</span><span class="params">(E data, <span class="keyword">int</span> treeSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.treeSize = treeSize;</span><br><span class="line">        nodes = <span class="keyword">new</span> Node[treeSize];</span><br><span class="line">        nodes[<span class="number">0</span>] = <span class="keyword">new</span> Node&lt;E&gt;(data, -<span class="number">1</span>); <span class="comment">// 定义根节点</span></span><br><span class="line">        nodeNum++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>如何添加结点</p>
-</blockquote>
-<p>首先我们需要知道新结点在数组中添加的位置是数组中第一个 nodes[i] == null 的 i 值处。然后我们需要知道新结点的双亲结点在数组中的位置，知道这两个之后我们才能进行添加新结点。</p>
-<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(E data, Node&lt;E&gt; parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nodes[i] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                nodes[i] = <span class="keyword">new</span> Node&lt;E&gt;(data, getPos(parent));</span><br><span class="line">                nodeNum++;</span><br><span class="line">                <span class="keyword">return</span>; <span class="comment">// 必须 return，不然循环会继续找到下一个 nodes[i] == null;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>如何获取树的深度</p>
-</blockquote>
-<p>因为树是有很多分支的，我们预先不知道哪个分支才是深度最大的那个分支，所以我们需要遍历所有的分支然后进行比较才能得到树的深度。</p>
-<p>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDeepth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>; <span class="comment">// 用于记录节点的最大深度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; treeSize &amp;&amp; nodes[i] != <span class="keyword">null</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 初始化节点的深度</span></span><br><span class="line">            <span class="keyword">int</span> deepth = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// m 用于记录当前节点的双亲节点的位置</span></span><br><span class="line">            <span class="keyword">int</span> m = nodes[i].getParent();</span><br><span class="line">            <span class="comment">// 如果双亲节点存在，则向上继续搜索双亲节点</span></span><br><span class="line">            <span class="keyword">while</span> (m != -<span class="number">1</span> &amp;&amp; nodes[m] != <span class="keyword">null</span>) &#123;</span><br><span class="line">                m = nodes[m].getParent();</span><br><span class="line">                deepth++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (max &lt; deepth) &#123;</span><br><span class="line">                max = deepth;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="如何获取源代码"><a href="#如何获取源代码" class="headerlink" title="如何获取源代码"></a>如何获取源代码</h5><p>上面对树的一些核心操作进行了讲解，还有一些小功能因为比较简单就不进行详解了，有兴趣的同学可以前往我的 Github 进行克隆学习。</p>
-<p>我的 github 地址为：<a href="https://github.com/liuenci/Data-Structure.git" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure.git</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/双亲表示法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构-栈-顺序结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/数据结构-栈-顺序结构/">数据结构-栈-顺序结构</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/数据结构-栈-顺序结构/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:50:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="什么是栈"><a href="#什么是栈" class="headerlink" title="什么是栈"></a>什么是栈</h4><p>栈是一种特殊的线性表，但是只允许在表尾进行插入和删除。相对于普遍意义上的线性表来说，实现要简单不少，不过这里我们还要知道栈的几个关键的概念。</p>
-<h4 id="栈的关键点"><a href="#栈的关键点" class="headerlink" title="栈的关键点"></a>栈的关键点</h4><p>我们把允许插入和删除的一端称为栈顶(top),另一端称为栈底(bottom);不含任何数据元素的栈称为空栈。<br>栈又称为后进先出(Last In First Out)的线性表，简称为LIFO结构。</p>
-<h4 id="关于栈的插入和删除"><a href="#关于栈的插入和删除" class="headerlink" title="关于栈的插入和删除"></a>关于栈的插入和删除</h4><p>栈的插入操作，叫做进栈，也称压栈、入栈。<br>栈的删除操作，叫做出栈，也称弹栈。</p>
-<h4 id="栈的顺序结构实现"><a href="#栈的顺序结构实现" class="headerlink" title="栈的顺序结构实现"></a>栈的顺序结构实现</h4><p>在我的前几篇文章中，说到线性表有两种实现方式，一种是顺序结构，一种是链式结构。而我们的栈作为一种特殊的线性表，因而也具有这两种实现方式，这里我们详细讲述栈的顺序结构的实现。</p>
-<h5 id="先来一个接口-ISequenceStack"><a href="#先来一个接口-ISequenceStack" class="headerlink" title="先来一个接口 ISequenceStack"></a>先来一个接口 ISequenceStack</h5><p>这段时间自己写数据结构的代码，特别中意接口，以前一直不怎么写接口的，现在发现写接口特别有利于自己的代码规范，写接口就像自己高中写作文列提纲一样，你知道自己该写哪些内容，所以我建议大家都好好学习写接口。<br>这里的接口主要为了规范 push(压栈) 和 pop(出栈)操作，辅助操作有 getTop()(得到栈顶元素) 和 isEmpty()(栈的判空操作)。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ISequenceStack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">getTop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="接口实现类-SequenceStackImpl"><a href="#接口实现类-SequenceStackImpl" class="headerlink" title="接口实现类 SequenceStackImpl"></a>接口实现类 SequenceStackImpl</h5><p>接口实现类主要包括一个栈的初始化(init()),压栈(push())，以及出栈(pop())。<br>栈的初始化：<br>栈的实现需要一个数组作为依托，所以需要将数组实例化。此外，我们需要一个栈顶指针，表明栈顶所在的位置。<br>核心代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.maxSize = size;</span><br><span class="line">        top = -<span class="number">1</span>;</span><br><span class="line">        stack = <span class="keyword">new</span> Object[size];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>压栈：<br>压栈就是在这个栈中插入数据的过程，所以先要判断栈是否已经满了，如果满了则返回并且输出错误警告信息。<br>如果栈不满，将 top 指针后移，再将数据插入。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( top == maxSize) &#123;</span><br><span class="line">            System.out.println(<span class="string">"栈已满"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        top++;</span><br><span class="line">        stack[top] = obj;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>出栈：<br>出栈就是在这个栈中删除数据的过程，所以先要判断该栈是否为空，如果为空则返回 null，并且输出错误警告信息。<br>如果不为空，则将该结点设置为 null，然后 top 指针前移。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty())&#123;</span><br><span class="line">            System.out.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Object obj = stack[top];</span><br><span class="line">        stack[top] = <span class="keyword">null</span>;</span><br><span class="line">        top--;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="栈的测试类"><a href="#栈的测试类" class="headerlink" title="栈的测试类"></a>栈的测试类</h5><p>栈的测试类比较简单，主要是测试栈的实现类中每一个方法是否可用，以及边界条件下测试栈会不会报异常。这里就不贴源代码占篇幅了，想要了解详情的可以去我的 github 上面查看数据结构全部的源代码。</p>
-<h4 id="项目源码获取地址"><a href="#项目源码获取地址" class="headerlink" title="项目源码获取地址"></a>项目源码获取地址</h4><p>github:<a href="https://github.com/liuenci/Data-Structure" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure</a>.<br>觉得可以的同学可以点一波 Star 再走啊。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/数据结构-栈-顺序结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构-栈-链式结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/数据结构-栈-链式结构/">数据结构-栈-链式结构</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/数据结构-栈-链式结构/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在我的前一篇文章中讲述了栈的顺序结构，这篇文章将带大家实现栈的链式结构。</p>
-<h4 id="什么是栈的链式结构"><a href="#什么是栈的链式结构" class="headerlink" title="什么是栈的链式结构"></a>什么是栈的链式结构</h4><p>栈的顺序结构需要依托于数组来实现，而栈的链式结构则不需要依托于数组，而是在每个结点中存放一个指针域，这个指针域指向这个结点的直接后继，这种依次链接并且插入和删除结点只允许在栈顶进行就叫做栈的链式结构。<br>栈的链式结构也叫做链栈。</p>
-<h4 id="从链表进化为链栈"><a href="#从链表进化为链栈" class="headerlink" title="从链表进化为链栈"></a>从链表进化为链栈</h4><p>栈只是栈顶来做插入和删除操作，栈顶放在链表的头部还是尾部呢？由于单链表有头指针，而栈顶指针也是必须的，那干嘛不让它俩合二为一呢，所以比较好的办法是把链顶放在单链表的头部。另外，都已经有了栈顶在头部了，单链表中比较常用的头结点也就失去了意义，通常对于链栈来说，是不需要头结点的。</p>
-<h4 id="如何实现链栈"><a href="#如何实现链栈" class="headerlink" title="如何实现链栈"></a>如何实现链栈</h4><h5 id="结点类-Node"><a href="#结点类-Node" class="headerlink" title="结点类 Node"></a>结点类 Node</h5><p>由于链栈也是由一个个的结点组成,所以结点类是少不了的，每个结点包括两个部分，一个数据域，一个指针域。<br>数据域存储要处理的数据，指针域存储当前结点的直接后继的引用。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object element; <span class="comment">// 数据域</span></span><br><span class="line">    <span class="keyword">private</span> Node next; <span class="comment">// 指针域</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="接口-ILinkedStack"><a href="#接口-ILinkedStack" class="headerlink" title="接口 ILinkedStack"></a>接口 ILinkedStack</h5><p>这个接口和我写的栈的顺序结构的接口一，一模一样。关键还是规范入栈和出栈操作，辅助实现一个获取栈顶元素以及判空操作。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ILinkedStack</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(Object object)</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Object <span class="title">getTop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="接口实现类-LinkedStackImpl"><a href="#接口实现类-LinkedStackImpl" class="headerlink" title="接口实现类 LinkedStackImpl"></a>接口实现类 LinkedStackImpl</h5><p>链栈初始化：链栈的初始化只需要将链顶引用 head 赋值为空并且将链栈的大小 size 赋值为 0 即可完成初始化。<br>入栈：因为链栈没有大小限制，不像顺序栈需要考虑数组预先分配的大小，所以在入栈只需要将插入的结点的指针域指向当前的栈顶指针，再将栈顶指针指向插入的新的结点，最后将链栈的大小更新。<br>出栈：出栈的话还是需要判断当前的链栈是否为空，如果为空栈当然就不能删除结点了，如果为空栈则需要输出错误警告信息，并且返回 null；如果不为空则需要将栈顶指针指向当前栈顶的下一个结点，并且将链栈的大小更新。<br>判空：判断当前链栈是否为空只需要判断 head == null 为 true 还是 false 即可。<br>核心代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedStackImpl</span> <span class="keyword">implements</span> <span class="title">ILinkedStack</span> </span>&#123;</span><br><span class="line">    Node head; <span class="comment">// 栈顶指针</span></span><br><span class="line">    <span class="keyword">int</span> size; <span class="comment">// 结点的个数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LinkedStackImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        head = <span class="keyword">null</span>;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object object)</span> </span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(object,head);</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Object object = head.getElement();</span><br><span class="line">        head = head.getNext();</span><br><span class="line">        size--;</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getTop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head.getElement();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="测试类-LinkedStackTest"><a href="#测试类-LinkedStackTest" class="headerlink" title="测试类 LinkedStackTest"></a>测试类 LinkedStackTest</h5><p>测试类比较简单，无非是按照初始化链栈，进行入栈，再进行出栈操作，测试每一个方法是否正确，这里就不贴代码了，想了解详情的可以查看我的 github 地址，上面有所有的用 Java 写的数据结构的代码。</p>
-<h4 id="项目源码获取方式"><a href="#项目源码获取方式" class="headerlink" title="项目源码获取方式"></a>项目源码获取方式</h4><p>github 地址：<a href="https://github.com/liuenci/Data-Structure。" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure。</a><br>有兴趣的同学点个 Star 再走啊。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/数据结构-栈-链式结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法时间复杂度判断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/算法时间复杂度判断/">算法时间复杂度判断</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/算法时间复杂度判断/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:47:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在判断时间复杂度之间，我们需要知道什么是如何推导大O阶方法。</p>
-<blockquote>
-<p>推导大O阶方法的步骤</p>
-<ol>
-<li>用常数1取代运行时间中的所有加法常数。</li>
-<li>在修改后的运行次数函数中，只保留最高阶项。</li>
-<li>如果最高阶项存在且不是1，则去除与这个项相乘的常数</li>
-</ol>
-</blockquote>
-<p>经过上面三步得到的结果就是大O阶，下面讲解几种常见的时间复杂度的判断。</p>
-<blockquote>
-<p>常数阶</p>
-</blockquote>
-<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>,n = <span class="number">100</span>; <span class="comment">// 执行一次</span></span><br><span class="line">sum = ( <span class="number">1</span> + n ) * n / <span class="number">2</span>; <span class="comment">// 执行一次</span></span><br><span class="line">System.out.println(sum); <span class="comment">// 执行一次</span></span><br></pre></td></tr></table></figure></p>
-<p>以上这个算法的运行次数函数是f(n) = 3;<br>现在根据推导大O阶的方法推导一下这个算法的时间复杂度。<br>首先将常数3变为1，然后保留最高阶项，但是这个算法没有最高阶项，所以它的时间复杂度就是O(1)。</p>
-<blockquote>
-<p>线性阶</p>
-</blockquote>
-<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>很明显这个算法的循环次数为n，所以推导大O阶得到O(n)。</p>
-<blockquote>
-<p>对数阶</p>
-</blockquote>
-<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (count &lt; n)&#123;</span><br><span class="line">    count = count * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>因为每次 count 乘以 2 之后，就距离 n 就更近了一份。因为 2 的 x 次方等于 n，得到时间复杂度 x = log2n (以 2 为底的 n 对数)。</p>
-<blockquote>
-<p>平方阶</p>
-</blockquote>
-<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i,j;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">        System.out.println(i*j);   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由于内循环是一个 O(n) 的时间复杂度，外层循环只不过是将内层循环再循环 n 次，所以时间复杂度为 O(n2)（n 的平方），因此可以总结出循环的时间复杂度等于循环体的复杂度乘以该循环运行的次数。</p>
-<p>总结常用的时间复杂度所耗费的时间从小到大依次是:<br>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n 平方) &lt; O(n 三次方) &lt; O(2 的 n 次方) &lt; O(n!) &lt; O(n 的 n 次方)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">时间复杂度</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/算法时间复杂度判断/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-解析-ROWID-和-ROWNUM-基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/">解析 ROWID 和 ROWNUM 基础</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:46:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>oracle 中存在伪列这个说法，它就像一个表的列一样，但是它并不存储在表中，伪列可以从数据库中查出，但是无法对伪列进行更新，删除和插入。常用的伪列就有 ROWNUM 和 ROWID.</p>
-<h4 id="ROWNUM-伪列"><a href="#ROWNUM-伪列" class="headerlink" title="ROWNUM 伪列"></a>ROWNUM 伪列</h4><p>ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果集，然后再在结果集上加上一个伪列，伪列的作用就是在结果集中添加一个从 1 开始的序列号。例如以下 sql.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept;</span><br></pre></td></tr></table></figure></p>
-<p>结果如下：</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/rownum.png" alt=""></p>
-<p>通过结果可以看到如果我们需要获取某个数据集下的前 10 条数据的话就可以通过判断 rownum 的大小即可。例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept <span class="keyword">where</span> <span class="keyword">rownum</span> &lt;= <span class="number">10</span>;</span><br></pre></td></tr></table></figure></p>
-<p>由于 rownum 是先有结果集，再添加伪列，并且伪列都是从 1 开始的，所以以下语句会查不到任何结果。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> dept <span class="keyword">where</span> <span class="keyword">rownum</span> &gt;=<span class="number">2</span> <span class="keyword">and</span> <span class="keyword">rownum</span> &lt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
-<p>如果想要得到想要的结果，可以使用子查询的方法。例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">rownum</span>,deptno <span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">rownum</span> <span class="keyword">num</span>,deptno <span class="keyword">from</span> dept) <span class="keyword">where</span> <span class="keyword">num</span> &gt;=<span class="number">2</span> <span class="keyword">and</span> <span class="keyword">num</span> &lt;= <span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
-<p>结果如下：</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20180419093212.png" alt=""></p>
-<h4 id="ROWID-伪列"><a href="#ROWID-伪列" class="headerlink" title="ROWID 伪列"></a>ROWID 伪列</h4><p>ROWNUM 是物理上不存在的，但是 ROWID 是物理上存在的，它的作用是用来唯一标识一条记录物理位置的一个 ID,类似于 Java 中的一个对象的哈希码，都是为了标识对应对象的物理位置。</p>
-<p>利用 ROWID 的唯一特性，可以用 ROWID 来进行去重。<br>例如创建一个表：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> dept_bak <span class="keyword">AS</span> <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept;  </span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept_bak <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept;</span><br></pre></td></tr></table></figure></p>
-<p>查询表中的数据:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">rowid</span>,dept_bak.* <span class="keyword">from</span> dept_bak;</span><br></pre></td></tr></table></figure></p>
-<p>结果如下：</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/rowid.png" alt=""><br>最后利用 rowid 进行去重。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> dept_bak <span class="keyword">WHERE</span> <span class="keyword">ROWID</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> <span class="keyword">MIN</span>(<span class="keyword">ROWID</span>) <span class="keyword">FROM</span> dept_bak <span class="keyword">GROUP</span> <span class="keyword">BY</span> DEPTNO);</span><br></pre></td></tr></table></figure></p>
-<p>这样就完成了利用 rowid 的唯一特性去重了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ROWID</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ROWNUM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1279,11 +1307,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1292,18 +1324,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">https</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1319,7 +1339,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1343,6 +1375,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">序列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
               </li>
              
@@ -1363,11 +1399,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安利</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1375,11 +1415,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">产品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">线性表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">项目</a>
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1399,19 +1451,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">ROWID</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ROWNUM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1424,14 +1468,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">序列</a>
               </li>
             
             <div class="clearfix"></div>
