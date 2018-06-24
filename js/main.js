@@ -1,28 +1,74 @@
-$(document).ready(function() {
+$(function() {
+  var $toc = $("#toc");
+  if (!!$toc.length && screen.width > 992 && $('.content').find('h2').length != 0) {
+    $("#toc").tocify({
+      context: '.article-content',
+      theme: 'bootstrap3',
+      selectors: 'h2,h3,h4'
+    });
 
-  $('a.blog-button').click(function() {
-    if ($('.panel-cover').hasClass('panel-cover--collapsed')) return;
-    currentWidth = $('.panel-cover').width();
-    $('.panel-cover').addClass('animated panel-cover--collapsed slideInLeft');
-    $('.content-wrapper').addClass('animated slideInLeft');
-  });
+    //sticky the toc
+    var $window = $(window),
+      $stickyEl = $('#toc'),
+      elTop = $stickyEl.offset().top;
+    //for page refresh, we can right position the toc
+    $stickyEl.toggleClass('sticky-scroll', elTop > 155);
 
-  if (window.location.hash && window.location.hash == "#blog") {
-    $('.panel-cover').addClass('panel-cover--collapsed');
+    //listen the window scroll
+    $window.scroll(function() {
+      elTop = $stickyEl.offset().top;
+      $stickyEl.toggleClass('sticky-scroll', elTop > 155);
+    });
+
   }
 
-  if (window.location.pathname != "/") {       // if hexo in subdir of site, should change this line
-    $('.panel-cover').addClass('panel-cover--collapsed');
+	// image view
+	$('.content img').on('click',function(){
+		window.open($(this).attr('src'),'_blank');
+	});
+
+  // highlight the menu
+  menuHighlight();
+
+  $(window).scroll(function() {
+    if ($(this).scrollTop()) {
+      $('#gotop:hidden').stop(true, true).fadeIn();
+    } else {
+      $('#gotop').stop(true, true).fadeOut();
+    }
+  });
+
+	//  enable ripple on buttons
+	$.material.ripples();
+
+  //this is adapted from http://css-tricks.com/moving-highlight/
+  function menuHighlight() {
+    var originalBG = $(".nav li").css("background-color"),
+      x, y, xy, bgWebKit, bgMoz,
+      lightColor = "rgba(1, 164, 149, 1)",
+      gradientSize = 60;
+
+    $('.nav li')
+      .mousemove(function(e) {
+        x = e.pageX - this.offsetLeft;
+        y = e.pageY - this.offsetTop;
+        xy = x + " " + y;
+
+        bgWebKit = "-webkit-gradient(radial, " + xy + ", 0, " + xy + ", " + gradientSize + ", from(" + lightColor + "), to(rgba(0, 150, 136, 1.0))), " + originalBG;
+        bgMoz = "-moz-radial-gradient(" + x + "px " + y + "px 45deg, circle, " + lightColor + " 0%, rgba(0, 150, 136, 1.0) " + gradientSize + "px)";
+
+        $(this)
+          .css({
+            background: bgWebKit
+          })
+          .css({
+            background: bgMoz
+          });
+
+      }).mouseleave(function() {
+        $(this).css({
+          background: originalBG
+        });
+      });
   }
-
-  $('.btn-mobile-menu').click(function() {
-    $('.navigation-wrapper').toggleClass('visible animated bounceInDown');
-    $('.btn-mobile-menu__icon').toggleClass('icon-list icon-x-circle animated fadeIn');
-  });
-
-  $('.navigation-wrapper .blog-button').click(function() {
-    // $('.navigation-wrapper').toggleClass('visible');
-    $('.btn-mobile-menu__icon').toggleClass('icon-list icon-x-circle animated fadeIn');
-  });
-
 });
