@@ -147,6 +147,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-BASIC-6-杨辉三角形" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/BASIC-6-杨辉三角形/">BASIC-6 杨辉三角形</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/BASIC-6-杨辉三角形/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:04:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目如图：<br><img src="http://ove4nglsb.bkt.clouddn.com/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92%E5%BD%A2.png" alt=""><br>解题思路：</p>
+<ol>
+<li>找规律<ul>
+<li>从输入和输出格式来看，输入数为n,则为n行n列的二维数组</li>
+<li>每一行的第一个数和最后一个数都是1.</li>
+<li>从第三行开始，除开第一个数和最后一个数，中间所有的数，假设该数的坐标为[i,j]，都等于[i-1,j-1]+[i-1,j]的和。</li>
+</ul>
+</li>
+<li>写代码<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = input.nextInt();</span><br><span class="line">		<span class="keyword">int</span>[][] array = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>) &#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);</span><br><span class="line">			System.out.print(<span class="number">1</span>+<span class="string">" "</span>+<span class="number">1</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			array[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			array[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			array[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(j==<span class="number">0</span>||j==n) &#123;</span><br><span class="line">						array[i][j]=<span class="number">1</span>;</span><br><span class="line">					&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">						array[i][j]=array[i-<span class="number">1</span>][j-<span class="number">1</span>]+array[i-<span class="number">1</span>][j];</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) &#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(array[i][j]!=<span class="number">0</span>) &#123;</span><br><span class="line">						System.out.print(array[i][j]+<span class="string">" "</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.println();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">蓝桥杯</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/BASIC-6-杨辉三角形/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-谈谈-https-和-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1056,107 +1143,6 @@
 
 
   
-    <article id="post-数据结构-线性表-双向链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/数据结构-线性表-双向链表/">数据结构-线性表-双向链表</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/数据结构-线性表-双向链表/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:52:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我们在单链表中，由于只有后继结点的指针域，所以如果我们需要查找上一个结点的时候，最坏的时间复杂度就是 O(n),因为我们每次都需要从头结点开始遍历。<br>所以在后来者中提出了双向链表来解决单链表的问题。<br>那什么是双向链表呢？<br>双向链表就是在单链表的每个结点中，再设置一个指向其前驱结点的指针域。<br>具体的代码结构如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 保存结点的数据</span></span><br><span class="line">        <span class="keyword">private</span> T data;</span><br><span class="line">        <span class="comment">// 保存上一个结点的引用</span></span><br><span class="line">        <span class="keyword">private</span> Node prev;</span><br><span class="line">        <span class="comment">// 保存下一个结点的引用</span></span><br><span class="line">        <span class="keyword">private</span> Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在链表的操作中最重要的操作一般有以下两个：</p>
-<ol>
-<li>插入结点</li>
-<li>删除结点</li>
-</ol>
-<p>下面将详细的告诉大家如何实现以上三种基本操作。</p>
-<h5 id="插入结点如何实现"><a href="#插入结点如何实现" class="headerlink" title="插入结点如何实现"></a>插入结点如何实现</h5><p>双向链表的插入先需要判断几种情况：</p>
-<ol>
-<li>如果为空链表，直接使用尾插法插入结点进入链表中，同时 head 结点和 tail 结点都将指向插入的这个结点。</li>
-<li>如果不为空链表，但是插入的索引不合理，比如说小于 1（因为链表都是从 1 开始计数）或者大于链表的长度都是不合理的，这个时候需要输出错误警告信息。</li>
-<li>当插入的位置合理时，如果是插入的头结点，直接使用头插法插入结点。</li>
-<li>如果不是插入的头结点，假设插入结点为 s,插入索引为 index，则需要先找到 index-1 的结点 p,以及原来链表的 index 位置的结点 q,先将新插入的结点 node 的前驱设置为 p,后继设置为 q,然后再设置 p 的后继为 node, q 的前驱为 node,最后将链表的长度递增即可完成双向链表的插入操作。核心代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(T element, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果是空链表直接插入</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            add(element);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (index &lt; <span class="number">1</span> || index &gt; size) &#123;</span><br><span class="line">                System.out.println(<span class="string">"插入位置不合理"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index == <span class="number">1</span>) &#123;</span><br><span class="line">                addAtHead(element);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 获取插入结点的前一个结点</span></span><br><span class="line">                Node prev = getNodeByIndex(index - <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 获取插入点的结点</span></span><br><span class="line">                Node next = prev.next;</span><br><span class="line">                <span class="comment">// 让新结点的 next 引用指向 next 结点， prev 引用指向 prev 结点</span></span><br><span class="line">                Node newNode = <span class="keyword">new</span> Node(element,prev,next);</span><br><span class="line">                <span class="comment">// 让 prev 的 next 结点指向新结点</span></span><br><span class="line">                prev.next = newNode;</span><br><span class="line">                <span class="comment">// 让 prev 的下一个结点的 prev 指向新结点</span></span><br><span class="line">                next.prev = newNode;</span><br><span class="line">                size++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="删除结点如何实现"><a href="#删除结点如何实现" class="headerlink" title="删除结点如何实现"></a>删除结点如何实现</h5><p>删除结点仍然需要判断以下几种情况:</p>
-<ol>
-<li>当双向链表为空链表时当然就无法删除了，需要输出错误警告信息。</li>
-<li>当双向链表不为空链表时，这时候就需要判断删除的结点下标是否不合理，不合理的情况和插入链表时一致，这个时候也需要输出错误警告信息。</li>
-<li>如果删除的是头结点，只需要将头结点的后一个结点设置为头结点，并且将前驱设置为 null 即可，因为未被使用的结点对象会被 Java 的垃圾回收机制回收。</li>
-<li>如果删除的不是头结点，就需要找到删除结点的前一个结点，将这个结点的后继指向为要删除结点的后继结点，然后将要删除结点的后继结点的前驱结点设置为要删除结点的前驱结点，最后将要删除结点的前驱和后继结点都设置为  null,这样 Java 的垃圾回收机制将会回收这个未被使用的结点。核心代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"该链表是空链表无法删除"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; size - <span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"删除的位置不合法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node node = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (index == <span class="number">1</span>) &#123;</span><br><span class="line">            node = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">            head.prev = <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 获取删除结点的前一个结点</span></span><br><span class="line">            Node prev = getNodeByIndex(index - <span class="number">1</span>);</span><br><span class="line">            <span class="comment">// 获得将要被删除的结点</span></span><br><span class="line">            node = prev.next;</span><br><span class="line">            <span class="comment">// 让被删除结点的 next 指向被删除结点的下一个结点</span></span><br><span class="line">            prev.next = node.next;</span><br><span class="line">            <span class="comment">// 让被删除结点的下一个结点的 prev 指向 prev 结点</span></span><br><span class="line">            <span class="keyword">if</span> (node.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">                node.next.prev = prev;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 将被删除结点的 prev,next 引用赋给 null</span></span><br><span class="line">            node.prev = <span class="keyword">null</span>;</span><br><span class="line">            node.next = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>双向链表比单链表要复杂挺多的，而且考虑的东西更多，毕竟多了一个指针域，对于删除和插入结点时，需要格外小心，而且双向链表比单链表更占用空间，因为多了一个指针域，不过它的优点就是不只是可以从头结点开始遍历，也可以从尾结点开始遍历，提高了算法的时间性能，总而言之，就是用空间来换取了时间。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/数据结构-线性表-双向链表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1289,14 +1275,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1309,11 +1287,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1325,7 +1315,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1342,10 +1332,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">https</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1373,15 +1359,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日志</a>
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">项目</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1393,7 +1375,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1405,11 +1391,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color3">安利</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安利</a>
+                <a href="javascript:void(0)" class="js-tag color3">日志</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">项目</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1446,6 +1436,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
             
             <div class="clearfix"></div>
