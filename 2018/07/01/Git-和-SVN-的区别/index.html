@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Git 和 SVN 的区别 | cier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版本">
+  <meta name="description" content="SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版">
 <meta name="keywords" content="工具使用,Git,SVN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 和 SVN 的区别">
 <meta property="og:url" content="http://yoursite.com/2018/07/01/Git-和-SVN-的区别/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版本">
+<meta property="og:description" content="SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-01T07:44:55.689Z">
+<meta property="og:updated_time" content="2018-07-01T07:52:56.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 和 SVN 的区别">
-<meta name="twitter:description" content="SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版本">
+<meta name="twitter:description" content="SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版">
   
     <link rel="alternative" href="/atom.xml" title="cier" type="application/atom+xml">
   
@@ -167,13 +167,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版本库出现问题，只需要在其他的版本库中复制一个即可。</p>
-<p>SVN 支持空目录，而 Git 不支持。Git 无法提交空目录到仓库中，SVN 可以。</p>
-<p>Git 可以在不联网的条件下查看所有的提交日志，而 SVN 是需要联网才行。</p>
-<p>Git 适合开源的项目进行开发，而 SVN 不适合。Git 可以每个人维护自己的版本，而 SVN 维护的是一个中心版本。</p>
-<p>SVN 有严格的权限控制，而 Git 没有。在公司的项目中，为了避免所有的人都看到项目的所有代码，可能会使用 SVN 管理开发人员的可查看权限。而 Git 因为克隆下来的版本库就是所有的版本，所以可以查看别人的代码。</p>
-<p>分支的使用不一样。Git 是针对整个仓库进行分支的建立，而 SVN 可以针对某个目录来进行分支的建立。</p>
-<p>SVN 下载源代码慢，Git 下载速度快。</p>
+        <ol>
+<li><p>SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版本库出现问题，只需要在其他的版本库中复制一个即可。</p>
+</li>
+<li><p>SVN 支持空目录，而 Git 不支持。Git 无法提交空目录到仓库中，SVN 可以。</p>
+</li>
+<li><p>Git 可以在不联网的条件下查看所有的提交日志，而 SVN 是需要联网才行。</p>
+</li>
+<li><p>Git 适合开源的项目进行开发，而 SVN 不适合。Git 可以每个人维护自己的版本，而 SVN 维护的是一个中心版本。</p>
+</li>
+<li><p>SVN 有严格的权限控制，而 Git 没有。在公司的项目中，为了避免所有的人都看到项目的所有代码，可能会使用 SVN 管理开发人员的可查看权限。而 Git 因为克隆下来的版本库就是所有的版本，所以可以查看别人的代码。</p>
+</li>
+<li><p>分支的使用不一样。Git 是针对整个仓库进行分支的建立，而 SVN 可以针对某个目录来进行分支的建立。</p>
+</li>
+<li><p>SVN 下载源代码慢，Git 下载速度快。</p>
+</li>
+</ol>
 
       
 
@@ -476,14 +485,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -493,6 +494,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">权限</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,7 +581,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,7 +593,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
