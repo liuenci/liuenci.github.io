@@ -147,6 +147,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-阿里云利用-wordpress-搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">阿里云利用 wordpress 搭建个人博客</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/" class="archive-article-date">
+  	<time datetime="2018-06-22T12:13:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>如何搭建自己的博客</p>
+</blockquote>
+<p>第一步:购买域名和服务器。服务器镜像选择(LAMP环境(Ubuntu16.04 Apache PHP7.1)),该环境是主流的linux建站环境。设置自己的密码，账号是root，无法更改。</p>
+<p>第二步:设置安全组。进入ecs服务器，找到本实例安全组—-&gt;点击配置规则—&gt;点击添加安全组规则。设置协议类型为全部，在授权对象内填入0.0.0.0/0。在地址栏输入你的服务器IP地址，如果显示”恭喜您，OneinStack 安装成功！”,表示配置成功。</p>
+<p>第三步:安装wordpress博客程序。</p>
+<ul>
+<li>这里我们需要使用PuTTY和FileZiila来实现对ECS的远程终端控制和文件传输。putty下载地址：<a href="https://github.com/larryli/PuTTY/releases" target="_blank" rel="noopener">https://github.com/larryli/PuTTY/releases</a>。下载下来之后解压，打开其中的putty.exe，主机地址填你的IP地址，端口填22，连接类型SSH,保存的会话填个test即可。然后保存。点击打开会出现一个黑窗口，输入账号root，和你自己购买服务器的密码，输入的时候不会显示，输入完成回车即可。如果显示(Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-85-generic x86_64)),说明linux登录成功。</li>
+<li>FileZiila下载地址：<a href="https://filezilla-project.org/download.php?type=client" target="_blank" rel="noopener">https://filezilla-project.org/download.php?type=client</a>,下载安装之后打开。在主机那里输入s<a href="ftp://IP地址。然后输入用户名和密码，端口默认是22" target="_blank" rel="noopener">ftp://IP地址。然后输入用户名和密码，端口默认是22</a>.</li>
+<li>在远程站点处输入/data/wwwroot/default，回车之后在default目录下面创建一个old目录，然后把除old以外的文件都拖到old目录下面，这个时候我们就可以上传wordpress文件了，wordpress下载地址：<a href="https://cn.wordpress.org/wordpress-4.8-zh_CN.zip" target="_blank" rel="noopener">https://cn.wordpress.org/wordpress-4.8-zh_CN.zip</a> ,在左侧找到我们的wordpress文件上传到和old同级的目录下。</li>
+<li>获取mysql的root密码。在我们的putty终端中登陆到服务器，复制grep dbrootpwd /root/oneinstack/options.conf，右键点击即可粘贴到终端中。默认密码是 KeYpZrZx 。</li>
+<li>打开浏览器，输入<a href="http://IP地址/old/phpMyAdmin/" target="_blank" rel="noopener">http://IP地址/old/phpMyAdmin/</a> ，用户名是：root,密码是：KeYpZrZx，点击New,输入数据库名wp即可完成创建数据库。然后在地址栏输入<a href="http://IP地址/wp-admin/setup-config.php" target="_blank" rel="noopener">http://IP地址/wp-admin/setup-config.php</a> ，点击现在就开始，新的页面数据库名：wp,用户名：root,密码：KeYpZrZx，其他保持不变，点击提交，再点击安装。填写站点标题：随意，用户名：随意，密码：随意，电子邮件：随意然后点击安装，然后点击登陆。博客就搭好了。</li>
+</ul>
+<p>第四步：解析域名。</p>
+<ul>
+<li>进入阿里的管理控制台，进入域名及网站。</li>
+<li>找到你要解析的域名，点击右边的解析。</li>
+<li>点击新手引导设置</li>
+<li>设置网站解析，输入你的服务器IP地址。</li>
+<li>过个十几分钟，打开浏览器，输入你的域名，即可访问你的博客。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">wordpress</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-「跳一跳」辅助高分攻略" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -513,11 +607,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
         		</li>
       		
 		</ul>
@@ -613,11 +707,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
         		</li>
       		
 		</ul>
@@ -709,11 +803,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
         		</li>
       		
 		</ul>
@@ -871,11 +965,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
         		</li>
       		
 		</ul>
@@ -974,103 +1068,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-博客项目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/19/博客项目总结/">博客项目总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/19/博客项目总结/" class="archive-article-date">
-  	<time datetime="2018-06-19T06:26:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>总结一下这次为期21天的两人团队博客项目。</p>
-<h4 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h4><blockquote>
-<p>数据库设计不当。</p>
-</blockquote>
-<p>什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。</p>
-<p>数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。</p>
-<p>数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处理，尽量少联结表，多联结一张表性能会下降不少。</p>
-<blockquote>
-<p>需求分析设计不当</p>
-</blockquote>
-<p>找参考的对象尽量找成熟的平台做需求分析，我最开始用的是自己用阿里云搭建的博客，需求设计的时候随便设计了一下，导致后期只有简单的增删改查功能。</p>
-<blockquote>
-<p>技术上还有很大的改进</p>
-</blockquote>
-<p>页面的风格不统一，融合了CSDN和wordpress以及自己搭建的后台框架，配上登录注册完全不同的三种风格，形成了我这个四不像的博客。</p>
-<p>没写分页，没写图片上传，还有华哥指出的横向越权和纵向越权的自己没有考虑的问题，没写Nginx反向代理，没写FTP上传图片服务器…寒假学的一些骚操作基本上都没用上。</p>
-<h4 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h4><blockquote>
-<p>　任务分配不当</p>
-</blockquote>
-<p>团队项目就应该团队一起做。虽然搞技术我一向的想法是不做伸手党，遇到问题第一时间应该寻找搜索引擎，因为我们现在遇到的问题基本上全世界上的其他人都已经遇到过了，但是下次组员技术不是很强的时候我还是要换个方法，先教会他一个功能，然后再让他做同类型的功能，然后我再教一个新功能，如此循环，这样避免组员划水，我也会轻松不少。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">日志</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">项目</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/19/博客项目总结/">展开全文 >></a>
         </p>
       
 
@@ -1220,11 +1217,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具使用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1240,23 +1257,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1272,19 +1277,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">https</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1328,10 +1329,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">产品</a>
               </li>
              
@@ -1340,7 +1337,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安利</a>
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1356,15 +1357,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1377,6 +1378,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安利</a>
               </li>
             
             <div class="clearfix"></div>

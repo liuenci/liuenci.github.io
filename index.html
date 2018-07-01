@@ -228,6 +228,94 @@
 
 
   
+    <article id="post-Git-和-SVN-的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/01/Git-和-SVN-的区别/">Git 和 SVN 的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/01/Git-和-SVN-的区别/" class="archive-article-date">
+  	<time datetime="2018-07-01T07:44:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SVN 是集中式的，而 Git 是分布式的。集中式的版本控制是说版本库是放在一个中央服务器上面，而每次程序员进行开发的时候，都需要从中央服务器上面拉取最新的代码。而分布式的版本控制是说每个人的电脑上都是一个版本库，两个人同时修改了同一个文件的时候，只需要将各自的修改推送给对方就能让对方知道修改的内容了。基于这两个特点，集中式的版本库一旦出现问题，那么所有人将无法工作，而分布式的版本库当其中一个版本库出现问题，只需要在其他的版本库中复制一个即可。</p>
+<p>SVN 支持空目录，而 Git 不支持。Git 无法提交空目录到仓库中，SVN 可以。</p>
+<p>Git 可以在不联网的条件下查看所有的提交日志，而 SVN 是需要联网才行。</p>
+<p>Git 适合开源的项目进行开发，而 SVN 不适合。Git 可以每个人维护自己的版本，而 SVN 维护的是一个中心版本。</p>
+<p>SVN 有严格的权限控制，而 Git 没有。在公司的项目中，为了避免所有的人都看到项目的所有代码，可能会使用 SVN 管理开发人员的可查看权限。而 Git 因为克隆下来的版本库就是所有的版本，所以可以查看别人的代码。</p>
+<p>分支的使用不一样。Git 是针对整个仓库进行分支的建立，而 SVN 可以针对某个目录来进行分支的建立。</p>
+<p>SVN 下载源代码慢，Git 下载速度快。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工具使用</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SVN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/01/Git-和-SVN-的区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-推荐几个不错的刷题网站" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -922,100 +1010,6 @@
 
 
   
-    <article id="post-谈谈-https-和-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/谈谈-https-和-http/">谈谈 https 和 http</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/谈谈-https-和-http/" class="archive-article-date">
-  	<time datetime="2018-06-24T08:02:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果需要传输敏感信息，比如密码什么的 http 协议不是一个好的协议。</p>
-<p>https:比 http 多了一个 s,这个 s 代表着 security（安全），全称叫做 安全套接字层超文本传输协议,https 在 http 上加入了 ssl 协议，而 ssl 协议依靠证书来验证服务器的身份，并且为浏览器和服务器之间的数据传输加密。</p>
-<p>https 协议的主要作用主要有两种：一种是建立一个信息安全通道，来保证数据传输的安全；另外一个就是确认网站的真实性。</p>
-<h2 id="https-和-http-的区别"><a href="#https-和-http-的区别" class="headerlink" title="https 和 http 的区别"></a>https 和 http 的区别</h2><ol>
-<li>https 协议需要到 ca 申请证书，一般免费证书较少，因而需要一定费用，（好像可以自己制作证书来着，但是要服务器端支持）括号内自动忽略就好，我记得在哪看到过。</li>
-<li>http 是超文本传输协议，信息 是明文传输，https 则是具有安全性的 ssl 加密传输协议。</li>
-<li>http 和 https 使用的两种不同的连接方式，使用的默认端口也是不一致的，http 使用的 80 端口，https 使用的 443 端口。</li>
-<li>http 的连接比较简单，是无状态的；https 协议则是使用 ssl + http 协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">https</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/谈谈-https-和-http/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1136,11 +1130,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具使用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1156,23 +1170,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,19 +1190,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">https</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1244,10 +1242,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">产品</a>
               </li>
              
@@ -1256,7 +1250,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安利</a>
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1272,15 +1270,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1293,6 +1291,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安利</a>
               </li>
             
             <div class="clearfix"></div>

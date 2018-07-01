@@ -147,6 +147,131 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-oracle-总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/oracle-总结/">oracle 总结</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/oracle-总结/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:40:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter session set nls_date_format = &quot;YYYY-MM-DD&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table XSB</span><br><span class="line">(</span><br><span class="line">学号 CHAR(6) NOT NULL PRIMARY KEY,</span><br><span class="line">姓名 CHAR(8) NOT NULL,</span><br><span class="line">性别 CHAR(2char) DEFAULT &apos;男&apos; NOT NULL,</span><br><span class="line">出生时间 date NOT NULL,</span><br><span class="line">专业 char(12) null,</span><br><span class="line">总学分 number(2) null,</span><br><span class="line">备注 varchar2(200) null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列的约束主要有五种:not null,unique,primary key ,reference table,check.分别是非空，唯一，主键，外键，检查约束。</p>
+</li>
+<li><p>如何创建一个表的备份表,表后面可以加where条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table xs_jsj as select * from xsb where 专业=&apos;计算机&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加表的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (奖学金等级 number(1),等级说明 varchar2(40) default &apos;奖金1000元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj modify (等级说明 default &apos;奖金800元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj drop column 奖学金等级</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表创建主键，注意主键的名字不能是单引号包裹，单引号会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (constraint &quot;pk_jsj&quot; primary key(学号))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table xs_jsj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>insert into语句可以将一个表中的数据插入进另外一张表中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into xsb1 select 学号 姓名 专业 from xsb where 姓名 = &apos;王林&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>merge关键字的使用,下面这段代码的意思是如果学号匹配，就把a表中的数据更新成XSB中的数据,如果不匹配，那就插入这条记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">merge into A </span><br><span class="line">using xsb on (a.xh=xsb.学号)</span><br><span class="line">when matched </span><br><span class="line">  then update set a.xm = xsb.姓名,a.xb=xsb.性别,a.cssj=xsb.出生时间,a.zy=xsb.专业,a.zxf=xsb.总学分,a.bz=xsb.备注</span><br><span class="line">when not matched</span><br><span class="line">  then insert values(xsb.学号,xsb.姓名,xsb.性别,xsb.出生时间,xsb.专业,xsb.总学分,xsb.备注);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空值的比较</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from cp where 备注 is not null</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>all关键字的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from xsb where 出生时间 &lt; all (select 出生时间 from xsb where 专业=&apos;计算机&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EXISTS子查询，EXISTS谓词用于测试子查询的结果是否为空表，若子查询的结果集不为空，则exists返回true，否则返回false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 姓名 from xsb where exists (select * from cjb where 学号 = xsb.学号 and 课程号 = &apos;206&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在写存储过程代码遇到一个如何执行存储过程的问题，算是一个小坑，我先贴上代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--查询某人的总学分</span><br><span class="line">create or replace procedure update_info (vxh in char) as</span><br><span class="line">xf number;</span><br><span class="line">begin</span><br><span class="line">  select zxf into xf from xsb where xh = vxh and rownum = 1;</span><br><span class="line">  if xf&gt;50 then</span><br><span class="line">    update xsb set bz = &apos;三好学生&apos; where xh = vxh;</span><br><span class="line">  else</span><br><span class="line">    update xsb set bz = &apos;三差学生&apos; where xh = vxh;</span><br><span class="line">  end if;</span><br><span class="line">end;</span><br><span class="line">--执行存储过程</span><br><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行存储过程的时候我最开始用的代码是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh&gt;=&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>仔细看书上我发现存储过程的赋值是这样的是使用的 ‘=&gt;’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/oracle-总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-oracle 函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1132,100 +1257,6 @@
 
 
   
-    <article id="post-阿里云利用-wordpress-搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">阿里云利用 wordpress 搭建个人博客</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/" class="archive-article-date">
-  	<time datetime="2018-06-22T12:13:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>如何搭建自己的博客</p>
-</blockquote>
-<p>第一步:购买域名和服务器。服务器镜像选择(LAMP环境(Ubuntu16.04 Apache PHP7.1)),该环境是主流的linux建站环境。设置自己的密码，账号是root，无法更改。</p>
-<p>第二步:设置安全组。进入ecs服务器，找到本实例安全组—-&gt;点击配置规则—&gt;点击添加安全组规则。设置协议类型为全部，在授权对象内填入0.0.0.0/0。在地址栏输入你的服务器IP地址，如果显示”恭喜您，OneinStack 安装成功！”,表示配置成功。</p>
-<p>第三步:安装wordpress博客程序。</p>
-<ul>
-<li>这里我们需要使用PuTTY和FileZiila来实现对ECS的远程终端控制和文件传输。putty下载地址：<a href="https://github.com/larryli/PuTTY/releases" target="_blank" rel="noopener">https://github.com/larryli/PuTTY/releases</a>。下载下来之后解压，打开其中的putty.exe，主机地址填你的IP地址，端口填22，连接类型SSH,保存的会话填个test即可。然后保存。点击打开会出现一个黑窗口，输入账号root，和你自己购买服务器的密码，输入的时候不会显示，输入完成回车即可。如果显示(Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-85-generic x86_64)),说明linux登录成功。</li>
-<li>FileZiila下载地址：<a href="https://filezilla-project.org/download.php?type=client" target="_blank" rel="noopener">https://filezilla-project.org/download.php?type=client</a>,下载安装之后打开。在主机那里输入s<a href="ftp://IP地址。然后输入用户名和密码，端口默认是22" target="_blank" rel="noopener">ftp://IP地址。然后输入用户名和密码，端口默认是22</a>.</li>
-<li>在远程站点处输入/data/wwwroot/default，回车之后在default目录下面创建一个old目录，然后把除old以外的文件都拖到old目录下面，这个时候我们就可以上传wordpress文件了，wordpress下载地址：<a href="https://cn.wordpress.org/wordpress-4.8-zh_CN.zip" target="_blank" rel="noopener">https://cn.wordpress.org/wordpress-4.8-zh_CN.zip</a> ,在左侧找到我们的wordpress文件上传到和old同级的目录下。</li>
-<li>获取mysql的root密码。在我们的putty终端中登陆到服务器，复制grep dbrootpwd /root/oneinstack/options.conf，右键点击即可粘贴到终端中。默认密码是 KeYpZrZx 。</li>
-<li>打开浏览器，输入<a href="http://IP地址/old/phpMyAdmin/" target="_blank" rel="noopener">http://IP地址/old/phpMyAdmin/</a> ，用户名是：root,密码是：KeYpZrZx，点击New,输入数据库名wp即可完成创建数据库。然后在地址栏输入<a href="http://IP地址/wp-admin/setup-config.php" target="_blank" rel="noopener">http://IP地址/wp-admin/setup-config.php</a> ，点击现在就开始，新的页面数据库名：wp,用户名：root,密码：KeYpZrZx，其他保持不变，点击提交，再点击安装。填写站点标题：随意，用户名：随意，密码：随意，电子邮件：随意然后点击安装，然后点击登陆。博客就搭好了。</li>
-</ul>
-<p>第四步：解析域名。</p>
-<ul>
-<li>进入阿里的管理控制台，进入域名及网站。</li>
-<li>找到你要解析的域名，点击右边的解析。</li>
-<li>点击新手引导设置</li>
-<li>设置网站解析，输入你的服务器IP地址。</li>
-<li>过个十几分钟，打开浏览器，输入你的域名，即可访问你的博客。</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">wordpress</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/阿里云利用-wordpress-搭建个人博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1346,11 +1377,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具使用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1366,23 +1417,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1398,19 +1437,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">https</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1454,10 +1489,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">产品</a>
               </li>
              
@@ -1466,7 +1497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安利</a>
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1482,15 +1517,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1503,6 +1538,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安利</a>
               </li>
             
             <div class="clearfix"></div>

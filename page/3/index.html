@@ -147,6 +147,134 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/树/">树</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/树/" class="archive-article-date">
+  	<time datetime="2018-06-24T07:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h5><p>前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。</p>
+<p>树(Tree)是n(n&gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中：</p>
+<p>(1) 有且仅有一个特定的称为根 (Root) 的结点。</p>
+<p>(2) 当 n &gt; 1 时，其余结点可分为 m (m &gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本身又是一棵树，并且称有根的子树 (SubTree)。</p>
+<p>具体如图:</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E6%A0%91.png" alt=""></p>
+<p>对于树的定义需要强调两点:</p>
+<ol>
+<li><p>n &gt; 0 时根结点是唯一的，不可能存在多个根结点，现实中的大树有多个根，但是数据结构中只能有一个根。</p>
+</li>
+<li><p>m &gt; 0 时，子树的个数没有限制，但是它们一定是互不相交的。一旦两颗子树相交，则不是树。如图就是两颗错误的树。</p>
+</li>
+</ol>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%B8%E4%BA%A4%E6%A0%91.png" alt=""></p>
+<h5 id="结点的分类"><a href="#结点的分类" class="headerlink" title="结点的分类"></a>结点的分类</h5><p>树的结点包含一个数据元素及若干指向其子树的分支。结点拥有的子树数称为结点的度。</p>
+<p>度为0的结点也就是叶节点或者称为终端结点。度不为0的结点称为非终端结点或分支结点。</p>
+<p>除了根节点之外，分支结点也称为内部结点。树的度是树内各结点的度的最大值。</p>
+<p>如图所示:</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E5%BA%A6.png" alt=""></p>
+<h5 id="结点间关系"><a href="#结点间关系" class="headerlink" title="结点间关系"></a>结点间关系</h5><p>结点的子树的跟称为该结点的孩子，相应地，该结点称为孩子的双亲。</p>
+<p>同一个双亲的孩子之间互称兄弟。</p>
+<p>结点的祖先是从根到该结点所经分支上的所有结点。</p>
+<p>反之，以某结点为根的子树中的任一结点都称为该结点的子孙。</p>
+<p>家族关系如图所示：</p>
+<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%BB%93%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt=""></p>
+<h5 id="树的其他相关概念"><a href="#树的其他相关概念" class="headerlink" title="树的其他相关概念"></a>树的其他相关概念</h5><p>结点的层次从根结点开始，根为第一层，根的孩子为第二层。</p>
+<p>如果两个结点的双亲在同一层，那么这两个结点互为堂兄弟。</p>
+<p>树中结点的最大层次称为树的深度或者高度。</p>
+<p>如果将树中结点的各子树看成从左到右是有次序的，不能互换的，则称该树为有序树，否则称为无序树。</p>
+<p>森林是 m (m &gt;= 0) 颗互不相交的树的集合。</p>
+<h5 id="树结构与线性结构的区别"><a href="#树结构与线性结构的区别" class="headerlink" title="树结构与线性结构的区别"></a>树结构与线性结构的区别</h5><p>树结构：</p>
+<blockquote>
+<p>根结点：无双亲，唯一</p>
+</blockquote>
+<blockquote>
+<p>叶节点：无孩子，可以有多个叶节点</p>
+</blockquote>
+<blockquote>
+<p>中间结点：一个双亲多个孩子</p>
+</blockquote>
+<p>线性结构：</p>
+<blockquote>
+<p>第一个数据元素没有前驱</p>
+</blockquote>
+<blockquote>
+<p>最后一个数据元素没有后继</p>
+</blockquote>
+<blockquote>
+<p>中间元素：有一个前驱和一个后继</p>
+</blockquote>
+<h5 id="开工了"><a href="#开工了" class="headerlink" title="开工了"></a>开工了</h5><p>好像停更了好久了，上班族应该都开始上班了，学生党也陆陆续续地开始要上课了，我也要开始立 flag 更新我的公众号了哈哈哈，答应自己要把数据结构这个系列写完，自己一定要在今年三月份写完，由于写的都是干货，所以每一个字都值得各位读者深思，所以我建议想学数据结构的读者，建议大家只字不差的阅读我这个系列，同时我提供 Java 版的数据结构代码给大家参考，每一个代码都是能够直接运行了，所以大家有时间可以自己去写写这些代码，另外大家如果有什么好的建议可以在公众号后台留言呀，开设这个公众号的意义不在于我给大家普及一些知识，更重要的是共同学习，毕竟，学习，不仅是陪着自己成长，也是一个陪着他人成长的过程，谢谢大家。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-双亲表示法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -997,131 +1125,6 @@
 
 
   
-    <article id="post-oracle-总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/oracle-总结/">oracle 总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/oracle-总结/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:40:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter session set nls_date_format = &quot;YYYY-MM-DD&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table XSB</span><br><span class="line">(</span><br><span class="line">学号 CHAR(6) NOT NULL PRIMARY KEY,</span><br><span class="line">姓名 CHAR(8) NOT NULL,</span><br><span class="line">性别 CHAR(2char) DEFAULT &apos;男&apos; NOT NULL,</span><br><span class="line">出生时间 date NOT NULL,</span><br><span class="line">专业 char(12) null,</span><br><span class="line">总学分 number(2) null,</span><br><span class="line">备注 varchar2(200) null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>列的约束主要有五种:not null,unique,primary key ,reference table,check.分别是非空，唯一，主键，外键，检查约束。</p>
-</li>
-<li><p>如何创建一个表的备份表,表后面可以加where条件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table xs_jsj as select * from xsb where 专业=&apos;计算机&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加表的字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (奖学金等级 number(1),等级说明 varchar2(40) default &apos;奖金1000元&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改默认值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj modify (等级说明 default &apos;奖金800元&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj drop column 奖学金等级</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建表创建主键，注意主键的名字不能是单引号包裹，单引号会报错。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (constraint &quot;pk_jsj&quot; primary key(学号))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table xs_jsj</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>insert into语句可以将一个表中的数据插入进另外一张表中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into xsb1 select 学号 姓名 专业 from xsb where 姓名 = &apos;王林&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>merge关键字的使用,下面这段代码的意思是如果学号匹配，就把a表中的数据更新成XSB中的数据,如果不匹配，那就插入这条记录。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">merge into A </span><br><span class="line">using xsb on (a.xh=xsb.学号)</span><br><span class="line">when matched </span><br><span class="line">  then update set a.xm = xsb.姓名,a.xb=xsb.性别,a.cssj=xsb.出生时间,a.zy=xsb.专业,a.zxf=xsb.总学分,a.bz=xsb.备注</span><br><span class="line">when not matched</span><br><span class="line">  then insert values(xsb.学号,xsb.姓名,xsb.性别,xsb.出生时间,xsb.专业,xsb.总学分,xsb.备注);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>空值的比较</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from cp where 备注 is not null</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>all关键字的使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from xsb where 出生时间 &lt; all (select 出生时间 from xsb where 专业=&apos;计算机&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>EXISTS子查询，EXISTS谓词用于测试子查询的结果是否为空表，若子查询的结果集不为空，则exists返回true，否则返回false。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 姓名 from xsb where exists (select * from cjb where 学号 = xsb.学号 and 课程号 = &apos;206&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在写存储过程代码遇到一个如何执行存储过程的问题，算是一个小坑，我先贴上代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--查询某人的总学分</span><br><span class="line">create or replace procedure update_info (vxh in char) as</span><br><span class="line">xf number;</span><br><span class="line">begin</span><br><span class="line">  select zxf into xf from xsb where xh = vxh and rownum = 1;</span><br><span class="line">  if xf&gt;50 then</span><br><span class="line">    update xsb set bz = &apos;三好学生&apos; where xh = vxh;</span><br><span class="line">  else</span><br><span class="line">    update xsb set bz = &apos;三差学生&apos; where xh = vxh;</span><br><span class="line">  end if;</span><br><span class="line">end;</span><br><span class="line">--执行存储过程</span><br><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>执行存储过程的时候我最开始用的代码是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh&gt;=&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
-<p>仔细看书上我发现存储过程的赋值是这样的是使用的 ‘=&gt;’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">oracle</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/oracle-总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1242,11 +1245,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具使用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1262,23 +1285,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1294,19 +1305,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">https</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1350,10 +1357,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">产品</a>
               </li>
              
@@ -1362,7 +1365,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安利</a>
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1378,15 +1385,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1399,6 +1406,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安利</a>
               </li>
             
             <div class="clearfix"></div>

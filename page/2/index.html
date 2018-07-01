@@ -147,6 +147,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-谈谈-https-和-http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/24/谈谈-https-和-http/">谈谈 https 和 http</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/24/谈谈-https-和-http/" class="archive-article-date">
+  	<time datetime="2018-06-24T08:02:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果需要传输敏感信息，比如密码什么的 http 协议不是一个好的协议。</p>
+<p>https:比 http 多了一个 s,这个 s 代表着 security（安全），全称叫做 安全套接字层超文本传输协议,https 在 http 上加入了 ssl 协议，而 ssl 协议依靠证书来验证服务器的身份，并且为浏览器和服务器之间的数据传输加密。</p>
+<p>https 协议的主要作用主要有两种：一种是建立一个信息安全通道，来保证数据传输的安全；另外一个就是确认网站的真实性。</p>
+<h2 id="https-和-http-的区别"><a href="#https-和-http-的区别" class="headerlink" title="https 和 http 的区别"></a>https 和 http 的区别</h2><ol>
+<li>https 协议需要到 ca 申请证书，一般免费证书较少，因而需要一定费用，（好像可以自己制作证书来着，但是要服务器端支持）括号内自动忽略就好，我记得在哪看到过。</li>
+<li>http 是超文本传输协议，信息 是明文传输，https 则是具有安全性的 ssl 加密传输协议。</li>
+<li>http 和 https 使用的两种不同的连接方式，使用的默认端口也是不一致的，http 使用的 80 端口，https 使用的 443 端口。</li>
+<li>http 的连接比较简单，是无状态的；https 协议则是使用 ssl + http 协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">https</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/24/谈谈-https-和-http/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-https-的工作原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1063,134 +1157,6 @@
 
 
   
-    <article id="post-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/24/树/">树</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/24/树/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h5><p>前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。</p>
-<p>树(Tree)是n(n&gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中：</p>
-<p>(1) 有且仅有一个特定的称为根 (Root) 的结点。</p>
-<p>(2) 当 n &gt; 1 时，其余结点可分为 m (m &gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本身又是一棵树，并且称有根的子树 (SubTree)。</p>
-<p>具体如图:</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E6%A0%91.png" alt=""></p>
-<p>对于树的定义需要强调两点:</p>
-<ol>
-<li><p>n &gt; 0 时根结点是唯一的，不可能存在多个根结点，现实中的大树有多个根，但是数据结构中只能有一个根。</p>
-</li>
-<li><p>m &gt; 0 时，子树的个数没有限制，但是它们一定是互不相交的。一旦两颗子树相交，则不是树。如图就是两颗错误的树。</p>
-</li>
-</ol>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%9B%B8%E4%BA%A4%E6%A0%91.png" alt=""></p>
-<h5 id="结点的分类"><a href="#结点的分类" class="headerlink" title="结点的分类"></a>结点的分类</h5><p>树的结点包含一个数据元素及若干指向其子树的分支。结点拥有的子树数称为结点的度。</p>
-<p>度为0的结点也就是叶节点或者称为终端结点。度不为0的结点称为非终端结点或分支结点。</p>
-<p>除了根节点之外，分支结点也称为内部结点。树的度是树内各结点的度的最大值。</p>
-<p>如图所示:</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E5%BA%A6.png" alt=""></p>
-<h5 id="结点间关系"><a href="#结点间关系" class="headerlink" title="结点间关系"></a>结点间关系</h5><p>结点的子树的跟称为该结点的孩子，相应地，该结点称为孩子的双亲。</p>
-<p>同一个双亲的孩子之间互称兄弟。</p>
-<p>结点的祖先是从根到该结点所经分支上的所有结点。</p>
-<p>反之，以某结点为根的子树中的任一结点都称为该结点的子孙。</p>
-<p>家族关系如图所示：</p>
-<p><img src="http://ove4nglsb.bkt.clouddn.com/%E7%BB%93%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt=""></p>
-<h5 id="树的其他相关概念"><a href="#树的其他相关概念" class="headerlink" title="树的其他相关概念"></a>树的其他相关概念</h5><p>结点的层次从根结点开始，根为第一层，根的孩子为第二层。</p>
-<p>如果两个结点的双亲在同一层，那么这两个结点互为堂兄弟。</p>
-<p>树中结点的最大层次称为树的深度或者高度。</p>
-<p>如果将树中结点的各子树看成从左到右是有次序的，不能互换的，则称该树为有序树，否则称为无序树。</p>
-<p>森林是 m (m &gt;= 0) 颗互不相交的树的集合。</p>
-<h5 id="树结构与线性结构的区别"><a href="#树结构与线性结构的区别" class="headerlink" title="树结构与线性结构的区别"></a>树结构与线性结构的区别</h5><p>树结构：</p>
-<blockquote>
-<p>根结点：无双亲，唯一</p>
-</blockquote>
-<blockquote>
-<p>叶节点：无孩子，可以有多个叶节点</p>
-</blockquote>
-<blockquote>
-<p>中间结点：一个双亲多个孩子</p>
-</blockquote>
-<p>线性结构：</p>
-<blockquote>
-<p>第一个数据元素没有前驱</p>
-</blockquote>
-<blockquote>
-<p>最后一个数据元素没有后继</p>
-</blockquote>
-<blockquote>
-<p>中间元素：有一个前驱和一个后继</p>
-</blockquote>
-<h5 id="开工了"><a href="#开工了" class="headerlink" title="开工了"></a>开工了</h5><p>好像停更了好久了，上班族应该都开始上班了，学生党也陆陆续续地开始要上课了，我也要开始立 flag 更新我的公众号了哈哈哈，答应自己要把数据结构这个系列写完，自己一定要在今年三月份写完，由于写的都是干货，所以每一个字都值得各位读者深思，所以我建议想学数据结构的读者，建议大家只字不差的阅读我这个系列，同时我提供 Java 版的数据结构代码给大家参考，每一个代码都是能够直接运行了，所以大家有时间可以自己去写写这些代码，另外大家如果有什么好的建议可以在公众号后台留言呀，开设这个公众号的意义不在于我给大家普及一些知识，更重要的是共同学习，毕竟，学习，不仅是陪着自己成长，也是一个陪着他人成长的过程，谢谢大家。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/24/树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1311,11 +1277,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具使用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SVN</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1331,23 +1317,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1363,19 +1337,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">https</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">oracle</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1419,10 +1389,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">产品</a>
               </li>
              
@@ -1431,7 +1397,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安利</a>
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1447,15 +1417,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">流程控制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1468,6 +1438,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">wordpress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">时间复杂度</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安利</a>
               </li>
             
             <div class="clearfix"></div>
