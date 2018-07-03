@@ -20,19 +20,19 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
-    <meta name="description" content="hello world">
-<meta name="keywords" content="liuenci cier encier">
+    <meta name="keywords" content="剑指offer">
+    <meta name="description" content="大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项,n&amp;lt;=39.   思路  1.首先要理解什么是斐波拉契数列。一个数等于这个数的前两个数的和，这种形式组成的数列就是斐波拉契数列。用公式表示出来就是 f(n) = f(n-1) + f(n-2). 2.这道题一眼看过去，第一个想到的方法就是用递归来写，如果不要求时间复杂度，递归无疑是最快速粗暴的解法了。 3.但是仔">
+<meta name="keywords" content="剑指offer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【剑指offer】斐波拉契数列">
 <meta property="og:url" content="http://yoursite.com/2018/07/03/【剑指offer】斐波拉契数列/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项,n&amp;lt;=39.   思路  1.首先要理解什么是斐波拉契数列。一个数等于这个数的前两个数的和，这种形式组成的数列就是斐波拉契数列。用公式表示出来就是 f(n) = f(n-1) + f(n-2). 2.这道题一眼看过去，第一个想到的方法就是用递归来写，如果不要求时间复杂度，递归无疑是最快速粗暴的解法了。 3.但是仔">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-03T06:27:57.176Z">
+<meta property="og:updated_time" content="2018-07-03T06:28:37.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【剑指offer】斐波拉契数列">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:description" content="大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项,n&amp;lt;=39.   思路  1.首先要理解什么是斐波拉契数列。一个数等于这个数的前两个数的和，这种形式组成的数列就是斐波拉契数列。用公式表示出来就是 f(n) = f(n-1) + f(n-2). 2.这道题一眼看过去，第一个想到的方法就是用递归来写，如果不要求时间复杂度，递归无疑是最快速粗暴的解法了。 3.但是仔">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -166,7 +166,32 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <blockquote>
+<p>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项,n&lt;=39.</p>
+</blockquote>
+<blockquote>
+<p>思路</p>
+</blockquote>
+<p>1.首先要理解什么是斐波拉契数列。一个数等于这个数的前两个数的和，这种形式组成的数列就是斐波拉契数列。用公式表示出来就是 f(n) = f(n-1) + f(n-2).</p>
+<p>2.这道题一眼看过去，第一个想到的方法就是用递归来写，如果不要求时间复杂度，递归无疑是最快速粗暴的解法了。</p>
+<p>3.但是仔细想一下，如果我要计算第 3 个数是多少。那算式就是这样 f(3) = f(2) + f(1) = f(1) + f(1) + f(1)。这样子就是 f(1) 被重复计算了三次，我们如何优化它呢？</p>
+<p>4.优化：想一想我们为什么会计算三次 f(1),原因是因为我们没有存储 f(1) 的值导致的，准确的来说，应该是没有存储要计算的数的前面两个数的值。因为要计算某一个数，如果知道前面两个数的值，就很容易就能算出要计算的数了。</p>
+<p>5.下面分享一种递归算法，以及优化算法，也就是我们常说的动态规划(特别强调：动态规划我面试的几家公司里都考了,不过比斐波拉契要难一点,需要特别注意).</p>
+<blockquote>
+<p>递归算法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span> || n == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.Fibonacci(n - <span class="number">1</span>) + <span class="keyword">this</span>.Fibonacci(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>动态规划</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public int Fibonacci2(int n) &#123;</span><br><span class="line">    if (n &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    if (n == 1 || n == 2) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    int a = 1;</span><br><span class="line">    int b = 1;</span><br><span class="line">    int c = 0;</span><br><span class="line">    for (int i = 3; i &lt;= n; i++) &#123;</span><br><span class="line">        c = a + b;</span><br><span class="line">        a = b;</span><br><span class="line">        b = c;</span><br><span class="line">    &#125;</span><br><span class="line">    return c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>项目工程</p>
+</blockquote>
+<p>如果你想看到《剑指offer》的所有源码，欢迎 star 我的 github project。</p>
+<p>《剑指offer》的 github 地址：<a href="https://github.com/liuenci/GoOffer" target="_blank" rel="noopener">https://github.com/liuenci/GoOffer</a></p>
+<p>点击阅读原文可以查看我的 github 项目。</p>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -174,7 +199,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-03T06:27:57.176Z" itemprop="dateUpdated">2018-07-03 14:27:57</time>
+    最后更新时间：<time datetime="2018-07-03T06:28:37.823Z" itemprop="dateUpdated">2018-07-03 14:28:37</time>
 </span><br>
 
 
@@ -198,6 +223,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指offer/">剑指offer</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -254,9 +281,9 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
+      <a href="/2018/07/03/【剑指offer】跳台阶/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">写在开始之前</h4>
+        <h4 class="title">【剑指offer】跳台阶</h4>
       </a>
     </div>
   
