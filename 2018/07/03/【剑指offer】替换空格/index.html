@@ -14,25 +14,25 @@
     
     
     
-    <title>【剑指offer】从上往下打印二叉树 | cier | 一个假不正经的博客</title>
+    <title>【剑指offer】替换空格 | cier | 一个假不正经的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="剑指offer">
-    <meta name="description" content="题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 思路仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。 解题的具体思路为： 首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左">
+    <meta name="description" content="请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。  思路可以开辟一个新的内存单元，然后遍历字符串，如果不遇到空格，就往内存单元中增加字符，如果遇到空格，就往里面添加 “%20”。 源码这里提供两个版本的 ac 源码。 源码11234567891011public static String">
 <meta name="keywords" content="剑指offer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【剑指offer】从上往下打印二叉树">
-<meta property="og:url" content="http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/index.html">
+<meta property="og:title" content="【剑指offer】替换空格">
+<meta property="og:url" content="http://yoursite.com/2018/07/03/【剑指offer】替换空格/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 思路仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。 解题的具体思路为： 首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左">
+<meta property="og:description" content="请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。  思路可以开辟一个新的内存单元，然后遍历字符串，如果不遇到空格，就往内存单元中增加字符，如果遇到空格，就往里面添加 “%20”。 源码这里提供两个版本的 ac 源码。 源码11234567891011public static String">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-03T02:52:33.017Z">
+<meta property="og:updated_time" content="2018-07-03T06:17:38.309Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【剑指offer】从上往下打印二叉树">
-<meta name="twitter:description" content="题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 思路仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。 解题的具体思路为： 首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左">
+<meta name="twitter:title" content="【剑指offer】替换空格">
+<meta name="twitter:description" content="请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。  思路可以开辟一个新的内存单元，然后遍历字符串，如果不遇到空格，就往内存单元中增加字符，如果遇到空格，就往里面添加 “%20”。 源码这里提供两个版本的 ac 源码。 源码11234567891011public static String">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -104,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">【剑指offer】从上往下打印二叉树</div>
+        <div class="flex-col header-title ellipsis">【剑指offer】替换空格</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -126,10 +126,10 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">【剑指offer】从上往下打印二叉树</h1>
+        <h1 class="title">【剑指offer】替换空格</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-07-03T02:40:29.000Z" itemprop="datePublished" class="page-time">
+                <time datetime="2018-07-03T06:17:07.000Z" itemprop="datePublished" class="page-time">
   2018-07-03
 </time>
 
@@ -149,18 +149,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#题目描述"><span class="post-toc-number">1.</span> <span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#项目源码"><span class="post-toc-number">3.</span> <span class="post-toc-text">项目源码</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码"><span class="post-toc-number">2.</span> <span class="post-toc-text">源码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">源码1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码2"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">源码2</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-【剑指offer】从商往下打印二叉树"
+<article id="post-【剑指offer】替换空格"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">【剑指offer】从上往下打印二叉树</h1>
+        <h1 class="post-card-title">【剑指offer】替换空格</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-07-03 10:40:29" datetime="2018-07-03T02:40:29.000Z"  itemprop="datePublished">2018-07-03</time>
+            <time class="post-time" title="2018-07-03 14:17:07" datetime="2018-07-03T06:17:07.000Z"  itemprop="datePublished">2018-07-03</time>
 
             
 
@@ -173,15 +173,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
-<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。</p>
-<p>解题的具体思路为：</p>
-<p>首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左右子节点，就将子节点添加到队列，检查完之后将出队的节点的值添加到集合中即可。</p>
-<p>当队列对空队列时，也就是整个二叉树遍历完成之时。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public ArrayList&lt;Integer&gt; PrintFromTopToBottom(TreeNode root) &#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; arrayList = new ArrayList&lt;&gt;();</span><br><span class="line">    ArrayList&lt;TreeNode&gt; queue = new ArrayList&lt;&gt;();</span><br><span class="line">    if (root == null) &#123;</span><br><span class="line">        return arrayList;</span><br><span class="line">    &#125;</span><br><span class="line">    queue.add(root);</span><br><span class="line">    while (queue.size() != 0)&#123;</span><br><span class="line">        TreeNode temp = queue.remove(0);</span><br><span class="line">        if (temp.left != null) &#123;</span><br><span class="line">            queue.add(temp.left);</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp.right != null) &#123;</span><br><span class="line">            queue.add(temp.right);</span><br><span class="line">        &#125;</span><br><span class="line">        arrayList.add(temp.val);</span><br><span class="line">    &#125;</span><br><span class="line">    return arrayList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h5><p>如果你想看到《剑指offer》的所有源码，欢迎 star 我的 github project。</p>
-<p>《剑指offer》的 github 地址：</p>
-<p><a href="https://github.com/liuenci/GoOffer" target="_blank" rel="noopener">https://github.com/liuenci/GoOffer</a></p>
+            <blockquote>
+<p>请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>可以开辟一个新的内存单元，然后遍历字符串，如果不遇到空格，就往内存单元中增加字符，如果遇到空格，就往里面添加 “%20”。</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p>这里提供两个版本的 ac 源码。</p>
+<h3 id="源码1"><a href="#源码1" class="headerlink" title="源码1"></a>源码1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static String replaceSpace(StringBuffer str) &#123;</span><br><span class="line">    StringBuffer stringBuffer = new StringBuffer();</span><br><span class="line">    for (int i = 0; i &lt; str.length(); i++) &#123;</span><br><span class="line">        if (str.charAt(i) == &apos; &apos;)&#123;</span><br><span class="line">            stringBuffer.append(&quot;%20&quot;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            stringBuffer.append(str.charAt(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return stringBuffer.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="源码2"><a href="#源码2" class="headerlink" title="源码2"></a>源码2</h3><p>第二种简单粗暴，没错，Java 封装的实在太好了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static String replaceSpace3(StringBuffer str) &#123;</span><br><span class="line">    return str.toString().replaceAll(&quot;\\s&quot;,&quot;%20&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
         </div>
 
@@ -190,7 +188,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-03T02:52:33.017Z" itemprop="dateUpdated">2018-07-03 10:52:33</time>
+    最后更新时间：<time datetime="2018-07-03T06:17:38.309Z" itemprop="dateUpdated">2018-07-03 14:17:38</time>
 </span><br>
 
 
@@ -224,7 +222,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/&title=《【剑指offer】替换空格》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -234,22 +232,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/&title=《【剑指offer】替换空格》 — cier&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】替换空格/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】从上往下打印二叉树》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】替换空格》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -272,18 +270,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/07/03/【剑指offer】替换空格/" id="post-prev" class="post-nav-link">
+      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">【剑指offer】替换空格</h4>
+        <h4 class="title">写在开始之前</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/07/03/【剑指offer】二维数组中的查找/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/03/【剑指offer】从商往下打印二叉树/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">【剑指offer】二维数组中的查找</h4>
+        <h4 class="title">【剑指offer】从上往下打印二叉树</h4>
       </a>
     </div>
   
@@ -388,7 +386,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/&title=《【剑指offer】替换空格》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -398,22 +396,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/&title=《【剑指offer】替换空格》 — cier&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】替换空格/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】从上往下打印二叉树》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】替换空格》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】替换空格/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -424,7 +422,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/03/【剑指offer】替换空格/" alt="微信分享二维码">
 </div>
 
 
