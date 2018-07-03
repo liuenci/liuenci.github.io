@@ -20,19 +20,19 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
-    <meta name="description" content="hello world">
-<meta name="keywords" content="liuenci cier encier">
+    <meta name="keywords" content="剑指offer">
+    <meta name="description" content="用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 队列中的元素为int类型。  思路首先我们要知道栈的特性是：先进后出。然后队列的特性是：先进先出。 所以入队和压栈没什么区别，都是添加到现有节点的后面。而出队的元素，是在栈的底端，也就是栈底。所以我们需要将栈1的元素依次弹出，并压栈到栈2，这样栈1的栈底元素，就到了栈2的栈顶。此时的栈顶就是出队元素了，然后我们需要将栈2的元素再重">
+<meta name="keywords" content="剑指offer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【剑指offer】用两个栈实现队列">
 <meta property="og:url" content="http://yoursite.com/2018/07/03/【剑指offer】用两个栈实现队列/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="hello world">
+<meta property="og:description" content="用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 队列中的元素为int类型。  思路首先我们要知道栈的特性是：先进后出。然后队列的特性是：先进先出。 所以入队和压栈没什么区别，都是添加到现有节点的后面。而出队的元素，是在栈的底端，也就是栈底。所以我们需要将栈1的元素依次弹出，并压栈到栈2，这样栈1的栈底元素，就到了栈2的栈顶。此时的栈顶就是出队元素了，然后我们需要将栈2的元素再重">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-03T06:23:52.892Z">
+<meta property="og:updated_time" content="2018-07-03T06:24:53.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【剑指offer】用两个栈实现队列">
-<meta name="twitter:description" content="hello world">
+<meta name="twitter:description" content="用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 队列中的元素为int类型。  思路首先我们要知道栈的特性是：先进后出。然后队列的特性是：先进先出。 所以入队和压栈没什么区别，都是添加到现有节点的后面。而出队的元素，是在栈的底端，也就是栈底。所以我们需要将栈1的元素依次弹出，并压栈到栈2，这样栈1的栈底元素，就到了栈2的栈顶。此时的栈顶就是出队元素了，然后我们需要将栈2的元素再重">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -146,6 +146,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#源码"><span class="post-toc-number">2.</span> <span class="post-toc-text">源码</span></a></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-【剑指offer】用两个栈实现队列"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -166,7 +173,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <blockquote>
+<p>用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 队列中的元素为int类型。</p>
+</blockquote>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>首先我们要知道栈的特性是：先进后出。然后队列的特性是：先进先出。</p>
+<p>所以入队和压栈没什么区别，都是添加到现有节点的后面。而出队的元素，是在栈的底端，也就是栈底。所以我们需要将栈1的元素依次弹出，并压栈到栈2，这样栈1的栈底元素，就到了栈2的栈顶。此时的栈顶就是出队元素了，然后我们需要将栈2的元素再重新压栈到栈1，就完成了队列的 push 和 pop 操作。</p>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        stack1.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!stack1.isEmpty())&#123;</span><br><span class="line">            stack2.push(stack1.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> first = stack2.pop();</span><br><span class="line">        <span class="keyword">while</span>(!stack2.isEmpty())&#123;</span><br><span class="line">            stack1.push(stack2.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -174,7 +187,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-03T06:23:52.892Z" itemprop="dateUpdated">2018-07-03 14:23:52</time>
+    最后更新时间：<time datetime="2018-07-03T06:24:53.864Z" itemprop="dateUpdated">2018-07-03 14:24:53</time>
 </span><br>
 
 
@@ -198,6 +211,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指offer/">剑指offer</a></li></ul>
+
 
             
 <div class="page-share-wrap">
