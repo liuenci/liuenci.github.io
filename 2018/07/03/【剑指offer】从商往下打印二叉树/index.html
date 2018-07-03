@@ -14,25 +14,25 @@
     
     
     
-    <title>【剑指offer】二维数组中的查找 | cier | 一个假不正经的博客</title>
+    <title>【剑指offer】从上往下打印二叉树 | cier | 一个假不正经的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="剑指offer">
-    <meta name="description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。  思路利用二维数组由上到下，由左到右递增的规律。 那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。 如果 array[row][col] 小于 target 时，那么 target 一定">
+    <meta name="description" content="题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 思路仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。 解题的具体思路为： 首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左">
 <meta name="keywords" content="剑指offer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【剑指offer】二维数组中的查找">
-<meta property="og:url" content="http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/index.html">
+<meta property="og:title" content="【剑指offer】从上往下打印二叉树">
+<meta property="og:url" content="http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。  思路利用二维数组由上到下，由左到右递增的规律。 那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。 如果 array[row][col] 小于 target 时，那么 target 一定">
+<meta property="og:description" content="题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 思路仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。 解题的具体思路为： 首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-03T01:57:01.422Z">
+<meta property="og:updated_time" content="2018-07-03T02:52:33.017Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【剑指offer】二维数组中的查找">
-<meta name="twitter:description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。  思路利用二维数组由上到下，由左到右递增的规律。 那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。 如果 array[row][col] 小于 target 时，那么 target 一定">
+<meta name="twitter:title" content="【剑指offer】从上往下打印二叉树">
+<meta name="twitter:description" content="题目描述从上往下打印出二叉树的每个节点，同层节点从左至右打印。 思路仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。 解题的具体思路为： 首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -104,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">【剑指offer】二维数组中的查找</div>
+        <div class="flex-col header-title ellipsis">【剑指offer】从上往下打印二叉树</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -126,10 +126,10 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">【剑指offer】二维数组中的查找</h1>
+        <h1 class="title">【剑指offer】从上往下打印二叉树</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-07-03T01:56:23.000Z" itemprop="datePublished" class="page-time">
+                <time datetime="2018-07-03T02:40:29.000Z" itemprop="datePublished" class="page-time">
   2018-07-03
 </time>
 
@@ -149,18 +149,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码-运行通过"><span class="post-toc-number">2.</span> <span class="post-toc-text">源码(运行通过)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目工程"><span class="post-toc-number">3.</span> <span class="post-toc-text">项目工程</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#题目描述"><span class="post-toc-number">1.</span> <span class="post-toc-text">题目描述</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#项目源码"><span class="post-toc-number">3.</span> <span class="post-toc-text">项目源码</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-【剑指offer】二维数组中的查找"
+<article id="post-【剑指offer】从商往下打印二叉树"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">【剑指offer】二维数组中的查找</h1>
+        <h1 class="post-card-title">【剑指offer】从上往下打印二叉树</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-07-03 09:56:23" datetime="2018-07-03T01:56:23.000Z"  itemprop="datePublished">2018-07-03</time>
+            <time class="post-time" title="2018-07-03 10:40:29" datetime="2018-07-03T02:40:29.000Z"  itemprop="datePublished">2018-07-03</time>
 
             
 
@@ -173,16 +173,15 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <blockquote>
-<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-</blockquote>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用二维数组由上到下，由左到右递增的规律。</p>
-<p>那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。</p>
-<p>如果 array[row][col] 小于 target 时，那么 target 一定在 第 row 行第 col 列的右边即 col++;</p>
-<p>如果 array[row][col] 大于 target 时，那么 target 一定在 第 row 行第 col 列的上边即 row–;</p>
-<h2 id="源码-运行通过"><a href="#源码-运行通过" class="headerlink" title="源码(运行通过)"></a>源码(运行通过)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> target, <span class="keyword">int</span> [][] array)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> length = array.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (length &gt;= <span class="number">0</span> &amp;&amp; i &lt; array[<span class="number">0</span>].length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[length][i] &gt; target) &#123;</span><br><span class="line">                length--;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[length][i] &lt; target) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="项目工程"><a href="#项目工程" class="headerlink" title="项目工程"></a>项目工程</h2><p>如果你想看到《剑指offer》的所有源码，欢迎 star 我的 github project。</p>
-<p>《剑指offer》的 github 地址：<a href="https://github.com/liuenci/GoOffer" target="_blank" rel="noopener">https://github.com/liuenci/GoOffer</a></p>
+            <h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>从上往下打印出二叉树的每个节点，同层节点从左至右打印。</p>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>仔细看题目描述我们会发现，这个题其实就是一个简单的层次遍历而已，只不过题目中给出的代码结构是想让我们使用一个集合来模拟队列实现。</p>
+<p>解题的具体思路为：</p>
+<p>首先创建两个集合，一个集合用来保存遍历节点的值，另外一个集合用来模拟队列保存遍历的节点。从根节点出发，如果队列不为空，就出队一个节点，并且检查这个节点存在不存在左右子节点。如果存在左右子节点，就将子节点添加到队列，检查完之后将出队的节点的值添加到集合中即可。</p>
+<p>当队列对空队列时，也就是整个二叉树遍历完成之时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public ArrayList&lt;Integer&gt; PrintFromTopToBottom(TreeNode root) &#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; arrayList = new ArrayList&lt;&gt;();</span><br><span class="line">    ArrayList&lt;TreeNode&gt; queue = new ArrayList&lt;&gt;();</span><br><span class="line">    if (root == null) &#123;</span><br><span class="line">        return arrayList;</span><br><span class="line">    &#125;</span><br><span class="line">    queue.add(root);</span><br><span class="line">    while (queue.size() != 0)&#123;</span><br><span class="line">        TreeNode temp = queue.remove(0);</span><br><span class="line">        if (temp.left != null) &#123;</span><br><span class="line">            queue.add(temp.left);</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp.right != null) &#123;</span><br><span class="line">            queue.add(temp.right);</span><br><span class="line">        &#125;</span><br><span class="line">        arrayList.add(temp.val);</span><br><span class="line">    &#125;</span><br><span class="line">    return arrayList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h5><p>如果你想看到《剑指offer》的所有源码，欢迎 star 我的 github project。</p>
+<p>《剑指offer》的 github 地址：</p>
+<p><a href="https://github.com/liuenci/GoOffer" target="_blank" rel="noopener">https://github.com/liuenci/GoOffer</a></p>
 
         </div>
 
@@ -191,7 +190,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-03T01:57:01.422Z" itemprop="dateUpdated">2018-07-03 09:57:01</time>
+    最后更新时间：<time datetime="2018-07-03T02:52:33.017Z" itemprop="dateUpdated">2018-07-03 10:52:33</time>
 </span><br>
 
 
@@ -225,7 +224,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -235,22 +234,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】二维数组中的查找》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】从上往下打印二叉树》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -273,18 +272,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/07/03/【剑指offer】从商往下打印二叉树/" id="post-prev" class="post-nav-link">
+      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">【剑指offer】从上往下打印二叉树</h4>
+        <h4 class="title">写在开始之前</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/07/01/IDEA-比-Eclipse-好在哪？/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/03/【剑指offer】二维数组中的查找/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">IDEA 比 Eclipse 好在哪？</h4>
+        <h4 class="title">【剑指offer】二维数组中的查找</h4>
       </a>
     </div>
   
@@ -389,7 +388,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -399,22 +398,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&title=《【剑指offer】从上往下打印二叉树》 — cier&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】二维数组中的查找》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】从上往下打印二叉树》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -425,7 +424,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/03/【剑指offer】从商往下打印二叉树/" alt="微信分享二维码">
 </div>
 
 
