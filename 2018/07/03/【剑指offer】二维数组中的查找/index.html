@@ -14,25 +14,25 @@
     
     
     
-    <title>IDEA 比 Eclipse 好在哪？ | cier | 一个假不正经的博客</title>
+    <title>【剑指offer】二维数组中的查找 | cier | 一个假不正经的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="工具使用,IDEA,Eclipse">
-    <meta name="description" content="前段时间去面试【亚信公司】的时候，面试官问我为什么不用 Eclipse,而使用 IDEA，作为一个使用 IDEA 只有一年的码农，当时还真没给面试官说出来 IDEA 哪里好了。特此总结一下。 1.颜值高，谁说程序员就没有审美了？我就觉得 IDEA 嘿嘿的背景配上高亮的代码，挺符合我的审美的。 2.IDEA 中我再也不用手动保存代码了，再也不用担心某一天电脑突然断电或者蓝屏，代码没有保存了，简直是妈">
-<meta name="keywords" content="工具使用,IDEA,Eclipse">
+    <meta name="keywords" content="剑指offer">
+    <meta name="description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。  思路利用二维数组由上到下，由左到右递增的规律。 那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。 如果 array[row][col] 小于 target 时，那么 target 一定">
+<meta name="keywords" content="剑指offer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IDEA 比 Eclipse 好在哪？">
-<meta property="og:url" content="http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/index.html">
+<meta property="og:title" content="【剑指offer】二维数组中的查找">
+<meta property="og:url" content="http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/index.html">
 <meta property="og:site_name" content="cier">
-<meta property="og:description" content="前段时间去面试【亚信公司】的时候，面试官问我为什么不用 Eclipse,而使用 IDEA，作为一个使用 IDEA 只有一年的码农，当时还真没给面试官说出来 IDEA 哪里好了。特此总结一下。 1.颜值高，谁说程序员就没有审美了？我就觉得 IDEA 嘿嘿的背景配上高亮的代码，挺符合我的审美的。 2.IDEA 中我再也不用手动保存代码了，再也不用担心某一天电脑突然断电或者蓝屏，代码没有保存了，简直是妈">
+<meta property="og:description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。  思路利用二维数组由上到下，由左到右递增的规律。 那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。 如果 array[row][col] 小于 target 时，那么 target 一定">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-01T12:51:33.855Z">
+<meta property="og:updated_time" content="2018-07-03T01:57:01.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IDEA 比 Eclipse 好在哪？">
-<meta name="twitter:description" content="前段时间去面试【亚信公司】的时候，面试官问我为什么不用 Eclipse,而使用 IDEA，作为一个使用 IDEA 只有一年的码农，当时还真没给面试官说出来 IDEA 哪里好了。特此总结一下。 1.颜值高，谁说程序员就没有审美了？我就觉得 IDEA 嘿嘿的背景配上高亮的代码，挺符合我的审美的。 2.IDEA 中我再也不用手动保存代码了，再也不用担心某一天电脑突然断电或者蓝屏，代码没有保存了，简直是妈">
+<meta name="twitter:title" content="【剑指offer】二维数组中的查找">
+<meta name="twitter:description" content="在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。  思路利用二维数组由上到下，由左到右递增的规律。 那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。 如果 array[row][col] 小于 target 时，那么 target 一定">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -104,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">IDEA 比 Eclipse 好在哪？</div>
+        <div class="flex-col header-title ellipsis">【剑指offer】二维数组中的查找</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -126,11 +126,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">IDEA 比 Eclipse 好在哪？</h1>
+        <h1 class="title">【剑指offer】二维数组中的查找</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-07-01T12:50:56.000Z" itemprop="datePublished" class="page-time">
-  2018-07-01
+                <time datetime="2018-07-03T01:56:23.000Z" itemprop="datePublished" class="page-time">
+  2018-07-03
 </time>
 
 
@@ -146,14 +146,21 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码-运行通过"><span class="post-toc-number">2.</span> <span class="post-toc-text">源码(运行通过)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目工程"><span class="post-toc-number">3.</span> <span class="post-toc-text">项目工程</span></a></li></ol>
+        </nav>
+    </aside>
 
-<article id="post-IDEA-比-Eclipse-好在哪？"
+
+<article id="post-【剑指offer】二维数组中的查找"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">IDEA 比 Eclipse 好在哪？</h1>
+        <h1 class="post-card-title">【剑指offer】二维数组中的查找</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-07-01 20:50:56" datetime="2018-07-01T12:50:56.000Z"  itemprop="datePublished">2018-07-01</time>
+            <time class="post-time" title="2018-07-03 09:56:23" datetime="2018-07-03T01:56:23.000Z"  itemprop="datePublished">2018-07-03</time>
 
             
 
@@ -166,14 +173,16 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>前段时间去面试【亚信公司】的时候，面试官问我为什么不用 Eclipse,而使用 IDEA，作为一个使用 IDEA 只有一年的码农，当时还真没给面试官说出来 IDEA 哪里好了。特此总结一下。</p>
-<p>1.颜值高，谁说程序员就没有审美了？我就觉得 IDEA 嘿嘿的背景配上高亮的代码，挺符合我的审美的。</p>
-<p>2.IDEA 中我再也不用手动保存代码了，再也不用担心某一天电脑突然断电或者蓝屏，代码没有保存了，简直是妈妈再也不用担心我的代码了。</p>
-<p>3.IDEA 的代码补全比 Eclipse 快多了，比如说我按 psv + tab 键我就能快速生成一个 main 函数。</p>
-<p>4.快捷键用起来简直不要太爽。比如说我在写一个 JavaBean 的时候，我需要写每个属性的 set 和 get 方法，在 Eclipse 中我要通过鼠标点点点，然后再选择需要 set 和 get 的属性，最后才生成。而在 IDEA 中，直接可以通过 alt + insert 生成代码。</p>
-<p>5.对语言的支持太好了。不仅写 Java 时会有提示，而且写前端，它还是有提示，要是用 Eclipse,前端不仅没提示，而且还偶尔给我报个红叉，明明我代码没有一点问题的，嘤嘤嘤。</p>
-<p>6.IDEA 的调试功能比 Eclipse 好太多了，好吧，语言有点匮乏了。在 IDEA 中只需要将光标移到你的表达式中然后按下 alt + f8。IDEA 会显示一个对话窗口，然后你可以对参数值进行修改，最后 IDEA 会帮你计算这个表达式的值。</p>
-<p>当然 IDEA 还有更多的优势，留给大家慢慢挖掘。</p>
+            <blockquote>
+<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>利用二维数组由上到下，由左到右递增的规律。</p>
+<p>那么选取左下角或者右上角的元素 array[row][col] 与 target 进行比较。</p>
+<p>如果 array[row][col] 小于 target 时，那么 target 一定在 第 row 行第 col 列的右边即 col++;</p>
+<p>如果 array[row][col] 大于 target 时，那么 target 一定在 第 row 行第 col 列的上边即 row–;</p>
+<h2 id="源码-运行通过"><a href="#源码-运行通过" class="headerlink" title="源码(运行通过)"></a>源码(运行通过)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> target, <span class="keyword">int</span> [][] array)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> length = array.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (length &gt;= <span class="number">0</span> &amp;&amp; i &lt; array[<span class="number">0</span>].length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[length][i] &gt; target) &#123;</span><br><span class="line">                length--;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[length][i] &lt; target) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="项目工程"><a href="#项目工程" class="headerlink" title="项目工程"></a>项目工程</h2><p>如果你想看到《剑指offer》的所有源码，欢迎 star 我的 github project。</p>
+<p>《剑指offer》的 github 地址：<a href="https://github.com/liuenci/GoOffer" target="_blank" rel="noopener">https://github.com/liuenci/GoOffer</a></p>
 
         </div>
 
@@ -182,7 +191,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-01T12:51:33.855Z" itemprop="dateUpdated">2018-07-01 20:51:33</time>
+    最后更新时间：<time datetime="2018-07-03T01:57:01.422Z" itemprop="dateUpdated">2018-07-03 09:57:01</time>
 </span><br>
 
 
@@ -206,7 +215,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDEA/">IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用/">工具使用</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指offer/">剑指offer</a></li></ul>
 
 
             
@@ -216,7 +225,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/&title=《IDEA 比 Eclipse 好在哪？》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -226,22 +235,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/&title=《IDEA 比 Eclipse 好在哪？》 — cier&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《IDEA 比 Eclipse 好在哪？》 — cier&url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】二维数组中的查找》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -264,18 +273,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/07/03/【剑指offer】二维数组中的查找/" id="post-prev" class="post-nav-link">
+      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">【剑指offer】二维数组中的查找</h4>
+        <h4 class="title">写在开始之前</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/07/01/Git-和-SVN-的区别/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/01/IDEA-比-Eclipse-好在哪？/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Git 和 SVN 的区别</h4>
+        <h4 class="title">IDEA 比 Eclipse 好在哪？</h4>
       </a>
     </div>
   
@@ -380,7 +389,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/&title=《IDEA 比 Eclipse 好在哪？》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -390,22 +399,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/&title=《IDEA 比 Eclipse 好在哪？》 — cier&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&title=《【剑指offer】二维数组中的查找》 — cier&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《IDEA 比 Eclipse 好在哪？》 — cier&url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【剑指offer】二维数组中的查找》 — cier&url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -416,7 +425,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/01/IDEA-比-Eclipse-好在哪？/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/03/【剑指offer】二维数组中的查找/" alt="微信分享二维码">
 </div>
 
 
