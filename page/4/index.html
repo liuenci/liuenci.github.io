@@ -17,6 +17,8 @@
     <title>山气日夕佳 | 一个假不正经的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="liuenci cier encier">
     <meta name="description" content="hello world">
@@ -31,8 +33,8 @@
 <meta name="twitter:title" content="山气日夕佳">
 <meta name="twitter:description" content="hello world">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -48,19 +50,47 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/">
+          <img src="/img/avatar.png">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">山气日夕佳</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -75,6 +105,20 @@
         </a>
         <div class="flex-col header-title ellipsis">山气日夕佳</div>
         
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
         
     </div>
 </header>
@@ -125,7 +169,16 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        看到好多网站现在都换成了 https 传输方式，htt...
+        看到好多网站现在都换成了 https 传输方式，http 要凉了啊。苦逼程序员又要去了解一下 https 的工作原理了。
+参考链接：https://juejin.im/entry/58d7635e5c497d0057fae036
+
+首先客户端发起 https 请求
+
+这里注意 http 默认连接的是 80 端口，而 https 连接的是 443 端口。
+
+服务器的配置
+
+使用 https 协...
     
 
         <a href="/2018/06/24/https-的工作原理/" class="post-more waves-effect waves-button">
@@ -170,7 +223,15 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        http 返回码，应该说是状态码，是用户发送请求给服务...
+        http 返回码，应该说是状态码，是用户发送请求给服务器，服务器给出响应，响应是一个包括 http 包含 http 状态码的的信息头。
+http 的状态码的英文名为 http status code
+常用的状态码
+200 请求成功
+301 请求的资源或者网页被永久的转移到其他的 url 中
+404 请求的网页或者资源不存在
+500 服务器内部错误，一般是代码写错了，哈哈哈
+
+
     
 
         <a href="/2018/06/24/http-返回码/" class="post-more waves-effect waves-button">
@@ -215,7 +276,10 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是队列队列是只允许在一端进行插入操作，而在另一端进...
+        什么是队列队列是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。
+换个意思说，队列是一种先进先出的的线性表，简称FIFO.允许插入的一端称为队尾，允许删除的一端叫做队头。
+队列的实际应用键盘的输入，到显示器上记事本软件的输出都是队列的应用。
+队列顺序存储的不足顺序存储使用数组来存储队列的元素，队列的添加就是在队尾追加一个元素，这个时候不需要移动任何元素，时间复杂度为o(1),但是队...
     
 
         <a href="/2018/06/24/数据结构-队列-顺序结构和循环队列/" class="post-more waves-effect waves-button">
@@ -260,7 +324,10 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是队列的链式结构队列的链式结构其实就是线性表中的单...
+        什么是队列的链式结构队列的链式结构其实就是线性表中的单链表，不过队列只允许尾进头出，队列的链式存储结构我们也称为链队列。
+关于链队列的数据结构为了操作上的方便，我们把队头指针 front 指向链队列的头结点，队尾指针 rear 指向链队列的最后一个结点。
+当队列为空时，front 和 rear 都指向头结点。
+链队列的基本操作入队操作入队操作时，其实就是在链表尾部插入结点。先创建结点，然后将...
     
 
         <a href="/2018/06/24/数据结构-队列-链式结构/" class="post-more waves-effect waves-button">
@@ -305,7 +372,9 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是线性表线性表就是零个或多个数据元素的有限序列。首...
+        什么是线性表线性表就是零个或多个数据元素的有限序列。首先是一个序列，然后序列之间有顺序，序列中的元素如果存在多个，则第一个元素无前驱，最后一个元素无后继，其他每个元素都有且一个前驱和一个后继。
+什么是线性表的顺序存储结构线性表的顺序存储结构就是用一段地址连续的存储单元依次存储线性表的数据元素，也就是用数组去实现顺序存储结构。下面用代码实现一下顺序结构。
+首先写一个接口接口主要描述一下实现类要...
     
 
         <a href="/2018/06/24/数据结构-线性表-顺序结构/" class="post-more waves-effect waves-button">
@@ -350,7 +419,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是静态链表在我公众号上一篇文章中实现了单链表的基本...
+        什么是静态链表在我公众号上一篇文章中实现了单链表的基本操作，创建单链表的过程就是一个动态生成链表的过程，即从”空表”的初始状态起，依次建立各元素结点，并逐个插入链表中。而静态链表就是单链表和数组的结合。首先我们让数组的元素都是由两个数据域组成，data 和 cursor。也就是说数组的每个下标都对应一个 data 和 cursor。数据域 data,用来存放数据元素，也就是通常我们要处理的数...
     
 
         <a href="/2018/06/24/数据结构-线性表-静态链表/" class="post-more waves-effect waves-button">
@@ -395,7 +464,8 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        在用代码实现我们的线性表的链式结构之前我们先来了解一下...
+        在用代码实现我们的线性表的链式结构之前我们先来了解一下链式结构的几个概念。
+什么是线性表的链式结构为了表示每个数据元素 a(i) 与其直接后继数据元素 a(i+1) 之间的逻辑关系，对数据元素 a(i) 来说，除了存储本身的信息外，还需存储一个指示其直接后继的信息,即直接后继的存储位置。我们把存储数据元素信息的域为数据域，把存储直接后继位置的域称为指针域，也是Java中我们说的地址域。这两部...
     
 
         <a href="/2018/06/24/数据结构-线性表-链式结构/" class="post-more waves-effect waves-button">
@@ -440,7 +510,8 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是循环链表在前面的一篇讲单链表的文章中我们知道单链...
+        什么是循环链表在前面的一篇讲单链表的文章中我们知道单链表终端结点的指针域为 null，为了实现循环链表，所以我们把单链表中终端结点的指针段由空指针改为指向头结点，这样子使整个单链表形成一个环，这种头尾相接的单链表称为单循环链表，简称循环链表。
+为什么使用循环链表在单链表中因为我们有头结点，所以可以用 O(1) 的时间方位第一个结点，但是如果我们要访问到最后一个结点，需要将整个单链表都访问一遍...
     
 
         <a href="/2018/06/24/数据结构-线性表-循环链表/" class="post-more waves-effect waves-button">
@@ -485,7 +556,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        我们在单链表中，由于只有后继结点的指针域，所以如果我们...
+        我们在单链表中，由于只有后继结点的指针域，所以如果我们需要查找上一个结点的时候，最坏的时间复杂度就是 O(n),因为我们每次都需要从头结点开始遍历。所以在后来者中提出了双向链表来解决单链表的问题。那什么是双向链表呢？双向链表就是在单链表的每个结点中，再设置一个指向其前驱结点的指针域。具体的代码结构如下：12345678class Node &#123;        // 保存结点的数据  ...
     
 
         <a href="/2018/06/24/数据结构-线性表-双向链表/" class="post-more waves-effect waves-button">
@@ -530,7 +601,10 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        树的定义前面几篇文章讨论的都是一对一的线性结构，但是现...
+        树的定义前面几篇文章讨论的都是一对一的线性结构，但是现实中还有很多是一对多的情况。这就进化出树这种数据结构。
+树(Tree)是n(n&gt;0)个结点的有限集。n=0 时称为空树。在任意一个非空树中：
+(1) 有且仅有一个特定的称为根 (Root) 的结点。
+(2) 当 n &gt; 1 时，其余结点可分为 m (m &gt; 0) 个互不相交的有限集 T1、T2、……Tm,其中每一个集合本...
     
 
         <a href="/2018/06/24/树/" class="post-more waves-effect waves-button">
@@ -563,6 +637,15 @@
         <footer class="footer">
     <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
 
         <p>
             
@@ -570,8 +653,10 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>山气日夕佳 &copy; 2018</span>
+        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
             <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
                 
             </span>
         </p>
@@ -583,21 +668,106 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/page/4/&title=山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/page/4/&title=山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/page/4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=山气日夕佳&url=http://yoursite.com/page/4/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/page/4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/page/4/" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.2"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
 
 
