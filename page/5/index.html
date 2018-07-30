@@ -17,8 +17,6 @@
     <title>山气日夕佳 | 一个假不正经的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
-    
     
     <meta name="keywords" content="liuenci cier encier">
     <meta name="description" content="hello world">
@@ -33,8 +31,8 @@
 <meta name="twitter:title" content="山气日夕佳">
 <meta name="twitter:description" content="hello world">
     
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -50,47 +48,19 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.png">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">山气日夕佳</h5>
-          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+          <a href="mailto:undefined" class="mail">
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                Home
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/liuenci" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -105,20 +75,6 @@
         </a>
         <div class="flex-col header-title ellipsis">山气日夕佳</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -169,10 +125,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        树的存储结构在描述树的存储结构之前，我们先来回想一下前面学习链表时用到的顺序存储结构和链式存储结构。
-顺序存储结构：用一段地址连续的存储单元依次存储线性表的数据元素。
-链式存储结构：用一段逻辑上连续的存储空间来依次存储线性表上的数据元素，与顺序存储结构不同的是，链式存储结构在物理存储单元上可以不连续。
-因为线性表是一对一的结构，但是对于树这种一对多的结构我们就需要利用顺序结构结合链式结构来完...
+        树的存储结构在描述树的存储结构之前，我们先来回想一下前...
     
 
         <a href="/2018/06/24/双亲表示法/" class="post-more waves-effect waves-button">
@@ -217,9 +170,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是栈栈是一种特殊的线性表，但是只允许在表尾进行插入和删除。相对于普遍意义上的线性表来说，实现要简单不少，不过这里我们还要知道栈的几个关键的概念。
-栈的关键点我们把允许插入和删除的一端称为栈顶(top),另一端称为栈底(bottom);不含任何数据元素的栈称为空栈。栈又称为后进先出(Last In First Out)的线性表，简称为LIFO结构。
-关于栈的插入和删除栈的插入操作，叫做进栈...
+        什么是栈栈是一种特殊的线性表，但是只允许在表尾进行插入...
     
 
         <a href="/2018/06/24/数据结构-栈-顺序结构/" class="post-more waves-effect waves-button">
@@ -264,9 +215,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        在我的前一篇文章中讲述了栈的顺序结构，这篇文章将带大家实现栈的链式结构。
-什么是栈的链式结构栈的顺序结构需要依托于数组来实现，而栈的链式结构则不需要依托于数组，而是在每个结点中存放一个指针域，这个指针域指向这个结点的直接后继，这种依次链接并且插入和删除结点只允许在栈顶进行就叫做栈的链式结构。栈的链式结构也叫做链栈。
-从链表进化为链栈栈只是栈顶来做插入和删除操作，栈顶放在链表的头部还是尾部呢？...
+        在我的前一篇文章中讲述了栈的顺序结构，这篇文章将带大家...
     
 
         <a href="/2018/06/24/数据结构-栈-链式结构/" class="post-more waves-effect waves-button">
@@ -311,20 +260,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        在判断时间复杂度之间，我们需要知道什么是如何推导大O阶方法。
-
-推导大O阶方法的步骤
-
-用常数1取代运行时间中的所有加法常数。
-在修改后的运行次数函数中，只保留最高阶项。
-如果最高阶项存在且不是1，则去除与这个项相乘的常数
-
-
-经过上面三步得到的结果就是大O阶，下面讲解几种常见的时间复杂度的判断。
-
-常数阶
-
-代码如下:123int sum = 0,n = 100; // 执行一次sum =...
+        在判断时间复杂度之间，我们需要知道什么是如何推导大O阶...
     
 
         <a href="/2018/06/24/算法时间复杂度判断/" class="post-more waves-effect waves-button">
@@ -369,8 +305,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        oracle 中存在伪列这个说法，它就像一个表的列一样，但是它并不存储在表中，伪列可以从数据库中查出，但是无法对伪列进行更新，删除和插入。常用的伪列就有 ROWNUM 和 ROWID.
-ROWNUM 伪列ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果集，然后再在结果集上加上一个伪列，伪列的作用就是在结果集中添加一个从 1 开始的序列号。例如以下 sql.1select ro...
+        oracle 中存在伪列这个说法，它就像一个表的列一样...
     
 
         <a href="/2018/06/24/解析-ROWID-和-ROWNUM-基础/" class="post-more waves-effect waves-button">
@@ -415,8 +350,7 @@ ROWNUM 伪列ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        这篇文章简单的介绍一下一些 Oracle 中的流程控制怎么使用。
-条件语句if 语句1234567891011121314DECLARE  salary emp.sal%TYPE;  empno_ emp.empno%TYPE;BEGIN  empno_ := &amp;请输入员工编号;  SELECT sal INTO salary FROM emp WHERE empno = empno...
+        这篇文章简单的介绍一下一些 Oracle 中的流程控制...
     
 
         <a href="/2018/06/24/解析-Oracle-流程控制基础/" class="post-more waves-effect waves-button">
@@ -461,8 +395,7 @@ ROWNUM 伪列ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果�
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        什么是函数函数就是一组 SQL 语句或者 PL/SQL 语句块的集合，同时可以返回执行结果。
-函数语法123456789101112131415CREATE [OR REPLACE] FUNCTION function_name (arg1 [ &#123; IN | OUT | IN OUT &#125;] type1 [DEFAULT value1], [arg2 [ &#123; IN...
+        什么是函数函数就是一组 SQL 语句或者 PL/SQL...
     
 
         <a href="/2018/06/24/解析-Oracle-中函数基础/" class="post-more waves-effect waves-button">
@@ -508,17 +441,7 @@ ROWNUM 伪列ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果�
 
     
         
-登录scott账户分开输入1conn scott/tiger
-
-1show user
-
-登录sysdba账户输入1sys as sysdba;
-
-不用口令直接回车
-
-在网页中登录企业管理器
-
-在网页中输入https://localhost:5500/em 进入企业管理器用户名输入 ：sys新装的oracle如果没有改过sys的密码需要先登录sys，然后输入1alter user sys i...
+登录scott账户分开输入1conn scott/t...
     
 
         <a href="/2018/06/24/oracle-登录账户的几种方法/" class="post-more waves-effect waves-button">
@@ -566,11 +489,7 @@ ROWNUM 伪列ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果�
         
 oracle和mysql的自增区别
 
-mysql自增使用的是auto increment，但是oracle中需要使用序列配合触发器来实现自增。
-
-步骤1:创建表
-
-123456create table classroom(c_id NUMBER(4) not null primary key,c_address VARCHAR2(10) not null,c_count NUMBER(2)...
+mysql自增...
     
 
         <a href="/2018/06/24/oracle-设置自增序列/" class="post-more waves-effect waves-button">
@@ -616,11 +535,7 @@ mysql自增使用的是auto increment，但是oracle中需要使用序列配合�
 
     
         
-oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码:
-1alter session set nls_date_format = &quot;YYYY-MM-DD&quot;
-
-创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。
-12345678910create table XSB(学...
+oracle 12c默认的日期格式是”DD-MM月-...
     
 
         <a href="/2018/06/24/oracle-总结/" class="post-more waves-effect waves-button">
@@ -653,15 +568,6 @@ oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式�
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -669,10 +575,8 @@ oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式�
         </p>
     </div>
     <div class="bottom">
-        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
+        <p><span>山气日夕佳 &copy; 2018</span>
             <span>
-                
-                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
                 
             </span>
         </p>
@@ -684,106 +588,21 @@ oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式�
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/page/5/&title=山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/page/5/&title=山气日夕佳&source=hello world" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/page/5/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=山气日夕佳&url=http://yoursite.com/page/5/&via=http://yoursite.com" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/page/5/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/page/5/" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 
 
 
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
 
 
 
