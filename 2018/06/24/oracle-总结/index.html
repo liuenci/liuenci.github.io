@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>oracle 总结 | 山气日夕佳 | 一个假不正经的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="oracle,SQL">
+    <meta name="description" content="oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码: 1alter session set nls_date_format = &amp;quot;YYYY-MM-DD&amp;quot;  创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。 12345678910create table XSB(学号 C">
+<meta name="keywords" content="oracle,SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oracle 总结">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/oracle-总结/index.html">
+<meta property="og:site_name" content="山气日夕佳">
+<meta property="og:description" content="oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码: 1alter session set nls_date_format = &amp;quot;YYYY-MM-DD&amp;quot;  创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。 12345678910create table XSB(学号 C">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-24T07:41:23.664Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="oracle 总结">
+<meta name="twitter:description" content="oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码: 1alter session set nls_date_format = &amp;quot;YYYY-MM-DD&amp;quot;  创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。 12345678910create table XSB(学号 C">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">山气日夕佳</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">oracle 总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">oracle 总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-24T07:40:50.000Z" itemprop="datePublished" class="page-time">
+  2018-06-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-oracle-总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">oracle 总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-24 15:40:50" datetime="2018-06-24T07:40:50.000Z"  itemprop="datePublished">2018-06-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <ol>
+<li><p>oracle 12c默认的日期格式是”DD-MM月-YY”,修改默认的日期格式代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter session set nls_date_format = &quot;YYYY-MM-DD&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表的时候可以声明具体的单位,char(2char)表示两个字符，如果不在括号中写char，char(2)表示是两个字节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table XSB</span><br><span class="line">(</span><br><span class="line">学号 CHAR(6) NOT NULL PRIMARY KEY,</span><br><span class="line">姓名 CHAR(8) NOT NULL,</span><br><span class="line">性别 CHAR(2char) DEFAULT &apos;男&apos; NOT NULL,</span><br><span class="line">出生时间 date NOT NULL,</span><br><span class="line">专业 char(12) null,</span><br><span class="line">总学分 number(2) null,</span><br><span class="line">备注 varchar2(200) null</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列的约束主要有五种:not null,unique,primary key ,reference table,check.分别是非空，唯一，主键，外键，检查约束。</p>
+</li>
+<li><p>如何创建一个表的备份表,表后面可以加where条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table xs_jsj as select * from xsb where 专业=&apos;计算机&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加表的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (奖学金等级 number(1),等级说明 varchar2(40) default &apos;奖金1000元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj modify (等级说明 default &apos;奖金800元&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj drop column 奖学金等级</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表创建主键，注意主键的名字不能是单引号包裹，单引号会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table xs_jsj add (constraint &quot;pk_jsj&quot; primary key(学号))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table xs_jsj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>insert into语句可以将一个表中的数据插入进另外一张表中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into xsb1 select 学号 姓名 专业 from xsb where 姓名 = &apos;王林&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>merge关键字的使用,下面这段代码的意思是如果学号匹配，就把a表中的数据更新成XSB中的数据,如果不匹配，那就插入这条记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">merge into A </span><br><span class="line">using xsb on (a.xh=xsb.学号)</span><br><span class="line">when matched </span><br><span class="line">  then update set a.xm = xsb.姓名,a.xb=xsb.性别,a.cssj=xsb.出生时间,a.zy=xsb.专业,a.zxf=xsb.总学分,a.bz=xsb.备注</span><br><span class="line">when not matched</span><br><span class="line">  then insert values(xsb.学号,xsb.姓名,xsb.性别,xsb.出生时间,xsb.专业,xsb.总学分,xsb.备注);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空值的比较</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from cp where 备注 is not null</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>all关键字的使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from xsb where 出生时间 &lt; all (select 出生时间 from xsb where 专业=&apos;计算机&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EXISTS子查询，EXISTS谓词用于测试子查询的结果是否为空表，若子查询的结果集不为空，则exists返回true，否则返回false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 姓名 from xsb where exists (select * from cjb where 学号 = xsb.学号 and 课程号 = &apos;206&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在写存储过程代码遇到一个如何执行存储过程的问题，算是一个小坑，我先贴上代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">--查询某人的总学分</span><br><span class="line">create or replace procedure update_info (vxh in char) as</span><br><span class="line">xf number;</span><br><span class="line">begin</span><br><span class="line">  select zxf into xf from xsb where xh = vxh and rownum = 1;</span><br><span class="line">  if xf&gt;50 then</span><br><span class="line">    update xsb set bz = &apos;三好学生&apos; where xh = vxh;</span><br><span class="line">  else</span><br><span class="line">    update xsb set bz = &apos;三差学生&apos; where xh = vxh;</span><br><span class="line">  end if;</span><br><span class="line">end;</span><br><span class="line">--执行存储过程</span><br><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行存储过程的时候我最开始用的代码是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh&gt;=&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>仔细看书上我发现存储过程的赋值是这样的是使用的 ‘=&gt;’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec update_info(vxh=&gt;&apos;101101&apos;);</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-06-24T07:41:23.664Z" itemprop="dateUpdated">2018-06-24 15:41:23</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.png" alt="山气日夕佳">
+            山气日夕佳
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oracle/">oracle</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/24/oracle-总结/&title=《oracle 总结》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/24/oracle-总结/&title=《oracle 总结》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/24/oracle-总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《oracle 总结》 — 山气日夕佳&url=http://yoursite.com/2018/06/24/oracle-总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/24/oracle-总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/24/oracle-设置自增序列/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">oracle 设置自增序列</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/24/oracle 函数/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">函数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/24/oracle-总结/&title=《oracle 总结》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/24/oracle-总结/&title=《oracle 总结》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/24/oracle-总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《oracle 总结》 — 山气日夕佳&url=http://yoursite.com/2018/06/24/oracle-总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/24/oracle-总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/06/24/oracle-总结/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

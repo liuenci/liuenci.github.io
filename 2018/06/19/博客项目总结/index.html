@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>博客项目总结 | 山气日夕佳 | 一个假不正经的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="日志,项目">
+    <meta name="description" content="总结一下这次为期21天的两人团队博客项目。 个人 数据库设计不当。  什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。 数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。 数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处">
+<meta name="keywords" content="日志,项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客项目总结">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/博客项目总结/index.html">
+<meta property="og:site_name" content="山气日夕佳">
+<meta property="og:description" content="总结一下这次为期21天的两人团队博客项目。 个人 数据库设计不当。  什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。 数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。 数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-19T06:27:21.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博客项目总结">
+<meta name="twitter:description" content="总结一下这次为期21天的两人团队博客项目。 个人 数据库设计不当。  什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。 数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。 数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">山气日夕佳</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">博客项目总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">博客项目总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-19T06:26:45.000Z" itemprop="datePublished" class="page-time">
+  2018-06-19
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#个人"><span class="post-toc-number">1.</span> <span class="post-toc-text">个人</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#团队"><span class="post-toc-number">2.</span> <span class="post-toc-text">团队</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-博客项目总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">博客项目总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-19 14:26:45" datetime="2018-06-19T06:26:45.000Z"  itemprop="datePublished">2018-06-19</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>总结一下这次为期21天的两人团队博客项目。</p>
+<h4 id="个人"><a href="#个人" class="headerlink" title="个人"></a>个人</h4><blockquote>
+<p>数据库设计不当。</p>
+</blockquote>
+<p>什么数据该做物理删除，什么数据该做逻辑删除。可以物理删除的数据库表可以不设置状态字段，逻辑删除一定要设置状态字段。</p>
+<p>数据库中多对多的表设计问题。多对多一定要设置中间表，删除记录的时候看情况而定，一般情况下只需要删除中间表之间的关联A表和B表的数据。</p>
+<p>数据库性能。能交给数据库处理的数据直接交给数据库处理，尽量不在Java中做二次处理，尽量少联结表，多联结一张表性能会下降不少。</p>
+<blockquote>
+<p>需求分析设计不当</p>
+</blockquote>
+<p>找参考的对象尽量找成熟的平台做需求分析，我最开始用的是自己用阿里云搭建的博客，需求设计的时候随便设计了一下，导致后期只有简单的增删改查功能。</p>
+<blockquote>
+<p>技术上还有很大的改进</p>
+</blockquote>
+<p>页面的风格不统一，融合了CSDN和wordpress以及自己搭建的后台框架，配上登录注册完全不同的三种风格，形成了我这个四不像的博客。</p>
+<p>没写分页，没写图片上传，还有华哥指出的横向越权和纵向越权的自己没有考虑的问题，没写Nginx反向代理，没写FTP上传图片服务器…寒假学的一些骚操作基本上都没用上。</p>
+<h4 id="团队"><a href="#团队" class="headerlink" title="团队"></a>团队</h4><blockquote>
+<p>　任务分配不当</p>
+</blockquote>
+<p>团队项目就应该团队一起做。虽然搞技术我一向的想法是不做伸手党，遇到问题第一时间应该寻找搜索引擎，因为我们现在遇到的问题基本上全世界上的其他人都已经遇到过了，但是下次组员技术不是很强的时候我还是要换个方法，先教会他一个功能，然后再让他做同类型的功能，然后我再教一个新功能，如此循环，这样避免组员划水，我也会轻松不少。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-06-19T06:27:21.729Z" itemprop="dateUpdated">2018-06-19 14:27:21</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.png" alt="山气日夕佳">
+            山气日夕佳
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志/">日志</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/项目/">项目</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/19/博客项目总结/&title=《博客项目总结》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/19/博客项目总结/&title=《博客项目总结》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/19/博客项目总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《博客项目总结》 — 山气日夕佳&url=http://yoursite.com/2018/06/19/博客项目总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/19/博客项目总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/19/joda-time-和-SimpleDateFormat-的区别/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">joda-time 和 SimpleDateFormat 的区别</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/19/Jsp-入门/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Jsp 入门</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/19/博客项目总结/&title=《博客项目总结》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/19/博客项目总结/&title=《博客项目总结》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/19/博客项目总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《博客项目总结》 — 山气日夕佳&url=http://yoursite.com/2018/06/19/博客项目总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/19/博客项目总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/06/19/博客项目总结/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

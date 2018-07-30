@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>数据结构-线性表-链式结构 | 山气日夕佳 | 一个假不正经的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据结构,线性表">
+    <meta name="description" content="在用代码实现我们的线性表的链式结构之前我们先来了解一下链式结构的几个概念。 什么是线性表的链式结构为了表示每个数据元素 a(i) 与其直接后继数据元素 a(i+1) 之间的逻辑关系，对数据元素 a(i) 来说，除了存储本身的信息外，还需存储一个指示其直接后继的信息,即直接后继的存储位置。我们把存储数据元素信息的域为数据域，把存储直接后继位置的域称为指针域，也是Java中我们说的地址域。这两部分信息">
+<meta name="keywords" content="数据结构,线性表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构-线性表-链式结构">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/index.html">
+<meta property="og:site_name" content="山气日夕佳">
+<meta property="og:description" content="在用代码实现我们的线性表的链式结构之前我们先来了解一下链式结构的几个概念。 什么是线性表的链式结构为了表示每个数据元素 a(i) 与其直接后继数据元素 a(i+1) 之间的逻辑关系，对数据元素 a(i) 来说，除了存储本身的信息外，还需存储一个指示其直接后继的信息,即直接后继的存储位置。我们把存储数据元素信息的域为数据域，把存储直接后继位置的域称为指针域，也是Java中我们说的地址域。这两部分信息">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-24T07:56:27.421Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构-线性表-链式结构">
+<meta name="twitter:description" content="在用代码实现我们的线性表的链式结构之前我们先来了解一下链式结构的几个概念。 什么是线性表的链式结构为了表示每个数据元素 a(i) 与其直接后继数据元素 a(i+1) 之间的逻辑关系，对数据元素 a(i) 来说，除了存储本身的信息外，还需存储一个指示其直接后继的信息,即直接后继的存储位置。我们把存储数据元素信息的域为数据域，把存储直接后继位置的域称为指针域，也是Java中我们说的地址域。这两部分信息">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">山气日夕佳</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">数据结构-线性表-链式结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">数据结构-线性表-链式结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-24T07:55:29.000Z" itemprop="datePublished" class="page-time">
+  2018-06-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是线性表的链式结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是线性表的链式结构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是单链表"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是单链表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么要有链式结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">为什么要有链式结构</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#区分一下头结点和头指针"><span class="post-toc-number">4.</span> <span class="post-toc-text">区分一下头结点和头指针</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#下面进入正题，如何用代码实现线性表的链式结构"><span class="post-toc-number">5.</span> <span class="post-toc-text">下面进入正题，如何用代码实现线性表的链式结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#接口类-ILinkedList"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">接口类 ILinkedList</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#结点类-Node"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">结点类 Node</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#链表实现类-LinkedListImpl"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">链表实现类 LinkedListImpl</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#关于插入"><span class="post-toc-number">5.3.1.</span> <span class="post-toc-text">关于插入</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#关于删除"><span class="post-toc-number">5.3.2.</span> <span class="post-toc-text">关于删除</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#测试类-LinkedListTest"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">测试类 LinkedListTest</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#运行结果"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">运行结果</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#项目源码"><span class="post-toc-number">6.</span> <span class="post-toc-text">项目源码</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-数据结构-线性表-链式结构"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">数据结构-线性表-链式结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-24 15:55:29" datetime="2018-06-24T07:55:29.000Z"  itemprop="datePublished">2018-06-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在用代码实现我们的线性表的链式结构之前我们先来了解一下链式结构的几个概念。</p>
+<h4 id="什么是线性表的链式结构"><a href="#什么是线性表的链式结构" class="headerlink" title="什么是线性表的链式结构"></a>什么是线性表的链式结构</h4><p>为了表示每个数据元素 a(i) 与其直接后继数据元素 a(i+1) 之间的逻辑关系，对数据元素 a(i) 来说，除了存储本身的信息外，还需存储一个指示其直接后继的信息,即直接后继的存储位置。我们把存储数据元素信息的域为数据域，把存储直接后继位置的域称为指针域，也是Java中我们说的地址域。这两部分信息组成数据元素位置的域 a(i) 的存储映像，也就是我们所说的结点。<br>n 个结点链结成一个链表，即为线性表的链式结构。</p>
+<h4 id="什么是单链表"><a href="#什么是单链表" class="headerlink" title="什么是单链表"></a>什么是单链表</h4><p>链表中的每个结点中只包含一个地址域，也就是单链表。</p>
+<h4 id="为什么要有链式结构"><a href="#为什么要有链式结构" class="headerlink" title="为什么要有链式结构"></a>为什么要有链式结构</h4><p>在我前面一篇文章中讲到了线性表的顺序结构，为什么有顺序结构还要有链式结构呢？<br>因为顺序结构是有缺点的，最大的缺点就是插入和删除需要移动大量的元素，如果只需要查找某个元素，顺序结构会比链式结构效率要高，但是如果需要插入或者删除元素时，链式结构会比顺序结构好用。<br>因此什么时候用顺序结构，什么时候用链式结构取决于具体的应用场景。</p>
+<h4 id="区分一下头结点和头指针"><a href="#区分一下头结点和头指针" class="headerlink" title="区分一下头结点和头指针"></a>区分一下头结点和头指针</h4><p>头结点是指第一个结点之前的那个结点，也就是说在第一个真正的结点之前还有一个结点，称之为头结点。<br>头结点包含一个数据域和一个指针域，数据域一般是用来存储单链表的长度，而指针域用来存储下一个结点的地址，我们的头指针就是存储在这个指针域里面，使用头结点的好处就是在第一个元素之前插入元素和删除第一个结点会方便很多。</p>
+<h4 id="下面进入正题，如何用代码实现线性表的链式结构"><a href="#下面进入正题，如何用代码实现线性表的链式结构" class="headerlink" title="下面进入正题，如何用代码实现线性表的链式结构"></a>下面进入正题，如何用代码实现线性表的链式结构</h4><h5 id="接口类-ILinkedList"><a href="#接口类-ILinkedList" class="headerlink" title="接口类 ILinkedList"></a>接口类 ILinkedList<t></t></h5><p>写接口的目的主要是提供一个规范，规范实现类中这些方法必须要实现，主要方法如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">T <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> i, T t)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i, T t)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">append</span><span class="params">(T t)</span></span>;</span><br><span class="line"><span class="function">T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeAll</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">T <span class="title">search</span><span class="params">(T t)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h5 id="结点类-Node"><a href="#结点类-Node" class="headerlink" title="结点类 Node"></a>结点类 Node</h5><p>根据Java的面向对象的思想，我们可以把结点抽象为一个结点类，类中的属性有数据域和指针域，以及重写了 equals()方法，方便比较数据域中元素是否相同。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> T data;</span><br><span class="line">    <span class="keyword">public</span> Node&lt;T&gt; next;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(T data, Node&lt;T&gt; next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.next = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> obj == <span class="keyword">this</span> || obj <span class="keyword">instanceof</span> Node &amp;&amp; <span class="keyword">this</span>.data.equals(((Node&lt;T&gt;)obj).data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="链表实现类-LinkedListImpl"><a href="#链表实现类-LinkedListImpl" class="headerlink" title="链表实现类 LinkedListImpl"></a>链表实现类 LinkedListImpl</h5><p>这里主要讲下链表的插入和删除两个操作。</p>
+<h6 id="关于插入"><a href="#关于插入" class="headerlink" title="关于插入"></a>关于插入</h6><ol>
+<li>插入的值不能为 null。</li>
+<li>结点的赋值是从头结点开始，方便插入的元素的下标索引是 1 。</li>
+<li>下标索引从 1 开始遍历，链表的索引都是从 1 开始的。</li>
+<li>如果插入的位置 i 不合理，需要那么会出现最后一个结点的后继结点为 null，这样子就会插入到最后一结点后面，也就是尾插法。</li>
+<li>重点理解 p.next = new Node<t>(t, p.next); 这一行代码</t></li>
+</ol>
+<h6 id="关于删除"><a href="#关于删除" class="headerlink" title="关于删除"></a>关于删除</h6><ol>
+<li>如果要删除的下标索引不合理需要打印错误信息。</li>
+<li>结点的赋值从头结点开始，方便删除的元素的下标索引是 1 。</li>
+<li>下标索引从 1 开始遍历，这个和插入的原则一致。</li>
+<li>如果下标索引的位置 i 不合理，需要打印错误信息。</li>
+<li>重点理解 p.next = p.next.next;这一行代码。</li>
+</ol>
+<p>代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> i, T t)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 不能插入空对象</span></span><br><span class="line">        <span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// p 指向头结点</span></span><br><span class="line">        Node&lt;T&gt; p = <span class="keyword">this</span>.head;</span><br><span class="line">        <span class="comment">// 找到插入的位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; p.next != <span class="keyword">null</span> &amp;&amp; j &lt; i; j++) &#123;</span><br><span class="line">            <span class="comment">// 当下一个结点不为空对象的时候才能赋值给 p;</span></span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 插入 t 作为 p 结点的后继结点</span></span><br><span class="line">        <span class="comment">// 因为是插入，所以插入的结点的地址域是 p.next</span></span><br><span class="line">        p.next = <span class="keyword">new</span> Node&lt;T&gt;(t, p.next);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">remove</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">1</span> &amp;&amp; i &lt;= length()) &#123;</span><br><span class="line">            <span class="comment">// 从头结点开始</span></span><br><span class="line">            Node&lt;T&gt; p = <span class="keyword">this</span>.head;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; p.next != <span class="keyword">null</span> &amp;&amp; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="comment">// 如果下一个结点不为空对象才能进行赋值</span></span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 获得原对象,这个地方为什么是 p.next.data可以通过简单的推导得出</span></span><br><span class="line">                T t = p.next.data;</span><br><span class="line">                <span class="comment">// 删除 p 的后继结点</span></span><br><span class="line">                p.next = p.next.next;</span><br><span class="line">                <span class="keyword">return</span> t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"warning : 下标索引不在范围之内"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="测试类-LinkedListTest"><a href="#测试类-LinkedListTest" class="headerlink" title="测试类 LinkedListTest"></a>测试类 LinkedListTest</h5><p>测试类主要测试上一个实现类中链表的思想是否正确地被实现,测试类比较简单，一眼就能看懂。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">LinkedListImpl&lt;String&gt; linkedList = <span class="keyword">new</span> LinkedListImpl&lt;String&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">5</span>;i++)&#123;</span><br><span class="line">            linkedList.insert(i,<span class="keyword">new</span> String((<span class="keyword">char</span>)(<span class="string">'A'</span>+i-<span class="number">1</span>)+<span class="string">""</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        linkedList.insert(<span class="number">1</span>,<span class="string">"H"</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        String removeOne = linkedList.remove(<span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line">        System.out.println(<span class="string">"移除的元素为:"</span>+removeOne);</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        String searchOne = linkedList.search(<span class="string">"A"</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line">        System.out.println(<span class="string">"查找的元素为:"</span>+searchOne);</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        linkedList.set(<span class="number">1</span>,<span class="string">"W"</span>);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        String[] str = <span class="keyword">new</span> String[]&#123;<span class="string">"W"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>&#125;;</span><br><span class="line">        LinkedListImpl&lt;String&gt; stringLinkedList = <span class="keyword">new</span> LinkedListImpl&lt;&gt;(str);</span><br><span class="line">        System.out.println(<span class="string">"单链表元素列表:"</span>+linkedList.toString());</span><br><span class="line">        System.out.println(<span class="string">"单链表元素长度:"</span>+linkedList.length());</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(<span class="string">"两个链表是否相等:"</span>+linkedList.equals(stringLinkedList));</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        linkedList.set(<span class="number">1</span>,<span class="string">"A"</span>);</span><br><span class="line">        System.out.println(<span class="string">"两个链表是否相等:"</span>+linkedList.equals(stringLinkedList));</span><br></pre></td></tr></table></figure></p>
+<h5 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h5><p>为了不占篇幅就不把运行结果贴上来了，线性表的链式结构不是很难，多敲几遍代码就能熟练的掌握，希望自己能把数据结构这一个系列的代码使用Java写完，也希望看我公众号的同学熟练掌握数据结构，找到自己心仪的公司。</p>
+<h4 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h4><p>github地址：<a href="https://github.com/liuenci/Data-Structure。" target="_blank" rel="noopener">https://github.com/liuenci/Data-Structure。</a><br>有兴趣的同学可以帮我点个Star啊。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-06-24T07:56:27.421Z" itemprop="dateUpdated">2018-06-24 15:56:27</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.png" alt="山气日夕佳">
+            山气日夕佳
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线性表/">线性表</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/&title=《数据结构-线性表-链式结构》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/&title=《数据结构-线性表-链式结构》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构-线性表-链式结构》 — 山气日夕佳&url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/24/数据结构-线性表-静态链表/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">数据结构-线性表-静态链表</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/24/数据结构-线性表-循环链表/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数据结构-线性表-循环链表</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/&title=《数据结构-线性表-链式结构》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/&title=《数据结构-线性表-链式结构》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构-线性表-链式结构》 — 山气日夕佳&url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/06/24/数据结构-线性表-链式结构/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

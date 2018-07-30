@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>OSI 七层模型总结 | 山气日夕佳 | 一个假不正经的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="计算机网络,OSI">
+    <meta name="description" content="OSI 七层模型总共有哪七层？ 物理层 数据链路层 网络层 传输层 会话层 表现层 应用层  OSI 七层模型每一层的作用是什么？ 物理层：数据以二进制数据形式在物理媒体上传输。 数据链路层：基于物理层的比特流服务，相邻节点之间建立数据链路，通过差错控制提供数据帧在信道上无差错的传输，并进行各电路上的动作系列。数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用是：物理地址寻址、数据封装成帧、">
+<meta name="keywords" content="计算机网络,OSI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSI 七层模型总结">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/OSI-七层模型总结/index.html">
+<meta property="og:site_name" content="山气日夕佳">
+<meta property="og:description" content="OSI 七层模型总共有哪七层？ 物理层 数据链路层 网络层 传输层 会话层 表现层 应用层  OSI 七层模型每一层的作用是什么？ 物理层：数据以二进制数据形式在物理媒体上传输。 数据链路层：基于物理层的比特流服务，相邻节点之间建立数据链路，通过差错控制提供数据帧在信道上无差错的传输，并进行各电路上的动作系列。数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用是：物理地址寻址、数据封装成帧、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-05T08:15:52.652Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OSI 七层模型总结">
+<meta name="twitter:description" content="OSI 七层模型总共有哪七层？ 物理层 数据链路层 网络层 传输层 会话层 表现层 应用层  OSI 七层模型每一层的作用是什么？ 物理层：数据以二进制数据形式在物理媒体上传输。 数据链路层：基于物理层的比特流服务，相邻节点之间建立数据链路，通过差错控制提供数据帧在信道上无差错的传输，并进行各电路上的动作系列。数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用是：物理地址寻址、数据封装成帧、">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">山气日夕佳</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">OSI 七层模型总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">OSI 七层模型总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-05T08:11:29.000Z" itemprop="datePublished" class="page-time">
+  2018-07-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#OSI-七层模型总共有哪七层？"><span class="post-toc-number">1.</span> <span class="post-toc-text">OSI 七层模型总共有哪七层？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#OSI-七层模型每一层的作用是什么？"><span class="post-toc-number">2.</span> <span class="post-toc-text">OSI 七层模型每一层的作用是什么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#OSI-七层模型每一层有哪些常见的协议？"><span class="post-toc-number">3.</span> <span class="post-toc-text">OSI 七层模型每一层有哪些常见的协议？</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-OSI-七层模型总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">OSI 七层模型总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-05 16:11:29" datetime="2018-07-05T08:11:29.000Z"  itemprop="datePublished">2018-07-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="OSI-七层模型总共有哪七层？"><a href="#OSI-七层模型总共有哪七层？" class="headerlink" title="OSI 七层模型总共有哪七层？"></a>OSI 七层模型总共有哪七层？</h4><ol>
+<li>物理层</li>
+<li>数据链路层</li>
+<li>网络层</li>
+<li>传输层</li>
+<li>会话层</li>
+<li>表现层</li>
+<li>应用层</li>
+</ol>
+<h4 id="OSI-七层模型每一层的作用是什么？"><a href="#OSI-七层模型每一层的作用是什么？" class="headerlink" title="OSI 七层模型每一层的作用是什么？"></a>OSI 七层模型每一层的作用是什么？</h4><ol>
+<li>物理层：数据以二进制数据形式在物理媒体上传输。</li>
+<li>数据链路层：基于物理层的比特流服务，相邻节点之间建立数据链路，通过差错控制提供数据帧在信道上无差错的传输，并进行各电路上的动作系列。数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用是：物理地址寻址、数据封装成帧、流量控制、数据的检错、重发等等。</li>
+<li>网络层：在两台通信的计算机之间可能会有多个数据链路，也有可能会经过多个通信子网。网络层的任务就是选择合适的网间路由和交换节点，确保数据及时发送。网络层将数据链路层提供的帧封装成数据包，包中封装有网络层包头，其中还有逻辑地址信息，比如说源站点和目的地址的网络地址。</li>
+<li>传输层：传输层的数据单元也称作数据包，但是对于 TCP 而言称为段，对于 UDP 而言称为数据报。传输层负责获取全部信息，因此，它必须跟踪数据单元碎片、乱序到达的数据包和其它在传输过程中可能发生的危险。传输层为会话层提供端到端的透明的、可靠的数据传输服务，也就是说传输层对会话层屏蔽了通信传输系统的具体细节。</li>
+<li>会话层：会话层不参与具体的传输，它包括访问验证和会话管理在内的建立和维护应用之间通信的机制。如服务器验证用户登录便是由会话层完成的。</li>
+<li>表示层：表示层提供格式化的表示和转换数据服务。数据的压缩和解压缩，加密和解密等工作都由表示层负责。</li>
+<li>应用层：应用层为操作系统或网络应用程序提供访问网络服务的接口。</li>
+</ol>
+<h4 id="OSI-七层模型每一层有哪些常见的协议？"><a href="#OSI-七层模型每一层有哪些常见的协议？" class="headerlink" title="OSI 七层模型每一层有哪些常见的协议？"></a>OSI 七层模型每一层有哪些常见的协议？</h4><ol>
+<li>物理层：IEEE802。</li>
+<li>数据链路层：PPP，ARP。</li>
+<li>网络层：IP，ICMP，RIP，OSPF，BGP，IGMP。</li>
+<li>传输层：TCP，UDP。</li>
+<li>会话层：无</li>
+<li>表示层：无</li>
+<li>应用层：HTTP，SNMP，FTP，SMTP，DNS，Telnet。</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-05T08:15:52.652Z" itemprop="dateUpdated">2018-07-05 16:15:52</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.png" alt="山气日夕佳">
+            山气日夕佳
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OSI/">OSI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/05/OSI-七层模型总结/&title=《OSI 七层模型总结》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/05/OSI-七层模型总结/&title=《OSI 七层模型总结》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/05/OSI-七层模型总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OSI 七层模型总结》 — 山气日夕佳&url=http://yoursite.com/2018/07/05/OSI-七层模型总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/05/OSI-七层模型总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/07/15/如果写代码和谈恋爱一样简单就好了/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如果写代码和谈恋爱一样简单就好了</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/04/飞跃千里来见你，HashMap-从-Java7-到-Java8（一）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">飞跃千里来见你，HashMap 从 Java7 到 Java8（一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/05/OSI-七层模型总结/&title=《OSI 七层模型总结》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/05/OSI-七层模型总结/&title=《OSI 七层模型总结》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/05/OSI-七层模型总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OSI 七层模型总结》 — 山气日夕佳&url=http://yoursite.com/2018/07/05/OSI-七层模型总结/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/05/OSI-七层模型总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/05/OSI-七层模型总结/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
