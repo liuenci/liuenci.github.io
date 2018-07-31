@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【Centos6.8 安装 mysql】 | 山气日夕佳 | 一个假不正经的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,Centos,mysql">
+    <meta name="description" content="查看现有安装的 mysql 版本在安装完 Centos 之后，默认是有安装过 mysql 的，所以我们需要先查看现有安装的 mysql 版本。rpm -qa | grep -i mysql 卸载已有软件使用以下语句进行卸载 yum remove -y mysql-libs-5.1.73-7.el6.x86_64 mysql-libs-5.1.73-7.el6.x86_64 替换成 rpm -qa">
+<meta name="keywords" content="Linux,Centos,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Centos6.8 安装 mysql】">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/index.html">
+<meta property="og:site_name" content="山气日夕佳">
+<meta property="og:description" content="查看现有安装的 mysql 版本在安装完 Centos 之后，默认是有安装过 mysql 的，所以我们需要先查看现有安装的 mysql 版本。rpm -qa | grep -i mysql 卸载已有软件使用以下语句进行卸载 yum remove -y mysql-libs-5.1.73-7.el6.x86_64 mysql-libs-5.1.73-7.el6.x86_64 替换成 rpm -qa">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-31T14:34:18.738Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Centos6.8 安装 mysql】">
+<meta name="twitter:description" content="查看现有安装的 mysql 版本在安装完 Centos 之后，默认是有安装过 mysql 的，所以我们需要先查看现有安装的 mysql 版本。rpm -qa | grep -i mysql 卸载已有软件使用以下语句进行卸载 yum remove -y mysql-libs-5.1.73-7.el6.x86_64 mysql-libs-5.1.73-7.el6.x86_64 替换成 rpm -qa">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">山气日夕佳</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【Centos6.8 安装 mysql】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【Centos6.8 安装 mysql】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-31T14:33:02.000Z" itemprop="datePublished" class="page-time">
+  2018-07-31
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看现有安装的-mysql-版本"><span class="post-toc-number">1.</span> <span class="post-toc-text">查看现有安装的 mysql 版本</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#卸载已有软件"><span class="post-toc-number">2.</span> <span class="post-toc-text">卸载已有软件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#上传-mysql"><span class="post-toc-number">3.</span> <span class="post-toc-text">上传 mysql</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装依赖包-需要联网"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装依赖包(需要联网)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压-mysql"><span class="post-toc-number">5.</span> <span class="post-toc-text">解压 mysql</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装-server"><span class="post-toc-number">6.</span> <span class="post-toc-text">安装 server</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装-client"><span class="post-toc-number">7.</span> <span class="post-toc-text">安装 client</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查询-mysql-服务运行状态"><span class="post-toc-number">8.</span> <span class="post-toc-text">查询 mysql 服务运行状态</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动-mysql-服务"><span class="post-toc-number">9.</span> <span class="post-toc-text">启动 mysql 服务</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看-root-密码"><span class="post-toc-number">10.</span> <span class="post-toc-text">查看 root 密码</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#登录-root-账户"><span class="post-toc-number">11.</span> <span class="post-toc-text">登录 root 账户</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#修改-root-密码"><span class="post-toc-number">12.</span> <span class="post-toc-text">修改 root 密码</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#系统启动时自动启动-mysql-服务"><span class="post-toc-number"></span> <span class="post-toc-text">系统启动时自动启动 mysql 服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#加入到系统服务"><span class="post-toc-number">1.</span> <span class="post-toc-text">加入到系统服务</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#自动启动"><span class="post-toc-number">2.</span> <span class="post-toc-text">自动启动</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查询列表"><span class="post-toc-number">3.</span> <span class="post-toc-text">查询列表</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#开启远程访问"><span class="post-toc-number"></span> <span class="post-toc-text">开启远程访问</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#设置远程访问"><span class="post-toc-number">1.</span> <span class="post-toc-text">设置远程访问</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#防火墙打开-3306-端口"><span class="post-toc-number">2.</span> <span class="post-toc-text">防火墙打开 3306 端口</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#将打开的端口的访问规则保存在文件中"><span class="post-toc-number">3.</span> <span class="post-toc-text">将打开的端口的访问规则保存在文件中</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看机器开放的端口号"><span class="post-toc-number">4.</span> <span class="post-toc-text">查看机器开放的端口号</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【Centos6-8-安装-mysql】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【Centos6.8 安装 mysql】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-31 22:33:02" datetime="2018-07-31T14:33:02.000Z"  itemprop="datePublished">2018-07-31</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h5 id="查看现有安装的-mysql-版本"><a href="#查看现有安装的-mysql-版本" class="headerlink" title="查看现有安装的 mysql 版本"></a>查看现有安装的 mysql 版本</h5><p>在安装完 Centos 之后，默认是有安装过 mysql 的，所以我们需要先查看现有安装的 mysql 版本。<br>rpm -qa | grep -i mysql</p>
+<h5 id="卸载已有软件"><a href="#卸载已有软件" class="headerlink" title="卸载已有软件"></a>卸载已有软件</h5><p>使用以下语句进行卸载</p>
+<p>yum remove -y mysql-libs-5.1.73-7.el6.x86_64</p>
+<p>mysql-libs-5.1.73-7.el6.x86_64</p>
+<p>替换成</p>
+<p>rpm -qa | grep -i mysql 中显示的 mysql 名称</p>
+<h5 id="上传-mysql"><a href="#上传-mysql" class="headerlink" title="上传 mysql"></a>上传 mysql</h5><p>这里可以使用 FileZilla 上传到自己的服务器上。</p>
+<h5 id="安装依赖包-需要联网"><a href="#安装依赖包-需要联网" class="headerlink" title="安装依赖包(需要联网)"></a>安装依赖包(需要联网)</h5><p>yum -y install libaio.so.1 libgcc_s.so.1 libstdc++.so.6</p>
+<p>yum  update libstdc++-4.4.7-4.el6.x86_64</p>
+<p>yum -y install libncurses.so.5 libtinfo.so.5</p>
+<h5 id="解压-mysql"><a href="#解压-mysql" class="headerlink" title="解压 mysql"></a>解压 mysql</h5><p>注意此处没有 -xvf 没有 z，因为这个解压缩的包中没有.gz。</p>
+<p>tar -xvf MySQL-5.6.22-1.el6.i686.rpm-bundle.tar</p>
+<h5 id="安装-server"><a href="#安装-server" class="headerlink" title="安装 server"></a>安装 server</h5><p>rpm -ivh MySQL-server-5.6.22-1.el6.i686.rpm</p>
+<p>如果安装不上，一般是依赖没有装上，安装依赖包即可。</p>
+<h5 id="安装-client"><a href="#安装-client" class="headerlink" title="安装 client"></a>安装 client</h5><p>rpm -ivh MySQL-client-5.6.22-1.el6.i686.rpm</p>
+<h5 id="查询-mysql-服务运行状态"><a href="#查询-mysql-服务运行状态" class="headerlink" title="查询 mysql 服务运行状态"></a>查询 mysql 服务运行状态</h5><p>service mysql status</p>
+<h5 id="启动-mysql-服务"><a href="#启动-mysql-服务" class="headerlink" title="启动 mysql 服务"></a>启动 mysql 服务</h5><p>service mysql start</p>
+<h5 id="查看-root-密码"><a href="#查看-root-密码" class="headerlink" title="查看 root 密码"></a>查看 root 密码</h5><p>vim /root/.mysql_secret</p>
+<h5 id="登录-root-账户"><a href="#登录-root-账户" class="headerlink" title="登录 root 账户"></a>登录 root 账户</h5><p>mysql -uroot -p</p>
+<p>输入密码即可登录</p>
+<h5 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h5><p>set password = password(“123456”);</p>
+<h4 id="系统启动时自动启动-mysql-服务"><a href="#系统启动时自动启动-mysql-服务" class="headerlink" title="系统启动时自动启动 mysql 服务"></a>系统启动时自动启动 mysql 服务</h4><h5 id="加入到系统服务"><a href="#加入到系统服务" class="headerlink" title="加入到系统服务"></a>加入到系统服务</h5><p>chkconfig –add mysql</p>
+<h5 id="自动启动"><a href="#自动启动" class="headerlink" title="自动启动"></a>自动启动</h5><p>chkconfig mysql on</p>
+<h5 id="查询列表"><a href="#查询列表" class="headerlink" title="查询列表"></a>查询列表</h5><p>chkconfig | grep -i mysql</p>
+<p>当 2，3，4，5 开启即可。</p>
+<h4 id="开启远程访问"><a href="#开启远程访问" class="headerlink" title="开启远程访问"></a>开启远程访问</h4><h5 id="设置远程访问"><a href="#设置远程访问" class="headerlink" title="设置远程访问"></a>设置远程访问</h5><p>grant all privileges on <em>.</em> to ‘root’ @’%’ identified by ‘123456’;</p>
+<p>flush privileges;</p>
+<h5 id="防火墙打开-3306-端口"><a href="#防火墙打开-3306-端口" class="headerlink" title="防火墙打开 3306 端口"></a>防火墙打开 3306 端口</h5><p>/sbin/iptables -I INPUT -p tcp –dport 3306 -j ACCEPT</p>
+<h5 id="将打开的端口的访问规则保存在文件中"><a href="#将打开的端口的访问规则保存在文件中" class="headerlink" title="将打开的端口的访问规则保存在文件中"></a>将打开的端口的访问规则保存在文件中</h5><p>/etc/rc.d/init.d/iptables save</p>
+<h5 id="查看机器开放的端口号"><a href="#查看机器开放的端口号" class="headerlink" title="查看机器开放的端口号"></a>查看机器开放的端口号</h5><p>/etc/init.d/iptables status</p>
+<p>看到有 3306 端口开放即可。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-31T14:34:18.738Z" itemprop="dateUpdated">2018-07-31 22:34:18</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.png" alt="山气日夕佳">
+            山气日夕佳
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/&title=《【Centos6.8 安装 mysql】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/&title=《【Centos6.8 安装 mysql】》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 mysql】》 — 山气日夕佳&url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">写在开始之前</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/31/【Centos6-8-安装-tomcat】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【Centos6.8 安装 tomcat】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/&title=《【Centos6.8 安装 mysql】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/&title=《【Centos6.8 安装 mysql】》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 mysql】》 — 山气日夕佳&url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/31/【Centos6-8-安装-mysql】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
