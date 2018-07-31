@@ -14,25 +14,25 @@
     
     
     
-    <title>【Centos6.8 安装 jdk】 | 山气日夕佳 | 一个假不正经的博客</title>
+    <title>【Centos6.8 安装 tomcat】 | 山气日夕佳 | 一个假不正经的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Linux,jdk,Centos">
-    <meta name="description" content="查看现有安装的 jdk 版本在安装完 Centos 之后，默认是有安装过 jdk 的，所以我们需要先查看现有安装的 jdk 版本。rpm -qa | grep -i java 卸载已有软件java-1.6.0-openjdk-1.6.0.0-1.66.1.13.0.e16.i686 替换成 rpm -qa | grep -i java 中显示的 jdk 名称rpm -e –nodeps java-">
-<meta name="keywords" content="Linux,jdk,Centos">
+    <meta name="keywords" content="Centos,tomcat">
+    <meta name="description" content="上传 tomcat这里可以使用 FileZilla 上传到自己的服务器上。 安装依赖包(需要联网)yum install gcc-c++ 解压 tomcattar -zxvf apache-tomcat-7.0.57.tar.gz 创建文件夹mkdir /usr/local/src/tomcat 将 tomcat 移动到 /usr/local/src/tomcatmv apache-tomcat-">
+<meta name="keywords" content="Centos,tomcat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Centos6.8 安装 jdk】">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/index.html">
+<meta property="og:title" content="【Centos6.8 安装 tomcat】">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/index.html">
 <meta property="og:site_name" content="山气日夕佳">
-<meta property="og:description" content="查看现有安装的 jdk 版本在安装完 Centos 之后，默认是有安装过 jdk 的，所以我们需要先查看现有安装的 jdk 版本。rpm -qa | grep -i java 卸载已有软件java-1.6.0-openjdk-1.6.0.0-1.66.1.13.0.e16.i686 替换成 rpm -qa | grep -i java 中显示的 jdk 名称rpm -e –nodeps java-">
+<meta property="og:description" content="上传 tomcat这里可以使用 FileZilla 上传到自己的服务器上。 安装依赖包(需要联网)yum install gcc-c++ 解压 tomcattar -zxvf apache-tomcat-7.0.57.tar.gz 创建文件夹mkdir /usr/local/src/tomcat 将 tomcat 移动到 /usr/local/src/tomcatmv apache-tomcat-">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-31T09:30:56.180Z">
+<meta property="og:updated_time" content="2018-07-31T13:38:17.974Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Centos6.8 安装 jdk】">
-<meta name="twitter:description" content="查看现有安装的 jdk 版本在安装完 Centos 之后，默认是有安装过 jdk 的，所以我们需要先查看现有安装的 jdk 版本。rpm -qa | grep -i java 卸载已有软件java-1.6.0-openjdk-1.6.0.0-1.66.1.13.0.e16.i686 替换成 rpm -qa | grep -i java 中显示的 jdk 名称rpm -e –nodeps java-">
+<meta name="twitter:title" content="【Centos6.8 安装 tomcat】">
+<meta name="twitter:description" content="上传 tomcat这里可以使用 FileZilla 上传到自己的服务器上。 安装依赖包(需要联网)yum install gcc-c++ 解压 tomcattar -zxvf apache-tomcat-7.0.57.tar.gz 创建文件夹mkdir /usr/local/src/tomcat 将 tomcat 移动到 /usr/local/src/tomcatmv apache-tomcat-">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -104,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">【Centos6.8 安装 jdk】</div>
+        <div class="flex-col header-title ellipsis">【Centos6.8 安装 tomcat】</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -126,10 +126,10 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">【Centos6.8 安装 jdk】</h1>
+        <h1 class="title">【Centos6.8 安装 tomcat】</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-07-31T09:29:48.000Z" itemprop="datePublished" class="page-time">
+                <time datetime="2018-07-31T13:37:37.000Z" itemprop="datePublished" class="page-time">
   2018-07-31
 </time>
 
@@ -149,18 +149,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看现有安装的-jdk-版本"><span class="post-toc-number">1.</span> <span class="post-toc-text">查看现有安装的 jdk 版本</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#卸载已有软件"><span class="post-toc-number">2.</span> <span class="post-toc-text">卸载已有软件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#上传-jdk"><span class="post-toc-number">3.</span> <span class="post-toc-text">上传 jdk</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装依赖包-需要联网"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装依赖包(需要联网)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压-jdk"><span class="post-toc-number">5.</span> <span class="post-toc-text">解压 jdk</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#创建文件夹"><span class="post-toc-number">6.</span> <span class="post-toc-text">创建文件夹</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#将-jdk-移动到-usr-local-src-java"><span class="post-toc-number">7.</span> <span class="post-toc-text">将 jdk 移动到 /usr/local/src/java</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#配置系统环境变量"><span class="post-toc-number">8.</span> <span class="post-toc-text">配置系统环境变量</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#使配置文件生效，并测试"><span class="post-toc-number">9.</span> <span class="post-toc-text">使配置文件生效，并测试</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#上传-tomcat"><span class="post-toc-number">1.</span> <span class="post-toc-text">上传 tomcat</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装依赖包-需要联网"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装依赖包(需要联网)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压-tomcat"><span class="post-toc-number">3.</span> <span class="post-toc-text">解压 tomcat</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#创建文件夹"><span class="post-toc-number">4.</span> <span class="post-toc-text">创建文件夹</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#将-tomcat-移动到-usr-local-src-tomcat"><span class="post-toc-number">5.</span> <span class="post-toc-text">将 tomcat 移动到 /usr/local/src/tomcat</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动-tomcat"><span class="post-toc-number">6.</span> <span class="post-toc-text">启动 tomcat</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看日志"><span class="post-toc-number">7.</span> <span class="post-toc-text">查看日志</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#防火墙打开-8080-端口"><span class="post-toc-number">8.</span> <span class="post-toc-text">防火墙打开 8080 端口</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-【Centos6-8-安装-jdk】"
+<article id="post-【Centos6-8-安装-tomcat】"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">【Centos6.8 安装 jdk】</h1>
+        <h1 class="post-card-title">【Centos6.8 安装 tomcat】</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-07-31 17:29:48" datetime="2018-07-31T09:29:48.000Z"  itemprop="datePublished">2018-07-31</time>
+            <time class="post-time" title="2018-07-31 21:37:37" datetime="2018-07-31T13:37:37.000Z"  itemprop="datePublished">2018-07-31</time>
 
             
 
@@ -173,21 +173,16 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h5 id="查看现有安装的-jdk-版本"><a href="#查看现有安装的-jdk-版本" class="headerlink" title="查看现有安装的 jdk 版本"></a>查看现有安装的 jdk 版本</h5><p>在安装完 Centos 之后，默认是有安装过 jdk 的，所以我们需要先查看现有安装的 jdk 版本。<br>rpm -qa | grep -i java</p>
-<h5 id="卸载已有软件"><a href="#卸载已有软件" class="headerlink" title="卸载已有软件"></a>卸载已有软件</h5><p>java-1.6.0-openjdk-1.6.0.0-1.66.1.13.0.e16.i686 替换成 rpm -qa | grep -i java 中显示的 jdk 名称<br>rpm -e –nodeps java-1.6.0-openjdk-1.6.0.0-1.66.1.13.0.e16.i686</p>
-<h5 id="上传-jdk"><a href="#上传-jdk" class="headerlink" title="上传 jdk"></a>上传 jdk</h5><p>这里可以使用 FileZilla 上传到自己的服务器上。</p>
-<h5 id="安装依赖包-需要联网"><a href="#安装依赖包-需要联网" class="headerlink" title="安装依赖包(需要联网)"></a>安装依赖包(需要联网)</h5><p>yum install glibc.i686</p>
-<h5 id="解压-jdk"><a href="#解压-jdk" class="headerlink" title="解压 jdk"></a>解压 jdk</h5><p>tar -zxvf jdk-7u71-linux-i586.tar.gz</p>
-<h5 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h5><p>mkdir /usr/local/src/java</p>
-<h5 id="将-jdk-移动到-usr-local-src-java"><a href="#将-jdk-移动到-usr-local-src-java" class="headerlink" title="将 jdk 移动到 /usr/local/src/java"></a>将 jdk 移动到 /usr/local/src/java</h5><p>mv jdk1.7.0_72 /usr/local/src/java</p>
-<h5 id="配置系统环境变量"><a href="#配置系统环境变量" class="headerlink" title="配置系统环境变量"></a>配置系统环境变量</h5><p>先进入一般模式</p>
-<p>vim /etc/profile</p>
-<p>按 i 进入插入模式</p>
-<p>在末尾加上<br>export JAVA_HOME=/usr/local/src/java/jdk1.7</p>
-<p>export PATH=$JAVA_HOME/bin:$PATH</p>
-<h5 id="使配置文件生效，并测试"><a href="#使配置文件生效，并测试" class="headerlink" title="使配置文件生效，并测试"></a>使配置文件生效，并测试</h5><p>source /etc/profile</p>
-<p>java -version</p>
-<p>如果能看到 Java 的版本，那么安装成功。</p>
+            <h5 id="上传-tomcat"><a href="#上传-tomcat" class="headerlink" title="上传 tomcat"></a>上传 tomcat</h5><p>这里可以使用 FileZilla 上传到自己的服务器上。</p>
+<h5 id="安装依赖包-需要联网"><a href="#安装依赖包-需要联网" class="headerlink" title="安装依赖包(需要联网)"></a>安装依赖包(需要联网)</h5><p>yum install gcc-c++</p>
+<h5 id="解压-tomcat"><a href="#解压-tomcat" class="headerlink" title="解压 tomcat"></a>解压 tomcat</h5><p>tar -zxvf apache-tomcat-7.0.57.tar.gz</p>
+<h5 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h5><p>mkdir /usr/local/src/tomcat</p>
+<h5 id="将-tomcat-移动到-usr-local-src-tomcat"><a href="#将-tomcat-移动到-usr-local-src-tomcat" class="headerlink" title="将 tomcat 移动到 /usr/local/src/tomcat"></a>将 tomcat 移动到 /usr/local/src/tomcat</h5><p>mv apache-tomcat-7.0.57 /usr/local/src/tomcat</p>
+<h5 id="启动-tomcat"><a href="#启动-tomcat" class="headerlink" title="启动 tomcat"></a>启动 tomcat</h5><p>cd /usr/local/src/tomcat/apache-tomcat-7.0.57/bin</p>
+<p>./startup.sh</p>
+<h5 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h5><p>tail -f ../logs/catalina.out</p>
+<h5 id="防火墙打开-8080-端口"><a href="#防火墙打开-8080-端口" class="headerlink" title="防火墙打开 8080 端口"></a>防火墙打开 8080 端口</h5><p>/sbin/iptables -I INPUT -p tcp –dport 8080 -j ACCEPT</p>
+<p>/etc/rc.d/init.d/iptables save</p>
 
         </div>
 
@@ -196,7 +191,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-31T09:30:56.180Z" itemprop="dateUpdated">2018-07-31 17:30:56</time>
+    最后更新时间：<time datetime="2018-07-31T13:38:17.974Z" itemprop="dateUpdated">2018-07-31 21:38:17</time>
 </span><br>
 
 
@@ -220,7 +215,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk/">jdk</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
 
 
             
@@ -230,7 +225,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/&title=《【Centos6.8 安装 jdk】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/&title=《【Centos6.8 安装 tomcat】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -240,22 +235,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/&title=《【Centos6.8 安装 jdk】》 — 山气日夕佳&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/&title=《【Centos6.8 安装 tomcat】》 — 山气日夕佳&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 jdk】》 — 山气日夕佳&url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 tomcat】》 — 山气日夕佳&url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -278,18 +273,18 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/07/31/【Centos6-8-安装-tomcat】/" id="post-prev" class="post-nav-link">
+      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">【Centos6.8 安装 tomcat】</h4>
+        <h4 class="title">写在开始之前</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/07/31/三件小事/" id="post-next" class="post-nav-link">
+      <a href="/2018/07/31/【Centos6-8-安装-jdk】/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">三件小事</h4>
+        <h4 class="title">【Centos6.8 安装 jdk】</h4>
       </a>
     </div>
   
@@ -385,7 +380,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/&title=《【Centos6.8 安装 jdk】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/&title=《【Centos6.8 安装 tomcat】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -395,22 +390,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/&title=《【Centos6.8 安装 jdk】》 — 山气日夕佳&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/&title=《【Centos6.8 安装 tomcat】》 — 山气日夕佳&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 jdk】》 — 山气日夕佳&url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 tomcat】》 — 山气日夕佳&url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -421,7 +416,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/31/【Centos6-8-安装-jdk】/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/07/31/【Centos6-8-安装-tomcat】/" alt="微信分享二维码">
 </div>
 
 
