@@ -14,25 +14,25 @@
     
     
     
-    <title>【Redis 存储 string】 | 一琛(cier) | 希望技术社区多点原创，少点抄袭。</title>
+    <title>【Redis 存储 Hash】 | 一琛(cier) | 希望技术社区多点原创，少点抄袭。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Redis,缓存,string">
-    <meta name="description" content="概述字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。 常用命令赋值设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。 set key value 取值获取 key 的 value，如果该 key">
-<meta name="keywords" content="Redis,缓存,string">
+    <meta name="keywords" content="Redis,Hash">
+    <meta name="description" content="概述Redis 中的 Hash 类型可以看成具有 String key 和 String value 的 map 容器，所以该类型适合存储键值对的信息。每一个 Hash 可以存储 42 亿多个键值对。 常用命令赋值为指定的 key 设定 field/value 对 hset key field value 为指定的 key 设定多个 field/value 对 hmset key field1 v">
+<meta name="keywords" content="Redis,Hash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Redis 存储 string】">
-<meta property="og:url" content="http://liuenci.cn/2018/08/02/【Redis-存储-string】/index.html">
+<meta property="og:title" content="【Redis 存储 Hash】">
+<meta property="og:url" content="http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/index.html">
 <meta property="og:site_name" content="一琛(cier)">
-<meta property="og:description" content="概述字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。 常用命令赋值设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。 set key value 取值获取 key 的 value，如果该 key">
+<meta property="og:description" content="概述Redis 中的 Hash 类型可以看成具有 String key 和 String value 的 map 容器，所以该类型适合存储键值对的信息。每一个 Hash 可以存储 42 亿多个键值对。 常用命令赋值为指定的 key 设定 field/value 对 hset key field value 为指定的 key 设定多个 field/value 对 hmset key field1 v">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-02T06:37:08.925Z">
+<meta property="og:updated_time" content="2018-08-02T07:10:34.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Redis 存储 string】">
-<meta name="twitter:description" content="概述字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。 常用命令赋值设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。 set key value 取值获取 key 的 value，如果该 key">
+<meta name="twitter:title" content="【Redis 存储 Hash】">
+<meta name="twitter:description" content="概述Redis 中的 Hash 类型可以看成具有 String key 和 String value 的 map 容器，所以该类型适合存储键值对的信息。每一个 Hash 可以存储 42 亿多个键值对。 常用命令赋值为指定的 key 设定 field/value 对 hset key field value 为指定的 key 设定多个 field/value 对 hmset key field1 v">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -104,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">【Redis 存储 string】</div>
+        <div class="flex-col header-title ellipsis">【Redis 存储 Hash】</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -126,10 +126,10 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">【Redis 存储 string】</h1>
+        <h1 class="title">【Redis 存储 Hash】</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-08-02T06:36:40.000Z" itemprop="datePublished" class="page-time">
+                <time datetime="2018-08-02T07:09:31.000Z" itemprop="datePublished" class="page-time">
   2018-08-02
 </time>
 
@@ -149,18 +149,18 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#赋值"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">赋值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#取值"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">取值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#删除"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">删除</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#数值增减"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">数值增减</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#扩展命令"><span class="post-toc-number">3.</span> <span class="post-toc-text">扩展命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#增加固定的值"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">增加固定的值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#减少固定的值"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">减少固定的值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#拼凑字符串"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">拼凑字符串</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#赋值"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">赋值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#取值"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">取值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#删除"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">删除</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#增加数字"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">增加数字</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#扩展命令"><span class="post-toc-number">3.</span> <span class="post-toc-text">扩展命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#判断指定的-key-中的-field-是否存在"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">判断指定的 key 中的 field 是否存在</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#获取指定的-key-中所包含的-field-的数量"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">获取指定的 key 中所包含的 field 的数量</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#获取所有的-key"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">获取所有的 key</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#获取所有的-value"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">获取所有的 value</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-【Redis-存储-string】"
+<article id="post-【Redis-存储-Hash】"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">【Redis 存储 string】</h1>
+        <h1 class="post-card-title">【Redis 存储 Hash】</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-08-02 14:36:40" datetime="2018-08-02T06:36:40.000Z"  itemprop="datePublished">2018-08-02</time>
+            <time class="post-time" title="2018-08-02 15:09:31" datetime="2018-08-02T07:09:31.000Z"  itemprop="datePublished">2018-08-02</time>
 
             
 
@@ -173,23 +173,29 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。</p>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><h5 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h5><p>设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。</p>
-<p>set key value</p>
-<h5 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h5><p>获取 key 的 value，如果该 key 不存在，返回 nil。</p>
-<p>get key</p>
-<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p>删除指定 key。</p>
+            <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Redis 中的 Hash 类型可以看成具有 String key 和 String value 的 map 容器，所以该类型适合存储键值对的信息。每一个 Hash 可以存储 42 亿多个键值对。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><h5 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h5><p>为指定的 key 设定 field/value 对</p>
+<p>hset key field value</p>
+<p>为指定的 key 设定多个 field/value 对</p>
+<p>hmset key field1 value1 field2 value2</p>
+<h5 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h5><p>获取指定 key 中的 field 的值</p>
+<p>hget key field</p>
+<p>获取指定 key 中的多个 field 的值</p>
+<p>hmget key field1 field2</p>
+<p>获取指定 key 中所有的 field-value</p>
+<p>hgetall key</p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p>删除指定 key 中的一个 field-value</p>
+<p>hdel key field</p>
+<p>删除指定 key 中的多个 field-value</p>
+<p>hdel key field1 field2</p>
+<p>删除整个 Hash</p>
 <p>del key</p>
-<h5 id="数值增减"><a href="#数值增减" class="headerlink" title="数值增减"></a>数值增减</h5><p>将指定的 key 的 value 原子性的递增 1，如果该 key 不存在，那么会先创建 key，默认初始值为 0，递增之后为 1。</p>
-<p>incr key</p>
-<p>将指定的 key 的 value 原子性的递减 1，如果该 key 不存在，那么会先创建 key，默认初始值为 0，递增之后为 -1。</p>
-<p>decr key</p>
-<h4 id="扩展命令"><a href="#扩展命令" class="headerlink" title="扩展命令"></a>扩展命令</h4><h5 id="增加固定的值"><a href="#增加固定的值" class="headerlink" title="增加固定的值"></a>增加固定的值</h5><p>将指定的 key 的 value 原子性增加 num，如果该 key 不存在，那么会先创建 key，默认初始值为 0，在 incrby 之后，值为 num。</p>
-<p>incrby key num</p>
-<h5 id="减少固定的值"><a href="#减少固定的值" class="headerlink" title="减少固定的值"></a>减少固定的值</h5><p>将指定的 key 的 value 原子性减少 num，如果该 key 不存在，那么会先创建 key，默认初始值为 0，在 incrby 之后，值为 -num。</p>
-<p>decrby key num</p>
-<h5 id="拼凑字符串"><a href="#拼凑字符串" class="headerlink" title="拼凑字符串"></a>拼凑字符串</h5><p>如果该 key 存在，则在原有的 value 后追加该值；如果该 key 不存在，则会创建一个 value 为 num 的 key。</p>
-<p>append key num</p>
+<h5 id="增加数字"><a href="#增加数字" class="headerlink" title="增加数字"></a>增加数字</h5><p>设置指定的 key 中 field 的值增加 num</p>
+<p>hincrby key field num</p>
+<h4 id="扩展命令"><a href="#扩展命令" class="headerlink" title="扩展命令"></a>扩展命令</h4><h5 id="判断指定的-key-中的-field-是否存在"><a href="#判断指定的-key-中的-field-是否存在" class="headerlink" title="判断指定的 key 中的 field 是否存在"></a>判断指定的 key 中的 field 是否存在</h5><p>hexists key field</p>
+<h5 id="获取指定的-key-中所包含的-field-的数量"><a href="#获取指定的-key-中所包含的-field-的数量" class="headerlink" title="获取指定的 key 中所包含的 field 的数量"></a>获取指定的 key 中所包含的 field 的数量</h5><p>hlen key</p>
+<h5 id="获取所有的-key"><a href="#获取所有的-key" class="headerlink" title="获取所有的 key"></a>获取所有的 key</h5><p>hkeys key</p>
+<h5 id="获取所有的-value"><a href="#获取所有的-value" class="headerlink" title="获取所有的 value"></a>获取所有的 value</h5><p>hvals key</p>
 
         </div>
 
@@ -198,7 +204,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-08-02T06:37:08.925Z" itemprop="dateUpdated">2018-08-02 14:37:08</time>
+    最后更新时间：<time datetime="2018-08-02T07:10:34.072Z" itemprop="dateUpdated">2018-08-02 15:10:34</time>
 </span><br>
 
 
@@ -222,7 +228,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">string</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/缓存/">缓存</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash/">Hash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
 
 
             
@@ -232,7 +238,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/&title=《【Redis 存储 Hash】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -242,22 +248,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/&title=《【Redis 存储 Hash】》 — 一琛(cier)&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 string】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&via=http://liuenci.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 Hash】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/&via=http://liuenci.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -277,21 +283,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/08/02/【Redis-存储-Hash】/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">【Redis 存储 Hash】</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/08/02/【Centos6-8-安装-Redis】/" id="post-next" class="post-nav-link">
+      <a href="/2018/08/02/【Redis-存储-string】/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">【Centos6.8 安装 Redis】</h4>
+        <h4 class="title">【Redis 存储 string】</h4>
       </a>
     </div>
   
@@ -387,7 +386,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/&title=《【Redis 存储 Hash】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -397,22 +396,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/&title=《【Redis 存储 Hash】》 — 一琛(cier)&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 string】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&via=http://liuenci.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 Hash】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/&via=http://liuenci.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -423,7 +422,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/02/【Redis-存储-Hash】/" alt="微信分享二维码">
 </div>
 
 
