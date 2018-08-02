@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【Centos6.8 安装 Redis】 | 山气日夕佳 | 一个假不正经的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,Centos,Redis">
+    <meta name="description" content="安装依赖yum install gcc-c++ 上传 redis这里可以使用 FileZilla 上传到自己的服务器上。 解压 redistar -zxvf redis-3.0.7.tar.gz 编译 rediscd redis-3.0.7 make 安装 redismkdir /usr/local/redis make PREFIX=/usr/local/redis install copy 文">
+<meta name="keywords" content="Linux,Centos,Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Centos6.8 安装 Redis】">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/index.html">
+<meta property="og:site_name" content="山气日夕佳">
+<meta property="og:description" content="安装依赖yum install gcc-c++ 上传 redis这里可以使用 FileZilla 上传到自己的服务器上。 解压 redistar -zxvf redis-3.0.7.tar.gz 编译 rediscd redis-3.0.7 make 安装 redismkdir /usr/local/redis make PREFIX=/usr/local/redis install copy 文">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-02T04:26:50.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Centos6.8 安装 Redis】">
+<meta name="twitter:description" content="安装依赖yum install gcc-c++ 上传 redis这里可以使用 FileZilla 上传到自己的服务器上。 解压 redistar -zxvf redis-3.0.7.tar.gz 编译 rediscd redis-3.0.7 make 安装 redismkdir /usr/local/redis make PREFIX=/usr/local/redis install copy 文">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">山气日夕佳</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【Centos6.8 安装 Redis】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【Centos6.8 安装 Redis】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-02T04:26:13.000Z" itemprop="datePublished" class="page-time">
+  2018-08-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装依赖"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装依赖</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#上传-redis"><span class="post-toc-number">2.</span> <span class="post-toc-text">上传 redis</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解压-redis"><span class="post-toc-number">3.</span> <span class="post-toc-text">解压 redis</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#编译-redis"><span class="post-toc-number">4.</span> <span class="post-toc-text">编译 redis</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装-redis"><span class="post-toc-number">5.</span> <span class="post-toc-text">安装 redis</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#copy-文件"><span class="post-toc-number">6.</span> <span class="post-toc-text">copy 文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#前端模式启动"><span class="post-toc-number">7.</span> <span class="post-toc-text">前端模式启动</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#后端模式启动"><span class="post-toc-number">8.</span> <span class="post-toc-text">后端模式启动</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#修改-redis-conf-配置文件，-daemonize-yes-以后端模式启动。"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">修改 redis.conf 配置文件， daemonize yes 以后端模式启动。</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#指定配置文件启动"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">指定配置文件启动</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#查看-redis-默认端口-6379-是否开启"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">查看 redis 默认端口 6379 是否开启</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#连接客户端"><span class="post-toc-number">9.</span> <span class="post-toc-text">连接客户端</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#向-Redis-发送命令"><span class="post-toc-number">10.</span> <span class="post-toc-text">向 Redis 发送命令</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【Centos6-8-安装-Redis】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【Centos6.8 安装 Redis】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-02 12:26:13" datetime="2018-08-02T04:26:13.000Z"  itemprop="datePublished">2018-08-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h5 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h5><p>yum install gcc-c++</p>
+<h5 id="上传-redis"><a href="#上传-redis" class="headerlink" title="上传 redis"></a>上传 redis</h5><p>这里可以使用 FileZilla 上传到自己的服务器上。</p>
+<h5 id="解压-redis"><a href="#解压-redis" class="headerlink" title="解压 redis"></a>解压 redis</h5><p>tar -zxvf redis-3.0.7.tar.gz</p>
+<h5 id="编译-redis"><a href="#编译-redis" class="headerlink" title="编译 redis"></a>编译 redis</h5><p>cd redis-3.0.7</p>
+<p>make</p>
+<h5 id="安装-redis"><a href="#安装-redis" class="headerlink" title="安装 redis"></a>安装 redis</h5><p>mkdir /usr/local/redis</p>
+<p>make PREFIX=/usr/local/redis install</p>
+<h5 id="copy-文件"><a href="#copy-文件" class="headerlink" title="copy 文件"></a>copy 文件</h5><p>redis 启动需要一个配置文件，可以修改端口号等信息。</p>
+<p>cp redis.conf /usr/local/redis/</p>
+<h5 id="前端模式启动"><a href="#前端模式启动" class="headerlink" title="前端模式启动"></a>前端模式启动</h5><p>/usr/local/redis/bin/redis-server</p>
+<p>直接运行 bin/redis-server 将以前端模式启动，前端模式启动的缺点是启动完成后，不能再进行其他操作，如果要操作必须使用 ctrl + c，同时 redis-server 程序结束，不推荐使用此方法。</p>
+<h5 id="后端模式启动"><a href="#后端模式启动" class="headerlink" title="后端模式启动"></a>后端模式启动</h5><h6 id="修改-redis-conf-配置文件，-daemonize-yes-以后端模式启动。"><a href="#修改-redis-conf-配置文件，-daemonize-yes-以后端模式启动。" class="headerlink" title="修改 redis.conf 配置文件， daemonize yes 以后端模式启动。"></a>修改 redis.conf 配置文件， daemonize yes 以后端模式启动。</h6><p>vim /usr/local/redis/redis.conf</p>
+<p>修改 daemonize 为 yes 保存退出即可。</p>
+<h6 id="指定配置文件启动"><a href="#指定配置文件启动" class="headerlink" title="指定配置文件启动"></a>指定配置文件启动</h6><p>cd /usr/local/redis/</p>
+<p>./bin/redis-server redis.conf</p>
+<h6 id="查看-redis-默认端口-6379-是否开启"><a href="#查看-redis-默认端口-6379-是否开启" class="headerlink" title="查看 redis 默认端口 6379 是否开启"></a>查看 redis 默认端口 6379 是否开启</h6><p>ps -ef | grep -i redis</p>
+<h5 id="连接客户端"><a href="#连接客户端" class="headerlink" title="连接客户端"></a>连接客户端</h5><p>redis-cli -h ip地址 -p 端口</p>
+<p>redis-cli -h 127.0.0.1 -p 6379</p>
+<p>也可以直接使用默认 ip 和端口</p>
+<p>redis-cli</p>
+<h5 id="向-Redis-发送命令"><a href="#向-Redis-发送命令" class="headerlink" title="向 Redis 发送命令"></a>向 Redis 发送命令</h5><p>ping</p>
+<p>显示 PONG 即为连接成功。</p>
+<p>set name cier</p>
+<p>get name cier</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-02T04:26:50.437Z" itemprop="dateUpdated">2018-08-02 12:26:50</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.png" alt="山气日夕佳">
+            山气日夕佳
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/&title=《【Centos6.8 安装 Redis】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/&title=《【Centos6.8 安装 Redis】》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 Redis】》 — 山气日夕佳&url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">写在开始之前</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/31/【Centos6-8-安装-mysql】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【Centos6.8 安装 mysql】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>山气日夕佳 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/&title=《【Centos6.8 安装 Redis】》 — 山气日夕佳&pic=http://yoursite.com/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/&title=《【Centos6.8 安装 Redis】》 — 山气日夕佳&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Centos6.8 安装 Redis】》 — 山气日夕佳&url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2018/08/02/【Centos6-8-安装-Redis】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
