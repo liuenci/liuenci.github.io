@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【Redis 存储 string】 | 一琛(cier) | 希望技术社区多点原创，少点抄袭。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Redis,缓存,string">
+    <meta name="description" content="概述字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。 常用命令赋值设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。 set key value 取值获取 key 的 value，如果该 key">
+<meta name="keywords" content="Redis,缓存,string">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Redis 存储 string】">
+<meta property="og:url" content="http://liuenci.cn/2018/08/02/【Redis-存储-string】/index.html">
+<meta property="og:site_name" content="一琛(cier)">
+<meta property="og:description" content="概述字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。 常用命令赋值设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。 set key value 取值获取 key 的 value，如果该 key">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-02T06:37:08.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Redis 存储 string】">
+<meta name="twitter:description" content="概述字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。 常用命令赋值设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。 set key value 取值获取 key 的 value，如果该 key">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">一琛(cier)</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【Redis 存储 string】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【Redis 存储 string】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-02T06:36:40.000Z" itemprop="datePublished" class="page-time">
+  2018-08-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#赋值"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">赋值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#取值"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">取值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#删除"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">删除</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#数值增减"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">数值增减</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#扩展命令"><span class="post-toc-number">3.</span> <span class="post-toc-text">扩展命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#增加固定的值"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">增加固定的值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#减少固定的值"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">减少固定的值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#拼凑字符串"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">拼凑字符串</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【Redis-存储-string】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【Redis 存储 string】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-02 14:36:40" datetime="2018-08-02T06:36:40.000Z"  itemprop="datePublished">2018-08-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>字符串类型是 Redis 中最为基础的数据存储类型，他在 Redis 中是二进制安全的，这便意味着该类型存储和获取的数据相同。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><h5 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h5><p>设置 key 持有指定的字符串 value，如果该 key 存在则进行覆盖操作，总是返回 ok。</p>
+<p>set key value</p>
+<h5 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h5><p>获取 key 的 value，如果该 key 不存在，返回 nil。</p>
+<p>get key</p>
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p>删除指定 key。</p>
+<p>del key</p>
+<h5 id="数值增减"><a href="#数值增减" class="headerlink" title="数值增减"></a>数值增减</h5><p>将指定的 key 的 value 原子性的递增 1，如果该 key 不存在，那么会先创建 key，默认初始值为 0，递增之后为 1。</p>
+<p>incr key</p>
+<p>将指定的 key 的 value 原子性的递减 1，如果该 key 不存在，那么会先创建 key，默认初始值为 0，递增之后为 -1。</p>
+<p>decr key</p>
+<h4 id="扩展命令"><a href="#扩展命令" class="headerlink" title="扩展命令"></a>扩展命令</h4><h5 id="增加固定的值"><a href="#增加固定的值" class="headerlink" title="增加固定的值"></a>增加固定的值</h5><p>将指定的 key 的 value 原子性增加 num，如果该 key 不存在，那么会先创建 key，默认初始值为 0，在 incrby 之后，值为 num。</p>
+<p>incrby key num</p>
+<h5 id="减少固定的值"><a href="#减少固定的值" class="headerlink" title="减少固定的值"></a>减少固定的值</h5><p>将指定的 key 的 value 原子性减少 num，如果该 key 不存在，那么会先创建 key，默认初始值为 0，在 incrby 之后，值为 -num。</p>
+<p>decrby key num</p>
+<h5 id="拼凑字符串"><a href="#拼凑字符串" class="headerlink" title="拼凑字符串"></a>拼凑字符串</h5><p>如果该 key 存在，则在原有的 value 后追加该值；如果该 key 不存在，则会创建一个 value 为 num 的 key。</p>
+<p>append key num</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-02T06:37:08.925Z" itemprop="dateUpdated">2018-08-02 14:37:08</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://liuenci.cn">
+            <img src="/img/avatar.png" alt="一琛(cier)">
+            一琛(cier)
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">string</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/缓存/">缓存</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 string】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2028/06/15/写在开始之前/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">写在开始之前</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/02/【Centos6-8-安装-Redis】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【Centos6.8 安装 Redis】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>一琛(cier) &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&title=《【Redis 存储 string】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 string】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/02/【Redis-存储-string】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
