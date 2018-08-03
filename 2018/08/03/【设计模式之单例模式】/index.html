@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【设计模式之单例模式】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="设计模式,单例模式,饿汉式,懒汉式">
+    <meta name="description" content="概览 什么是单例模式？ 单例模式的特点是什么？ 单例模式分为哪几种？  什么是单例模式？单例模式就是整个系统中，一个类仅有一个实例，并且这个实例是自动实例化向整个系统提供。 单例模式的特点是什么？ 单例模式因为只有一个实例，所以可以减少内存的占用。 单例模式会阻止其他对象实例化自己的单例模式的副本，从而确保所有对象访问的都是唯一的实例。 因为类控制了实例化过程，所以类可以灵活更改实例化过程。  单">
+<meta name="keywords" content="设计模式,单例模式,饿汉式,懒汉式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【设计模式之单例模式】">
+<meta property="og:url" content="http://liuenci.cn/2018/08/03/【设计模式之单例模式】/index.html">
+<meta property="og:site_name" content="一琛(cier)">
+<meta property="og:description" content="概览 什么是单例模式？ 单例模式的特点是什么？ 单例模式分为哪几种？  什么是单例模式？单例模式就是整个系统中，一个类仅有一个实例，并且这个实例是自动实例化向整个系统提供。 单例模式的特点是什么？ 单例模式因为只有一个实例，所以可以减少内存的占用。 单例模式会阻止其他对象实例化自己的单例模式的副本，从而确保所有对象访问的都是唯一的实例。 因为类控制了实例化过程，所以类可以灵活更改实例化过程。  单">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-03T08:48:41.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【设计模式之单例模式】">
+<meta name="twitter:description" content="概览 什么是单例模式？ 单例模式的特点是什么？ 单例模式分为哪几种？  什么是单例模式？单例模式就是整个系统中，一个类仅有一个实例，并且这个实例是自动实例化向整个系统提供。 单例模式的特点是什么？ 单例模式因为只有一个实例，所以可以减少内存的占用。 单例模式会阻止其他对象实例化自己的单例模式的副本，从而确保所有对象访问的都是唯一的实例。 因为类控制了实例化过程，所以类可以灵活更改实例化过程。  单">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">一琛(cier)</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【设计模式之单例模式】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【设计模式之单例模式】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-03T08:47:25.000Z" itemprop="datePublished" class="page-time">
+  2018-08-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概览"><span class="post-toc-number">1.</span> <span class="post-toc-text">概览</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是单例模式？"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是单例模式？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#单例模式的特点是什么？"><span class="post-toc-number">3.</span> <span class="post-toc-text">单例模式的特点是什么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#单例模式分为哪几种？"><span class="post-toc-number">4.</span> <span class="post-toc-text">单例模式分为哪几种？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#饿汉式"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">饿汉式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#懒汉式"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">懒汉式</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【设计模式之单例模式】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【设计模式之单例模式】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-03 16:47:25" datetime="2018-08-03T08:47:25.000Z"  itemprop="datePublished">2018-08-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><ul>
+<li>什么是单例模式？</li>
+<li>单例模式的特点是什么？</li>
+<li>单例模式分为哪几种？</li>
+</ul>
+<h4 id="什么是单例模式？"><a href="#什么是单例模式？" class="headerlink" title="什么是单例模式？"></a>什么是单例模式？</h4><p>单例模式就是整个系统中，一个类仅有一个实例，并且这个实例是自动实例化向整个系统提供。</p>
+<h4 id="单例模式的特点是什么？"><a href="#单例模式的特点是什么？" class="headerlink" title="单例模式的特点是什么？"></a>单例模式的特点是什么？</h4><ul>
+<li>单例模式因为只有一个实例，所以可以减少内存的占用。</li>
+<li>单例模式会阻止其他对象实例化自己的单例模式的副本，从而确保所有对象访问的都是唯一的实例。</li>
+<li>因为类控制了实例化过程，所以类可以灵活更改实例化过程。</li>
+</ul>
+<h4 id="单例模式分为哪几种？"><a href="#单例模式分为哪几种？" class="headerlink" title="单例模式分为哪几种？"></a>单例模式分为哪几种？</h4><h5 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cier.design.patterns;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 饿汉式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample1</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 直接创建对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingletonExample1 instance = <span class="keyword">new</span> SingletonExample1();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有化构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回对象实例</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonExample1 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>见名思意，饿汉式就是说怕这个类会被饿死，在类加载之前就被实例化。饿汉式是典型的使用空间来换取时间，因为不管你是否使用这个对象，都先帮你创建好，需要的时候直接调用。因为虚拟机保证只会装载一次，在装载类的时候是不会发生并发的，所以饿汉式是属于线程安全的。</p>
+<h5 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cier.designPatterns.singleton;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线程不安全的懒汉式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample2</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 声明变量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingletonExample2 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有化构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample2</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 提供对外方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonExample2 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingletonExample2();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>懒汉式则是典型地使用时间换取空间的做法，因为相对于饿汉式，懒汉式没有预先创建对象，而是在你需要这个对象的时候才创建这个对象。但是饿汉式是线程不安全的，假设同时有两个线程调用了 getInstance() 方法，很有可能会创建两个实例出来。</p>
+<p>那如何实现一个线程安全的懒汉式呢？有三种方式。</p>
+<p>第一种方式是在实例化方法上加上同步锁，当有一个线程进入该方法时，其他方法进入阻塞状态。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cier.designPatterns.singleton;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加上同步锁的懒汉式，实现线程安全</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample5</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonExample5 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample5</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> SingletonExample5 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingletonExample5();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种方式是使用双重校验锁同步代码块的方式实现线程安全。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cier.designPatterns.singleton;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 双重检查锁的懒汉式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample3</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 声明变量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> SingletonExample3 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有化构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample3</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 提供对外方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonExample3 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (SingletonExample3.class)&#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> SingletonExample3();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第三种方式是静态内部类来实现线程安全。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.cier.designPatterns.singleton;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 静态内部类的懒汉式</span></span><br><span class="line"><span class="comment"> * 既实现了线程安全，又避免了同步带来的性能影响</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonExample4</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyHolder</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonExample4 instance = <span class="keyword">new</span> SingletonExample4();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonExample4</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonExample4 <span class="title">getInstace</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LazyHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-03T08:48:41.925Z" itemprop="dateUpdated">2018-08-03 16:48:41</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://liuenci.cn">
+            <img src="/img/avatar.png" alt="一琛(cier)">
+            一琛(cier)
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/懒汉式/">懒汉式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/饿汉式/">饿汉式</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/&title=《【设计模式之单例模式】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/&title=《【设计模式之单例模式】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【设计模式之单例模式】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/03/【Redis-存储-sortedset】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【Redis 存储 sortedset】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>一琛(cier) &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/&title=《【设计模式之单例模式】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/&title=《【设计模式之单例模式】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【设计模式之单例模式】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/03/【设计模式之单例模式】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
