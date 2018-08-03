@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【Redis 存储 list】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Redis,list">
+    <meta name="description" content="概述在 Redis 中，List 类型是按照插入顺序排序的字符串链表。和数据结构中的普通俩表一样，我们可以在其头部（left）和尾部（right）添加新的元素。在插入时，如果该键不存在，Redis 将为该键创建一个新的链表。与此想反，如果链表中所有的元素均被移除，那么该键也将会被从数据库中删除，list 中可以包含的最大元素数量是 42 亿。 常用命令两端添加在指定的 key 所关联的 list">
+<meta name="keywords" content="Redis,list">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Redis 存储 list】">
+<meta property="og:url" content="http://liuenci.cn/2018/08/03/【Redis-存储-list】/index.html">
+<meta property="og:site_name" content="一琛(cier)">
+<meta property="og:description" content="概述在 Redis 中，List 类型是按照插入顺序排序的字符串链表。和数据结构中的普通俩表一样，我们可以在其头部（left）和尾部（right）添加新的元素。在插入时，如果该键不存在，Redis 将为该键创建一个新的链表。与此想反，如果链表中所有的元素均被移除，那么该键也将会被从数据库中删除，list 中可以包含的最大元素数量是 42 亿。 常用命令两端添加在指定的 key 所关联的 list">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-03T01:29:10.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Redis 存储 list】">
+<meta name="twitter:description" content="概述在 Redis 中，List 类型是按照插入顺序排序的字符串链表。和数据结构中的普通俩表一样，我们可以在其头部（left）和尾部（right）添加新的元素。在插入时，如果该键不存在，Redis 将为该键创建一个新的链表。与此想反，如果链表中所有的元素均被移除，那么该键也将会被从数据库中删除，list 中可以包含的最大元素数量是 42 亿。 常用命令两端添加在指定的 key 所关联的 list">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">一琛(cier)</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【Redis 存储 list】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【Redis 存储 list】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-03T01:28:43.000Z" itemprop="datePublished" class="page-time">
+  2018-08-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用命令"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#两端添加"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">两端添加</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#查看列表"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">查看列表</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#两端弹出"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">两端弹出</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#获取列表中元素的个数"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">获取列表中元素的个数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#扩展命令"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">扩展命令</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【Redis-存储-list】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【Redis 存储 list】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-03 09:28:43" datetime="2018-08-03T01:28:43.000Z"  itemprop="datePublished">2018-08-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>在 Redis 中，List 类型是按照插入顺序排序的字符串链表。和数据结构中的普通俩表一样，我们可以在其头部（left）和尾部（right）添加新的元素。在插入时，如果该键不存在，Redis 将为该键创建一个新的链表。与此想反，如果链表中所有的元素均被移除，那么该键也将会被从数据库中删除，list 中可以包含的最大元素数量是 42 亿。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><h5 id="两端添加"><a href="#两端添加" class="headerlink" title="两端添加"></a>两端添加</h5><p>在指定的 key 所关联的 list 的头部插入所有的 values，如果该 key 不存在，该命令在插入的之前创建一个与该 key 关联的空链表，之后再向该链表的头部插入数据。</p>
+<p>lpush key value1 value2 value3</p>
+<p>在指定的 key 所关联的 list 的尾部插入所有的 values，如果该 key 不存在，该命令在插入的之前创建一个与该 key 关联的空链表，之后再向该链表的尾部插入数据。</p>
+<p>rpush key value1 value2 value3</p>
+<h5 id="查看列表"><a href="#查看列表" class="headerlink" title="查看列表"></a>查看列表</h5><p>获取链表中从 start 到 end 的元素的值，start，end 从 0 开始计数；也可以为负数，若为 -1 则表示链表尾部的元素，-2 则表示倒数第二个。</p>
+<p>lrange key start end</p>
+<h5 id="两端弹出"><a href="#两端弹出" class="headerlink" title="两端弹出"></a>两端弹出</h5><p>返回并弹出指定的 key 关联的链表中的第一个元素，即头部元素。如果该 key 不存在，返回 nil，若 key 存在，则返回链表的头部元素。</p>
+<p>lpop key</p>
+<p>返回并弹出指定的 key 关联的链表中的最后一个元素，即尾部元素。如果该 key 不存在，返回 nil，若 key 存在，则返回链表的尾部元素。</p>
+<p>rpop key</p>
+<h5 id="获取列表中元素的个数"><a href="#获取列表中元素的个数" class="headerlink" title="获取列表中元素的个数"></a>获取列表中元素的个数</h5><p>返回指定的 key 关联的链表中的元素的数量。</p>
+<p>llen key</p>
+<h5 id="扩展命令"><a href="#扩展命令" class="headerlink" title="扩展命令"></a>扩展命令</h5><p>仅当参数中指定的 key 存在时，向关联的 list 的头部插入 value，如果不存在，将不进行插入。</p>
+<p>lpushx key value</p>
+<p>仅当参数中指定的 key 存在时，向关联的 list 的尾部插入 value，如果不存在，将不进行插入。</p>
+<p>rpushx key value</p>
+<p>删除 count 个值为 value 的元素，如果 count 大于 0，从头到尾遍历并删除 count 个值为 value 的元素，如果 count 小于 0，则从尾向头遍历并删除。如果 count 等于 0，则删除链表中所有等于 value 的元素。</p>
+<p>lrem key count value</p>
+<p>设置链表中的 index 的脚标的元素值，0 代表链表的头元素，-1 代表链表的尾元素。</p>
+<p>lset key index value</p>
+<p>在第一个 pivot 元素钱或者后插入 value 这个元素。</p>
+<p>linsert key before | after pivot value</p>
+<p>将链表 1 中的尾部元素弹出并添加到链表 2 的头部</p>
+<p>rpoplpush list1 list2</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-03T01:29:10.062Z" itemprop="dateUpdated">2018-08-03 09:29:10</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://liuenci.cn">
+            <img src="/img/avatar.png" alt="一琛(cier)">
+            一琛(cier)
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/list/">list</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/&title=《【Redis 存储 list】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/&title=《【Redis 存储 list】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/03/【Redis-存储-list】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 list】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/02/【Redis-存储-Hash】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【Redis 存储 Hash】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>一琛(cier) &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/&title=《【Redis 存储 list】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/&title=《【Redis 存储 list】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/03/【Redis-存储-list】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Redis 存储 list】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/03/【Redis-存储-list】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/03/【Redis-存储-list】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
