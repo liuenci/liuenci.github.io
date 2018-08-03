@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="一琛(cier)">
 <meta property="og:description" content="概述在 Redis 中，我们可以将 set 类型看作为没有排序的字符集合，和 list 类型一样，我们也可以在该 类型 的数据值上执行添加、删除或判断某一元素是否存在等操作。需要说明的是，这些操作的时间复杂度为 O(1)，即常量时间内完成次操作。set 可以包含的最大元素数量是 42 亿多。 和 list 类型不同的是，set 集合中不允许出现重复的元素。如果多次添加相同的元素，set 中将保留该">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-03T01:54:44.558Z">
+<meta property="og:updated_time" content="2018-08-03T02:15:18.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Redis 存储 set】">
 <meta name="twitter:description" content="概述在 Redis 中，我们可以将 set 类型看作为没有排序的字符集合，和 list 类型一样，我们也可以在该 类型 的数据值上执行添加、删除或判断某一元素是否存在等操作。需要说明的是，这些操作的时间复杂度为 O(1)，即常量时间内完成次操作。set 可以包含的最大元素数量是 42 亿多。 和 list 类型不同的是，set 集合中不允许出现重复的元素。如果多次添加相同的元素，set 中将保留该">
@@ -198,6 +198,7 @@
 <p>将 key1 、 key2 的交集存储在 key3 上。</p>
 <p>sinterstore key3 key1 key2</p>
 <p>将 key1 、 key2 的并集存储在 key3 上。</p>
+<p>sunionstore key3 key1 key2</p>
 
         </div>
 
@@ -206,7 +207,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-08-03T01:54:44.558Z" itemprop="dateUpdated">2018-08-03 09:54:44</time>
+    最后更新时间：<time datetime="2018-08-03T02:15:18.355Z" itemprop="dateUpdated">2018-08-03 10:15:18</time>
 </span><br>
 
 
