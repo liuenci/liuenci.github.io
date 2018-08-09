@@ -14,25 +14,25 @@
     
     
     
-    <title>谈谈 https 和 http | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <title>【聊聊对技术的感悟】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="计算机网络,https,面试,http">
-    <meta name="description" content="http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果">
-<meta name="keywords" content="计算机网络,https,面试,http">
+    <meta name="keywords" content="生活,技术">
+    <meta name="description" content="自己软件工程专业科班出身，从大一到现在大三结束满打满算写了三年代码了，三年期间中途有一次在知乎上看到轮子哥谈起一位优秀的程序员在大学期间应该要写十万行代码，我算了算自己这三年来自己做过的项目，以及自己平时看书写的 Demo，应该是没有十万行代码的，对此感到比较遗憾，不过大学还没过完，我还有机会。 不过我更多的想说的是，如果十万行代码都是简单的业务代码，或者说是 CRUD 代码，那么我个人认为这不具">
+<meta name="keywords" content="生活,技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈谈 https 和 http">
-<meta property="og:url" content="http://liuenci.cn/2018/06/24/谈谈-https-和-http/index.html">
+<meta property="og:title" content="【聊聊对技术的感悟】">
+<meta property="og:url" content="http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/index.html">
 <meta property="og:site_name" content="一琛(cier)">
-<meta property="og:description" content="http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果">
+<meta property="og:description" content="自己软件工程专业科班出身，从大一到现在大三结束满打满算写了三年代码了，三年期间中途有一次在知乎上看到轮子哥谈起一位优秀的程序员在大学期间应该要写十万行代码，我算了算自己这三年来自己做过的项目，以及自己平时看书写的 Demo，应该是没有十万行代码的，对此感到比较遗憾，不过大学还没过完，我还有机会。 不过我更多的想说的是，如果十万行代码都是简单的业务代码，或者说是 CRUD 代码，那么我个人认为这不具">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-24T08:03:23.900Z">
+<meta property="og:updated_time" content="2018-08-09T03:15:48.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谈谈 https 和 http">
-<meta name="twitter:description" content="http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果">
+<meta name="twitter:title" content="【聊聊对技术的感悟】">
+<meta name="twitter:description" content="自己软件工程专业科班出身，从大一到现在大三结束满打满算写了三年代码了，三年期间中途有一次在知乎上看到轮子哥谈起一位优秀的程序员在大学期间应该要写十万行代码，我算了算自己这三年来自己做过的项目，以及自己平时看书写的 Demo，应该是没有十万行代码的，对此感到比较遗憾，不过大学还没过完，我还有机会。 不过我更多的想说的是，如果十万行代码都是简单的业务代码，或者说是 CRUD 代码，那么我个人认为这不具">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -104,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">谈谈 https 和 http</div>
+        <div class="flex-col header-title ellipsis">【聊聊对技术的感悟】</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -126,11 +126,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">谈谈 https 和 http</h1>
+        <h1 class="title">【聊聊对技术的感悟】</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-06-24T08:02:46.000Z" itemprop="datePublished" class="page-time">
-  2018-06-24
+                <time datetime="2018-08-09T03:15:20.000Z" itemprop="datePublished" class="page-time">
+  2018-08-09
 </time>
 
 
@@ -146,21 +146,14 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#https-和-http-的区别"><span class="post-toc-number">1.</span> <span class="post-toc-text">https 和 http 的区别</span></a></li></ol>
-        </nav>
-    </aside>
 
-
-<article id="post-谈谈-https-和-http"
+<article id="post-【聊聊对技术的感悟】"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">谈谈 https 和 http</h1>
+        <h1 class="post-card-title">【聊聊对技术的感悟】</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-06-24 16:02:46" datetime="2018-06-24T08:02:46.000Z"  itemprop="datePublished">2018-06-24</time>
+            <time class="post-time" title="2018-08-09 11:15:20" datetime="2018-08-09T03:15:20.000Z"  itemprop="datePublished">2018-08-09</time>
 
             
 
@@ -173,15 +166,14 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果需要传输敏感信息，比如密码什么的 http 协议不是一个好的协议。</p>
-<p>https:比 http 多了一个 s,这个 s 代表着 security（安全），全称叫做 安全套接字层超文本传输协议,https 在 http 上加入了 ssl 协议，而 ssl 协议依靠证书来验证服务器的身份，并且为浏览器和服务器之间的数据传输加密。</p>
-<p>https 协议的主要作用主要有两种：一种是建立一个信息安全通道，来保证数据传输的安全；另外一个就是确认网站的真实性。</p>
-<h2 id="https-和-http-的区别"><a href="#https-和-http-的区别" class="headerlink" title="https 和 http 的区别"></a>https 和 http 的区别</h2><ol>
-<li>https 协议需要到 ca 申请证书，一般免费证书较少，因而需要一定费用，（好像可以自己制作证书来着，但是要服务器端支持）括号内自动忽略就好，我记得在哪看到过。</li>
-<li>http 是超文本传输协议，信息 是明文传输，https 则是具有安全性的 ssl 加密传输协议。</li>
-<li>http 和 https 使用的两种不同的连接方式，使用的默认端口也是不一致的，http 使用的 80 端口，https 使用的 443 端口。</li>
-<li>http 的连接比较简单，是无状态的；https 协议则是使用 ssl + http 协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。</li>
-</ol>
+            <p>自己软件工程专业科班出身，从大一到现在大三结束满打满算写了三年代码了，三年期间中途有一次在知乎上看到轮子哥谈起一位优秀的程序员在大学期间应该要写十万行代码，我算了算自己这三年来自己做过的项目，以及自己平时看书写的 Demo，应该是没有十万行代码的，对此感到比较遗憾，不过大学还没过完，我还有机会。</p>
+<p>不过我更多的想说的是，如果十万行代码都是简单的业务代码，或者说是 CRUD 代码，那么我个人认为这不具备太多的含金量，我希望的是，这十万行代码能让自己接触到更多以前自己没接触过的东西，不管是编程语言方面，还是数据库方面，不管是前端方面，还是后端方面。也许很多人觉得人应该在某一个领域有自己的挖掘，我其实是赞成这一点的，但是，在挖掘之前，我更希望的是，能够先在广阔的技术领域中找到自己的兴趣爱好点，在对其进行深挖。</p>
+<p>比方说，有人喜欢和用户打交道，更注重美的感受，对色彩感官比较敏感，这类人可能适合走前端开发。而有的人，比如我，喜欢实现功能，喜欢对整个系统的性能优化或者提升，同时逻辑清楚，可能我更适合去进行后端开发。</p>
+<p>当决定自己的技术之路之后，剩下的就是执行力了。在自己的大方向上，你需要去寻找自己的技术学习路线，然后坚定不移的学习下去。对于学习方式，每个人有自己的学习方式，有人喜欢看书，有人喜欢看视频，这里每个人只需要选择自己有效的学习方式即可，这里没有一个完全正确的学习方式，适合自己的学习方式就是最正确的学习方式。</p>
+<p>在互联网的浪潮里，我们解决问题的方式也从以前的单一化进化到了现在的多元化。以前的技术问题，可能遇到 bug 第一时间可能想到的是问身边的技术大神。现在我更多的选择方式是进行 google 检索，顺便说一下，google 是程序员的基本功了。google 上基本上能解决自己 90% 的技术问题，如果你熟悉如何进行搜索的话。</p>
+<p>前段时间室友告诉我，以前觉得 程序 = 数据结构 + 算法，现在嘛，程序 = 搜索引擎 + 英语。我仔细一想，好像有点道理啊，在整个大环境下，有一部分程序员自嘲为码农，编码中的农民工，写代码全靠百度，然后 ctrl + c，ctrl + v，真正能自己造轮子的是少部分，大部分人的编码生活就是网上拷贝代码，能通过就行，完全不考虑代码的实用性，只求在项目上线之前能功能完成。</p>
+<p>那如何避免成为只会拷贝代码的码农呢？我个人的想法是首先要对代码热爱，很多人把写代码当成一份工作，一份任务，只为完成任务。很多时候我们造不出来轮子是因为我们的基础不够扎实，更多的时候学习一门新技术的时候，只关注它的实现，而不去关注它内部的原理，而没有技术原理的积累，很多技术都是流于表面，只有当自己去深入其中的原理，吸收其中成熟的思想，才有机会自己独立地造轮子。</p>
+<p>希望自己多年后，是一位能自己能造轮子给他人用的程序员，而不是码农。</p>
 
         </div>
 
@@ -190,7 +182,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-06-24T08:03:23.900Z" itemprop="dateUpdated">2018-06-24 16:03:23</time>
+    最后更新时间：<time datetime="2018-08-09T03:15:48.685Z" itemprop="dateUpdated">2018-08-09 11:15:48</time>
 </span><br>
 
 
@@ -214,7 +206,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
 
 
             
@@ -224,7 +216,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/&title=《【聊聊对技术的感悟】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -234,22 +226,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/&title=《【聊聊对技术的感悟】》 — 一琛(cier)&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈 https 和 http》 — 一琛(cier)&url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&via=http://liuenci.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【聊聊对技术的感悟】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/&via=http://liuenci.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -269,21 +261,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/06/24/BASIC-6-杨辉三角形/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">BASIC-6 杨辉三角形</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/06/24/https-的工作原理/" id="post-next" class="post-nav-link">
+      <a href="/2018/08/08/【聊聊前段时间的面试】/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">https 的工作原理</h4>
+        <h4 class="title">【聊聊前段时间的面试】</h4>
       </a>
     </div>
   
@@ -379,7 +364,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/&title=《【聊聊对技术的感悟】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -389,22 +374,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/&title=《【聊聊对技术的感悟】》 — 一琛(cier)&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈 https 和 http》 — 一琛(cier)&url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&via=http://liuenci.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【聊聊对技术的感悟】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/&via=http://liuenci.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -415,7 +400,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/09/【聊聊对技术的感悟】/" alt="微信分享二维码">
 </div>
 
 
