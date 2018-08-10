@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【Java 基础之 IO 总结】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,IO">
+    <meta name="description" content="前言本篇文章只为回顾自己写过的 IO 部分的代码。 DemoFileReader，每次读取一个字符。 123456789FileReader fileReader = new FileReader(&quot;hello.txt&quot;);int x = fileReader.read();System.out.println(x);char c = (char)x;System.out.println(c);x">
+<meta name="keywords" content="Java,IO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Java 基础之 IO 总结】">
+<meta property="og:url" content="http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/index.html">
+<meta property="og:site_name" content="一琛(cier)">
+<meta property="og:description" content="前言本篇文章只为回顾自己写过的 IO 部分的代码。 DemoFileReader，每次读取一个字符。 123456789FileReader fileReader = new FileReader(&quot;hello.txt&quot;);int x = fileReader.read();System.out.println(x);char c = (char)x;System.out.println(c);x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-10T03:23:32.554Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Java 基础之 IO 总结】">
+<meta name="twitter:description" content="前言本篇文章只为回顾自己写过的 IO 部分的代码。 DemoFileReader，每次读取一个字符。 123456789FileReader fileReader = new FileReader(&quot;hello.txt&quot;);int x = fileReader.read();System.out.println(x);char c = (char)x;System.out.println(c);x">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">一琛(cier)</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【Java 基础之 IO 总结】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【Java 基础之 IO 总结】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-10T03:22:43.000Z" itemprop="datePublished" class="page-time">
+  2018-08-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Demo"><span class="post-toc-number">2.</span> <span class="post-toc-text">Demo</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【Java-基础之-IO-总结】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【Java 基础之 IO 总结】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-10 11:22:43" datetime="2018-08-10T03:22:43.000Z"  itemprop="datePublished">2018-08-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>本篇文章只为回顾自己写过的 IO 部分的代码。</p>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><p>FileReader，每次读取一个字符。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FileReader fileReader = <span class="keyword">new</span> FileReader(<span class="string">"hello.txt"</span>);</span><br><span class="line"><span class="keyword">int</span> x = fileReader.read();</span><br><span class="line">System.out.println(x);</span><br><span class="line"><span class="keyword">char</span> c = (<span class="keyword">char</span>)x;</span><br><span class="line">System.out.println(c);</span><br><span class="line">x = fileReader.read();</span><br><span class="line">c = (<span class="keyword">char</span>)x;</span><br><span class="line">System.out.println(c);</span><br><span class="line">fileReader.close();</span><br></pre></td></tr></table></figure>
+<p>FileReader 读完所有内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FileReader fileReader = new FileReader(&quot;hello.txt&quot;);</span><br><span class="line">int c;</span><br><span class="line">// 通过项目的码表一次读取一个字节</span><br><span class="line">while ((c = fileReader.read()) != -1)&#123;</span><br><span class="line">    System.out.print((char)c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>FileWriter，字符输出流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果需要不清除里面的数据，可以给构造方法里面加上 ture</span></span><br><span class="line"><span class="comment">// FileWriter fileWriter = new FileWriter("hello.txt",true);</span></span><br><span class="line">FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="string">"hello.txt"</span>);</span><br><span class="line">fileWriter.write(<span class="string">"大家好，我是渣渣辉"</span>);</span><br><span class="line"><span class="comment">// 往里面写数字会直接变成数字对应的字符</span></span><br><span class="line">fileWriter.write(<span class="number">97</span>);</span><br><span class="line">fileWriter.close();</span><br></pre></td></tr></table></figure>
+<p>将文件 1 读取，写入文件 2 中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FileReader fileReader = <span class="keyword">new</span> FileReader(<span class="string">"hello.txt"</span>);</span><br><span class="line">FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="string">"world.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> c;</span><br><span class="line"><span class="keyword">while</span> ((c = fileReader.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">    fileWriter.write(c);</span><br><span class="line">&#125;</span><br><span class="line">fileReader.close();</span><br><span class="line"><span class="comment">// 如果没有关流，数据都在缓冲区，数据无法写入,缓冲区大小为 2K = 1024 个字符 * 2，关闭流才会刷新</span></span><br><span class="line">fileWriter.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FileReader fileReader = <span class="keyword">new</span> FileReader(<span class="string">"hello.txt"</span>);</span><br><span class="line">FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="string">"hello2.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span>[] arr = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">int</span> len;</span><br><span class="line"><span class="keyword">while</span> ((len = fileReader.read(arr)) != -<span class="number">1</span>)&#123;</span><br><span class="line">    fileWriter.write(arr,<span class="number">0</span>,len);</span><br><span class="line">&#125;</span><br><span class="line">fileReader.close();</span><br><span class="line">fileWriter.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不可以拷贝非纯文本的文件</span></span><br><span class="line"><span class="comment">// 因为在读的时候会将字节转换为字符，在转换过程中，可能会找不到对应的字符，就会用 ？ 代替</span></span><br><span class="line"><span class="comment">// 写出的时候会将字符转换为字节写出去</span></span><br><span class="line"><span class="comment">// 如果是 ? ,直接写出，这样写出的文件就乱了。</span></span><br><span class="line">FileReader fileReader = <span class="keyword">new</span> FileReader(<span class="string">"logo1.png"</span>);</span><br><span class="line">FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="string">"logo2.png"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> c;</span><br><span class="line"><span class="keyword">while</span> ((c = fileReader.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">    fileWriter.write(c);</span><br><span class="line">&#125;</span><br><span class="line">fileReader.close();</span><br><span class="line"><span class="comment">// 如果没有关流，数据都在缓冲区，数据无法写入,缓冲区大小为 2K = 1024 个字符 * 2，关闭流才会刷新</span></span><br><span class="line">fileWriter.close();</span><br></pre></td></tr></table></figure>
+<p>BufferedReader，BufferedWriter，字符缓冲输入输出流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"hello.txt"</span>));</span><br><span class="line">BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"hello3.txt"</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> c;</span><br><span class="line"><span class="keyword">while</span> ((c = bufferedReader.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">    bufferedWriter.write(c);</span><br><span class="line">&#125;</span><br><span class="line">bufferedReader.close();</span><br><span class="line">bufferedWriter.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"hello.txt"</span>));</span><br><span class="line">String string;</span><br><span class="line"><span class="comment">// 遇到 \r 或者 \n 就换行</span></span><br><span class="line"><span class="keyword">while</span> ((string = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    System.out.println(string);</span><br><span class="line">&#125;</span><br><span class="line">bufferedReader.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"hello.txt"</span>));</span><br><span class="line">BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"hello4.txt"</span>));</span><br><span class="line">String line;</span><br><span class="line"><span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    bufferedWriter.write(line);</span><br><span class="line">    <span class="comment">// 两者的换行的区别是 前者是跨平台的方法 后者只支持 windows 系统</span></span><br><span class="line">    bufferedWriter.newLine();</span><br><span class="line">    bufferedWriter.write(<span class="string">"\r\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line">bufferedReader.close();</span><br><span class="line">bufferedWriter.close();</span><br></pre></td></tr></table></figure>
+<p>LineNumberReader，带行号的输入流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LineNumberReader lineNumberReader = <span class="keyword">new</span> LineNumberReader(<span class="keyword">new</span> FileReader(<span class="string">"hello.txt"</span>));</span><br><span class="line"></span><br><span class="line">String line;</span><br><span class="line"><span class="comment">// 以 101 开始</span></span><br><span class="line">lineNumberReader.setLineNumber(<span class="number">100</span>);</span><br><span class="line"><span class="keyword">while</span> ((line = lineNumberReader.readLine()) != <span class="keyword">null</span>)&#123;</span><br><span class="line">    System.out.println(lineNumberReader.getLineNumber() + <span class="string">":"</span> + line);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">lineNumberReader.close();</span><br></pre></td></tr></table></figure>
+<p>FileInputStream，字节输入流，FileOutputStream，字节输出流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line">FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">"c.txt"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b1;</span><br><span class="line"><span class="keyword">while</span> ((b1 = fileInputStream.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">    fileOutputStream.write(b1);</span><br><span class="line">&#125;</span><br><span class="line">fileInputStream.close();</span><br><span class="line"></span><br><span class="line">FileInputStream fileInputStream1 = <span class="keyword">new</span> FileInputStream(<span class="string">"b.txt"</span>);</span><br><span class="line"><span class="keyword">int</span> b2;</span><br><span class="line"><span class="keyword">while</span> ((b2 = fileInputStream1.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">    fileOutputStream.write(b2);</span><br><span class="line">&#125;</span><br><span class="line">fileInputStream1.close();</span><br><span class="line">fileOutputStream.close();</span><br></pre></td></tr></table></figure>
+<p>SequenceInputStream，序列流，能将多个输入流整合成一个流。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream1 = new FileInputStream(&quot;a.txt&quot;);</span><br><span class="line">FileInputStream fileInputStream2 = new FileInputStream(&quot;b.txt&quot;);</span><br><span class="line">SequenceInputStream sequenceInputStream = new SequenceInputStream(fileInputStream1, fileInputStream2);</span><br><span class="line">FileOutputStream fileOutputStream = new FileOutputStream(&quot;c.txt&quot;);</span><br><span class="line">int b;</span><br><span class="line">while ((b = sequenceInputStream.read()) != -1) &#123;</span><br><span class="line">    fileOutputStream.write(b);</span><br><span class="line">&#125;</span><br><span class="line">// 序列流会在关闭的时候将构造方法中的流对象也关闭</span><br><span class="line">sequenceInputStream.close();</span><br><span class="line">fileOutputStream.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream1 = new FileInputStream(&quot;a.txt&quot;);</span><br><span class="line">FileInputStream fileInputStream2 = new FileInputStream(&quot;b.txt&quot;);</span><br><span class="line">FileInputStream fileInputStream3 = new FileInputStream(&quot;c.txt&quot;);</span><br><span class="line">Vector&lt;FileInputStream&gt; vector = new Vector&lt;&gt;();</span><br><span class="line">vector.add(fileInputStream1);</span><br><span class="line">vector.add(fileInputStream2);</span><br><span class="line">vector.add(fileInputStream3);</span><br><span class="line">Enumeration&lt;FileInputStream&gt; enumeration = vector.elements();</span><br><span class="line">SequenceInputStream sequenceInputStream = new SequenceInputStream(enumeration);</span><br><span class="line">FileOutputStream fileOutputStream = new FileOutputStream(&quot;d.txt&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int b;</span><br><span class="line">while ((b = sequenceInputStream.read()) != -1) &#123;</span><br><span class="line">    fileOutputStream.write(b);</span><br><span class="line">&#125;</span><br><span class="line">sequenceInputStream.close();</span><br><span class="line">fileInputStream1.close();</span><br></pre></td></tr></table></figure>
+<p>FileInputStream，从文件系统中的某个文件中获得输入字节，用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">while</span> ((a = fileInputStream.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">    System.out.println((<span class="keyword">char</span>) a);</span><br><span class="line">&#125;</span><br><span class="line">fileInputStream.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">"h.txt"</span>);</span><br><span class="line"><span class="comment">// 字节流往文件中写入数据的时候，是一个字节一个字节的写，一个字节是八位，但是一个整形是4位，就是 32 个字节，会截取最后 8 位进行写入。</span></span><br><span class="line">fileOutputStream.write(<span class="number">997</span>);</span><br><span class="line">fileOutputStream.write(<span class="number">998</span>);</span><br><span class="line">fileOutputStream.write(<span class="number">999</span>);</span><br><span class="line">fileOutputStream.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"h.txt"</span>);</span><br><span class="line"><span class="comment">// 读取的时候会在字节前面拼接 24 个0，保证一个整形为 4 个字节。</span></span><br><span class="line"><span class="keyword">int</span> x = fileInputStream.read();</span><br><span class="line"><span class="keyword">int</span> y = fileInputStream.read();</span><br><span class="line"><span class="keyword">int</span> z = fileInputStream.read();</span><br><span class="line">System.out.println(x + <span class="string">" "</span> + y + <span class="string">" "</span> + z);</span><br></pre></td></tr></table></figure>
+<p>ByteArrayOutputStream，此类实现了一个输出流，其中的数据被写入一个 byte 数组。缓冲区会随着数据的不断写入而自动增长。可使用 toByteArray() 和 toString() 获取数据。关闭 ByteArrayOutputStream无效。此类中的方法在关闭此流后仍可被调用，而不会产生任何 IOException。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line"><span class="comment">// 在内存中创建了可以自动增长的内存数组</span></span><br><span class="line">ByteArrayOutputStream byteArrayInputStream = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="keyword">while</span> ((b = fileInputStream.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">    byteArrayInputStream.write(b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 将缓冲区的数据全部获取出来，并赋值给 arr 数组,转成字符数组的好处是可以继续转化为其他的编码表</span></span><br><span class="line"><span class="keyword">byte</span>[] arr = byteArrayInputStream.toByteArray();</span><br><span class="line">System.out.println(<span class="keyword">new</span> String(arr));</span><br><span class="line">System.out.println(byteArrayInputStream.toString());</span><br><span class="line">fileInputStream.close();</span><br><span class="line"><span class="comment">// 流关闭无效，集合数组直接在内存中进行操作，用完直接释放掉了，但是流是有管道的，从内存中连接硬盘进行读取的，用完就是需要关闭的。</span></span><br><span class="line"><span class="comment">//        byteArrayInputStream.close();</span></span><br></pre></td></tr></table></figure>
+<p>RandomAccessFile，此类的实例支持对随机访问文件的读取和写入。随机访问文件的行为类似存储在文件系统中的一个大型 byte 数组。存在指向该隐含数组的光标或索引，称为文件指针；输入操作从文件指针开始读取字节，并随着对字节的读取而前移此文件指针。如果随机访问文件以读取/写入模式创建，则输出操作也可用；输出操作从文件指针开始写入字节，并随着对字节的写入而前移此文件指针。写入隐含数组的当前末尾之后的输出操作导致该数组扩展。该文件指针可以通过 getFilePointer 方法读取，并通过 seek 方法设置。 </p>
+<p>通常，如果此类中的所有读取例程在读取所需数量的字节之前已到达文件末尾，则抛出 EOFException（是一种 IOException）。如果由于某些原因无法读取任何字节，而不是在读取所需数量的字节之前已到达文件末尾，则抛出 IOException，而不是 EOFException。需要特别指出的是，如果流已被关闭，则可能抛出 IOException。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RandomAccessFile randomAccessFile = <span class="keyword">new</span> RandomAccessFile(<span class="string">"g.txt"</span>,<span class="string">"rw"</span>);</span><br><span class="line"><span class="comment">//        randomAccessFile.write(97);</span></span><br><span class="line"><span class="comment">//        int x = randomAccessFile.read();</span></span><br><span class="line"><span class="comment">//        System.out.println(x);;</span></span><br><span class="line"><span class="comment">// 随机写，而且不会清空里面的东西</span></span><br><span class="line">randomAccessFile.seek(<span class="number">0</span>);</span><br><span class="line">randomAccessFile.write(<span class="number">99</span>);</span><br><span class="line">randomAccessFile.close();</span><br></pre></td></tr></table></figure>
+<p>ObjectOutputStream，将 Java 对象的基本数据类型和图形写入 OutputStream。可以使用 ObjectInputStream 读取（重构）对象。通过在流中使用文件可以实现对象的持久存储。如果流是网络套接字流，则可以在另一台主机上或另一个进程中重构对象。 </p>
+<p>只能将支持 java.io.Serializable 接口的对象写入流中。每个 serializable 对象的类都被编码，编码内容包括类名和类签名、对象的字段值和数组值，以及从初始对象中引用的其他所有对象的闭包。 </p>
+<p>writeObject 方法用于将对象写入流中。所有对象（包括 String 和数组）都可以通过 writeObject 写入。可将多个对象或基元写入流中。必须使用与写入对象时相同的类型和顺序从相应 ObjectInputstream 中读回对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Person person1 = <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="number">23</span>);</span><br><span class="line">Person person2 = <span class="keyword">new</span> Person(<span class="string">"李四"</span>, <span class="number">24</span>);</span><br><span class="line"></span><br><span class="line">ObjectOutputStream objectOutputStream = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"e.txt"</span>));</span><br><span class="line">objectOutputStream.writeObject(person1);</span><br><span class="line">objectOutputStream.writeObject(person2);</span><br><span class="line"></span><br><span class="line">objectOutputStream.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Person person1 = <span class="keyword">new</span> Person(<span class="string">"张三"</span>,<span class="number">23</span>);</span><br><span class="line">Person person2 = <span class="keyword">new</span> Person(<span class="string">"李四"</span>,<span class="number">24</span>);</span><br><span class="line">Person person3 = <span class="keyword">new</span> Person(<span class="string">"王五"</span>,<span class="number">24</span>);</span><br><span class="line">Person person4 = <span class="keyword">new</span> Person(<span class="string">"赵六"</span>,<span class="number">25</span>);</span><br><span class="line"></span><br><span class="line">ArrayList&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(person1);</span><br><span class="line">list.add(person2);</span><br><span class="line">list.add(person3);</span><br><span class="line">list.add(person4);</span><br><span class="line"></span><br><span class="line">ObjectOutputStream objectOutputStream = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"f.txt"</span>));</span><br><span class="line">objectOutputStream.writeObject(list);</span><br><span class="line">objectOutputStream.close();</span><br></pre></td></tr></table></figure>
+<p>ObjectInputStream，对象输入流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ObjectInputStream objectInputStream = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"e.txt"</span>));</span><br><span class="line"></span><br><span class="line">Person person1 = (Person) objectInputStream.readObject();</span><br><span class="line">Person person2 = (Person) objectInputStream.readObject();</span><br><span class="line"><span class="comment">// java.io.EOFException End Of File</span></span><br><span class="line"><span class="comment">// Person person3 = (Person) objectInputStream.readObject();</span></span><br><span class="line"></span><br><span class="line">System.out.println(person1);</span><br><span class="line">System.out.println(person2);</span><br><span class="line"></span><br><span class="line">objectInputStream.close();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ObjectInputStream objectOutputStream = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"f.txt"</span>));</span><br><span class="line">ArrayList&lt;Person&gt; list = (ArrayList&lt;Person&gt;) objectOutputStream.readObject();</span><br><span class="line">list.stream().forEach(System.out::println);</span><br><span class="line">objectOutputStream.close();</span><br></pre></td></tr></table></figure>
+<p>DataOutputStream，数据输出流允许应用程序以适当方式将基本 Java 数据类型写入输出流中。然后，应用程序可以使用数据输入流将数据读入。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DataOutputStream dataOutputStream = <span class="keyword">new</span> DataOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"h.txt"</span>));</span><br><span class="line">dataOutputStream.writeInt(<span class="number">997</span>);</span><br><span class="line">dataOutputStream.writeInt(<span class="number">998</span>);</span><br><span class="line">dataOutputStream.writeInt(<span class="number">999</span>);</span><br><span class="line">dataOutputStream.close();</span><br></pre></td></tr></table></figure>
+<p>DataInputStream，数据输入流允许应用程序以与机器无关方式从底层输入流中读取基本 Java 数据类型。应用程序可以使用数据输出流写入稍后由数据输入流读取的数据。 </p>
+<p>DataInputStream 对于多线程访问不一定是安全的。 线程安全是可选的，它由此类方法的使用者负责。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DataInputStream dataInputStream = <span class="keyword">new</span> DataInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"h.txt"</span>));</span><br><span class="line"><span class="keyword">int</span> x = dataInputStream.readInt();</span><br><span class="line"><span class="keyword">int</span> y = dataInputStream.readInt();</span><br><span class="line"><span class="keyword">int</span> z = dataInputStream.readInt();</span><br><span class="line">System.out.println(x + <span class="string">" "</span> + y + <span class="string">" "</span> + z);</span><br></pre></td></tr></table></figure>
+<p>PrintStream，PrintStream 为其他输出流添加了功能，使它们能够方便地打印各种数据值表示形式。它还提供其他两项功能。与其他输出流不同，PrintStream 永远不会抛出 IOException；而是，异常情况仅设置可通过 checkError 方法测试的内部标志。另外，为了自动刷新，可以创建一个 PrintStream；这意味着可在写入 byte 数组之后自动调用 flush 方法，可调用其中一个 println 方法，或写入一个换行符或字节 (‘\n’)。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">"aaa"</span>);</span><br><span class="line"><span class="comment">// 获取标准输出流</span></span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line"><span class="comment">// 底层通过 Integer.toString() 将 97 转换成字符串并打印</span></span><br><span class="line">printStream.println(<span class="number">97</span>);</span><br><span class="line"><span class="comment">// 查找码表，找到对应的 a 并打印</span></span><br><span class="line">printStream.write(<span class="number">97</span>);</span><br><span class="line">printStream.println();</span><br><span class="line">Person person = <span class="keyword">new</span> Person(<span class="string">"张三"</span>,<span class="number">23</span>);</span><br><span class="line"><span class="comment">// PrintStream 可以直接将对象的 toString() 方法打印</span></span><br><span class="line">printStream.println(person);</span><br><span class="line">printStream.close();</span><br></pre></td></tr></table></figure>
+<p>PrintWriter，向文本输出流打印对象的格式化表示形式。此类实现在 PrintStream 中的所有 print 方法。它不包含用于写入原始字节的方法，对于这些字节，程序应该使用未编码的字节流进行写入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter printWriter = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">"k.txt"</span>),<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 自动刷出的方法只针对的是 println 方法</span></span><br><span class="line">printWriter.println(<span class="number">97</span>);</span><br><span class="line">printWriter.print(<span class="number">97</span>);</span><br><span class="line">printWriter.write(<span class="number">97</span>);</span><br><span class="line"><span class="comment">// printWriter.close();</span></span><br></pre></td></tr></table></figure>
+<p>InputStream，是用来从 CDR 编组流中读取 IDL 类型的 Java API。这些方法供 ORB 用来解组 IDL 类型以及从 Any 中析取 IDL。_array 形式的方法可以直接用来读取 IDL 类型的序列和数组。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = System.in;</span><br><span class="line"><span class="keyword">int</span> x = is.read();</span><br><span class="line">System.out.println(x);</span><br><span class="line">is.close();</span><br><span class="line"><span class="comment">// 只有一个流，及时重新创建也是一个流</span></span><br><span class="line">InputStream is2 = System.in;</span><br><span class="line"><span class="keyword">int</span> y = is2.read();</span><br><span class="line">System.out.println(y);</span><br></pre></td></tr></table></figure>
+<p>改变标准输入输出流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改变标准输入流</span></span><br><span class="line">System.setIn(<span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>));</span><br><span class="line"><span class="comment">// 改变标准输出流</span></span><br><span class="line">System.setOut(<span class="keyword">new</span> PrintStream(<span class="string">"b.txt"</span>));</span><br><span class="line"><span class="comment">// 获取标准的键盘输入流，默认指向键盘，改变后指向文件</span></span><br><span class="line">InputStream inputStream = System.in;</span><br><span class="line"><span class="comment">// 获取标准输出流，默认是指向控制台，改变后就指向文件</span></span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="keyword">while</span> ((b = inputStream.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">    printStream.write(b);</span><br><span class="line">&#125;</span><br><span class="line">inputStream.close();</span><br><span class="line">printStream.close();</span><br></pre></td></tr></table></figure>
+<p>Properties。Properties 类表示了一个持久的属性集。Properties 可保存在流中或从流中加载。属性列表中每个键及其对应值都是一个字符串。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Properties properties = new Properties();</span><br><span class="line">properties.put(&quot;abc&quot;, 123);</span><br><span class="line">System.out.println(properties);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Properties properties = new Properties();</span><br><span class="line">properties.setProperty(&quot;name&quot;, &quot;张三&quot;);</span><br><span class="line">properties.setProperty(&quot;tel&quot;, &quot;1234567890&quot;);</span><br><span class="line"></span><br><span class="line">//        System.out.println(properties);</span><br><span class="line">Enumeration&lt;String&gt; enumeration = (Enumeration&lt;String&gt;)properties.propertyNames();</span><br><span class="line">String key = null;</span><br><span class="line">while (enumeration.hasMoreElements())&#123;</span><br><span class="line">    key=  enumeration.nextElement();</span><br><span class="line">    System.out.println(key + &quot; &quot; + properties.get(key));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Properties properties = new Properties();</span><br><span class="line">System.out.println(properties);</span><br><span class="line">// 加载配置文件</span><br><span class="line">properties.load(new FileInputStream(&quot;config.properties&quot;));</span><br><span class="line">System.out.println(properties);</span><br><span class="line">// 在内存中修改，没有在硬盘上修改</span><br><span class="line">properties.setProperty(&quot;tel&quot;,&quot;12322&quot;);</span><br><span class="line">// 写回硬盘</span><br><span class="line">properties.store(new FileOutputStream(&quot;config.properties&quot;), &quot;列表描述&quot;);</span><br><span class="line">System.out.println(properties);</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-08-10T03:23:32.554Z" itemprop="dateUpdated">2018-08-10 11:23:32</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://liuenci.cn">
+            <img src="/img/avatar.png" alt="一琛(cier)">
+            一琛(cier)
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/">IO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/&title=《【Java 基础之 IO 总结】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/&title=《【Java 基础之 IO 总结】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Java 基础之 IO 总结】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/08/09/【Java-基础之-File-总结】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【Java 基础之 File 总结】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>一琛(cier) &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/&title=《【Java 基础之 IO 总结】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/&title=《【Java 基础之 IO 总结】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Java 基础之 IO 总结】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/10/【Java-基础之-IO-总结】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
