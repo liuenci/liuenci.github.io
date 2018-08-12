@@ -143,6 +143,96 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-【Java-基础之-JUC-总结】"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-08-12 16:15:58" datetime="2018-08-12T08:15:58.000Z"  itemprop="datePublished">2018-08-12</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/08/12/【Java-基础之-JUC-总结】/">【Java 基础之 JUC 总结】</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        前言JUC 是 Java 中一个并发包，大大提高了并发性能，AQS 被认为是 JUC 的核心。
+常见的 JUC 中的类CountdownLatch用来控制一个线程等待多个线程。
+维护了一个计数器 cnt，每次调用 countDown() 方法会让计数器的值减 1，见到 0 的时候，那些因为调用 await() 方法而在等待的线程就会被唤醒。
+使用场景：比如对于马拉松比赛，进行排名计算，参赛者...
+    
+
+        <a href="/2018/08/12/【Java-基础之-JUC-总结】/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-【Java-基础之多线程进阶总结】"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-08-11 11:19:54" datetime="2018-08-11T03:19:54.000Z"  itemprop="datePublished">2018-08-11</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/08/11/【Java-基础之多线程进阶总结】/">【Java 基础之多线程进阶总结】</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        前言前面贴了一些自己写多线程的一些基础的案例，但是多线程的东西很多，这里贴一部分自己写过的多线程的进阶的案例。
+案例 DemoRuntime，每个 Java 应用程序都有一个 Runtime 类实例，使应用程序能够与其运行的环境相连接。可以通过 getRuntime 方法获取当前运行时。 
+应用程序不能创建自己的 Runtime 类实例。 
+123Runtime runtime = Runt...
+    
+
+        <a href="/2018/08/11/【Java-基础之多线程进阶总结】/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多线程/">多线程</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-【Java-基础之多线程基础总结】"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -530,121 +620,12 @@ Demo文件的绝对路径。1File file = new File("E:\\file");
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-【设计模式之适配器模式】"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-05 20:11:22" datetime="2018-08-05T12:11:22.000Z"  itemprop="datePublished">2018-08-05</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/05/【设计模式之适配器模式】/">【设计模式之适配器模式】</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        概览
-什么是适配器模式？
-适配器的优劣？
-适配器的分类有几种？
-参考。
-
-什么是适配器模式？适配器模式是作为两个不兼容的接口之间的桥梁。这种类型的设计模式属于结构型模式，它结合了两个独立接口的功能。这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。我们将内存卡插入读卡器，再将读卡器插入笔记本，这样就可以通过笔记本来读取内...
-    
-
-        <a href="/2018/08/05/【设计模式之适配器模式】/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/适配器模式/">适配器模式</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-【设计模式之建造者模式】"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-08-05 19:29:11" datetime="2018-08-05T11:29:11.000Z"  itemprop="datePublished">2018-08-05</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/08/05/【设计模式之建造者模式】/">【设计模式之建造者模式】</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        概览
-什么是建造者模式？
-建造者模式的优劣？
-案例 Demo。
-参考。
-
-什么是建造者模式？建造者模式使用多个简单的对象一步一步构建一个复杂的对象。这种类型的设计模式属于创建者模式，它提供了一种创建对象的最佳方法。
-建造者模式的优劣？优势
-各个建造者之间互相独立。
-扩展性强，需要增加功能时只需要增加新的建造者。
-
-劣势
-产品之间必须要有共同点，范围有限制。
-如果内部变化复杂，会有很多建造类。...
-    
-
-        <a href="/2018/08/05/【设计模式之建造者模式】/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/建造者模式/">建造者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </div>
 </nav>
 
