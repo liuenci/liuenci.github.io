@@ -14,25 +14,25 @@
     
     
     
-    <title>谈谈 https 和 http | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <title>【Java 集合之 LinkedList 源码分析】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="计算机网络,面试,http,https">
-    <meta name="description" content="http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果">
-<meta name="keywords" content="计算机网络,面试,http,https">
+    <meta name="keywords" content="">
+    <meta name="description" content="hello world">
+<meta name="keywords" content="liuenci cier encier">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈谈 https 和 http">
-<meta property="og:url" content="http://liuenci.cn/2018/06/24/谈谈-https-和-http/index.html">
+<meta property="og:title" content="【Java 集合之 LinkedList 源码分析】">
+<meta property="og:url" content="http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/index.html">
 <meta property="og:site_name" content="一琛(cier)">
-<meta property="og:description" content="http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果">
+<meta property="og:description" content="hello world">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-24T08:03:23.900Z">
+<meta property="og:updated_time" content="2018-08-13T02:58:17.662Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谈谈 https 和 http">
-<meta name="twitter:description" content="http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果">
+<meta name="twitter:title" content="【Java 集合之 LinkedList 源码分析】">
+<meta name="twitter:description" content="hello world">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -104,7 +104,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">谈谈 https 和 http</div>
+        <div class="flex-col header-title ellipsis">【Java 集合之 LinkedList 源码分析】</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -126,11 +126,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">谈谈 https 和 http</h1>
+        <h1 class="title">【Java 集合之 LinkedList 源码分析】</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-06-24T08:02:46.000Z" itemprop="datePublished" class="page-time">
-  2018-06-24
+                <time datetime="2018-08-13T02:58:17.000Z" itemprop="datePublished" class="page-time">
+  2018-08-13
 </time>
 
 
@@ -146,21 +146,14 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#https-和-http-的区别"><span class="post-toc-number">1.</span> <span class="post-toc-text">https 和 http 的区别</span></a></li></ol>
-        </nav>
-    </aside>
 
-
-<article id="post-谈谈-https-和-http"
+<article id="post-【Java-集合之-LinkedList-源码分析】"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">谈谈 https 和 http</h1>
+        <h1 class="post-card-title">【Java 集合之 LinkedList 源码分析】</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-06-24 16:02:46" datetime="2018-06-24T08:02:46.000Z"  itemprop="datePublished">2018-06-24</time>
+            <time class="post-time" title="2018-08-13 10:58:17" datetime="2018-08-13T02:58:17.000Z"  itemprop="datePublished">2018-08-13</time>
 
             
 
@@ -173,16 +166,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>http:这是我们比较熟悉的一种网络协议，全称叫做超文本传输协议，它被用于在 Web 浏览器和网络服务器之间传递信息，而且是以明文方式传递内容，（包括我们做项目的时候使用 post 提交虽然看起来把账号和密码转化为一串我们看不懂的字符串，但是它还是明文方式传输内容），这种传输方式不提供任何方式的数据加密，如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，所以如果需要传输敏感信息，比如密码什么的 http 协议不是一个好的协议。</p>
-<p>https:比 http 多了一个 s,这个 s 代表着 security（安全），全称叫做 安全套接字层超文本传输协议,https 在 http 上加入了 ssl 协议，而 ssl 协议依靠证书来验证服务器的身份，并且为浏览器和服务器之间的数据传输加密。</p>
-<p>https 协议的主要作用主要有两种：一种是建立一个信息安全通道，来保证数据传输的安全；另外一个就是确认网站的真实性。</p>
-<h2 id="https-和-http-的区别"><a href="#https-和-http-的区别" class="headerlink" title="https 和 http 的区别"></a>https 和 http 的区别</h2><ol>
-<li>https 协议需要到 ca 申请证书，一般免费证书较少，因而需要一定费用，（好像可以自己制作证书来着，但是要服务器端支持）括号内自动忽略就好，我记得在哪看到过。</li>
-<li>http 是超文本传输协议，信息 是明文传输，https 则是具有安全性的 ssl 加密传输协议。</li>
-<li>http 和 https 使用的两种不同的连接方式，使用的默认端口也是不一致的，http 使用的 80 端口，https 使用的 443 端口。</li>
-<li>http 的连接比较简单，是无状态的；https 协议则是使用 ssl + http 协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。</li>
-</ol>
-
+            
         </div>
 
         <blockquote class="post-copyright">
@@ -190,7 +174,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-06-24T08:03:23.900Z" itemprop="dateUpdated">2018-06-24 16:03:23</time>
+    最后更新时间：<time datetime="2018-08-13T02:58:17.662Z" itemprop="dateUpdated">2018-08-13 10:58:17</time>
 </span><br>
 
 
@@ -214,8 +198,6 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
-
 
             
 <div class="page-share-wrap">
@@ -224,7 +206,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/&title=《【Java 集合之 LinkedList 源码分析】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -234,22 +216,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/&title=《【Java 集合之 LinkedList 源码分析】》 — 一琛(cier)&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈 https 和 http》 — 一琛(cier)&url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&via=http://liuenci.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Java 集合之 LinkedList 源码分析】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/&via=http://liuenci.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -269,21 +251,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/06/24/BASIC-6-杨辉三角形/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">BASIC-6 杨辉三角形</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/06/24/https-的工作原理/" id="post-next" class="post-nav-link">
+      <a href="/2018/08/12/【Java-集合之-ArrayList-源码分析】/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">https 的工作原理</h4>
+        <h4 class="title">【Java 集合之 ArrayList 源码分析】</h4>
       </a>
     </div>
   
@@ -379,7 +354,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/&title=《【Java 集合之 LinkedList 源码分析】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -389,22 +364,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&title=《谈谈 https 和 http》 — 一琛(cier)&source=hello world" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/&title=《【Java 集合之 LinkedList 源码分析】》 — 一琛(cier)&source=hello world" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《谈谈 https 和 http》 — 一琛(cier)&url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/&via=http://liuenci.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Java 集合之 LinkedList 源码分析】》 — 一琛(cier)&url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/&via=http://liuenci.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -415,7 +390,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/06/24/谈谈-https-和-http/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/08/13/【Java-集合之-LinkedList-源码分析】/" alt="微信分享二维码">
 </div>
 
 
