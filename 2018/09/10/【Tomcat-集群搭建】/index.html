@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【Tomcat 集群搭建】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Tomcat,集群">
+    <meta name="description" content="概览 什么是 Tomcat 集群？ 集群之间通过何种方式进行连接？ 怎么搭建 Tomcat 集群？ 本地开发环境。 线上生产环境。    什么是 Tomcat 集群？集群分为两种，一种是单机部署多应用，一种是多机部署多应用。  单机部署多应用：一台服务器上运行多个 Tomcat，每个 Tomcat 中都运行了一个 Web 应用，需要解决端口冲突问题，每个端口必须是唯一的。比如说一个 Tomcat">
+<meta name="keywords" content="Tomcat,集群">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Tomcat 集群搭建】">
+<meta property="og:url" content="http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/index.html">
+<meta property="og:site_name" content="一琛(cier)">
+<meta property="og:description" content="概览 什么是 Tomcat 集群？ 集群之间通过何种方式进行连接？ 怎么搭建 Tomcat 集群？ 本地开发环境。 线上生产环境。    什么是 Tomcat 集群？集群分为两种，一种是单机部署多应用，一种是多机部署多应用。  单机部署多应用：一台服务器上运行多个 Tomcat，每个 Tomcat 中都运行了一个 Web 应用，需要解决端口冲突问题，每个端口必须是唯一的。比如说一个 Tomcat">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-10T08:40:15.523Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Tomcat 集群搭建】">
+<meta name="twitter:description" content="概览 什么是 Tomcat 集群？ 集群之间通过何种方式进行连接？ 怎么搭建 Tomcat 集群？ 本地开发环境。 线上生产环境。    什么是 Tomcat 集群？集群分为两种，一种是单机部署多应用，一种是多机部署多应用。  单机部署多应用：一台服务器上运行多个 Tomcat，每个 Tomcat 中都运行了一个 Web 应用，需要解决端口冲突问题，每个端口必须是唯一的。比如说一个 Tomcat">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">一琛(cier)</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【Tomcat 集群搭建】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【Tomcat 集群搭建】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-10T08:39:12.000Z" itemprop="datePublished" class="page-time">
+  2018-09-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概览"><span class="post-toc-number">1.</span> <span class="post-toc-text">概览</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是-Tomcat-集群？"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是 Tomcat 集群？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#集群之间通过何种方式进行连接？"><span class="post-toc-number">3.</span> <span class="post-toc-text">集群之间通过何种方式进行连接？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#怎么搭建-Tomcat-集群？"><span class="post-toc-number">4.</span> <span class="post-toc-text">怎么搭建 Tomcat 集群？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#本地开发环境（windows）。"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">本地开发环境（windows）。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线上生产环境（Centos-6-8）。"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">线上生产环境（Centos 6.8）。</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【Tomcat-集群搭建】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【Tomcat 集群搭建】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-10 16:39:12" datetime="2018-09-10T08:39:12.000Z"  itemprop="datePublished">2018-09-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><ul>
+<li>什么是 Tomcat 集群？</li>
+<li>集群之间通过何种方式进行连接？</li>
+<li>怎么搭建 Tomcat 集群？<ul>
+<li>本地开发环境。</li>
+<li>线上生产环境。</li>
+</ul>
+</li>
+</ul>
+<h3 id="什么是-Tomcat-集群？"><a href="#什么是-Tomcat-集群？" class="headerlink" title="什么是 Tomcat 集群？"></a>什么是 Tomcat 集群？</h3><p>集群分为两种，一种是单机部署多应用，一种是多机部署多应用。</p>
+<ul>
+<li>单机部署多应用：一台服务器上运行多个 Tomcat，每个 Tomcat 中都运行了一个 Web 应用，需要解决端口冲突问题，每个端口必须是唯一的。比如说一个 Tomcat 开放的端口是 8080，另一个 Tomcat 开放的端口可以是 9080。</li>
+<li>多级部署多应用：可以有多台服务器，每个服务器上都有一个 Tomcat，每个 Tomcat 中都运行了一个  Web 应用，这种方式不需要解决端口冲突问题，但是需要解决防火墙端口开放问题，比如将 8080 端口开放出来。</li>
+</ul>
+<h3 id="集群之间通过何种方式进行连接？"><a href="#集群之间通过何种方式进行连接？" class="headerlink" title="集群之间通过何种方式进行连接？"></a>集群之间通过何种方式进行连接？</h3><p>不管是单机部署多应用还是多机部署多应用，都需要通过代理服务器来进行负载均衡的配置。这里可以使用 nginx 来进行配置。用户的请求如果不通过 nginx 服务器就会直接进入我们的服务器中，如果设置了 nginx 服务器，可以通过轮询或者随机的方式来进行多台服务器的访问，下面介绍如何搭建 Tomcat 集群。</p>
+<h3 id="怎么搭建-Tomcat-集群？"><a href="#怎么搭建-Tomcat-集群？" class="headerlink" title="怎么搭建 Tomcat 集群？"></a>怎么搭建 Tomcat 集群？</h3><h4 id="本地开发环境（windows）。"><a href="#本地开发环境（windows）。" class="headerlink" title="本地开发环境（windows）。"></a>本地开发环境（windows）。</h4><ul>
+<li>准备两个 Tomcat 解压缩包。一个命名为 Tomcat1，一个命名为 Tomcat2。</li>
+<li>进入 Tomcat2 中 conf 文件夹下面的 server.xml。修改三个端口为 9005，9080，9009。配置文件如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">  Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="line">  contributor license agreements.  See the NOTICE file distributed with</span><br><span class="line">  this work for additional information regarding copyright ownership.</span><br><span class="line">  The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="line">  (the &quot;License&quot;); you may not use this file except in compliance with</span><br><span class="line">  the License.  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">      http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">  See the License for the specific language governing permissions and</span><br><span class="line">  limitations under the License.</span><br><span class="line">--&gt;</span><br><span class="line">&lt;!-- Note:  A &quot;Server&quot; is not itself a &quot;Container&quot;, so you may not</span><br><span class="line">     define subcomponents such as &quot;Valves&quot; at this level.</span><br><span class="line">     Documentation at /docs/config/server.html</span><br><span class="line"> --&gt;</span><br><span class="line">&lt;Server port=&quot;9005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;</span><br><span class="line">  &lt;!-- Security listener. Documentation at /docs/config/listeners.html</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.security.SecurityListener&quot; /&gt;</span><br><span class="line">  --&gt;</span><br><span class="line">  &lt;!--APR library loader. Documentation at /docs/apr.html --&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;</span><br><span class="line">  &lt;!--Initialize Jasper prior to webapps are loaded. Documentation at /docs/jasper-howto.html --&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.JasperListener&quot; /&gt;</span><br><span class="line">  &lt;!-- Prevent memory leaks due to use of particular java/javax APIs--&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Global JNDI resources</span><br><span class="line">       Documentation at /docs/jndi-resources-howto.html</span><br><span class="line">  --&gt;</span><br><span class="line">  &lt;GlobalNamingResources&gt;</span><br><span class="line">    &lt;!-- Editable user database that can also be used by</span><br><span class="line">         UserDatabaseRealm to authenticate users</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;Resource name=&quot;UserDatabase&quot; auth=&quot;Container&quot;</span><br><span class="line">              type=&quot;org.apache.catalina.UserDatabase&quot;</span><br><span class="line">              description=&quot;User database that can be updated and saved&quot;</span><br><span class="line">              factory=&quot;org.apache.catalina.users.MemoryUserDatabaseFactory&quot;</span><br><span class="line">              pathname=&quot;conf/tomcat-users.xml&quot; /&gt;</span><br><span class="line">  &lt;/GlobalNamingResources&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- A &quot;Service&quot; is a collection of one or more &quot;Connectors&quot; that share</span><br><span class="line">       a single &quot;Container&quot; Note:  A &quot;Service&quot; is not itself a &quot;Container&quot;,</span><br><span class="line">       so you may not define subcomponents such as &quot;Valves&quot; at this level.</span><br><span class="line">       Documentation at /docs/config/service.html</span><br><span class="line">   --&gt;</span><br><span class="line">  &lt;Service name=&quot;Catalina&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--The connectors can use a shared executor, you can define one or more named thread pools--&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">    &lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot;</span><br><span class="line">        maxThreads=&quot;150&quot; minSpareThreads=&quot;4&quot;/&gt;</span><br><span class="line">    --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;!-- A &quot;Connector&quot; represents an endpoint by which requests are received</span><br><span class="line">         and responses are returned. Documentation at :</span><br><span class="line">         Java HTTP Connector: /docs/config/http.html (blocking &amp; non-blocking)</span><br><span class="line">         Java AJP  Connector: /docs/config/ajp.html</span><br><span class="line">         APR (HTTP/AJP) Connector: /docs/apr.html</span><br><span class="line">         Define a non-SSL HTTP/1.1 Connector on port 8080</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;Connector port=&quot;9080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">               connectionTimeout=&quot;20000&quot;</span><br><span class="line">               redirectPort=&quot;8443&quot; URIEncoding=&quot;utf-8&quot;/&gt;</span><br><span class="line">    &lt;!-- A &quot;Connector&quot; using the shared thread pool--&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">    &lt;Connector executor=&quot;tomcatThreadPool&quot;</span><br><span class="line">               port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">               connectionTimeout=&quot;20000&quot;</span><br><span class="line">               redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;!-- Define a SSL HTTP/1.1 Connector on port 8443</span><br><span class="line">         This connector uses the BIO implementation that requires the JSSE</span><br><span class="line">         style configuration. When using the APR/native implementation, the</span><br><span class="line">         OpenSSL style configuration is required as described in the APR/native</span><br><span class="line">         documentation --&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">    &lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot;</span><br><span class="line">               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;</span><br><span class="line">               clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; /&gt;</span><br><span class="line">    --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- Define an AJP 1.3 Connector on port 8009 --&gt;</span><br><span class="line">    &lt;Connector port=&quot;9009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;!-- An Engine represents the entry point (within Catalina) that processes</span><br><span class="line">         every request.  The Engine implementation for Tomcat stand alone</span><br><span class="line">         analyzes the HTTP headers included with the request, and passes them</span><br><span class="line">         on to the appropriate Host (virtual host).</span><br><span class="line">         Documentation at /docs/config/engine.html --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- You should set jvmRoute to support load-balancing via AJP ie :</span><br><span class="line">    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot; jvmRoute=&quot;jvm1&quot;&gt;</span><br><span class="line">    --&gt;</span><br><span class="line">    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot;&gt;</span><br><span class="line"></span><br><span class="line">      &lt;!--For clustering, please take a look at documentation at:</span><br><span class="line">          /docs/cluster-howto.html  (simple how to)</span><br><span class="line">          /docs/config/cluster.html (reference documentation) --&gt;</span><br><span class="line">      &lt;!--</span><br><span class="line">      &lt;Cluster className=&quot;org.apache.catalina.ha.tcp.SimpleTcpCluster&quot;/&gt;</span><br><span class="line">      --&gt;</span><br><span class="line"></span><br><span class="line">      &lt;!-- Use the LockOutRealm to prevent attempts to guess user passwords</span><br><span class="line">           via a brute-force attack --&gt;</span><br><span class="line">      &lt;Realm className=&quot;org.apache.catalina.realm.LockOutRealm&quot;&gt;</span><br><span class="line">        &lt;!-- This Realm uses the UserDatabase configured in the global JNDI</span><br><span class="line">             resources under the key &quot;UserDatabase&quot;.  Any edits</span><br><span class="line">             that are performed against this UserDatabase are immediately</span><br><span class="line">             available for use by the Realm.  --&gt;</span><br><span class="line">        &lt;Realm className=&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;</span><br><span class="line">               resourceName=&quot;UserDatabase&quot;/&gt;</span><br><span class="line">      &lt;/Realm&gt;</span><br><span class="line"></span><br><span class="line">      &lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;</span><br><span class="line">            unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- SingleSignOn valve, share authentication between web applications</span><br><span class="line">             Documentation at: /docs/config/valve.html --&gt;</span><br><span class="line">        &lt;!--</span><br><span class="line">        &lt;Valve className=&quot;org.apache.catalina.authenticator.SingleSignOn&quot; /&gt;</span><br><span class="line">        --&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- Access log processes all example.</span><br><span class="line">             Documentation at: /docs/config/valve.html</span><br><span class="line">             Note: The pattern used is equivalent to using pattern=&quot;common&quot; --&gt;</span><br><span class="line">        &lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;</span><br><span class="line">               prefix=&quot;localhost_access_log.&quot; suffix=&quot;.txt&quot;</span><br><span class="line">               pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;</span><br><span class="line"></span><br><span class="line">      &lt;/Host&gt;</span><br><span class="line">    &lt;/Engine&gt;</span><br><span class="line">  &lt;/Service&gt;</span><br><span class="line">&lt;/Server&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改系统环境变量。右键计算机 -&gt; 属性 -&gt; 高级系统设置 -&gt; 新建系统变量。增加以下 6 个环境变量。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CATALINA_HOME -&gt; E:\tomcat1</span><br><span class="line">CATALINE_BASE -&gt; E:\tomcat1</span><br><span class="line">TOMCAT_HOME -&gt; E:\tomcat1</span><br><span class="line"></span><br><span class="line">CATALINA_2_HOME -&gt; E:\tomcat2</span><br><span class="line">CATALINE_2_BASE -&gt; E:\tomcat2</span><br><span class="line">TOMCAT_2_HOME -&gt; E:\tomcat2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 Tomcat2 中的 catalina.bat 以及 startup.bat。将两个文件中的 CATALINA_BASE 替换成 CATALINA_2_BASE。</li>
+<li>修改 hosts 文件，将以下 IP 对域名的映射添加到末尾。这样我们在启动两个 tomcat 的时候可以通过 you-dian.online:8080 以及 you-dian.online:9080 进行访问。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 you-dian.online</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过配置 nginx 进行 Tomcat 集群架构。以下这行代码的意思是监听用户输入的 url 地址以及 80 端口，当用户输入 <a href="http://www.you-dian.online，you-dian.online" target="_blank" rel="noopener">www.you-dian.online，you-dian.online</a> 这两个地址时，nginx 会将请求以轮询的方式分发到具体的服务器上，这里 127.0.0.1 指的是本机服务器地址，8080 以及 9080 是本机开放的两个 Tomcat 端口。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">upstream www.you-dian.online&#123;</span><br><span class="line">	server 127.0.0.1:8080 weight=1;</span><br><span class="line">	server 127.0.0.1:9080 weight=1;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    autoindex on;</span><br><span class="line">    server_name www.you-dian.online you-dian.online;</span><br><span class="line">    access_log c:/access.log combined;</span><br><span class="line">    index index.html index.htm index.jsp index.php;</span><br><span class="line">    #error_page 404 /404.html;</span><br><span class="line">    if ($query_string ~* &quot;.*[\;&apos;\&lt;\&gt;].*&quot;) &#123;</span><br><span class="line">        return 404;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://www.you-dian.online;</span><br><span class="line">        add_header Access-Control-Allow-Origin *;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="线上生产环境（Centos-6-8）。"><a href="#线上生产环境（Centos-6-8）。" class="headerlink" title="线上生产环境（Centos 6.8）。"></a>线上生产环境（Centos 6.8）。</h4><ul>
+<li>同样准备两个 Tomcat，一个命名为 <a href="http://www.you-dian.online，一个命名为" target="_blank" rel="noopener">www.you-dian.online，一个命名为</a> www2.you-dian.online。</li>
+<li>修改 www2.you-dian.online 的 conf 文件夹下的 server.xml 文件中的三个端口。</li>
+<li>修改系统配置。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>增加以下 6 行配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export CATALINA_BASE=/developer/www.you-dian.online</span><br><span class="line">export CATALINA_HOME=/developer/www.you-dian.online</span><br><span class="line">export TOMCAT_HOME=/developer/www.you-dian.online</span><br><span class="line"></span><br><span class="line">export CATALINA_2_BASE=/developer/www2.you-dian.online</span><br><span class="line">export CATALINA_2_HOME=/developer/www2.you-dian.online</span><br><span class="line">export TOMCAT_2_HOME=/developer/www2.you-dian.online</span><br></pre></td></tr></table></figure>
+<p>使配置生效。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改 www2.you-dian.online 中的 catalina.sh 以及 startup.sh，将两个文件中的 CATALINA_BASE 替换成 CATALINA_2_BASE。</li>
+<li>线上在购买了域名之后就不需要配置 hosts 文件了。</li>
+<li>通过配置 nginx 进行 Tomcat 集群架构。以下这行代码的意思是监听用户输入的 url 地址以及 80 端口，当用户输入 <a href="http://www.you-dian.online，you-dian.online" target="_blank" rel="noopener">www.you-dian.online，you-dian.online</a> 这两个地址时，nginx 会将请求以轮询的方式分发到具体的服务器上，这里 127.0.0.1 指的是本机服务器地址，8080 以及 9080 是本机开放的两个 Tomcat 端口。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">upstream www.you-dian.online&#123;</span><br><span class="line">	server 127.0.0.1:8080 weight=1;</span><br><span class="line">	server 127.0.0.1:9080 weight=1;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    autoindex on;</span><br><span class="line">    server_name www.you-dian.online you-dian.online;</span><br><span class="line">    access_log c:/access.log combined;</span><br><span class="line">    index index.html index.htm index.jsp index.php;</span><br><span class="line">    #error_page 404 /404.html;</span><br><span class="line">    if ($query_string ~* &quot;.*[\;&apos;\&lt;\&gt;].*&quot;) &#123;</span><br><span class="line">        return 404;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://www.you-dian.online;</span><br><span class="line">        add_header Access-Control-Allow-Origin *;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开放线上防火墙端口。如果是单机部署多应用，则不需要开放 8080 9080 两个端口，如果是多机部署多应用，则需要开放 8080 端口。这里提供多级部署多应用的命令。</li>
+</ul>
+<p>首先编辑防火墙<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure></p>
+<p>然后添加开放端口命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>重启防火墙。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过访问 you-dian.online 重复刷新可以看到请求以轮询的方式访问两台服务器了。</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-10T08:40:15.523Z" itemprop="dateUpdated">2018-09-10 16:40:15</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://liuenci.cn">
+            <img src="/img/avatar.png" alt="一琛(cier)">
+            一琛(cier)
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/集群/">集群</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/&title=《【Tomcat 集群搭建】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/&title=《【Tomcat 集群搭建】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Tomcat 集群搭建】》 — 一琛(cier)&url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/10/【maven-环境隔离】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【maven 环境隔离】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>一琛(cier) &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/&title=《【Tomcat 集群搭建】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/&title=《【Tomcat 集群搭建】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Tomcat 集群搭建】》 — 一琛(cier)&url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/09/10/【Tomcat-集群搭建】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
