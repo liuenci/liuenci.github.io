@@ -143,6 +143,51 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-数据结构-线性表-双向链表"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-06-24 15:52:43" datetime="2018-06-24T07:52:43.000Z"  itemprop="datePublished">2018-06-24</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/06/24/数据结构-线性表-双向链表/">数据结构-线性表-双向链表</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        我们在单链表中，由于只有后继结点的指针域，所以如果我们需要查找上一个结点的时候，最坏的时间复杂度就是 O(n),因为我们每次都需要从头结点开始遍历。所以在后来者中提出了双向链表来解决单链表的问题。那什么是双向链表呢？双向链表就是在单链表的每个结点中，再设置一个指向其前驱结点的指针域。具体的代码结构如下：12345678class Node &#123;        // 保存结点的数据  ...
+    
+
+        <a href="/2018/06/24/数据结构-线性表-双向链表/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线性表/">线性表</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-树"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -577,58 +622,6 @@ ROWNUM 伪列ROWNUM 伪列是 oracle 首先从数据库中查询到一个结果�
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oracle/">oracle</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-oracle-设置自增序列"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-06-24 15:41:47" datetime="2018-06-24T07:41:47.000Z"  itemprop="datePublished">2018-06-24</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/06/24/oracle-设置自增序列/">oracle 设置自增序列</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-oracle和mysql的自增区别
-
-mysql自增使用的是auto increment，但是oracle中需要使用序列配合触发器来实现自增。
-
-步骤1:创建表
-
-123456create table classroom(c_id NUMBER(4) not null primary key,c_address VARCHAR2(10) not null,c_count NUMBER(2)...
-    
-
-        <a href="/2018/06/24/oracle-设置自增序列/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oracle/">oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/序列/">序列</a></li></ul>
 
     </div>
     
