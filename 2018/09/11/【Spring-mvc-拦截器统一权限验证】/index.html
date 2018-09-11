@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【Spring mvc 拦截器统一权限验证】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="权限,Spring mvc">
+    <meta name="description" content="概览 为什么需要统一权限验证？ 具体 Demo。  为什么需要统一权限验证？如果不做拦截器的统一权限验证，那么，在每一个控制器请求中，都需要从 session 中获取用户信息，判断用户的权限，这样子大大增加了代码量。 具体 Demo。12345678910111213141516171819202122232425262728293031323334353637383940414243444546">
+<meta name="keywords" content="权限,Spring mvc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Spring mvc 拦截器统一权限验证】">
+<meta property="og:url" content="http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/index.html">
+<meta property="og:site_name" content="一琛(cier)">
+<meta property="og:description" content="概览 为什么需要统一权限验证？ 具体 Demo。  为什么需要统一权限验证？如果不做拦截器的统一权限验证，那么，在每一个控制器请求中，都需要从 session 中获取用户信息，判断用户的权限，这样子大大增加了代码量。 具体 Demo。12345678910111213141516171819202122232425262728293031323334353637383940414243444546">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-11T08:53:57.866Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Spring mvc 拦截器统一权限验证】">
+<meta name="twitter:description" content="概览 为什么需要统一权限验证？ 具体 Demo。  为什么需要统一权限验证？如果不做拦截器的统一权限验证，那么，在每一个控制器请求中，都需要从 session 中获取用户信息，判断用户的权限，这样子大大增加了代码量。 具体 Demo。12345678910111213141516171819202122232425262728293031323334353637383940414243444546">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">一琛(cier)</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【Spring mvc 拦截器统一权限验证】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【Spring mvc 拦截器统一权限验证】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-11T08:53:31.000Z" itemprop="datePublished" class="page-time">
+  2018-09-11
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概览"><span class="post-toc-number">1.</span> <span class="post-toc-text">概览</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为什么需要统一权限验证？"><span class="post-toc-number">2.</span> <span class="post-toc-text">为什么需要统一权限验证？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#具体-Demo。"><span class="post-toc-number">3.</span> <span class="post-toc-text">具体 Demo。</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【Spring-mvc-拦截器统一权限验证】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【Spring mvc 拦截器统一权限验证】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-11 16:53:31" datetime="2018-09-11T08:53:31.000Z"  itemprop="datePublished">2018-09-11</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><ul>
+<li>为什么需要统一权限验证？</li>
+<li>具体 Demo。</li>
+</ul>
+<h3 id="为什么需要统一权限验证？"><a href="#为什么需要统一权限验证？" class="headerlink" title="为什么需要统一权限验证？"></a>为什么需要统一权限验证？</h3><p>如果不做拦截器的统一权限验证，那么，在每一个控制器请求中，都需要从 session 中获取用户信息，判断用户的权限，这样子大大增加了代码量。</p>
+<h3 id="具体-Demo。"><a href="#具体-Demo。" class="headerlink" title="具体 Demo。"></a>具体 Demo。</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mmall.controller.common.interceptor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.common.collect.Maps;</span><br><span class="line"><span class="keyword">import</span> com.mmall.common.Const;</span><br><span class="line"><span class="keyword">import</span> com.mmall.common.ServerResponse;</span><br><span class="line"><span class="keyword">import</span> com.mmall.pojo.User;</span><br><span class="line"><span class="keyword">import</span> com.mmall.util.CookieUtil;</span><br><span class="line"><span class="keyword">import</span> com.mmall.util.JsonUtil;</span><br><span class="line"><span class="keyword">import</span> com.mmall.util.RedisShardedPoolUtil;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.method.HandlerMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthorityInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        log.info(<span class="string">"preHandle"</span>);</span><br><span class="line">        <span class="comment">//请求中Controller中的方法名</span></span><br><span class="line">        HandlerMethod handlerMethod = (HandlerMethod)handler;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//解析HandlerMethod</span></span><br><span class="line">        String methodName = handlerMethod.getMethod().getName();</span><br><span class="line">        String className = handlerMethod.getBean().getClass().getSimpleName();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//解析参数,具体的参数key以及value是什么，我们打印日志</span></span><br><span class="line">        StringBuffer requestParamBuffer = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        Map paramMap = request.getParameterMap();</span><br><span class="line">        Iterator it = paramMap.entrySet().iterator();</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext())&#123;</span><br><span class="line">            Map.Entry entry = (Map.Entry)it.next();</span><br><span class="line">            String mapKey = (String)entry.getKey();</span><br><span class="line"></span><br><span class="line">            String mapValue = StringUtils.EMPTY;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//request这个参数的map，里面的value返回的是一个String[]</span></span><br><span class="line">            Object obj = entry.getValue();</span><br><span class="line">            <span class="keyword">if</span>(obj <span class="keyword">instanceof</span> String[])&#123;</span><br><span class="line">                String[] strs = (String[])obj;</span><br><span class="line">                mapValue = Arrays.toString(strs);</span><br><span class="line">            &#125;</span><br><span class="line">            requestParamBuffer.append(mapKey).append(<span class="string">"="</span>).append(mapValue);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(StringUtils.equals(className,<span class="string">"UserManageController"</span>) &amp;&amp; StringUtils.equals(methodName,<span class="string">"login"</span>))&#123;</span><br><span class="line">            log.info(<span class="string">"权限拦截器拦截到请求,className:&#123;&#125;,methodName:&#123;&#125;"</span>,className,methodName);</span><br><span class="line">            <span class="comment">//如果是拦截到登录请求，不打印参数，因为参数里面有密码，全部会打印到日志中，防止日志泄露</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        log.info(<span class="string">"权限拦截器拦截到请求,className:&#123;&#125;,methodName:&#123;&#125;,param:&#123;&#125;"</span>,className,methodName,requestParamBuffer.toString());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        User user = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        String loginToken = CookieUtil.readLoginToken(request);</span><br><span class="line">        <span class="keyword">if</span>(StringUtils.isNotEmpty(loginToken))&#123;</span><br><span class="line">            String userJsonStr = RedisShardedPoolUtil.get(loginToken);</span><br><span class="line">            user = JsonUtil.string2Obj(userJsonStr,User.class);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(user == <span class="keyword">null</span> || (user.getRole().intValue() != Const.Role.ROLE_ADMIN))&#123;</span><br><span class="line">            <span class="comment">//返回false.即不会调用controller里的方法</span></span><br><span class="line">            response.reset();<span class="comment">//这里要添加reset，否则报异常 getWriter() has already been called for this response.</span></span><br><span class="line">            response.setCharacterEncoding(<span class="string">"UTF-8"</span>);<span class="comment">//这里要设置编码，否则会乱码</span></span><br><span class="line">            response.setContentType(<span class="string">"application/json;charset=UTF-8"</span>);<span class="comment">//这里要设置返回值的类型，因为全部是json接口。</span></span><br><span class="line"></span><br><span class="line">            PrintWriter out = response.getWriter();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//上传由于富文本的控件要求，要特殊处理返回值，这里面区分是否登录以及是否有权限</span></span><br><span class="line">            <span class="keyword">if</span>(user == <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(StringUtils.equals(className,<span class="string">"ProductManageController"</span>) &amp;&amp; StringUtils.equals(methodName,<span class="string">"richtextImgUpload"</span>))&#123;</span><br><span class="line">                    Map resultMap = Maps.newHashMap();</span><br><span class="line">                    resultMap.put(<span class="string">"success"</span>,<span class="keyword">false</span>);</span><br><span class="line">                    resultMap.put(<span class="string">"msg"</span>,<span class="string">"请登录管理员"</span>);</span><br><span class="line">                    out.print(JsonUtil.obj2String(resultMap));</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    out.print(JsonUtil.obj2String(ServerResponse.createByErrorMessage(<span class="string">"拦截器拦截,用户未登录"</span>)));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(StringUtils.equals(className,<span class="string">"ProductManageController"</span>) &amp;&amp; StringUtils.equals(methodName,<span class="string">"richtextImgUpload"</span>))&#123;</span><br><span class="line">                    Map resultMap = Maps.newHashMap();</span><br><span class="line">                    resultMap.put(<span class="string">"success"</span>,<span class="keyword">false</span>);</span><br><span class="line">                    resultMap.put(<span class="string">"msg"</span>,<span class="string">"无权限操作"</span>);</span><br><span class="line">                    out.print(JsonUtil.obj2String(resultMap));</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    out.print(JsonUtil.obj2String(ServerResponse.createByErrorMessage(<span class="string">"拦截器拦截,用户无权限操作"</span>)));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            out.flush();</span><br><span class="line">            out.close();<span class="comment">//这里要关闭</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        log.info(<span class="string">"postHandle"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        log.info(<span class="string">"afterCompletion"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-11T08:53:57.866Z" itemprop="dateUpdated">2018-09-11 16:53:57</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://liuenci.cn">
+            <img src="/img/avatar.png" alt="一琛(cier)">
+            一琛(cier)
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-mvc/">Spring mvc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/权限/">权限</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/&title=《【Spring mvc 拦截器统一权限验证】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/&title=《【Spring mvc 拦截器统一权限验证】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Spring mvc 拦截器统一权限验证】》 — 一琛(cier)&url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/11/【Spring-mvc-全局异常处理】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【Spring mvc 全局异常处理】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>一琛(cier) &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/&title=《【Spring mvc 拦截器统一权限验证】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/&title=《【Spring mvc 拦截器统一权限验证】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【Spring mvc 拦截器统一权限验证】》 — 一琛(cier)&url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/09/11/【Spring-mvc-拦截器统一权限验证】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
