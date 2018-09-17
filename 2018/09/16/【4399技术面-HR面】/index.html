@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="面经">
-    <meta name="description" content="自我介绍。 会不会 mongodb? 不会。 会不会 memcached? 不会。 集群环境怎么搭建的？为什么要做集群？多Tomcat+Nginx 搭建，降低服务器压力。 集群除了降低服务器压力还有什么吗？不会。嗯嗯，还有容灾。 反向代理的原理说下？ 负载均衡的原理说下？知道哪几种分流算法？轮询，权重，ip_hash,url_hash,fair五种。 nginx 需要隔离出来单独做一台服务器吗？如">
+    <meta name="description" content="自我介绍。略 会不会 mongodb?暂时不会。 会不会 memcached?暂时不会。 集群环境怎么搭建的？用户通过访问 nginx 代理服务器，nginx 将请求分发到 tomcat 集群中的某一台服务器上。 为什么要做集群？ 降低服务器压力。 容灾。 增大吞吐量。  反向代理的原理说下？反向代理是指以代理服务器的方式来接受来自客户端的请求，然后将请求转发给内部网络上的服务器，并将从服务器上得">
 <meta name="keywords" content="面经">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【4399技术面+HR面】">
 <meta property="og:url" content="http://liuenci.cn/2018/09/16/【4399技术面-HR面】/index.html">
 <meta property="og:site_name" content="一琛(cier)">
-<meta property="og:description" content="自我介绍。 会不会 mongodb? 不会。 会不会 memcached? 不会。 集群环境怎么搭建的？为什么要做集群？多Tomcat+Nginx 搭建，降低服务器压力。 集群除了降低服务器压力还有什么吗？不会。嗯嗯，还有容灾。 反向代理的原理说下？ 负载均衡的原理说下？知道哪几种分流算法？轮询，权重，ip_hash,url_hash,fair五种。 nginx 需要隔离出来单独做一台服务器吗？如">
+<meta property="og:description" content="自我介绍。略 会不会 mongodb?暂时不会。 会不会 memcached?暂时不会。 集群环境怎么搭建的？用户通过访问 nginx 代理服务器，nginx 将请求分发到 tomcat 集群中的某一台服务器上。 为什么要做集群？ 降低服务器压力。 容灾。 增大吞吐量。  反向代理的原理说下？反向代理是指以代理服务器的方式来接受来自客户端的请求，然后将请求转发给内部网络上的服务器，并将从服务器上得">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-16T03:26:54.273Z">
+<meta property="og:updated_time" content="2018-09-17T08:06:07.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【4399技术面+HR面】">
-<meta name="twitter:description" content="自我介绍。 会不会 mongodb? 不会。 会不会 memcached? 不会。 集群环境怎么搭建的？为什么要做集群？多Tomcat+Nginx 搭建，降低服务器压力。 集群除了降低服务器压力还有什么吗？不会。嗯嗯，还有容灾。 反向代理的原理说下？ 负载均衡的原理说下？知道哪几种分流算法？轮询，权重，ip_hash,url_hash,fair五种。 nginx 需要隔离出来单独做一台服务器吗？如">
+<meta name="twitter:description" content="自我介绍。略 会不会 mongodb?暂时不会。 会不会 memcached?暂时不会。 集群环境怎么搭建的？用户通过访问 nginx 代理服务器，nginx 将请求分发到 tomcat 集群中的某一台服务器上。 为什么要做集群？ 降低服务器压力。 容灾。 增大吞吐量。  反向代理的原理说下？反向代理是指以代理服务器的方式来接受来自客户端的请求，然后将请求转发给内部网络上的服务器，并将从服务器上得">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -146,6 +146,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#自我介绍。"><span class="post-toc-number">1.</span> <span class="post-toc-text">自我介绍。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#会不会-mongodb"><span class="post-toc-number">2.</span> <span class="post-toc-text">会不会 mongodb?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#会不会-memcached"><span class="post-toc-number">3.</span> <span class="post-toc-text">会不会 memcached?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#集群环境怎么搭建的？"><span class="post-toc-number">4.</span> <span class="post-toc-text">集群环境怎么搭建的？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么要做集群？"><span class="post-toc-number">5.</span> <span class="post-toc-text">为什么要做集群？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#反向代理的原理说下？"><span class="post-toc-number">6.</span> <span class="post-toc-text">反向代理的原理说下？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#负载均衡的原理说下？"><span class="post-toc-number">7.</span> <span class="post-toc-text">负载均衡的原理说下？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知道哪几种分流算法？"><span class="post-toc-number">8.</span> <span class="post-toc-text">知道哪几种分流算法？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#nginx-需要隔离出来单独做一台服务器吗？"><span class="post-toc-number">9.</span> <span class="post-toc-text">nginx 需要隔离出来单独做一台服务器吗？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#如果-nginx-挂掉能不能访问-Tomcat"><span class="post-toc-number">10.</span> <span class="post-toc-text">如果 nginx 挂掉能不能访问 Tomcat ?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Session-共享怎么做的？"><span class="post-toc-number">11.</span> <span class="post-toc-text">Session 共享怎么做的？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#单点登录和单点注销原理说下？"><span class="post-toc-number">12.</span> <span class="post-toc-text">单点登录和单点注销原理说下？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#除了用-cookie-做-session-追踪还会什么方法做-session-追踪？"><span class="post-toc-number">13.</span> <span class="post-toc-text">除了用 cookie 做 session 追踪还会什么方法做 session 追踪？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#购物车的设计思路和数据库里怎么设计的？"><span class="post-toc-number">14.</span> <span class="post-toc-text">购物车的设计思路和数据库里怎么设计的？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分布式锁了解多少？setnx-是不是原子操作？那-getset-是不是原子操作？"><span class="post-toc-number">15.</span> <span class="post-toc-text">分布式锁了解多少？setnx 是不是原子操作？那 getset 是不是原子操作？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql-用过吗？分组的关键字是什么？"><span class="post-toc-number">16.</span> <span class="post-toc-text">mysql 用过吗？分组的关键字是什么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分组-选择条件还能再接-order-by-进行排序吗？"><span class="post-toc-number">17.</span> <span class="post-toc-text">分组+选择条件还能再接 order by 进行排序吗？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#对什么数据结构最了解？"><span class="post-toc-number">18.</span> <span class="post-toc-text">对什么数据结构最了解？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#那-hashset-了解吗？"><span class="post-toc-number">19.</span> <span class="post-toc-text">那 hashset 了解吗？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#那你说下-hashmap-的原理吧。"><span class="post-toc-number">20.</span> <span class="post-toc-text">那你说下 hashmap 的原理吧。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么-Java7-中产生哈希碰撞之后要用头插法插到链表里面？"><span class="post-toc-number">21.</span> <span class="post-toc-text">为什么 Java7 中产生哈希碰撞之后要用头插法插到链表里面？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#hashmap-怎么根据-key-来获取值。"><span class="post-toc-number">22.</span> <span class="post-toc-text">hashmap 怎么根据 key 来获取值。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#hashmap-中用了哪种哈希算法？"><span class="post-toc-number">23.</span> <span class="post-toc-text">hashmap 中用了哪种哈希算法？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#那你说下-hashmap-和-currentHashmap-的区别吧？"><span class="post-toc-number">24.</span> <span class="post-toc-text">那你说下 hashmap 和 currentHashmap 的区别吧？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#那-hashtable-有用过吗？说下原理。"><span class="post-toc-number">25.</span> <span class="post-toc-text">那 hashtable 有用过吗？说下原理。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#产生死锁的四个条件是什么？"><span class="post-toc-number">26.</span> <span class="post-toc-text">产生死锁的四个条件是什么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#知道-arp-吗？"><span class="post-toc-number">27.</span> <span class="post-toc-text">知道 arp 吗？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#那你说下-ARP-欺骗的原理吧？"><span class="post-toc-number">28.</span> <span class="post-toc-text">那你说下 ARP 欺骗的原理吧？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#和面试官聊的怎么样？"><span class="post-toc-number">29.</span> <span class="post-toc-text">和面试官聊的怎么样？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#直接问我为什么想来-4399？"><span class="post-toc-number">30.</span> <span class="post-toc-text">直接问我为什么想来 4399？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#大学成绩怎么样？"><span class="post-toc-number">31.</span> <span class="post-toc-text">大学成绩怎么样？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#有没有拿奖学金？"><span class="post-toc-number">32.</span> <span class="post-toc-text">有没有拿奖学金？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么大一大二成绩不好？"><span class="post-toc-number">33.</span> <span class="post-toc-text">为什么大一大二成绩不好？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#大学里参加过什么活动？"><span class="post-toc-number">34.</span> <span class="post-toc-text">大学里参加过什么活动？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#看到你有在写博客？为什么要写博客？"><span class="post-toc-number">35.</span> <span class="post-toc-text">看到你有在写博客？为什么要写博客？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#写了两年了，写了多少篇了？"><span class="post-toc-number">36.</span> <span class="post-toc-text">写了两年了，写了多少篇了？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#写博客对你的改变有哪些？"><span class="post-toc-number">37.</span> <span class="post-toc-text">写博客对你的改变有哪些？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#相对于其他人来说，你的优势在哪里？"><span class="post-toc-number">38.</span> <span class="post-toc-text">相对于其他人来说，你的优势在哪里？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#那你的性格缺陷在哪里？"><span class="post-toc-number">39.</span> <span class="post-toc-text">那你的性格缺陷在哪里？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#你的期望薪资是多少？"><span class="post-toc-number">40.</span> <span class="post-toc-text">你的期望薪资是多少？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最后问我能不能转-php？"><span class="post-toc-number">41.</span> <span class="post-toc-text">最后问我能不能转 php？</span></a></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-【4399技术面-HR面】"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -166,44 +173,62 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>自我介绍。</p>
-<p>会不会 mongodb? 不会。</p>
-<p>会不会 memcached? 不会。</p>
-<p>集群环境怎么搭建的？为什么要做集群？多Tomcat+Nginx 搭建，降低服务器压力。</p>
-<p>集群除了降低服务器压力还有什么吗？不会。嗯嗯，还有容灾。</p>
-<p>反向代理的原理说下？</p>
-<p>负载均衡的原理说下？知道哪几种分流算法？轮询，权重，ip_hash,url_hash,fair五种。</p>
-<p>nginx 需要隔离出来单独做一台服务器吗？如果 nginx 挂掉能不能访问 Tomcat ?</p>
-<p>Session 共享怎么做的？单点登录和单点注销原理说下？</p>
-<p>除了用 cookie 做 session 追踪还会什么方法做 session 追踪？不会啊。用 DNS ，你没用过就算了，下一个。</p>
-<p>购物车的设计思路和数据库里怎么设计的？用户 id 做外键来标识购物车。</p>
-<p>分布式锁了解多少？setnx 是不是原子操作？那 getset 是不是原子操作？</p>
-<p>mysql 用过吗？分组的关键字是什么？group by，分组之后能不能再次选择？能啊，用什么关键字？ having 。</p>
-<p>分组+选择条件还能再接 order by 进行排序吗？能啊？确定能？确定啊？真的确定？真的确定？这里几个反问问的我心里发毛，现在我都不知道能不能在排序了。</p>
-<p>对什么数据结构最了解？hashmap啊。那 hashset 了解吗？卧槽，不会原理，只会用。那你说下 hashmap 的原理吧。</p>
-<p>为什么 Java7 中产生哈希碰撞之后要用头插法插到链表里面？因为头插最快啊。</p>
-<p>hashmap 怎么根据 key 来获取值。</p>
-<p>hashmap 中用了哪种哈希算法？不会。</p>
-<p>那你说下 hashmap 和 currentHashmap 的区别吧？分段锁，提高并发量，锁数量决定并发数。</p>
-<p>那 hashtable 有用过吗？说下原理。加了 synchronized 的hashmap。</p>
-<p>产生死锁的四个条件是什么？循环等待，不可剥夺，占有且等待，最后一个没想出来，还有一个互斥。</p>
-<p>知道 arp 吗？知道啊，IP 地址转化为 mac 地址。</p>
-<p>那你说下 ARP 欺骗的原理吧？卧槽，不会，我只知道 ARP 欺骗是属于 web 攻击的一种，和 xss,ddos,sql 注入一起的。</p>
+            <h4 id="自我介绍。"><a href="#自我介绍。" class="headerlink" title="自我介绍。"></a>自我介绍。</h4><p>略</p>
+<h4 id="会不会-mongodb"><a href="#会不会-mongodb" class="headerlink" title="会不会 mongodb?"></a>会不会 mongodb?</h4><p>暂时不会。</p>
+<h4 id="会不会-memcached"><a href="#会不会-memcached" class="headerlink" title="会不会 memcached?"></a>会不会 memcached?</h4><p>暂时不会。</p>
+<h4 id="集群环境怎么搭建的？"><a href="#集群环境怎么搭建的？" class="headerlink" title="集群环境怎么搭建的？"></a>集群环境怎么搭建的？</h4><p>用户通过访问 nginx 代理服务器，nginx 将请求分发到 tomcat 集群中的某一台服务器上。</p>
+<h4 id="为什么要做集群？"><a href="#为什么要做集群？" class="headerlink" title="为什么要做集群？"></a>为什么要做集群？</h4><ul>
+<li>降低服务器压力。</li>
+<li>容灾。</li>
+<li>增大吞吐量。</li>
+</ul>
+<h4 id="反向代理的原理说下？"><a href="#反向代理的原理说下？" class="headerlink" title="反向代理的原理说下？"></a>反向代理的原理说下？</h4><p>反向代理是指以代理服务器的方式来接受来自客户端的请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的返回结果返回给网络上客户端，这个时候代理服务器就表现为一个服务器。</p>
+<h4 id="负载均衡的原理说下？"><a href="#负载均衡的原理说下？" class="headerlink" title="负载均衡的原理说下？"></a>负载均衡的原理说下？</h4><p>和反向代理的原理差不多。</p>
+<h4 id="知道哪几种分流算法？"><a href="#知道哪几种分流算法？" class="headerlink" title="知道哪几种分流算法？"></a>知道哪几种分流算法？</h4><p>轮询，权重，ip_hash,url_hash,fair五种。</p>
+<h4 id="nginx-需要隔离出来单独做一台服务器吗？"><a href="#nginx-需要隔离出来单独做一台服务器吗？" class="headerlink" title="nginx 需要隔离出来单独做一台服务器吗？"></a>nginx 需要隔离出来单独做一台服务器吗？</h4><p>我回答出来的是说隔离出来作为一台服务器，</p>
+<h4 id="如果-nginx-挂掉能不能访问-Tomcat"><a href="#如果-nginx-挂掉能不能访问-Tomcat" class="headerlink" title="如果 nginx 挂掉能不能访问 Tomcat ?"></a>如果 nginx 挂掉能不能访问 Tomcat ?</h4><p>不能。</p>
+<h4 id="Session-共享怎么做的？"><a href="#Session-共享怎么做的？" class="headerlink" title="Session 共享怎么做的？"></a>Session 共享怎么做的？</h4><p>将 session 信息存储到 redis 中。</p>
+<h4 id="单点登录和单点注销原理说下？"><a href="#单点登录和单点注销原理说下？" class="headerlink" title="单点登录和单点注销原理说下？"></a>单点登录和单点注销原理说下？</h4><p>将 session 信息存储到 redis 中，同时将 session_id 写回客户端，每次登陆判断请求中传过来的 session_id 是否存在于 redis 中，如果存在，则刷新该 session_id 的超时时间，如果不存在则重新登陆。单点注销类似。</p>
+<h4 id="除了用-cookie-做-session-追踪还会什么方法做-session-追踪？"><a href="#除了用-cookie-做-session-追踪还会什么方法做-session-追踪？" class="headerlink" title="除了用 cookie 做 session 追踪还会什么方法做 session 追踪？"></a>除了用 cookie 做 session 追踪还会什么方法做 session 追踪？</h4><p>不会啊。用 DNS ，你没用过就算了，下一个。</p>
+<h4 id="购物车的设计思路和数据库里怎么设计的？"><a href="#购物车的设计思路和数据库里怎么设计的？" class="headerlink" title="购物车的设计思路和数据库里怎么设计的？"></a>购物车的设计思路和数据库里怎么设计的？</h4><p>用户 id 做外键来标识购物车。</p>
+<h4 id="分布式锁了解多少？setnx-是不是原子操作？那-getset-是不是原子操作？"><a href="#分布式锁了解多少？setnx-是不是原子操作？那-getset-是不是原子操作？" class="headerlink" title="分布式锁了解多少？setnx 是不是原子操作？那 getset 是不是原子操作？"></a>分布式锁了解多少？setnx 是不是原子操作？那 getset 是不是原子操作？</h4><p>都是原子操作。</p>
+<h4 id="mysql-用过吗？分组的关键字是什么？"><a href="#mysql-用过吗？分组的关键字是什么？" class="headerlink" title="mysql 用过吗？分组的关键字是什么？"></a>mysql 用过吗？分组的关键字是什么？</h4><p>group by，分组之后能不能再次选择？能啊，用什么关键字？ having 。</p>
+<h4 id="分组-选择条件还能再接-order-by-进行排序吗？"><a href="#分组-选择条件还能再接-order-by-进行排序吗？" class="headerlink" title="分组+选择条件还能再接 order by 进行排序吗？"></a>分组+选择条件还能再接 order by 进行排序吗？</h4><p>能啊？确定能？确定啊？真的确定？真的确定？这里几个反问问的我心里发毛，现在我都不知道能不能在排序了。</p>
+<h4 id="对什么数据结构最了解？"><a href="#对什么数据结构最了解？" class="headerlink" title="对什么数据结构最了解？"></a>对什么数据结构最了解？</h4><p>hashmap啊。</p>
+<h4 id="那-hashset-了解吗？"><a href="#那-hashset-了解吗？" class="headerlink" title="那 hashset 了解吗？"></a>那 hashset 了解吗？</h4><p>不会原理，只会用。</p>
+<h4 id="那你说下-hashmap-的原理吧。"><a href="#那你说下-hashmap-的原理吧。" class="headerlink" title="那你说下 hashmap 的原理吧。"></a>那你说下 hashmap 的原理吧。</h4><p>数组 + 链表。</p>
+<h4 id="为什么-Java7-中产生哈希碰撞之后要用头插法插到链表里面？"><a href="#为什么-Java7-中产生哈希碰撞之后要用头插法插到链表里面？" class="headerlink" title="为什么 Java7 中产生哈希碰撞之后要用头插法插到链表里面？"></a>为什么 Java7 中产生哈希碰撞之后要用头插法插到链表里面？</h4><p>因为头插最快啊。</p>
+<h4 id="hashmap-怎么根据-key-来获取值。"><a href="#hashmap-怎么根据-key-来获取值。" class="headerlink" title="hashmap 怎么根据 key 来获取值。"></a>hashmap 怎么根据 key 来获取值。</h4><p>将 key 进行哈希运算得到哈希码，将哈希码进行取模得到索引，得到索引之后通过遍历链表得到具体的 value。</p>
+<h4 id="hashmap-中用了哪种哈希算法？"><a href="#hashmap-中用了哪种哈希算法？" class="headerlink" title="hashmap 中用了哪种哈希算法？"></a>hashmap 中用了哪种哈希算法？</h4><p>高位运算好像。</p>
+<h4 id="那你说下-hashmap-和-currentHashmap-的区别吧？"><a href="#那你说下-hashmap-和-currentHashmap-的区别吧？" class="headerlink" title="那你说下 hashmap 和 currentHashmap 的区别吧？"></a>那你说下 hashmap 和 currentHashmap 的区别吧？</h4><p>currentHashmap分段锁，提高并发量，锁数量决定并发数。</p>
+<h4 id="那-hashtable-有用过吗？说下原理。"><a href="#那-hashtable-有用过吗？说下原理。" class="headerlink" title="那 hashtable 有用过吗？说下原理。"></a>那 hashtable 有用过吗？说下原理。</h4><p>加了 synchronized 的hashmap。</p>
+<h4 id="产生死锁的四个条件是什么？"><a href="#产生死锁的四个条件是什么？" class="headerlink" title="产生死锁的四个条件是什么？"></a>产生死锁的四个条件是什么？</h4><p>循环等待，不可剥夺，占有且等待，最后一个没想出来，还有一个互斥。</p>
+<h4 id="知道-arp-吗？"><a href="#知道-arp-吗？" class="headerlink" title="知道 arp 吗？"></a>知道 arp 吗？</h4><p>知道啊，IP 地址转化为 mac 地址。</p>
+<h4 id="那你说下-ARP-欺骗的原理吧？"><a href="#那你说下-ARP-欺骗的原理吧？" class="headerlink" title="那你说下 ARP 欺骗的原理吧？"></a>那你说下 ARP 欺骗的原理吧？</h4><p>不会，我只知道 ARP 欺骗是属于 web 攻击的一种，和 xss,ddos,sql 注入一起的。</p>
 <p>然后就好像没问什么了。进入 hr 面了。</p>
 <p>hr 面没有自我介绍。</p>
-<p>和面试官聊的怎么样？及其嗨皮。</p>
-<p>直接问我为什么想来 4399？不是你叫我来面试的吗？然后疯狂夸 4399 的好。</p>
-<p>大学成绩怎么样？一般。大三好点。</p>
-<p>有没有拿奖学金？大三可能有吧。</p>
-<p>为什么大一大二成绩不好？瞎扯了自己搞技术去了，学校的科目只求不挂。</p>
-<p>大学里参加过什么活动？聊了下当社长，当学委，以及拿过的奖。</p>
-<p>看到你有在写博客？为什么要写博客？</p>
-<p>写了两年了，写了多少篇了？</p>
-<p>写博客对你的改变有哪些？</p>
-<p>相对于其他人来说，你的优势在哪里？此处疯狂夸自己。</p>
-<p>那你的性格缺陷在哪里？这里实在没想出来能答什么？说暂时没想到。</p>
-<p>你的期望薪资是多少？略。</p>
-<p>最后问我能不能转 php？我说我更倾向于做 Java，如果公司安排我要做 php，那我可以转。</p>
+<h4 id="和面试官聊的怎么样？"><a href="#和面试官聊的怎么样？" class="headerlink" title="和面试官聊的怎么样？"></a>和面试官聊的怎么样？</h4><p>及其嗨皮。</p>
+<h4 id="直接问我为什么想来-4399？"><a href="#直接问我为什么想来-4399？" class="headerlink" title="直接问我为什么想来 4399？"></a>直接问我为什么想来 4399？</h4><ul>
+<li>地点。</li>
+<li>岗位。</li>
+<li>薪酬。</li>
+</ul>
+<h4 id="大学成绩怎么样？"><a href="#大学成绩怎么样？" class="headerlink" title="大学成绩怎么样？"></a>大学成绩怎么样？</h4><p>一般。大三好点。</p>
+<h4 id="有没有拿奖学金？"><a href="#有没有拿奖学金？" class="headerlink" title="有没有拿奖学金？"></a>有没有拿奖学金？</h4><p>大三可能有吧。</p>
+<h4 id="为什么大一大二成绩不好？"><a href="#为什么大一大二成绩不好？" class="headerlink" title="为什么大一大二成绩不好？"></a>为什么大一大二成绩不好？</h4><p>自己搞技术去了，学校的科目只求不挂。</p>
+<h4 id="大学里参加过什么活动？"><a href="#大学里参加过什么活动？" class="headerlink" title="大学里参加过什么活动？"></a>大学里参加过什么活动？</h4><p>聊了下当社长，当学委，以及拿过的奖。</p>
+<h4 id="看到你有在写博客？为什么要写博客？"><a href="#看到你有在写博客？为什么要写博客？" class="headerlink" title="看到你有在写博客？为什么要写博客？"></a>看到你有在写博客？为什么要写博客？</h4><ul>
+<li>技术分享。</li>
+<li>锻炼总结的能力。</li>
+</ul>
+<h4 id="写了两年了，写了多少篇了？"><a href="#写了两年了，写了多少篇了？" class="headerlink" title="写了两年了，写了多少篇了？"></a>写了两年了，写了多少篇了？</h4><p>一两百篇。</p>
+<h4 id="写博客对你的改变有哪些？"><a href="#写博客对你的改变有哪些？" class="headerlink" title="写博客对你的改变有哪些？"></a>写博客对你的改变有哪些？</h4><ul>
+<li>培养自己说话的能力以及总结的能力。</li>
+</ul>
+<h4 id="相对于其他人来说，你的优势在哪里？"><a href="#相对于其他人来说，你的优势在哪里？" class="headerlink" title="相对于其他人来说，你的优势在哪里？"></a>相对于其他人来说，你的优势在哪里？</h4><p>执行力足够强。</p>
+<h4 id="那你的性格缺陷在哪里？"><a href="#那你的性格缺陷在哪里？" class="headerlink" title="那你的性格缺陷在哪里？"></a>那你的性格缺陷在哪里？</h4><p>这里实在没想出来能答什么，说暂时没想到。</p>
+<h4 id="你的期望薪资是多少？"><a href="#你的期望薪资是多少？" class="headerlink" title="你的期望薪资是多少？"></a>你的期望薪资是多少？</h4><p>略。</p>
+<h4 id="最后问我能不能转-php？"><a href="#最后问我能不能转-php？" class="headerlink" title="最后问我能不能转 php？"></a>最后问我能不能转 php？</h4><p>我说我更倾向于做 Java，如果公司安排我要做 php，那我可以转。</p>
 <p>那你回去等消息吧。</p>
 
         </div>
@@ -213,7 +238,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-09-16T03:26:54.273Z" itemprop="dateUpdated">2018-09-16 11:26:54</time>
+    最后更新时间：<time datetime="2018-09-17T08:06:07.026Z" itemprop="dateUpdated">2018-09-17 16:06:07</time>
 </span><br>
 
 

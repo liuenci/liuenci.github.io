@@ -169,14 +169,16 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        自我介绍。
-会不会 mongodb? 不会。
-会不会 memcached? 不会。
-集群环境怎么搭建的？为什么要做集群？多Tomcat+Nginx 搭建，降低服务器压力。
-集群除了降低服务器压力还有什么吗？不会。嗯嗯，还有容灾。
-反向代理的原理说下？
-负载均衡的原理说下？知道哪几种分流算法？轮询，权重，ip_hash,url_hash,fair五种。
-nginx 需要隔离出来单独做一台服务器...
+        自我介绍。略
+会不会 mongodb?暂时不会。
+会不会 memcached?暂时不会。
+集群环境怎么搭建的？用户通过访问 nginx 代理服务器，nginx 将请求分发到 tomcat 集群中的某一台服务器上。
+为什么要做集群？
+降低服务器压力。
+容灾。
+增大吞吐量。
+
+反向代理的原理说下？反向代理是指以代理服务器的方式来接受来自客户端的请求，然后将请求转发给内部网络上的服务器，并将从服务...
     
 
         <a href="/2018/09/16/【4399技术面-HR面】/" class="post-more waves-effect waves-button">
