@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】 | 一琛(cier) | 一琛可是比昨天更厉害了一些啊。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,生命周期,内存管理,垃圾回收算法">
+    <meta name="description" content="概览 变量的生命周期。 内存管理。 垃圾回收算法。  变量的生命周期变量的生命周期一般分为三步。  给变量分配内存。 读或者写变量分配到的内存。 在没有需要用到该变量时将其内存进行回收。  在编写 js 代码时，由于 js 是具有自动垃圾回收机制的，所以内存分配以及无用内存的回收会进行自动管理。 内存管理在 js 中，分配给 web 浏览器的可用内存数量通常比分配给桌面应用程序的少。这样做的目的主">
+<meta name="keywords" content="JavaScript,生命周期,内存管理,垃圾回收算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】">
+<meta property="og:url" content="http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/index.html">
+<meta property="og:site_name" content="一琛(cier)">
+<meta property="og:description" content="概览 变量的生命周期。 内存管理。 垃圾回收算法。  变量的生命周期变量的生命周期一般分为三步。  给变量分配内存。 读或者写变量分配到的内存。 在没有需要用到该变量时将其内存进行回收。  在编写 js 代码时，由于 js 是具有自动垃圾回收机制的，所以内存分配以及无用内存的回收会进行自动管理。 内存管理在 js 中，分配给 web 浏览器的可用内存数量通常比分配给桌面应用程序的少。这样做的目的主">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-29T11:19:46.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】">
+<meta name="twitter:description" content="概览 变量的生命周期。 内存管理。 垃圾回收算法。  变量的生命周期变量的生命周期一般分为三步。  给变量分配内存。 读或者写变量分配到的内存。 在没有需要用到该变量时将其内存进行回收。  在编写 js 代码时，由于 js 是具有自动垃圾回收机制的，所以内存分配以及无用内存的回收会进行自动管理。 内存管理在 js 中，分配给 web 浏览器的可用内存数量通常比分配给桌面应用程序的少。这样做的目的主">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">一琛(cier)</h5>
+          <a href="mailto:liuencier@gmail.com" title="liuencier@gmail.com" class="mail">liuencier@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/liuenci" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-29T11:18:43.000Z" itemprop="datePublished" class="page-time">
+  2018-09-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#概览"><span class="post-toc-number">1.</span> <span class="post-toc-text">概览</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#变量的生命周期"><span class="post-toc-number">2.</span> <span class="post-toc-text">变量的生命周期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内存管理"><span class="post-toc-number">3.</span> <span class="post-toc-text">内存管理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#垃圾回收算法。"><span class="post-toc-number">4.</span> <span class="post-toc-text">垃圾回收算法。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#标记清除算法"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">标记清除算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#引用计数算法"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">引用计数算法</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="w-【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】"
+  class="post-article article-type-w fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-29 19:18:43" datetime="2018-09-29T11:18:43.000Z"  itemprop="datePublished">2018-09-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><ul>
+<li>变量的生命周期。</li>
+<li>内存管理。</li>
+<li>垃圾回收算法。</li>
+</ul>
+<h4 id="变量的生命周期"><a href="#变量的生命周期" class="headerlink" title="变量的生命周期"></a>变量的生命周期</h4><p>变量的生命周期一般分为三步。</p>
+<ul>
+<li>给变量分配内存。</li>
+<li>读或者写变量分配到的内存。</li>
+<li>在没有需要用到该变量时将其内存进行回收。</li>
+</ul>
+<p>在编写 js 代码时，由于 js 是具有自动垃圾回收机制的，所以内存分配以及无用内存的回收会进行自动管理。</p>
+<h4 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h4><p>在 js 中，分配给 web 浏览器的可用内存数量通常比分配给桌面应用程序的少。这样做的目的主要是出于安全方面的考虑，目的是防止运行 js 的网页耗尽全部系统的内存而导致系统奔溃。</p>
+<p>内存限制问题不仅会影响给变量分配内存，同时还会影响调用栈以及在一个线程中能够同时执行的语句数量。</p>
+<p>因此，确保占用占用最少的内存可以让页面获得最好的性能。而优化内存占用的最佳方式，就是执行中的代码只保留必要的数据。一旦数据不再有用，最好通过将值设置为 null 来释放引用，这个做法叫做解除引用。这一做法适用于大多数全局变量和全局对象的属性。局部变量会在它们离开执行环境时自动被解除引用。</p>
+<p>解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。</p>
+<h4 id="垃圾回收算法。"><a href="#垃圾回收算法。" class="headerlink" title="垃圾回收算法。"></a>垃圾回收算法。</h4><p>在 js 中有两种垃圾回收算法，一种是标记清除算法，一种是引用计数算法。</p>
+<h5 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h5><p>垃圾收集器在运行的时候会给存储在内存中的所有变量都加上标记。然后，他会去掉环境中的变量以及被环境中的变量引用的变量的标记。而在此之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量引用的变量已经无法访问到这些变量了。最后垃圾回收器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间。</p>
+<p>那哪些会被回收，哪些不会被回收呢？</p>
+<ul>
+<li>全局变量和 windows 对象会一直存在，不会被垃圾收集器回收。</li>
+<li>递归所用到的所有变量和方法都不会被回收。</li>
+<li>所有没有被标记为“活跃”的，都会被认为是垃圾，收集器会回收垃圾并且释放内存给操作系统。</li>
+</ul>
+<h5 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h5><p>引用计数算法不太常见，它的含义主要是跟踪记录每一个值被引用的次数。当声明了一个变量并将一个引用类型值赋给该变量时，则这个值的引用次数就是 1。如果同一个值又被赋给了另一个变量，则该值的引用次数加 1，相反，如果包含对这个值引用的变量又取得了另外一个值了，则这个值的引用次数减 1。当这个值的引用次数编程 0 时，则说明没有办法再访问这个值了，因而就可以将其占用的内存空间回收回来。这样，当垃圾收集器下次再运行时，他就会释放哪些引用次数为零的值所占用的内存。</p>
+<p>但是引用计数算法有一个很明显的缺点那就是循环引用，比方说，对象 A 中包含一个指向对象 B 的指针，而对象 B 中也包含一个指向对象 A 的引用。在引用计数算法中， A 和 B 的计数都是 1,垃圾回收器不会将其收集，也就不会释放内存。</p>
+<p>为了避免这样的循环引用问题出现，这里提供一种解决方案是在不需要引用的时候将变量置为 null，这样垃圾回收器将会在下次运行的时候将垃圾进行收集。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-09-29T11:19:46.545Z" itemprop="dateUpdated">2018-09-29 19:19:46</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://liuenci.cn">
+            <img src="/img/avatar.png" alt="一琛(cier)">
+            一琛(cier)
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/垃圾回收算法/">垃圾回收算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生命周期/">生命周期</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/&title=《【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/&title=《【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】》 — 一琛(cier)&url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/17/【网易有道一二面】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【网易有道一二面】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wxpay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wxpay.png" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>一琛(cier) &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备17007069号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/&title=《【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】》 — 一琛(cier)&pic=http://liuenci.cn/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/&title=《【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】》 — 一琛(cier)&source=hello world" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【JavaScript 中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】》 — 一琛(cier)&url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/&via=http://liuenci.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuenci.cn/2018/09/29/【JavaScript-中的变量生命周期，内存管理，以及垃圾回收算法的一点总结】/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
